@@ -41,28 +41,6 @@
         $tiktokUrl = $settings['tiktok_url'] ?? 'https://tiktok.com/@pujatourtravel';
     @endphp
 
-    <!-- 1. TOP ANNOUNCEMENT BAR (Solid Slate 900) -->
-    <div class="bg-slate-900 text-white text-xs sm:text-sm py-2.5 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div class="flex items-center gap-2 text-center sm:text-left">
-                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500 text-slate-950 uppercase tracking-wide">
-                    Promo Rombongan
-                </span>
-                <span class="text-slate-200 font-medium">Diskon s/d 15% untuk Rombongan & Paket Eksklusif Pangandaran</span>
-            </div>
-            <div class="flex items-center gap-4 text-xs">
-                <a href="https://wa.me/{{ $waNum }}" target="_blank" class="flex items-center gap-1.5 text-slate-300 hover:text-white transition">
-                    <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-400"></i>
-                    <span>Hotline: {{ $phoneNum }}</span>
-                </a>
-                <span class="text-slate-700 hidden sm:inline">|</span>
-                <span class="text-slate-300 hidden sm:inline flex items-center gap-1">
-                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i>
-                    <span>Pangandaran, Jawa Barat</span>
-                </span>
-            </div>
-        </div>
-    </div>
 
     <!-- 2. STICKY NAVBAR (Seamless Borderless Design) -->
     <header id="main-header" class="sticky top-0 z-40 w-full bg-surface-soft/95 backdrop-blur-md transition-all duration-300 py-3.5 shadow-sm">
@@ -84,13 +62,13 @@
 
             <!-- Desktop Nav Items -->
             <nav class="hidden lg:flex items-center gap-7 font-medium text-slate-600 text-sm">
-                <a href="#beranda" class="text-emerald-700 font-semibold hover:text-emerald-800 transition">Beranda</a>
-                <a href="#paket" class="hover:text-emerald-700 transition">Paket Wisata</a>
-                <a href="#tentang" class="hover:text-emerald-700 transition">Tentang Kami</a>
-                <a href="#kalkulator" class="hover:text-emerald-700 transition">Estimasi Biaya</a>
-                <a href="#faq" class="hover:text-emerald-700 transition">FAQ</a>
-                <a href="#galeri" class="hover:text-emerald-700 transition">Galeri</a>
-                <a href="#kontak" class="hover:text-emerald-700 transition">Kontak</a>
+                <a href="{{ route('home') }}" class="text-emerald-700 font-semibold hover:text-emerald-800 transition">Beranda</a>
+                <a href="{{ route('packages.index') }}" class="hover:text-emerald-700 transition">Paket Wisata</a>
+                <a href="{{ route('about') }}" class="hover:text-emerald-700 transition">Tentang Kami</a>
+                <a href="{{ route('calculator') }}" class="hover:text-emerald-700 transition">Estimasi Biaya</a>
+                <a href="{{ route('faq') }}" class="hover:text-emerald-700 transition">FAQ</a>
+                <a href="{{ route('gallery') }}" class="hover:text-emerald-700 transition">Galeri</a>
+                <a href="{{ route('contact') }}" class="hover:text-emerald-700 transition">Kontak</a>
             </nav>
 
             <!-- Header Action CTA -->
@@ -128,28 +106,25 @@
             </div>
 
             <nav class="py-6 space-y-1.5 font-medium text-slate-700 text-sm">
-                <a href="#beranda" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 text-emerald-700 font-bold transition">
+                <a href="{{ route('home') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 text-emerald-700 font-bold transition">
                     <span>Beranda</span>
                 </a>
-                <a href="#paket" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
+                <a href="{{ route('packages.index') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
                     <span>Paket Wisata</span>
                 </a>
-                <a href="#destinasi" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Destinasi Ikonik</span>
+                <a href="{{ route('about') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
+                    <span>Tentang Kami</span>
                 </a>
-                <a href="#keunggulan" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Keunggulan Kami</span>
+                <a href="{{ route('calculator') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
+                    <span>Estimasi Biaya</span>
                 </a>
-                <a href="#galeri" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Galeri Wisata</span>
-                </a>
-                <a href="#testimoni" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Ulasan Pelanggan</span>
-                </a>
-                <a href="#faq" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
+                <a href="{{ route('faq') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
                     <span>FAQ</span>
                 </a>
-                <a href="#kontak" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
+                <a href="{{ route('gallery') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
+                    <span>Galeri</span>
+                </a>
+                <a href="{{ route('contact') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
                     <span>Kontak & Lokasi</span>
                 </a>
             </nav>
@@ -167,12 +142,56 @@
         </div>
     </div>
 
-    <!-- 3. HERO BANNER SECTION (Solid Slate 950 with Clear Scrim Overlay) -->
-    <section id="beranda" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-slate-950">
-        <!-- Background Image with Clean Scrim -->
-        <div class="absolute inset-0 z-0">
-            <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Pangandaran Ocean" class="w-full h-full object-cover object-center scale-105">
-            <div class="absolute inset-0 bg-slate-950/75"></div>
+    <!-- 3. HERO BANNER SECTION WITH CINEMATIC AUTO-SLIDER (Solid Slate 950) -->
+    <section id="beranda" class="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-slate-950 group">
+        <!-- Hero Background Auto-Slider Container -->
+        <div id="hero-slider" class="absolute inset-0 z-0 overflow-hidden select-none">
+            <!-- Slide 1 -->
+            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100" data-location="Pantai Pangandaran • Hamparan Pasir & Pesona Bahari">
+                <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Pantai Pangandaran" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
+            </div>
+            <!-- Slide 2 -->
+            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none" data-location="Green Canyon Cukang Taneuh • Ngarai Stalaktit Air Zamrud">
+                <img src="{{ asset('images/greencanyon.jpg') }}" alt="Green Canyon" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
+            </div>
+            <!-- Slide 3 -->
+            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none" data-location="Pantai Pasir Putih • Snorkeling Terumbu Karang & Ikan Badut">
+                <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Pasir Putih" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
+            </div>
+            <!-- Slide 4 -->
+            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none" data-location="Pantai Batu Karas • Golden Sunset & Wisata Selancar">
+                <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Batu Karas" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
+            </div>
+            <!-- Slide 5 -->
+            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none" data-location="Cagar Alam Pananjung • Hutan Lindung Tropis & Satwa Liar">
+                <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Cagar Alam" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
+            </div>
+
+            <!-- Deep Scrim Overlay for Crystal Clear Text Contrast -->
+            <div class="absolute inset-0 bg-linear-to-b from-slate-950/85 via-slate-950/75 to-slate-950/90 z-1"></div>
+        </div>
+
+        <!-- Floating Destination Badge (Auto-updates with slide) -->
+        <div class="absolute top-20 sm:top-24 left-4 sm:left-8 z-20 hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-medium text-emerald-300 shadow-lg">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="hero-location-text">Pantai Pangandaran • Hamparan Pasir & Pesona Bahari</span>
+        </div>
+
+        <!-- Hero Slider Arrow Navigation Controls -->
+        <button id="hero-prev-btn" type="button" aria-label="Slide Sebelumnya" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/60 hover:bg-slate-900/90 border border-white/20 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-300 shadow-xl cursor-pointer">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </button>
+        <button id="hero-next-btn" type="button" aria-label="Slide Selanjutnya" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/60 hover:bg-slate-900/90 border border-white/20 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-300 shadow-xl cursor-pointer">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Slide Indicators (Pills & Active Indicator) -->
+        <div id="hero-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/60 backdrop-blur-md border border-white/10">
+            <button type="button" class="hero-dot w-8 h-2 rounded-full bg-emerald-400 transition-all duration-300 cursor-pointer" data-slide="0" aria-label="Slide 1"></button>
+            <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="1" aria-label="Slide 2"></button>
+            <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="2" aria-label="Slide 3"></button>
+            <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="3" aria-label="Slide 4"></button>
+            <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="4" aria-label="Slide 5"></button>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
@@ -244,7 +263,7 @@
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Pilih Paket Wisata</label>
                                 <select id="calc-package" class="w-full px-3.5 py-3 rounded-xl border border-neutral-200 bg-canvas text-slate-800 font-medium text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 transition outline-none">
-                                    @foreach($packages as $pkg)
+                                    @foreach($allPackages as $pkg)
                                         <option value="{{ $pkg->slug }}" data-price="{{ (int) $pkg->price }}">
                                             {{ $pkg->name }} ({{ $pkg->formatted_price }} / {{ $pkg->price_unit }})
                                         </option>
@@ -259,7 +278,7 @@
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Rencana Tanggal</label>
-                                    <input type="date" id="calc-date" class="w-full px-3 py-3 rounded-xl border border-neutral-200 bg-canvas text-slate-800 font-medium text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 transition outline-none">
+                                    <input type="date" id="calc-date" min="{{ date('Y-m-d') }}" placeholder="Pilih tanggal trip..." class="w-full px-3.5 py-3 rounded-xl border border-neutral-200 bg-canvas text-slate-800 font-medium text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 transition outline-none custom-datepicker-input">
                                 </div>
                             </div>
 
@@ -348,26 +367,52 @@
                 Pilih paket perjalanan impian Anda, mulai dari petualangan body rafting Green Canyon hingga paket eksklusif keluarga & corporate gathering.
             </p>
 
-            <!-- Dynamic Category Filter Buttons (Soft Natural Styling) -->
+            <!-- Category Filter Links -->
             <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-8">
-                <button class="package-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-emerald-700 text-white shadow-sm" data-category="all">
-                    Semua Paket
-                </button>
+                <a href="{{ route('packages.index') }}" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-emerald-700 text-white shadow-sm">
+                    Katalog Lengkap ({{ $totalPackagesCount ?? 8 }})
+                </a>
                 @foreach($categories as $cat)
-                    <button class="package-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-[#fbfcf9] text-slate-600 hover:bg-[#ecefe9] border border-[#dfe4dc]" data-category="{{ $cat->slug }}">
+                    <a href="{{ route('packages.index', ['category' => $cat->slug]) }}" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-surface-soft text-slate-600 hover:bg-[#ecefe9] border border-neutral-200">
                         {{ $cat->name }}
-                    </button>
+                    </a>
                 @endforeach
             </div>
         </div>
 
-        <!-- Dynamic Package Grid from Database -->
+        <!-- Dynamic Package Grid from Database (Menampilkan Pilihan Unggulan) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @forelse($packages as $pkg)
                 <div class="package-card flex flex-col bg-surface-soft rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group" data-category="{{ $pkg->category->slug ?? 'all' }}">
-                    <div class="relative h-60 overflow-hidden bg-neutral-100">
-                        <img src="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $pkg->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-4 left-4">
+                    <!-- Card Image Area with Multi-Image Auto-Slider & Lightbox Click -->
+                    @php
+                        $galleryImages = $pkg->gallery_images;
+                    @endphp
+                    <div class="package-card-slider relative h-64 overflow-hidden bg-slate-950 cursor-pointer group/slider select-none"
+                         data-package-name="{{ $pkg->name }}"
+                         data-package-location="{{ $pkg->location ?? 'Pangandaran' }}"
+                         data-package-duration="{{ $pkg->duration ?? '-' }}"
+                         data-package-price="{{ $pkg->formatted_price }} / {{ $pkg->price_unit }}"
+                         data-package-slug="{{ $pkg->slug }}"
+                         data-package-images='@json($galleryImages)'
+                         title="Klik foto untuk melihat galeri lengkap {{ $pkg->name }}">
+
+                        <!-- Slides -->
+                        <div class="card-slides-wrapper absolute inset-0 w-full h-full">
+                            @foreach($galleryImages as $idx => $img)
+                                <img src="{{ asset($img) }}"
+                                     alt="{{ $pkg->name }} - Foto {{ $idx + 1 }}"
+                                     class="card-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-105 {{ $idx === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none' }}"
+                                     data-slide-index="{{ $idx }}"
+                                     loading="lazy">
+                            @endforeach
+                        </div>
+
+                        <!-- Subtle Gradient Overlay -->
+                        <div class="absolute inset-0 bg-linear-to-t from-slate-950/75 via-transparent to-slate-950/30 pointer-events-none"></div>
+
+                        <!-- Category / Rekomendasi Badge (Top Left) -->
+                        <div class="absolute top-4 left-4 z-10 pointer-events-none">
                             @if($pkg->featured)
                                 <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow-sm flex items-center gap-1">
                                     <i data-lucide="star" class="w-3 h-3 fill-slate-950"></i>
@@ -379,15 +424,35 @@
                                 </span>
                             @endif
                         </div>
+
+                        <!-- Click to View Gallery Hover Badge (Top Right) -->
+                        <div class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-900/85 backdrop-blur-md text-emerald-300 border border-white/20 shadow-md flex items-center gap-1.5">
+                                <i data-lucide="camera" class="w-3.5 h-3.5 text-emerald-400"></i>
+                                <span>{{ count($galleryImages) }} Foto (Buka)</span>
+                            </span>
+                        </div>
+
+                        <!-- Duration Badge (Bottom Right) -->
                         @if($pkg->duration)
-                            <div class="absolute bottom-4 right-4">
-                                <span class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-900/90 text-white flex items-center gap-1">
-                                    <i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            <div class="absolute bottom-3 right-3 z-10 pointer-events-none">
+                                <span class="px-2.5 py-1 rounded-xl text-[11px] font-bold bg-slate-900/90 text-white flex items-center gap-1 backdrop-blur-xs shadow-md border border-white/10">
+                                    <i data-lucide="clock" class="w-3 h-3 text-emerald-400"></i>
                                     <span>{{ $pkg->duration }}</span>
                                 </span>
                             </div>
                         @endif
+
+                        <!-- Slide Dots (Bottom Left) -->
+                        @if(count($galleryImages) > 1)
+                            <div class="card-slider-dots absolute bottom-3 left-4 z-10 flex items-center gap-1 pointer-events-none">
+                                @foreach($galleryImages as $idx => $img)
+                                    <span class="card-dot h-1.5 rounded-full {{ $idx === 0 ? 'bg-emerald-400 w-3.5' : 'bg-white/50 w-1.5' }} transition-all duration-300"></span>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
+
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-1.5 text-xs font-semibold text-emerald-700 mb-1">
@@ -395,7 +460,9 @@
                                 <span>{{ $pkg->location ?? 'Pangandaran' }}</span>
                             </div>
                             <h3 class="font-display font-bold text-xl text-slate-900 group-hover:text-emerald-700 transition">
-                                {{ $pkg->name }}
+                                <a href="{{ route('packages.show', $pkg->slug) }}">
+                                    {{ $pkg->name }}
+                                </a>
                             </h3>
                             <p class="text-xs text-slate-500 mt-2 line-clamp-2">
                                 {{ $pkg->short_description ?? 'Petualangan eksotis bersama Puja Tour & Travel Pangandaran.' }}
@@ -404,7 +471,7 @@
                             <!-- Facilities Badge -->
                             @if(is_array($pkg->inclusions) && count($pkg->inclusions) > 0)
                                 <div class="flex flex-wrap gap-1.5 mt-4">
-                                    @foreach(array_slice($pkg->inclusions, 0, 4) as $inc)
+                                    @foreach(array_slice($pkg->inclusions, 0, 3) as $inc)
                                         <span class="text-[11px] bg-neutral-100 text-slate-700 px-2 py-0.5 rounded-md flex items-center gap-1">
                                             <i data-lucide="check" class="w-3 h-3 text-emerald-700"></i>
                                             <span>{{ $inc }}</span>
@@ -420,14 +487,10 @@
                                 <span class="font-display font-bold text-xl text-emerald-700">{{ $pkg->formatted_price }}</span>
                                 <span class="text-xs text-slate-400">/ {{ $pkg->price_unit }}</span>
                             </div>
-                            <button class="btn-view-package px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-emerald-700 text-white font-semibold text-xs transition"
-                                    data-title="{{ $pkg->name }}"
-                                    data-desc="{{ $pkg->description ?? $pkg->short_description }}"
-                                    data-price="{{ $pkg->formatted_price }} / {{ $pkg->price_unit }}"
-                                    data-duration="{{ $pkg->duration ?? '-' }}"
-                                    data-img="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}">
-                                Lihat Detail
-                            </button>
+                            <a href="{{ route('packages.show', $pkg->slug) }}" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-emerald-700 text-white font-semibold text-xs transition flex items-center gap-2 shadow-sm">
+                                <span>Baca Selengkapnya</span>
+                                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -437,6 +500,14 @@
                     <p class="text-xs mt-1">Silakan tambahkan paket melalui dashboard Admin CMS.</p>
                 </div>
             @endforelse
+        </div>
+
+        <!-- CTA ke Halaman Lengkap Semua Paket -->
+        <div class="mt-12 text-center">
+            <a href="{{ route('packages.index') }}" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-surface-soft hover:bg-white text-slate-900 font-bold text-sm border border-neutral-200 hover:border-emerald-700 shadow-soft hover:shadow-card-hover transition-all duration-300 group">
+                <span>Jelajahi Semua Paket Wisata ({{ $totalPackagesCount ?? 8 }} Pilihan Lengkap)</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 text-emerald-700 group-hover:translate-x-1.5 transition-transform"></i>
+            </a>
         </div>
     </section>
 
@@ -512,7 +583,7 @@
             <!-- Left Image & Badge -->
             <div class="lg:col-span-5 relative">
                 <div class="relative rounded-3xl overflow-hidden shadow-lg border border-neutral-200">
-                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Puja Tour Experience" class="w-full h-[450px] object-cover">
+                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Puja Tour Experience" class="w-full h-112.5 object-cover">
                 </div>
                 <!-- Floating Card (Soft Surface) -->
                 <div class="absolute -bottom-6 -right-6 bg-surface-soft rounded-2xl p-5 shadow-soft border border-neutral-200 max-w-xs hidden sm:block">
@@ -670,15 +741,9 @@
 
             <div class="bg-surface-soft rounded-3xl p-6 sm:p-10 shadow-soft text-slate-800 border border-neutral-200">
                 <form class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Nama Lengkap *</label>
-                            <input type="text" id="calc-name" placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-canvas text-slate-800 text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 transition outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Nomor WhatsApp Aktif *</label>
-                            <input type="tel" id="calc-phone" placeholder="Contoh: 08123456789" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-canvas text-slate-800 text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 transition outline-none">
-                        </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Nama Lengkap *</label>
+                        <input type="text" id="calc-name" placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-canvas text-slate-800 text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 transition outline-none">
                     </div>
 
                     <div>
@@ -895,40 +960,65 @@
         <i data-lucide="message-circle" class="w-6 h-6"></i>
     </a>
 
-    <!-- 15. GALLERY LIGHTBOX MODAL -->
-    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-slate-950/90 hidden items-center justify-center p-4">
-        <button id="lightbox-close" aria-label="Tutup Galeri" class="absolute top-6 right-6 text-white/80 hover:text-white p-2 rounded-full bg-slate-800 hover:bg-slate-700 transition">
-            <i data-lucide="x" class="w-6 h-6"></i>
-        </button>
-        <div class="max-w-4xl max-h-[85vh] flex flex-col items-center">
-            <img id="lightbox-image" src="" alt="Galeri Preview" class="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl">
-            <p id="lightbox-caption" class="text-slate-200 text-sm mt-4 font-medium text-center"></p>
-        </div>
-    </div>
+    <!-- 15. GALLERY LIGHTBOX MODAL WITH FULL SLIDER CAROUSEL -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 select-none" role="dialog" aria-modal="true" aria-label="Galeri Foto Wisata">
+        <!-- Top Controls Bar -->
+        <div class="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 z-30 flex items-center justify-between pointer-events-none">
+            <!-- Left Info Badges -->
+            <div class="flex items-center gap-2 sm:gap-3 pointer-events-auto">
+                <div class="px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-white/20 backdrop-blur-md flex items-center gap-2 shadow-lg">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span id="lightbox-title" class="text-xs sm:text-sm font-bold text-white max-w-35 sm:max-w-md truncate">Galeri Foto</span>
+                </div>
+                <span id="lightbox-counter" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 text-emerald-300 border border-white/15 shadow-sm">
+                    Foto 1 / 1
+                </span>
+            </div>
 
-    <!-- 16. QUICK PACKAGE DETAIL MODAL -->
-    <div id="package-modal" class="fixed inset-0 z-50 bg-slate-950/80 hidden items-center justify-center p-4">
-        <div class="bg-surface-soft rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-neutral-200 flex flex-col">
-            <div class="relative h-56 bg-slate-900">
-                <img id="package-modal-img" src="" alt="Package Detail" class="w-full h-full object-cover">
-                <button id="package-modal-close" aria-label="Tutup Modal" class="absolute top-4 right-4 text-white bg-slate-950/70 hover:bg-slate-950 p-2 rounded-full transition">
-                    <i data-lucide="x" class="w-5 h-5"></i>
+            <!-- Right Controls (Autoplay Toggle & Close) -->
+            <div class="flex items-center gap-2 pointer-events-auto">
+                <button id="lightbox-autoplay-btn" type="button" aria-label="Jeda Slide Otomatis" title="Jeda / Lanjut Putar Otomatis" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 text-xs font-medium text-white/90 cursor-pointer transition shadow-lg">
+                    <i data-lucide="pause" class="w-3.5 h-3.5 text-emerald-400" id="lightbox-play-icon"></i>
+                    <span id="lightbox-autoplay-label">Auto-Slide Aktif</span>
+                </button>
+                <button id="lightbox-close" aria-label="Tutup Galeri" class="text-white/80 hover:text-white p-2.5 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 transition cursor-pointer shadow-lg">
+                    <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                 </button>
             </div>
-            <div class="p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                    <span id="package-modal-duration" class="px-3 py-1 rounded-xl text-xs font-bold bg-neutral-100 text-slate-800 flex items-center gap-1"></span>
-                    <span id="package-modal-price" class="font-display font-extrabold text-xl text-emerald-700"></span>
-                </div>
-                <h3 id="package-modal-title" class="font-display font-bold text-2xl text-slate-900 leading-snug"></h3>
-                <p id="package-modal-desc" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
-                
-                <div class="pt-4 border-t border-neutral-200 flex items-center gap-3">
-                    <a id="package-modal-wa" href="#" data-whatsapp="{{ $waNum }}" target="_blank" class="flex-1 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm text-center transition flex items-center justify-center gap-2 shadow-sm">
-                        <i data-lucide="message-circle" class="w-4 h-4"></i>
-                        <span>Pesan via WhatsApp</span>
-                    </a>
-                </div>
+        </div>
+
+        <!-- Slider Navigation Arrows -->
+        <button id="lightbox-prev" aria-label="Foto Sebelumnya" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 text-white flex items-center justify-center transition-all duration-200 shadow-2xl hover:scale-105 cursor-pointer">
+            <i data-lucide="chevron-left" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+        </button>
+        <button id="lightbox-next" aria-label="Foto Selanjutnya" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 text-white flex items-center justify-center transition-all duration-200 shadow-2xl hover:scale-105 cursor-pointer">
+            <i data-lucide="chevron-right" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+        </button>
+
+        <!-- Main Slider Viewport -->
+        <div class="relative w-full max-w-5xl h-[64vh] sm:h-[70vh] flex flex-col items-center justify-center pt-8 sm:pt-4">
+            <div class="relative w-full h-full flex items-center justify-center overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl border border-white/10 bg-slate-900/60">
+                <img id="lightbox-image" src="" alt="Galeri Preview" class="max-w-full max-h-full object-contain transition-opacity duration-300">
+            </div>
+            <p id="lightbox-caption" class="text-slate-300 text-xs sm:text-sm mt-3 font-medium text-center px-4 max-w-2xl line-clamp-2"></p>
+        </div>
+
+        <!-- Bottom Actions & Dot Thumbnails -->
+        <div class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col sm:flex-row items-center gap-3 w-full max-w-xl px-4 justify-center">
+            <!-- Thumbnail Dots -->
+            <div id="lightbox-dots" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/80 border border-white/15 backdrop-blur-md shadow-md">
+            </div>
+
+            <!-- Quick Action Links -->
+            <div class="flex items-center gap-2">
+                <a id="lightbox-detail-link" href="#" class="hidden px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold border border-white/20 transition gap-1.5 shadow-md">
+                    <span>Baca Selengkapnya</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </a>
+                <a id="lightbox-wa-link" href="#" target="_blank" data-whatsapp="{{ $waNum }}" class="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                    <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                    <span>Tanya via WhatsApp</span>
+                </a>
             </div>
         </div>
     </div>

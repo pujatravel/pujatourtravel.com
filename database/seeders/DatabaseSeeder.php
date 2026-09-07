@@ -196,6 +196,54 @@ class DatabaseSeeder extends Seeder
             'seo_description' => 'Paket corporate gathering dan outbound Pangandaran 3 hari 2 malam terlengkap.',
         ]);
 
+        $pkg7 = Package::updateOrCreate(['slug' => 'body-rafting-citumang-green-valley'], [
+            'category_id' => $catRafting->id,
+            'name' => 'Body Rafting Citumang Green Valley',
+            'short_description' => 'Sensasi meluncur di air terjun alami dan berenang di aliran sungai hijau toska yang teduh di bawah pepohonan rindang.',
+            'description' => 'Citumang (Green Valley) menawarkan pengalaman body rafting ramah keluarga dan pemula. Menyusuri aliran sungai jernih kehijauan yang tenang, melompat dari akar pohon purba ke kolam alami, dan terapi air terjun alami bersama pemandu berlisensi.',
+            'price' => 110000,
+            'currency' => 'IDR',
+            'price_unit' => 'pax',
+            'duration' => '3 - 4 Jam',
+            'location' => 'Sungai Citumang, Sukaminang Pangandaran',
+            'image_url' => '/images/greencanyon.jpg',
+            'featured' => false,
+            'status' => 'PUBLISHED',
+            'inclusions' => ['Pelampung Standard SNI & Helm', 'Pemandu Lokal Berlisensi', 'Makan Siang Nasi Liwet Kastrol', 'Tiket Masuk & Asuransi', 'Dokumentasi Foto'],
+            'exclusions' => ['Transportasi menuju Citumang', 'Pengeluaran pribadi di luar paket'],
+            'itinerary' => [
+                ['time' => '09:00', 'activity' => 'Tiba di Lokasi & Persiapan', 'desc' => 'Briefing keselamatan, pemakaian life jacket dan briefing jalur rafting.'],
+                ['time' => '09:30', 'activity' => 'Eksplorasi Goa & Terjun Citumang', 'desc' => 'Menyusuri gua air tawar dan sensasi loncat dari tebing 3-7 meter.'],
+                ['time' => '12:00', 'activity' => 'Santap Nasi Liwet Sunda', 'desc' => 'Makan siang bersama khas masakan tradisional Sunda.'],
+            ],
+            'seo_title' => 'Paket Body Rafting Citumang Pangandaran Murah & Resmi',
+            'seo_description' => 'Paket body rafting Citumang Green Valley Pangandaran bersertifikat, makan siang liwet kastrol, dan dokumentasi.',
+        ]);
+
+        $pkg8 = Package::updateOrCreate(['slug' => 'sunset-surfing-batu-karas-madasari'], [
+            'category_id' => $catBahari->id,
+            'name' => 'Sunset Surfing & Camping Pantai Madasari',
+            'short_description' => 'Belajar selancar ombak di Batu Karas dan nikmati sunset memukau di atas karang eksotis Pantai Madasari.',
+            'description' => 'Kombinasi petualangan pantai terbaik Pangandaran. Pelajari teknik dasar surfing bersama peselancar lokal Batu Karas yang ramah, dilanjutkan dengan berburu sunset emas di Pantai Madasari dengan panorama gugusan tebing karang laut Samudra Hindia.',
+            'price' => 285000,
+            'currency' => 'IDR',
+            'price_unit' => 'pax',
+            'duration' => '1 Hari Penuh',
+            'location' => 'Pantai Batu Karas & Madasari',
+            'image_url' => '/images/sunset_batu_karas.jpg',
+            'featured' => true,
+            'status' => 'PUBLISHED',
+            'inclusions' => ['Sewa Papan Selancar & Instruktur', 'Tiket Masuk Batu Karas & Madasari', 'Kelapa Muda Segar & Coffee Break', 'Dokumentasi Aksi Selancar'],
+            'exclusions' => ['Transportasi pribadi', 'Penginapan'],
+            'itinerary' => [
+                ['time' => '13:00', 'activity' => 'Surfing Lesson Batu Karas', 'desc' => 'Belajar dasar dayung dan berdiri di papan selancar bersama instruktur.'],
+                ['time' => '16:00', 'activity' => 'Perjalanan ke Pantai Madasari', 'desc' => 'Menuju tebing karang eksotis Pantai Madasari.'],
+                ['time' => '17:30', 'activity' => 'Sunset Golden Hour & Coffee', 'desc' => 'Menikmati matahari terbenam dengan kelapa muda dan hidangan kopi.'],
+            ],
+            'seo_title' => 'Paket Belajar Surfing Batu Karas & Wisata Pantai Madasari',
+            'seo_description' => 'Paket belajar surfing Batu Karas Pangandaran dengan instruktur lokal dan sunset di Pantai Madasari.',
+        ]);
+
         // 4. Sample Reservations
         Reservation::updateOrCreate(['code' => 'RES-2026-000101'], [
             'customer_name' => 'Budi Santoso',

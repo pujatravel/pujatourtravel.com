@@ -172,19 +172,30 @@
             <!-- Featured Packages List -->
             <div class="bg-surface-soft rounded-3xl p-6 shadow-soft border border-neutral-200">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="font-display font-bold text-base text-slate-900">Paket Unggulan</h3>
-                    <span class="flex items-center gap-1 text-xs text-amber-600 font-bold">
-                        <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
-                        <span>Beranda</span>
-                    </span>
+                    <div>
+                        <h3 class="font-display font-bold text-base text-slate-900">Paket Unggulan</h3>
+                        <p class="text-[11px] text-slate-400">Tampil di beranda utama</p>
+                    </div>
+                    <a href="{{ route('admin.packages.index') }}" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 transition flex items-center gap-1">
+                        <span>Semua ({{ $totalPackages }})</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
                 </div>
                 <div class="space-y-3">
                     @forelse($featuredPackages as $pkg)
-                        <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-canvas border border-neutral-200">
-                            <img src="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $pkg->name }}" class="w-12 h-12 rounded-xl object-cover">
+                        <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-canvas border border-neutral-200 hover:border-emerald-700/40 transition group">
+                            <img src="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $pkg->name }}" class="w-12 h-12 rounded-xl object-cover shrink-0">
                             <div class="flex-1 min-w-0">
-                                <h4 class="text-xs font-bold text-slate-900 truncate">{{ $pkg->name }}</h4>
-                                <span class="text-[11px] text-emerald-700 font-bold">{{ $pkg->formatted_price }}</span>
+                                <h4 class="text-xs font-bold text-slate-900 truncate group-hover:text-emerald-700 transition">{{ $pkg->name }}</h4>
+                                <span class="text-[11px] text-emerald-700 font-bold block">{{ $pkg->formatted_price }}</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <a href="{{ route('packages.show', $pkg->slug) }}" target="_blank" class="p-1.5 rounded-lg text-slate-400 hover:text-emerald-700 hover:bg-emerald-50 transition" title="Lihat Halaman Publik">
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                </a>
+                                <a href="{{ route('admin.packages.edit', $pkg->id) }}" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-neutral-200 transition" title="Edit Paket">
+                                    <i data-lucide="edit" class="w-3.5 h-3.5"></i>
+                                </a>
                             </div>
                         </div>
                     @empty

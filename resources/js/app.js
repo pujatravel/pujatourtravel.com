@@ -1,8 +1,15 @@
 // Puja Tour & Travel - Interactive Scripts
 import { createIcons, icons } from 'lucide';
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
+import { Indonesian } from 'flatpickr/dist/l10n/id.js';
+import Choices from 'choices.js';
+import 'choices.js/public/assets/styles/choices.min.css';
 
-// Make lucide available globally
+// Make lucide, flatpickr, and Choices available globally
 window.lucide = { createIcons, icons };
+window.flatpickr = flatpickr;
+window.Choices = Choices;
 
 document.addEventListener('DOMContentLoaded', () => {
     // 0. Initialize Lucide Icons across all views
@@ -50,6 +57,115 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 2.5 Hero Section Cinematic Auto-Slider
+    const heroSection = document.getElementById('beranda');
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroDots = document.querySelectorAll('.hero-dot');
+    const heroPrevBtn = document.getElementById('hero-prev-btn');
+    const heroNextBtn = document.getElementById('hero-next-btn');
+    const heroLocationText = document.getElementById('hero-location-text');
+    let currentHeroIndex = 0;
+    let heroAutoTimer = null;
+    const heroInterval = 5000;
+
+    function setHeroSlide(index) {
+        if (!heroSlides.length) return;
+        currentHeroIndex = (index + heroSlides.length) % heroSlides.length;
+
+        heroSlides.forEach((slide, idx) => {
+            if (idx === currentHeroIndex) {
+                slide.classList.remove('opacity-0', 'pointer-events-none');
+                slide.classList.add('opacity-100');
+                const loc = slide.getAttribute('data-location');
+                if (heroLocationText && loc) {
+                    heroLocationText.textContent = loc;
+                }
+            } else {
+                slide.classList.remove('opacity-100');
+                slide.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+
+        heroDots.forEach((dot, idx) => {
+            if (idx === currentHeroIndex) {
+                dot.classList.remove('w-2.5', 'bg-white/40');
+                dot.classList.add('w-8', 'bg-emerald-400');
+            } else {
+                dot.classList.remove('w-8', 'bg-emerald-400');
+                dot.classList.add('w-2.5', 'bg-white/40');
+            }
+        });
+    }
+
+    function nextHeroSlide() {
+        setHeroSlide(currentHeroIndex + 1);
+    }
+
+    function prevHeroSlide() {
+        setHeroSlide(currentHeroIndex - 1);
+    }
+
+    function startHeroSlider() {
+        stopHeroSlider();
+        if (heroSlides.length > 1) {
+            heroAutoTimer = setInterval(nextHeroSlide, heroInterval);
+        }
+    }
+
+    function stopHeroSlider() {
+        if (heroAutoTimer) {
+            clearInterval(heroAutoTimer);
+            heroAutoTimer = null;
+        }
+    }
+
+    if (heroSlides.length > 0) {
+        setHeroSlide(0);
+        startHeroSlider();
+
+        if (heroPrevBtn) {
+            heroPrevBtn.addEventListener('click', () => {
+                prevHeroSlide();
+                startHeroSlider();
+            });
+        }
+
+        if (heroNextBtn) {
+            heroNextBtn.addEventListener('click', () => {
+                nextHeroSlide();
+                startHeroSlider();
+            });
+        }
+
+        heroDots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                setHeroSlide(idx);
+                startHeroSlider();
+            });
+        });
+
+        if (heroSection) {
+            heroSection.addEventListener('mouseenter', stopHeroSlider);
+            heroSection.addEventListener('mouseleave', startHeroSlider);
+
+            // Touch swipe support for mobile
+            let touchStartX = 0;
+            heroSection.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            heroSection.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0) nextHeroSlide();
+                    else prevHeroSlide();
+                    startHeroSlider();
+                }
+            }, { passive: true });
+        }
+    }
+
     // 3. Package Category Filters
     const filterBtns = document.querySelectorAll('.package-filter-btn');
     const packageCards = document.querySelectorAll('.package-card');
@@ -86,46 +202,129 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 3.5 Modern Datepicker (Flatpickr with Indonesian Localization)
+    const dateInputs = document.querySelectorAll('input[type="date"], .custom-datepicker');
+    dateInputs.forEach(input => {
+        flatpickr(input, {
+            locale: Indonesian,
+            dateFormat: 'Y-m-d',
+            altInput: true,
+            altFormat: 'j F Y',
+            minDate: 'today',
+            disableMobile: true,
+            altInputClass: input.className + ' custom-datepicker-input',
+            defaultDate: input.value || null,
+        });
+    });
+
+    // 3.6 Modern Rounded Select (Choices.js)
+    const selectPackageElements = [
+        document.getElementById('calc-package'),
+        document.getElementById('calc-page-package'),
+        document.getElementById('msg-topic'),
+    ];
+
+    selectPackageElements.forEach(el => {
+        if (el) {
+            new Choices(el, {
+                searchEnabled: false,
+                itemSelectText: '',
+                shouldSort: false,
+                allowHTML: true,
+            });
+        }
+    });
+
     // 4. Interactive Trip Calculator & WhatsApp Order Generator
     const calcPackage = document.getElementById('calc-package');
     const calcPax = document.getElementById('calc-pax');
     const calcDate = document.getElementById('calc-date');
     const calcName = document.getElementById('calc-name');
-    const calcPhone = document.getElementById('calc-phone');
     const calcNote = document.getElementById('calc-note');
     const priceDisplay = document.getElementById('calc-total-display');
     const submitWhatsappBtn = document.getElementById('btn-order-whatsapp');
 
     function updatePriceEstimate() {
         if (!calcPackage || !calcPax || !priceDisplay) return;
-        const selectedOption = calcPackage.options[calcPackage.selectedIndex];
-        const basePrice = parseInt(selectedOption.getAttribute('data-price') || '0', 10);
-        const paxCount = parseInt(calcPax.value || '1', 10);
+        const selectedOption = calcPackage.querySelector(`option[value="${calcPackage.value}"]`) || calcPackage.options[calcPackage.selectedIndex];
+        const basePrice = parseInt(selectedOption?.getAttribute('data-price') || '0', 10);
+        
+        // Defensively clamp pax between 1 and 500
+        let paxCount = parseInt(calcPax.value || '1', 10);
+        if (isNaN(paxCount) || paxCount < 1) {
+            paxCount = 1;
+        } else if (paxCount > 500) {
+            paxCount = 500;
+        }
         
         let discount = 1.0;
         if (paxCount >= 10) discount = 0.85; // 15% discount for 10+ pax
         else if (paxCount >= 5) discount = 0.90; // 10% discount for 5+ pax
 
         const totalPrice = Math.round(basePrice * paxCount * discount);
-        priceDisplay.textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
+        priceDisplay.textContent = 'Rp ' + (isNaN(totalPrice) ? 0 : totalPrice).toLocaleString('id-ID');
     }
 
     if (calcPackage) calcPackage.addEventListener('change', updatePriceEstimate);
-    if (calcPax) calcPax.addEventListener('input', updatePriceEstimate);
+    if (calcPax) {
+        calcPax.addEventListener('input', updatePriceEstimate);
+        calcPax.addEventListener('blur', () => {
+            let pax = parseInt(calcPax.value, 10);
+            if (isNaN(pax) || pax < 1) calcPax.value = 1;
+            else if (pax > 500) calcPax.value = 500;
+            updatePriceEstimate();
+        });
+    }
+
+    if (calcDate) {
+        calcDate.addEventListener('change', () => {
+            const today = new Date().toISOString().split('T')[0];
+            if (calcDate.value && calcDate.value < today) {
+                calcDate.value = today;
+                alert('Tanggal perjalanan tidak boleh di masa lalu. Tanggal telah otomatis disesuaikan ke hari ini.');
+            }
+        });
+    }
+
     if (calcPackage) updatePriceEstimate();
 
     if (submitWhatsappBtn) {
         submitWhatsappBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const packageName = calcPackage ? calcPackage.options[calcPackage.selectedIndex].text : 'Paket Wisata Pangandaran';
-            const pax = calcPax ? calcPax.value : '1';
-            const date = calcDate && calcDate.value ? calcDate.value : 'Akan disesuaikan';
+            const selectedOption = calcPackage ? (calcPackage.querySelector(`option[value="${calcPackage.value}"]`) || calcPackage.options[calcPackage.selectedIndex]) : null;
+            const packageName = selectedOption ? selectedOption.text : 'Paket Wisata Pangandaran';
+            
+            // Validate & clamp pax
+            let pax = parseInt(calcPax?.value || '1', 10);
+            if (isNaN(pax) || pax < 1) pax = 1;
+            else if (pax > 500) pax = 500;
+
+            // Validate date
+            const today = new Date().toISOString().split('T')[0];
+            const altDateInput = calcDate?.parentElement?.querySelector('.flatpickr-input[type="text"]');
+            let date = altDateInput && altDateInput.value ? altDateInput.value : (calcDate?.value || 'Akan disesuaikan');
+
+            if (calcDate && calcDate.value && calcDate.value < today) {
+                date = today;
+                calcDate.value = today;
+            }
+
             const name = calcName && calcName.value.trim() ? calcName.value.trim() : 'Wisatawan';
-            const phone = calcPhone && calcPhone.value.trim() ? calcPhone.value.trim() : '-';
             const note = calcNote && calcNote.value.trim() ? calcNote.value.trim() : 'Tidak ada catatan khusus';
             const total = priceDisplay ? priceDisplay.textContent : '-';
 
-            const message = `Halo Admin Puja Tour & Travel,\n\nSaya ingin konsultasi & reservasi paket wisata Pangandaran:\n\n*Nama:* ${name}\n*No. WhatsApp:* ${phone}\n*Paket Pilihan:* ${packageName}\n*Jumlah Peserta:* ${pax} Orang\n*Rencana Tanggal:* ${date}\n*Estimasi Total:* ${total}\n*Catatan Khusus:* ${note}\n\nMohon info ketersediaan jadwal dan detail paketnya. Terima kasih!`;
+            let message = `Halo Admin Puja Tour & Travel Pangandaran,\n\n`;
+            message += `Saya ingin konsultasi & reservasi paket wisata melalui website:\n\n`;
+            message += `📋 *Detail Rencana Trip:*\n`;
+            message += `• *Nama Pemesan:* ${name}\n`;
+            message += `• *Paket Pilihan:* ${packageName}\n`;
+            message += `• *Jumlah Peserta:* ${pax} Orang\n`;
+            message += `• *Rencana Tanggal:* ${date}\n`;
+            message += `• *Estimasi Total:* ${total}\n`;
+            if (note !== 'Tidak ada catatan khusus') {
+                message += `• *Catatan Khusus:* ${note}\n`;
+            }
+            message += `\nMohon info ketersediaan slot dan jadwalnya. Terima kasih!`;
 
             const encodedMessage = encodeURIComponent(message);
             const whatsappNumber = submitWhatsappBtn.getAttribute('data-whatsapp') || '6281234567890';
@@ -152,100 +351,335 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. Gallery Lightbox Modal
-    const lightboxModal = document.getElementById('lightbox-modal');
-    const lightboxImage = document.getElementById('lightbox-image');
-    const lightboxCaption = document.getElementById('lightbox-caption');
-    const lightboxClose = document.getElementById('lightbox-close');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    // 6. Package Card Multi-Image Auto-Sliders
+    const cardSliders = document.querySelectorAll('.package-card-slider');
 
-    galleryItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const imgSrc = item.getAttribute('data-img');
-            const caption = item.getAttribute('data-caption');
-            if (lightboxModal && lightboxImage) {
-                lightboxImage.src = imgSrc;
-                if (lightboxCaption) lightboxCaption.textContent = caption || '';
-                lightboxModal.classList.remove('hidden');
-                lightboxModal.classList.add('flex');
-                document.body.style.overflow = 'hidden';
-                createIcons({ icons });
+    cardSliders.forEach((slider, cardIndex) => {
+        const slides = slider.querySelectorAll('.card-slide-img');
+        const dots = slider.querySelectorAll('.card-dot');
+        let activeIdx = 0;
+        let cardTimer = null;
+
+        function showCardSlide(idx) {
+            if (slides.length <= 1) return;
+            activeIdx = (idx + slides.length) % slides.length;
+
+            slides.forEach((s, i) => {
+                if (i === activeIdx) {
+                    s.classList.remove('opacity-0', 'pointer-events-none');
+                    s.classList.add('opacity-100');
+                } else {
+                    s.classList.remove('opacity-100');
+                    s.classList.add('opacity-0', 'pointer-events-none');
+                }
+            });
+
+            dots.forEach((d, i) => {
+                if (i === activeIdx) {
+                    d.classList.remove('w-1.5', 'bg-white/50');
+                    d.classList.add('w-3.5', 'bg-emerald-400');
+                } else {
+                    d.classList.remove('w-3.5', 'bg-emerald-400');
+                    d.classList.add('w-1.5', 'bg-white/50');
+                }
+            });
+        }
+
+        function startCardTimer() {
+            if (slides.length <= 1) return;
+            stopCardTimer();
+            // Stagger by cardIndex so all cards don't rotate on the exact same second
+            cardTimer = setInterval(() => {
+                showCardSlide(activeIdx + 1);
+            }, 4000 + (cardIndex % 3) * 700);
+        }
+
+        function stopCardTimer() {
+            if (cardTimer) {
+                clearInterval(cardTimer);
+                cardTimer = null;
             }
+        }
+
+        startCardTimer();
+
+        slider.addEventListener('mouseenter', stopCardTimer);
+        slider.addEventListener('mouseleave', startCardTimer);
+
+        // Clicking on package card image directly opens the Lightbox Carousel
+        slider.addEventListener('click', () => {
+            const name = slider.getAttribute('data-package-name') || 'Paket Wisata';
+            const location = slider.getAttribute('data-package-location') || 'Pangandaran';
+            const price = slider.getAttribute('data-package-price') || '';
+            const duration = slider.getAttribute('data-package-duration') || '';
+            const slug = slider.getAttribute('data-package-slug') || '';
+            let images = [];
+            try {
+                images = JSON.parse(slider.getAttribute('data-package-images') || '[]');
+            } catch {
+                images = [];
+            }
+
+            if (!images.length) {
+                slides.forEach(s => {
+                    const src = s.getAttribute('src');
+                    if (src) images.push(src);
+                });
+            }
+
+            openLightboxCarousel({
+                title: name,
+                caption: `${name} • ${location} (${duration}) - Mulai dari ${price}`,
+                images: images,
+                startIndex: activeIdx,
+                slug: slug,
+                price: price,
+            });
         });
     });
 
+    // 7. Full Interactive Lightbox Modal Carousel
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const lightboxDots = document.getElementById('lightbox-dots');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxAutoplayBtn = document.getElementById('lightbox-autoplay-btn');
+    const lightboxAutoplayLabel = document.getElementById('lightbox-autoplay-label');
+    const lightboxPlayIcon = document.getElementById('lightbox-play-icon');
+    const lightboxDetailLink = document.getElementById('lightbox-detail-link');
+    const lightboxWaLink = document.getElementById('lightbox-wa-link');
+
+    let currentLightboxImages = [];
+    let currentLightboxIndex = 0;
+    let lightboxTimer = null;
+    let isLightboxAutoplay = true;
+
+    function renderLightboxSlide() {
+        if (!currentLightboxImages.length || !lightboxImage) return;
+
+        const total = currentLightboxImages.length;
+        currentLightboxIndex = (currentLightboxIndex + total) % total;
+        const currentSrc = currentLightboxImages[currentLightboxIndex];
+
+        // Smooth fade effect
+        lightboxImage.style.opacity = '0';
+        setTimeout(() => {
+            lightboxImage.src = currentSrc;
+            lightboxImage.style.opacity = '1';
+        }, 150);
+
+        if (lightboxCounter) {
+            lightboxCounter.textContent = `Foto ${currentLightboxIndex + 1} / ${total}`;
+        }
+
+        // Render dot thumbnails
+        if (lightboxDots) {
+            lightboxDots.innerHTML = '';
+            currentLightboxImages.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = `h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    idx === currentLightboxIndex ? 'w-6 bg-emerald-400' : 'w-2 bg-white/40 hover:bg-white/70'
+                }`;
+                dot.setAttribute('aria-label', `Lihat foto ${idx + 1}`);
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    currentLightboxIndex = idx;
+                    renderLightboxSlide();
+                    if (isLightboxAutoplay) resetLightboxTimer();
+                });
+                lightboxDots.appendChild(dot);
+            });
+        }
+    }
+
+    function nextLightboxSlide() {
+        currentLightboxIndex++;
+        renderLightboxSlide();
+    }
+
+    function prevLightboxSlide() {
+        currentLightboxIndex--;
+        renderLightboxSlide();
+    }
+
+    function resetLightboxTimer() {
+        if (lightboxTimer) clearInterval(lightboxTimer);
+        if (isLightboxAutoplay && currentLightboxImages.length > 1) {
+            lightboxTimer = setInterval(nextLightboxSlide, 4500);
+        }
+    }
+
+    function stopLightboxTimer() {
+        if (lightboxTimer) {
+            clearInterval(lightboxTimer);
+            lightboxTimer = null;
+        }
+    }
+
+    function toggleLightboxAutoplay() {
+        isLightboxAutoplay = !isLightboxAutoplay;
+        if (isLightboxAutoplay) {
+            if (lightboxAutoplayLabel) lightboxAutoplayLabel.textContent = 'Auto-Slide Aktif';
+            if (lightboxPlayIcon) {
+                lightboxPlayIcon.setAttribute('data-lucide', 'pause');
+            }
+            resetLightboxTimer();
+        } else {
+            if (lightboxAutoplayLabel) lightboxAutoplayLabel.textContent = 'Putar Otomatis';
+            if (lightboxPlayIcon) {
+                lightboxPlayIcon.setAttribute('data-lucide', 'play');
+            }
+            stopLightboxTimer();
+        }
+        createIcons({ icons });
+    }
+
+    function openLightboxCarousel({ title, caption, images, startIndex = 0, slug = '', price = '' }) {
+        if (!lightboxModal) return;
+
+        currentLightboxImages = images && images.length ? images : ['/images/greencanyon.jpg'];
+        currentLightboxIndex = startIndex;
+        isLightboxAutoplay = currentLightboxImages.length > 1;
+
+        if (lightboxTitle) lightboxTitle.textContent = title || 'Galeri Foto';
+        if (lightboxCaption) lightboxCaption.textContent = caption || '';
+
+        // Detail Link
+        if (lightboxDetailLink) {
+            if (slug) {
+                lightboxDetailLink.href = `/paket/${slug}`;
+                lightboxDetailLink.classList.remove('hidden');
+                lightboxDetailLink.classList.add('inline-flex');
+            } else {
+                lightboxDetailLink.classList.remove('inline-flex');
+                lightboxDetailLink.classList.add('hidden');
+            }
+        }
+
+        // WhatsApp Link
+        if (lightboxWaLink) {
+            const waNum = lightboxWaLink.getAttribute('data-whatsapp') || '6281234567890';
+            const msg = encodeURIComponent(`Halo Admin Puja Tour & Travel Pangandaran,\n\nSaya tertarik dengan paket wisata: *${title}* (${price}).\nBoleh minta info jadwal dan penawaran lengkapnya? Terima kasih.`);
+            lightboxWaLink.href = `https://wa.me/${waNum}?text=${msg}`;
+        }
+
+        // Autoplay button visibility
+        if (lightboxAutoplayBtn) {
+            if (currentLightboxImages.length > 1) {
+                lightboxAutoplayBtn.classList.remove('hidden');
+                if (lightboxAutoplayLabel) lightboxAutoplayLabel.textContent = 'Auto-Slide Aktif';
+                if (lightboxPlayIcon) lightboxPlayIcon.setAttribute('data-lucide', 'pause');
+            } else {
+                lightboxAutoplayBtn.classList.add('hidden');
+            }
+        }
+
+        // Nav buttons visibility
+        if (lightboxPrev && lightboxNext) {
+            if (currentLightboxImages.length > 1) {
+                lightboxPrev.classList.remove('hidden');
+                lightboxNext.classList.remove('hidden');
+            } else {
+                lightboxPrev.classList.add('hidden');
+                lightboxNext.classList.add('hidden');
+            }
+        }
+
+        renderLightboxSlide();
+        resetLightboxTimer();
+
+        lightboxModal.classList.remove('hidden');
+        lightboxModal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+        createIcons({ icons });
+    }
+
     function closeLightbox() {
         if (!lightboxModal) return;
+        stopLightboxTimer();
         lightboxModal.classList.add('hidden');
         lightboxModal.classList.remove('flex');
         document.body.style.overflow = '';
     }
 
     if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxPrev) {
+        lightboxPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevLightboxSlide();
+            if (isLightboxAutoplay) resetLightboxTimer();
+        });
+    }
+    if (lightboxNext) {
+        lightboxNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextLightboxSlide();
+            if (isLightboxAutoplay) resetLightboxTimer();
+        });
+    }
+    if (lightboxAutoplayBtn) {
+        lightboxAutoplayBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleLightboxAutoplay();
+        });
+    }
+
     if (lightboxModal) {
         lightboxModal.addEventListener('click', (e) => {
             if (e.target === lightboxModal) closeLightbox();
         });
     }
 
-    // 7. Quick Package Detail Modal
-    const packageModal = document.getElementById('package-modal');
-    const packageModalTitle = document.getElementById('package-modal-title');
-    const packageModalDesc = document.getElementById('package-modal-desc');
-    const packageModalPrice = document.getElementById('package-modal-price');
-    const packageModalDuration = document.getElementById('package-modal-duration');
-    const packageModalImg = document.getElementById('package-modal-img');
-    const packageModalWa = document.getElementById('package-modal-wa');
-    const packageModalClose = document.getElementById('package-modal-close');
-    const detailBtns = document.querySelectorAll('.btn-view-package');
+    // Section 8: Gallery Grid click integration
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const allGalleryImages = [];
+    galleryItems.forEach(item => {
+        const src = item.getAttribute('data-img');
+        if (src) allGalleryImages.push(src);
+    });
 
-    detailBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const title = btn.getAttribute('data-title');
-            const desc = btn.getAttribute('data-desc');
-            const price = btn.getAttribute('data-price');
-            const duration = btn.getAttribute('data-duration');
-            const img = btn.getAttribute('data-img');
-
-            if (packageModal) {
-                if (packageModalTitle) packageModalTitle.textContent = title;
-                if (packageModalDesc) packageModalDesc.textContent = desc;
-                if (packageModalPrice) packageModalPrice.textContent = price;
-                if (packageModalDuration) packageModalDuration.textContent = duration;
-                if (packageModalImg) packageModalImg.src = img;
-                if (packageModalWa) {
-                    const waNum = packageModalWa.getAttribute('data-whatsapp') || '6281234567890';
-                    const waText = encodeURIComponent(`Halo Puja Tour & Travel, saya tertarik dengan paket "${title}" (${duration}, ${price}). Boleh minta info detail dan jadwalnya?`);
-                    packageModalWa.href = `https://wa.me/${waNum}?text=${waText}`;
-                }
-
-                packageModal.classList.remove('hidden');
-                packageModal.classList.add('flex');
-                document.body.style.overflow = 'hidden';
-                createIcons({ icons });
-            }
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            const caption = item.getAttribute('data-caption') || 'Dokumentasi Wisatawan Puja Tour';
+            openLightboxCarousel({
+                title: 'Dokumentasi Wisatawan Pangandaran',
+                caption: caption,
+                images: allGalleryImages.length ? allGalleryImages : [item.getAttribute('data-img')],
+                startIndex: index,
+            });
         });
     });
 
-    function closePackageModal() {
-        if (!packageModal) return;
-        packageModal.classList.add('hidden');
-        packageModal.classList.remove('flex');
-        document.body.style.overflow = '';
-    }
-
-    if (packageModalClose) packageModalClose.addEventListener('click', closePackageModal);
-    if (packageModal) {
-        packageModal.addEventListener('click', (e) => {
-            if (e.target === packageModal) closePackageModal();
-        });
-    }
-
-    // 8. Keyboard ESC to close modals
+    // 8. Global Keyboard Navigation
     window.addEventListener('keydown', (e) => {
+        if (lightboxModal && !lightboxModal.classList.contains('hidden')) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') {
+                prevLightboxSlide();
+                if (isLightboxAutoplay) resetLightboxTimer();
+            }
+            if (e.key === 'ArrowRight') {
+                nextLightboxSlide();
+                if (isLightboxAutoplay) resetLightboxTimer();
+            }
+            return;
+        }
+
+        if (e.key === 'ArrowLeft' && typeof prevHeroSlide === 'function') {
+            prevHeroSlide();
+            if (typeof startHeroSlider === 'function') startHeroSlider();
+        } else if (e.key === 'ArrowRight' && typeof nextHeroSlide === 'function') {
+            nextHeroSlide();
+            if (typeof startHeroSlider === 'function') startHeroSlider();
+        }
+
         if (e.key === 'Escape') {
-            closeLightbox();
-            closePackageModal();
             closeMobileMenu();
         }
     });

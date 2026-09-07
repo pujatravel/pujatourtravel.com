@@ -38,7 +38,10 @@
             <div id="faq-sortable" class="space-y-3">
                 @forelse($faqs as $faq)
                     <div class="faq-item p-5 rounded-2xl bg-slate-50 border border-slate-200/70"
-                         data-id="{{ $faq->id }}">
+                         data-id="{{ $faq->id }}"
+                         data-question="{{ $faq->question }}"
+                         data-answer="{{ $faq->answer }}"
+                         data-published="{{ $faq->is_published ? '1' : '0' }}">
                         <div class="flex items-start gap-3">
                             {{-- Drag Handle --}}
                             <div class="drag-handle flex items-center justify-center w-8 h-8 rounded-lg hover:bg-ocean-100 text-slate-400 hover:text-ocean-500 transition shrink-0 select-none mt-0.5"
@@ -64,7 +67,7 @@
                             {{-- Action Buttons --}}
                             <div class="flex items-center gap-1 shrink-0">
                                 <button type="button"
-                                    onclick="openEditModal({{ $faq->id }}, '{{ addslashes($faq->question) }}', `{{ addslashes($faq->answer) }}`, {{ $faq->display_order }}, {{ $faq->is_published ? 'true' : 'false' }})"
+                                    onclick="openEditModal(this)"
                                     class="p-2 rounded-xl bg-slate-200 hover:bg-ocean-100 text-slate-700 hover:text-ocean-700 text-xs font-bold transition"
                                     title="Edit FAQ">
                                     ✏️
@@ -252,11 +255,23 @@
 }());
 
 // ── Edit Modal ────────────────────────────────────────────────────────────────
-function openEditModal(id, question, answer, order) {
+function openEditModal(target, question, answer, order) {
+    var id = target;
+    if (target && typeof target === 'object' && target.closest) {
+        var item = target.closest('.faq-item');
+        if (item) {
+            id = item.dataset.id;
+            question = item.dataset.question;
+            answer = item.dataset.answer;
+            var badge = item.querySelector('.order-badge');
+            order = badge ? badge.textContent.trim() : '1';
+        }
+    }
+
     document.getElementById('edit-faq-form').action = '/admin/faqs/' + id;
-    document.getElementById('edit-question').value  = question;
-    document.getElementById('edit-answer').value    = answer;
-    document.getElementById('edit-order').value     = order;
+    document.getElementById('edit-question').value  = question || '';
+    document.getElementById('edit-answer').value    = answer || '';
+    document.getElementById('edit-order').value     = order || '1';
 
     var modal = document.getElementById('edit-faq-modal');
     modal.classList.remove('hidden');

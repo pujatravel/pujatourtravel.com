@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Faq;
 use App\Models\Gallery;
 use App\Models\Package;
 use App\Models\PackageCategory;
@@ -318,5 +319,40 @@ class DatabaseSeeder extends Seeder
         Setting::set('operational_hours', 'Setiap Hari: 06.00 - 21.00 WIB');
         Setting::set('instagram_url', 'https://instagram.com/pujatourtravel');
         Setting::set('tiktok_url', 'https://tiktok.com/@pujatourtravel');
+
+        // 8. FAQs
+        $faqs = [
+            [
+                'question' => 'Apakah aman untuk yang tidak bisa berenang dan anak-anak?',
+                'answer' => 'Sangat aman! Setiap peserta diwajibkan memakai pelampung (lifejacket) standar internasional berdaya apung tinggi dan helm pelindung. Anda akan didampingi pemandu rescue lokal bersertifikat HPI yang siap mendampingi sepanjang lintasan sungai.',
+                'display_order' => 1,
+            ],
+            [
+                'question' => 'Apa saja yang perlu dibawa saat body rafting Green Canyon?',
+                'answer' => 'Cukup membawa pakaian ganti, kantong plastik/dry bag untuk pakaian basah, perlengkapan mandi pribadi, dan sandal gunung/alas kaki air. Perlengkapan rafting utama (pelampung, helm, perahu penjemput) sudah kami sediakan lengkap.',
+                'display_order' => 2,
+            ],
+            [
+                'question' => 'Bagaimana jika cuaca buruk atau debit air sungai naik?',
+                'answer' => 'Keselamatan tamu adalah prioritas nomor satu. Jika terjadi banjir atau cuaca ekstrem di Green Canyon, kami akan mengalihkan ke destinasi alternatif yang aman (misal: Santirah, Citumang, atau Cagar Alam) atau opsi penjadwalan ulang (reschedule) tanpa biaya penalti.',
+                'display_order' => 3,
+            ],
+            [
+                'question' => 'Bagaimana cara pembayaran dan konfirmasi pemesanan?',
+                'answer' => 'Setelah berkonsultasi via WhatsApp dan sepakat jadwal, Anda cukup membayar DP (uang muka) sebesar 20-30% via transfer Bank (BCA/Mandiri/BRI) atau QRIS resmi kami. Pelunasan dapat dilakukan saat tiba di Pangandaran.',
+                'display_order' => 4,
+            ],
+        ];
+
+        foreach ($faqs as $faq) {
+            Faq::updateOrCreate(
+                ['question' => $faq['question']],
+                [
+                    'answer' => $faq['answer'],
+                    'display_order' => $faq['display_order'],
+                    'is_published' => true,
+                ]
+            );
+        }
     }
 }

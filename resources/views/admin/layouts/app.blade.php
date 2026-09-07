@@ -92,6 +92,10 @@
                         <span class="text-lg">⭐</span>
                         <span>Ulasan Testimoni</span>
                     </a>
+                    <a href="{{ route('admin.faqs.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.faqs.*') ? 'bg-ocean-600 text-white font-bold shadow-md' : 'hover:bg-slate-800/60 hover:text-white' }}">
+                        <span class="text-lg">❓</span>
+                        <span>Tanya Jawab (FAQ)</span>
+                    </a>
 
                     <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Pengaturan

@@ -685,49 +685,21 @@
         </div>
 
         <div class="space-y-4">
-            <!-- FAQ 1 -->
-            <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm">
-                <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-display font-bold text-slate-900 text-base hover:text-ocean-600 transition">
-                    <span>Apakah aman untuk yang tidak bisa berenang dan anak-anak?</span>
-                    <svg class="faq-icon w-5 h-5 text-slate-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-content hidden px-6 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 pt-3">
-                    Sangat aman! Setiap peserta diwajibkan memakai pelampung (lifejacket) standar internasional berdaya apung tinggi dan helm pelindung. Anda akan didampingi pemandu rescue lokal bersertifikat HPI yang siap mendampingi sepanjang lintasan sungai.
+            @forelse($faqs as $index => $faq)
+                <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-display font-bold text-slate-900 text-base hover:text-ocean-600 transition">
+                        <span>{{ $faq->question }}</span>
+                        <svg class="faq-icon w-5 h-5 text-slate-400 transition-transform duration-300 {{ $index === 0 ? '' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 pt-3">
+                        {!! nl2br(e($faq->answer)) !!}
+                    </div>
                 </div>
-            </div>
-
-            <!-- FAQ 2 -->
-            <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm">
-                <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-display font-bold text-slate-900 text-base hover:text-ocean-600 transition">
-                    <span>Apa saja yang perlu dibawa saat body rafting Green Canyon?</span>
-                    <svg class="faq-icon w-5 h-5 text-slate-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-content hidden px-6 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 pt-3">
-                    Cukup membawa pakaian ganti, kantong plastik/dry bag untuk pakaian basah, perlengkapan mandi pribadi, dan sandal gunung/alas kaki air. Perlengkapan rafting utama (pelampung, helm, perahu penjemput) sudah kami sediakan lengkap.
+            @empty
+                <div class="text-center py-8 text-slate-400">
+                    <p class="text-sm">Belum ada daftar FAQ.</p>
                 </div>
-            </div>
-
-            <!-- FAQ 3 -->
-            <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm">
-                <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-display font-bold text-slate-900 text-base hover:text-ocean-600 transition">
-                    <span>Bagaimana jika cuaca buruk atau debit air sungai naik?</span>
-                    <svg class="faq-icon w-5 h-5 text-slate-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-content hidden px-6 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 pt-3">
-                    Keselamatan tamu adalah prioritas nomor satu. Jika terjadi banjir atau cuaca ekstrem di Green Canyon, kami akan mengalihkan ke destinasi alternatif yang aman (misal: Santirah, Citumang, atau Cagar Alam) atau opsi penjadwalan ulang (*reschedule*) tanpa biaya penalti.
-                </div>
-            </div>
-
-            <!-- FAQ 4 -->
-            <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm">
-                <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-display font-bold text-slate-900 text-base hover:text-ocean-600 transition">
-                    <span>Bagaimana cara pembayaran dan konfirmasi pemesanan?</span>
-                    <svg class="faq-icon w-5 h-5 text-slate-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-content hidden px-6 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 pt-3">
-                    Setelah berkonsultasi via WhatsApp dan sepakat jadwal, Anda cukup membayar DP (uang muka) sebesar 20-30% via transfer Bank (BCA/Mandiri/BRI) atau QRIS resmi kami. Pelunasan dapat dilakukan saat tiba di Pangandaran.
-                </div>
-            </div>
+            @endforelse
         </div>
     </section>
 

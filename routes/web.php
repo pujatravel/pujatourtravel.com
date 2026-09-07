@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Models\Faq;
 use App\Models\Gallery;
 use App\Models\Package;
 use App\Models\PackageCategory;
@@ -25,6 +27,7 @@ Route::get('/', function () {
     $categories = PackageCategory::where('is_active', true)->orderBy('display_order')->get();
     $galleries = Gallery::where('is_published', true)->orderBy('display_order')->take(8)->get();
     $testimonials = Testimonial::where('is_published', true)->latest()->take(6)->get();
+    $faqs = Faq::where('is_published', true)->orderBy('display_order')->get();
     $settings = Setting::all()->pluck('value', 'key');
 
     return view('landingpage', compact(
@@ -33,6 +36,7 @@ Route::get('/', function () {
         'categories',
         'galleries',
         'testimonials',
+        'faqs',
         'settings'
     ));
 })->name('home');
@@ -76,6 +80,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
         Route::post('testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
         Route::delete('testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
+
+        // FAQs
+        Route::resource('faqs', FaqController::class);
 
         // Settings
         Route::get('settings', [SettingController::class, 'index'])->name('settings.index');

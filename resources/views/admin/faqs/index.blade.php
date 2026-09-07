@@ -4,11 +4,14 @@
 @section('page-title', 'Manajemen Tanya Jawab (FAQ)')
 
 @section('content')
+{{-- SortableJS CDN --}}
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
     <!-- Left: FAQ List -->
     <div class="lg:col-span-8 space-y-6">
         <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center justify-between mb-2">
                 <div>
                     <h3 class="font-display font-bold text-lg text-slate-900">Daftar Pertanyaan & Jawaban</h3>
                     <p class="text-xs text-slate-400">Pertanyaan ini tampil otomatis pada accordion landing page beranda.</p>
@@ -18,29 +21,50 @@
                 </span>
             </div>
 
-            <div class="space-y-4">
+            {{-- Drag hint --}}
+            <div id="drag-hint" class="flex items-center gap-2 mb-5 mt-1 px-3 py-2 rounded-xl bg-ocean-50 border border-ocean-200/60 text-xs text-ocean-700 font-medium">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <span>Seret item untuk mengubah urutan tampil. Perubahan tersimpan otomatis.</span>
+                <span id="save-status" class="ml-auto font-bold hidden"></span>
+            </div>
+
+            <div id="faq-sortable" class="space-y-3">
                 @forelse($faqs as $faq)
-                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-ocean-300 transition duration-200">
-                        <div class="flex items-start justify-between gap-4">
-                            <div class="space-y-2 flex-1">
-                                <div class="flex items-center gap-2">
-                                    <span class="w-6 h-6 rounded-lg bg-ocean-600 text-white text-xs font-bold flex items-center justify-center shrink-0">
-                                        {{ $faq->display_order }}
-                                    </span>
+                    <div class="faq-item p-5 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-ocean-300 transition duration-200 cursor-grab active:cursor-grabbing"
+                         data-id="{{ $faq->id }}">
+                        <div class="flex items-start gap-3">
+                            {{-- Drag Handle --}}
+                            <div class="drag-handle flex flex-col gap-1 pt-1 shrink-0 text-slate-300 hover:text-ocean-400 transition select-none" title="Seret untuk ubah urutan">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="9" cy="5" r="1.5"/><circle cx="15" cy="5" r="1.5"/>
+                                    <circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/>
+                                    <circle cx="9" cy="19" r="1.5"/><circle cx="15" cy="19" r="1.5"/>
+                                </svg>
+                            </div>
+
+                            {{-- Order Badge + Content --}}
+                            <div class="flex items-start gap-3 flex-1 min-w-0">
+                                <span class="order-badge w-6 h-6 rounded-lg bg-ocean-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                                    {{ $faq->display_order }}
+                                </span>
+                                <div class="space-y-1 flex-1 min-w-0">
                                     <h4 class="font-display font-bold text-slate-900 text-sm sm:text-base leading-snug">
                                         {{ $faq->question }}
                                     </h4>
+                                    <p class="text-xs text-slate-600 leading-relaxed line-clamp-2">
+                                        {{ $faq->answer }}
+                                    </p>
                                 </div>
-                                <p class="text-xs text-slate-600 leading-relaxed pl-8">
-                                    {{ $faq->answer }}
-                                </p>
                             </div>
+
+                            {{-- Action Buttons --}}
                             <div class="flex items-center gap-1 shrink-0">
-                                <!-- Edit Button triggers modal -->
-                                <button type="button" onclick="openEditModal({{ $faq->id }}, '{{ addslashes($faq->question) }}', `{{ addslashes($faq->answer) }}`, {{ $faq->display_order }}, {{ $faq->is_published ? 'true' : 'false' }})" class="p-2 rounded-xl bg-slate-200 hover:bg-ocean-100 text-slate-700 hover:text-ocean-700 text-xs font-bold transition" title="Edit FAQ">
+                                <button type="button"
+                                    onclick="openEditModal({{ $faq->id }}, '{{ addslashes($faq->question) }}', `{{ addslashes($faq->answer) }}`, {{ $faq->display_order }}, {{ $faq->is_published ? 'true' : 'false' }})"
+                                    class="p-2 rounded-xl bg-slate-200 hover:bg-ocean-100 text-slate-700 hover:text-ocean-700 text-xs font-bold transition"
+                                    title="Edit FAQ">
                                     ✏️
                                 </button>
-                                <!-- Delete Button -->
                                 <form action="{{ route('admin.faqs.destroy', $faq->id) }}" method="POST" onsubmit="return confirm('Hapus pertanyaan FAQ ini?');">
                                     @csrf
                                     @method('DELETE')
@@ -140,18 +164,14 @@
 </div>
 
 <script>
+    // ── Edit Modal ──────────────────────────────────────────────────────────────
     function openEditModal(id, question, answer, order, isPublished) {
+        document.getElementById('edit-faq-form').action = `/admin/faqs/${id}`;
+        document.getElementById('edit-question').value = question;
+        document.getElementById('edit-answer').value = answer;
+        document.getElementById('edit-order').value = order;
+
         const modal = document.getElementById('edit-faq-modal');
-        const form = document.getElementById('edit-faq-form');
-        const qInput = document.getElementById('edit-question');
-        const aInput = document.getElementById('edit-answer');
-        const oInput = document.getElementById('edit-order');
-
-        form.action = `/admin/faqs/${id}`;
-        qInput.value = question;
-        aInput.value = answer;
-        oInput.value = order;
-
         modal.classList.remove('hidden');
         modal.classList.add('flex');
     }
@@ -161,5 +181,56 @@
         modal.classList.add('hidden');
         modal.classList.remove('flex');
     }
+
+    // ── Drag & Drop Reorder (SortableJS) ───────────────────────────────────────
+    const sortable = Sortable.create(document.getElementById('faq-sortable'), {
+        handle: '.drag-handle',
+        animation: 180,
+        ghostClass: 'opacity-40',
+        chosenClass: 'ring-2 ring-ocean-400 shadow-lg scale-[1.01]',
+        dragClass: 'rotate-1',
+
+        onEnd: function () {
+            // Collect new order of IDs
+            const items = document.querySelectorAll('#faq-sortable .faq-item');
+            const order = Array.from(items).map(el => parseInt(el.dataset.id));
+
+            // Update visible order badges
+            items.forEach((el, index) => {
+                const badge = el.querySelector('.order-badge');
+                if (badge) badge.textContent = index + 1;
+            });
+
+            // Show saving indicator
+            const status = document.getElementById('save-status');
+            status.textContent = '⏳ Menyimpan...';
+            status.className = 'ml-auto font-bold text-ocean-600';
+            status.classList.remove('hidden');
+
+            // POST new order to backend
+            fetch('{{ route('admin.faqs.reorder') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({ order }),
+            })
+            .then(res => {
+                if (!res.ok) throw new Error('Server error');
+                return res.json();
+            })
+            .then(() => {
+                status.textContent = '✅ Tersimpan!';
+                status.className = 'ml-auto font-bold text-emerald-600';
+                setTimeout(() => status.classList.add('hidden'), 2500);
+            })
+            .catch(() => {
+                status.textContent = '❌ Gagal menyimpan';
+                status.className = 'ml-auto font-bold text-rose-600';
+            });
+        },
+    });
 </script>
 @endsection

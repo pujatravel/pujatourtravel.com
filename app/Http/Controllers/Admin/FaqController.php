@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -59,5 +60,19 @@ class FaqController extends Controller
         $faq->delete();
 
         return back()->with('success', 'Pertanyaan FAQ berhasil dihapus.');
+    }
+
+    public function reorder(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'order' => ['required', 'array'],
+            'order.*' => ['integer', 'exists:faqs,id'],
+        ]);
+
+        foreach ($validated['order'] as $position => $id) {
+            Faq::where('id', $id)->update(['display_order' => $position + 1]);
+        }
+
+        return response()->json(['message' => 'Urutan FAQ berhasil diperbarui.']);
     }
 }

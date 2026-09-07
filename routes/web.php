@@ -83,6 +83,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // FAQs
         Route::resource('faqs', FaqController::class);
+        Route::post('faqs/reorder', [FaqController::class, 'reorder'])->name('faqs.reorder');
 
         // Settings
         Route::get('settings', [SettingController::class, 'index'])->name('settings.index');

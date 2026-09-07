@@ -6,8 +6,9 @@
 @section('content')
 <div class="max-w-4xl mx-auto space-y-6">
     <div class="flex items-center justify-between">
-        <a href="{{ route('admin.reservations.index') }}" class="text-xs font-bold text-slate-500 hover:text-slate-800 transition flex items-center gap-1">
-            &larr; Kembali ke Daftar Reservasi
+        <a href="{{ route('admin.reservations.index') }}" class="text-xs font-bold text-slate-500 hover:text-slate-800 transition inline-flex items-center gap-1.5">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Kembali ke Daftar Reservasi</span>
         </a>
         <div class="flex items-center gap-2">
             <span class="text-xs font-bold text-slate-400">Status Saat Ini:</span>
@@ -46,7 +47,7 @@
                 <div class="pt-4 border-t border-slate-100 grid grid-cols-2 gap-4 text-xs">
                     <div>
                         <span class="text-slate-400 block mb-0.5">Paket Wisata Pilihan</span>
-                        <strong class="text-ocean-700 text-sm block">{{ $reservation->package_name }}</strong>
+                        <strong class="text-emerald-700 text-sm block">{{ $reservation->package_name }}</strong>
                     </div>
                     <div>
                         <span class="text-slate-400 block mb-0.5">Tanggal Perjalanan</span>
@@ -58,7 +59,7 @@
                     </div>
                     <div>
                         <span class="text-slate-400 block mb-0.5">Estimasi Total Biaya</span>
-                        <strong class="text-emerald-600 font-display text-lg block">{{ $reservation->formatted_total }}</strong>
+                        <strong class="text-emerald-700 font-display text-lg block">{{ $reservation->formatted_total }}</strong>
                     </div>
                 </div>
 
@@ -80,7 +81,7 @@
                     @method('PATCH')
                     <input type="hidden" name="status" value="{{ $reservation->status }}">
                     <textarea name="admin_notes" rows="3" placeholder="Tuliskan catatan internal di sini (misal: DP 30% diterima via BCA, guide ditugaskan: Kang Asep)..." class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white outline-none">{{ old('admin_notes', $reservation->admin_notes) }}</textarea>
-                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-ocean-600 transition">
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-emerald-700 transition">
                         Simpan Catatan Internal
                     </button>
                 </form>
@@ -96,8 +97,9 @@
                     $waMsg = urlencode("Halo {$reservation->customer_name}! Kami dari tim Puja Tour & Travel Pangandaran menindaklanjuti reservasi Anda (#{$reservation->code}) untuk paket {$reservation->package_name}. Apakah tanggal {$reservation->travel_date?->format('d/m/Y')} sudah sesuai?");
                     $phoneClean = preg_replace('/[^0-9]/', '', $reservation->customer_phone);
                 @endphp
-                <a href="https://wa.me/{{ $phoneClean }}?text={{ $waMsg }}" target="_blank" class="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition flex items-center justify-center gap-2 shadow-md">
-                    <span>💬 Hubungi via WhatsApp</span>
+                <a href="https://wa.me/{{ $phoneClean }}?text={{ $waMsg }}" target="_blank" class="w-full py-3.5 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition flex items-center justify-center gap-2 shadow-sm">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span>Hubungi via WhatsApp</span>
                 </a>
             </div>
 
@@ -116,7 +118,7 @@
                             <option value="DIBATALKAN" {{ $reservation->status === 'DIBATALKAN' ? 'selected' : '' }}>DIBATALKAN</option>
                         </select>
                     </div>
-                    <button type="submit" class="w-full py-3 rounded-xl bg-ocean-600 hover:bg-ocean-700 text-white font-bold text-xs transition">
+                    <button type="submit" class="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition">
                         Perbarui Status
                     </button>
                 </form>

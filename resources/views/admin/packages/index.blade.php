@@ -6,36 +6,37 @@
 @section('content')
 <div class="space-y-6">
     <!-- Header Actions & Search -->
-    <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm">
+    <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-surface-soft p-5 rounded-3xl border border-neutral-200 shadow-soft">
         <!-- Search & Filter Form -->
         <form action="{{ route('admin.packages.index') }}" method="GET" class="flex flex-wrap items-center gap-3 flex-1">
-            <div class="relative flex-1 min-w-[200px]">
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama paket atau lokasi..." class="w-full pl-4 pr-10 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none">
+            <div class="relative flex-1 min-w-50">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama paket atau lokasi..." class="w-full pl-4 pr-10 py-2.5 rounded-xl border border-neutral-200 text-xs bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none">
             </div>
 
-            <select name="status" onchange="this.form.submit()" class="px-3 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white outline-none">
+            <select name="status" onchange="this.form.submit()" class="px-3 py-2.5 rounded-xl border border-neutral-200 text-xs bg-canvas focus:bg-white outline-none">
                 <option value="">Semua Status</option>
                 <option value="PUBLISHED" {{ request('status') === 'PUBLISHED' ? 'selected' : '' }}>Published</option>
                 <option value="DRAFT" {{ request('status') === 'DRAFT' ? 'selected' : '' }}>Draft</option>
                 <option value="ARCHIVED" {{ request('status') === 'ARCHIVED' ? 'selected' : '' }}>Archived</option>
             </select>
 
-            <button type="submit" class="px-4 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-ocean-600 transition">
+            <button type="submit" class="px-4 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">
                 Filter
             </button>
         </form>
 
-        <a href="{{ route('admin.packages.create') }}" class="px-5 py-2.5 rounded-xl bg-ocean-600 hover:bg-ocean-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 whitespace-nowrap">
-            <span>+ Tambah Paket Baru</span>
+        <a href="{{ route('admin.packages.create') }}" class="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition flex items-center justify-center gap-2 whitespace-nowrap">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>Tambah Paket Baru</span>
         </a>
     </div>
 
     <!-- Package Table -->
-    <div class="bg-white rounded-3xl shadow-sm border border-slate-200/80 overflow-hidden">
+    <div class="bg-surface-soft rounded-3xl shadow-soft border border-neutral-200 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left text-xs">
                 <thead>
-                    <tr class="bg-slate-50/80 text-slate-500 font-bold uppercase tracking-wider border-b border-slate-200/80">
+                    <tr class="bg-canvas text-slate-500 font-bold uppercase tracking-wider border-b border-neutral-200">
                         <th class="p-4">Foto & Nama Paket</th>
                         <th class="p-4">Kategori</th>
                         <th class="p-4">Harga / Satuan</th>
@@ -45,15 +46,18 @@
                         <th class="p-4 text-right">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100 text-slate-700 font-medium">
+                <tbody class="divide-y divide-neutral-200 text-slate-700 font-medium">
                     @forelse($packages as $pkg)
-                        <tr class="hover:bg-slate-50/80 transition">
+                        <tr class="hover:bg-canvas transition">
                             <td class="p-4">
                                 <div class="flex items-center gap-3">
-                                    <img src="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $pkg->name }}" class="w-14 h-14 rounded-xl object-cover border border-slate-200">
+                                    <img src="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $pkg->name }}" class="w-14 h-14 rounded-xl object-cover border border-neutral-200">
                                     <div>
                                         <span class="font-bold text-slate-900 text-sm block">{{ $pkg->name }}</span>
-                                        <span class="text-[11px] text-slate-400 font-normal">📍 {{ $pkg->location ?? 'Pangandaran' }}</span>
+                                        <span class="inline-flex items-center gap-1 text-[11px] text-slate-400 font-normal">
+                                            <i data-lucide="map-pin" class="w-3 h-3 text-slate-400"></i>
+                                            <span>{{ $pkg->location ?? 'Pangandaran' }}</span>
+                                        </span>
                                     </div>
                                 </div>
                             </td>
@@ -63,17 +67,20 @@
                                 </span>
                             </td>
                             <td class="p-4">
-                                <span class="font-bold text-ocean-700 text-sm block">{{ $pkg->formatted_price }}</span>
+                                <span class="font-bold text-emerald-700 text-sm block">{{ $pkg->formatted_price }}</span>
                                 <span class="text-[10px] text-slate-400">/ {{ $pkg->price_unit }}</span>
                             </td>
                             <td class="p-4 whitespace-nowrap">
-                                ⏱️ {{ $pkg->duration ?? '-' }}
+                                <span class="inline-flex items-center gap-1.5 text-slate-600">
+                                    <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-400"></i>
+                                    <span>{{ $pkg->duration ?? '-' }}</span>
+                                </span>
                             </td>
                             <td class="p-4">
                                 @if($pkg->status === 'PUBLISHED')
-                                    <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">Published</span>
+                                    <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Published</span>
                                 @elseif($pkg->status === 'DRAFT')
-                                    <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">Draft</span>
+                                    <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">Draft</span>
                                 @else
                                     <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200">Archived</span>
                                 @endif
@@ -81,13 +88,14 @@
                             <td class="p-4">
                                 <form action="{{ route('admin.packages.toggle-featured', $pkg->id) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="p-1.5 rounded-lg border {{ $pkg->featured ? 'bg-amber-100 border-amber-300 text-amber-600' : 'bg-slate-50 border-slate-200 text-slate-400' }}" title="Klik untuk ubah status unggulan">
-                                        {{ $pkg->featured ? '⭐ Ya' : '☆ Tidak' }}
+                                    <button type="submit" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold {{ $pkg->featured ? 'bg-amber-50 border-amber-300 text-amber-800' : 'bg-slate-50 border-slate-200 text-slate-400' }}" title="Klik untuk ubah status unggulan">
+                                        <i data-lucide="star" class="w-3.5 h-3.5 {{ $pkg->featured ? 'fill-amber-500 text-amber-500' : '' }}"></i>
+                                        <span>{{ $pkg->featured ? 'Unggulan' : 'Biasa' }}</span>
                                     </button>
                                 </form>
                             </td>
                             <td class="p-4 text-right whitespace-nowrap">
-                                <a href="{{ route('admin.packages.edit', $pkg->id) }}" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-ocean-100 hover:text-ocean-700 font-bold transition inline-block mr-1">
+                                <a href="{{ route('admin.packages.edit', $pkg->id) }}" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-bold transition inline-block mr-1">
                                     Edit
                                 </a>
                                 <form action="{{ route('admin.packages.destroy', $pkg->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus paket wisata ini?');">

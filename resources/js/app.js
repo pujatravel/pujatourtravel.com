@@ -1,6 +1,13 @@
 // Puja Tour & Travel - Interactive Scripts
+import { createIcons, icons } from 'lucide';
+
+// Make lucide available globally
+window.lucide = { createIcons, icons };
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Initialize Lucide Icons across all views
+    createIcons({ icons });
+
     // 1. Mobile Menu Drawer Toggle
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const closeMenuBtn = document.getElementById('close-menu-btn');
@@ -14,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawerOverlay.classList.remove('hidden');
         setTimeout(() => drawerOverlay.classList.remove('opacity-0'), 10);
         document.body.style.overflow = 'hidden';
+        createIcons({ icons });
     }
 
     function closeMobileMenu() {
@@ -29,16 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (drawerOverlay) drawerOverlay.addEventListener('click', closeMobileMenu);
     drawerLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
 
-    // 2. Sticky Navbar Glass Effect on Scroll
+    // 2. Sticky Navbar Solid Effect on Scroll
     const mainHeader = document.getElementById('main-header');
     window.addEventListener('scroll', () => {
         if (!mainHeader) return;
         if (window.scrollY > 40) {
-            mainHeader.classList.add('shadow-md', 'py-3', 'bg-white/95');
-            mainHeader.classList.remove('py-5', 'bg-white/85');
+            mainHeader.classList.add('shadow-md', 'py-3', 'bg-white');
+            mainHeader.classList.remove('py-4', 'bg-white/95');
         } else {
-            mainHeader.classList.remove('shadow-md', 'py-3', 'bg-white/95');
-            mainHeader.classList.add('py-5', 'bg-white/85');
+            mainHeader.classList.remove('shadow-md', 'py-3', 'bg-white');
+            mainHeader.classList.add('py-4', 'bg-white/95');
         }
     });
 
@@ -50,12 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             const category = btn.getAttribute('data-category');
 
-            // Active button state
+            // Active button state - Solid Emerald Primary
             filterBtns.forEach(b => {
-                b.classList.remove('bg-ocean-600', 'text-white', 'shadow-md', 'shadow-ocean-600/30');
+                b.classList.remove('bg-emerald-700', 'text-white', 'shadow-sm');
                 b.classList.add('bg-white', 'text-slate-600', 'hover:bg-slate-100', 'border', 'border-slate-200');
             });
-            btn.classList.add('bg-ocean-600', 'text-white', 'shadow-md', 'shadow-ocean-600/30');
+            btn.classList.add('bg-emerald-700', 'text-white', 'shadow-sm');
             btn.classList.remove('bg-white', 'text-slate-600', 'hover:bg-slate-100', 'border', 'border-slate-200');
 
             // Filter packages
@@ -117,10 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const note = calcNote && calcNote.value.trim() ? calcNote.value.trim() : 'Tidak ada catatan khusus';
             const total = priceDisplay ? priceDisplay.textContent : '-';
 
-            const message = `Halo Admin Puja Tour & Travel! 👋\n\nSaya ingin konsultasi & reservasi paket wisata Pangandaran:\n\n👤 *Nama:* ${name}\n📱 *No. WhatsApp:* ${phone}\n🌴 *Paket Pilihan:* ${packageName}\n👥 *Jumlah Peserta:* ${pax} Orang\n📅 *Rencana Tanggal:* ${date}\n💰 *Estimasi Total:* ${total}\n📝 *Catatan Khusus:* ${note}\n\nMohon info ketersediaan jadwal dan detail itinerary-nya ya. Terima kasih! 🙏✨`;
+            const message = `Halo Admin Puja Tour & Travel,\n\nSaya ingin konsultasi & reservasi paket wisata Pangandaran:\n\n*Nama:* ${name}\n*No. WhatsApp:* ${phone}\n*Paket Pilihan:* ${packageName}\n*Jumlah Peserta:* ${pax} Orang\n*Rencana Tanggal:* ${date}\n*Estimasi Total:* ${total}\n*Catatan Khusus:* ${note}\n\nMohon info ketersediaan jadwal dan detail paketnya. Terima kasih!`;
 
             const encodedMessage = encodeURIComponent(message);
-            const whatsappNumber = '6281234567890'; // Official number
+            const whatsappNumber = submitWhatsappBtn.getAttribute('data-whatsapp') || '6281234567890';
             window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
         });
     }
@@ -161,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 lightboxModal.classList.remove('hidden');
                 lightboxModal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
+                createIcons({ icons });
             }
         });
     });
@@ -205,13 +214,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (packageModalDuration) packageModalDuration.textContent = duration;
                 if (packageModalImg) packageModalImg.src = img;
                 if (packageModalWa) {
+                    const waNum = packageModalWa.getAttribute('data-whatsapp') || '6281234567890';
                     const waText = encodeURIComponent(`Halo Puja Tour & Travel, saya tertarik dengan paket "${title}" (${duration}, ${price}). Boleh minta info detail dan jadwalnya?`);
-                    packageModalWa.href = `https://wa.me/6281234567890?text=${waText}`;
+                    packageModalWa.href = `https://wa.me/${waNum}?text=${waText}`;
                 }
 
                 packageModal.classList.remove('hidden');
                 packageModal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
+                createIcons({ icons });
             }
         });
     });

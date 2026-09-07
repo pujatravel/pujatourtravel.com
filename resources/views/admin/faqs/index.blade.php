@@ -6,7 +6,7 @@
 @section('content')
 <style>
     .faq-item { transition: box-shadow 0.15s, transform 0.15s; }
-    .sortable-chosen { box-shadow: 0 8px 24px -4px rgba(2,132,199,0.25) !important; transform: scale(1.01); border-color: #38bdf8 !important; background: #f0f9ff !important; }
+    .sortable-chosen { box-shadow: 0 8px 24px -4px rgba(4,120,87,0.2) !important; transform: scale(1.01); border-color: #047857 !important; background: #ecfdf5 !important; }
     .sortable-ghost  { opacity: 0.35; }
     .drag-handle     { cursor: grab; }
     .drag-handle:active { cursor: grabbing; }
@@ -21,17 +21,15 @@
                     <h3 class="font-display font-bold text-lg text-slate-900">Daftar Pertanyaan & Jawaban</h3>
                     <p class="text-xs text-slate-400">Pertanyaan ini tampil otomatis pada accordion landing page beranda.</p>
                 </div>
-                <span class="px-3 py-1 rounded-full text-xs font-bold bg-ocean-100 text-ocean-700">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
                     Total: {{ $faqs->count() }} FAQ
                 </span>
             </div>
 
             {{-- Drag hint --}}
-            <div class="flex items-center gap-2 mb-5 mt-1 px-3 py-2 rounded-xl bg-ocean-50 border border-ocean-200/60 text-xs text-ocean-700 font-medium">
-                <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M7 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
-                </svg>
-                <span>Seret ikon titik-titik (⠿) untuk mengubah urutan tampil. Tersimpan otomatis.</span>
+            <div class="flex items-center gap-2 mb-5 mt-1 px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 font-medium">
+                <i data-lucide="grip-vertical" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                <span>Seret baris item untuk mengubah urutan tampil. Tersimpan otomatis.</span>
                 <span id="save-status" class="ml-auto font-bold" style="display:none;"></span>
             </div>
 
@@ -44,15 +42,13 @@
                          data-published="{{ $faq->is_published ? '1' : '0' }}">
                         <div class="flex items-start gap-3">
                             {{-- Drag Handle --}}
-                            <div class="drag-handle flex items-center justify-center w-8 h-8 rounded-lg hover:bg-ocean-100 text-slate-400 hover:text-ocean-500 transition shrink-0 select-none mt-0.5"
+                            <div class="drag-handle flex items-center justify-center w-8 h-8 rounded-lg hover:bg-emerald-50 text-slate-400 hover:text-emerald-700 transition shrink-0 select-none mt-0.5"
                                  title="Seret untuk ubah urutan">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M7 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
-                                </svg>
+                                <i data-lucide="grip-vertical" class="w-4 h-4"></i>
                             </div>
 
                             {{-- Order Badge + Content --}}
-                            <span class="order-badge w-6 h-6 rounded-lg bg-ocean-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-1">
+                            <span class="order-badge w-6 h-6 rounded-lg bg-emerald-700 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-1">
                                 {{ $faq->display_order }}
                             </span>
                             <div class="space-y-1 flex-1 min-w-0">
@@ -65,21 +61,21 @@
                             </div>
 
                             {{-- Action Buttons --}}
-                            <div class="flex items-center gap-1 shrink-0">
+                            <div class="flex items-center gap-1.5 shrink-0">
                                 <button type="button"
                                     onclick="openEditModal(this)"
-                                    class="p-2 rounded-xl bg-slate-200 hover:bg-ocean-100 text-slate-700 hover:text-ocean-700 text-xs font-bold transition"
+                                    class="p-2 rounded-xl bg-white border border-slate-200 hover:bg-emerald-50 hover:text-emerald-700 text-slate-600 text-xs font-bold transition shadow-2xs"
                                     title="Edit FAQ">
-                                    ✏️
+                                    <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
                                 </button>
                                 <form action="{{ route('admin.faqs.destroy', $faq->id) }}" method="POST"
                                       onsubmit="return confirm('Hapus pertanyaan FAQ ini?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                            class="p-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold transition"
+                                            class="p-2 rounded-xl bg-white border border-slate-200 hover:bg-rose-50 hover:text-rose-700 text-slate-600 text-xs font-bold transition shadow-2xs"
                                             title="Hapus FAQ">
-                                        🗑️
+                                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                                     </button>
                                 </form>
                             </div>
@@ -87,7 +83,7 @@
                     </div>
                 @empty
                     <div class="text-center py-12 text-slate-400">
-                        <span class="text-3xl block mb-2">❓</span>
+                        <i data-lucide="help-circle" class="w-10 h-10 mx-auto text-slate-300 mb-2"></i>
                         <p class="text-sm font-bold text-slate-600">Belum ada pertanyaan FAQ.</p>
                         <p class="text-xs mt-1">Tambahkan pertanyaan pertama Anda menggunakan formulir di samping.</p>
                     </div>
@@ -100,8 +96,8 @@
     <div class="lg:col-span-4">
         <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 sticky top-24">
             <div class="flex items-center gap-3 pb-4 border-b border-slate-100 mb-5">
-                <div class="w-10 h-10 rounded-xl bg-ocean-100 text-ocean-600 flex items-center justify-center font-bold text-lg">
-                    ➕
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center font-bold">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
                 </div>
                 <div>
                     <h3 class="font-display font-bold text-base text-slate-900 leading-snug">Tambah FAQ Baru</h3>
@@ -115,25 +111,25 @@
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Pertanyaan *</label>
                     <input type="text" name="question" required
                            placeholder="Contoh: Apakah ada batas minimal usia?"
-                           class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none">
+                           class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Jawaban Lengkap *</label>
                     <textarea name="answer" rows="5" required
                               placeholder="Tuliskan jawaban yang ramah dan jelas..."
-                              class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none"></textarea>
+                              class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none"></textarea>
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Nomor Urutan Tampil</label>
                     <input type="number" name="display_order"
                            value="{{ ($faqs->max('display_order') ?? 0) + 1 }}" min="1"
-                           class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none">
+                           class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
                 </div>
 
                 <button type="submit"
-                        class="w-full py-3.5 rounded-xl bg-ocean-600 hover:bg-ocean-700 text-white font-bold text-xs shadow-md transition">
+                        class="w-full py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition">
                     Simpan Pertanyaan FAQ
                 </button>
             </form>
@@ -147,7 +143,9 @@
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-white/60">
         <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
             <h3 class="font-display font-bold text-lg text-slate-900">Edit Pertanyaan FAQ</h3>
-            <button onclick="closeEditModal()" class="text-slate-400 hover:text-slate-700 text-lg font-bold">&times;</button>
+            <button onclick="closeEditModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
         </div>
 
         <form id="edit-faq-form" action="" method="POST" class="space-y-4">
@@ -157,13 +155,13 @@
             <div>
                 <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Pertanyaan *</label>
                 <input type="text" id="edit-question" name="question" required
-                       class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none">
+                       class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
             </div>
 
             <div>
                 <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Jawaban *</label>
                 <textarea id="edit-answer" name="answer" rows="5" required
-                          class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none"></textarea>
+                          class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none"></textarea>
             </div>
 
             <div>
@@ -178,7 +176,7 @@
                     Batal
                 </button>
                 <button type="submit"
-                        class="px-6 py-2.5 rounded-xl bg-ocean-600 hover:bg-ocean-700 text-white font-bold text-xs shadow-md transition">
+                        class="px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition">
                     Simpan Perubahan
                 </button>
             </div>
@@ -217,8 +215,8 @@
 
                 // Show saving indicator
                 var status = document.getElementById('save-status');
-                status.textContent = '⏳ Menyimpan...';
-                status.style.color = '#0284c7';
+                status.textContent = 'Menyimpan urutan...';
+                status.style.color = '#047857';
                 status.style.display = 'inline';
 
                 fetch('{{ route('admin.faqs.reorder') }}', {
@@ -235,12 +233,12 @@
                     return res.json();
                 })
                 .then(function () {
-                    status.textContent = '✅ Urutan tersimpan!';
-                    status.style.color = '#16a34a';
+                    status.textContent = 'Urutan berhasil disimpan!';
+                    status.style.color = '#047857';
                     setTimeout(function () { status.style.display = 'none'; }, 2500);
                 })
                 .catch(function (err) {
-                    status.textContent = '❌ Gagal: ' + err.message;
+                    status.textContent = 'Gagal menyimpan: ' + err.message;
                     status.style.color = '#dc2626';
                 });
             },
@@ -276,6 +274,9 @@ function openEditModal(target, question, answer, order) {
     var modal = document.getElementById('edit-faq-modal');
     modal.classList.remove('hidden');
     modal.classList.add('flex');
+    if (window.lucide && window.lucide.createIcons) {
+        window.lucide.createIcons();
+    }
 }
 
 function closeEditModal() {

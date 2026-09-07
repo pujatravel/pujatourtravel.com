@@ -13,11 +13,11 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Nama Paket Wisata *</label>
-                    <input type="text" name="name" value="{{ old('name', $package->name) }}" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none">
+                    <input type="text" name="name" value="{{ old('name', $package->name) }}" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Kategori Paket *</label>
-                    <select name="category_id" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none">
+                    <select name="category_id" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
                         <option value="">Pilih Kategori</option>
                         @foreach($categories as $cat)
                             <option value="{{ $cat->id }}" {{ old('category_id', $package->category_id) == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
@@ -29,26 +29,26 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Harga Satuan (Rp) *</label>
-                    <input type="number" name="price" value="{{ old('price', $package->price) }}" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none">
+                    <input type="number" name="price" value="{{ old('price', $package->price) }}" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Durasi Trip</label>
-                    <input type="text" name="duration" value="{{ old('duration', $package->duration) }}" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none">
+                    <input type="text" name="duration" value="{{ old('duration', $package->duration) }}" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Lokasi Destinasi</label>
-                    <input type="text" name="location" value="{{ old('location', $package->location) }}" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none">
+                    <input type="text" name="location" value="{{ old('location', $package->location) }}" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
                 </div>
             </div>
 
             <div>
                 <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Deskripsi Singkat</label>
-                <textarea name="short_description" rows="2" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none">{{ old('short_description', $package->short_description) }}</textarea>
+                <textarea name="short_description" rows="2" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">{{ old('short_description', $package->short_description) }}</textarea>
             </div>
 
             <div>
                 <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Deskripsi Lengkap</label>
-                <textarea name="description" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-ocean-500 outline-none">{{ old('description', $package->description) }}</textarea>
+                <textarea name="description" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">{{ old('description', $package->description) }}</textarea>
             </div>
 
             @php
@@ -86,7 +86,7 @@
                 </div>
                 <div class="flex items-center pt-6">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="featured" value="1" {{ old('featured', $package->featured) ? 'checked' : '' }} class="rounded text-ocean-600 focus:ring-ocean-500 w-4 h-4">
+                        <input type="checkbox" name="featured" value="1" {{ old('featured', $package->featured) ? 'checked' : '' }} class="rounded text-emerald-700 focus:ring-emerald-600 w-4 h-4">
                         <span class="text-xs font-bold text-slate-700">Tampilkan di Rekomendasi Beranda</span>
                     </label>
                 </div>
@@ -96,7 +96,7 @@
                 <a href="{{ route('admin.packages.index') }}" class="px-5 py-3 rounded-xl text-slate-600 hover:bg-slate-100 font-bold text-xs transition">
                     Batal
                 </a>
-                <button type="submit" class="px-7 py-3 rounded-xl bg-ocean-600 hover:bg-ocean-700 text-white font-bold text-xs shadow-md transition">
+                <button type="submit" class="px-7 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition">
                     Perbarui Paket Wisata
                 </button>
             </div>

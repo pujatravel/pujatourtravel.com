@@ -22,15 +22,21 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        h1, h2, h3, h4, .font-display {
-            font-family: 'Outfit', sans-serif;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
     </style>
 </head>
 <body class="bg-sand-50 text-slate-800 antialiased selection:bg-ocean-500 selection:text-white">
+
+    @php
+        $waNum = $settings['whatsapp_number'] ?? '6281234567890';
+        $phoneNum = $settings['phone_number'] ?? '+62 812-3456-7890';
+        $emailAddr = $settings['email_address'] ?? 'info@pujatourtravel.com';
+        $officeAddr = $settings['office_address'] ?? 'Jl. Pantai Barat No. 88, Pangandaran, Jawa Barat 46396';
+        $opHours = $settings['operational_hours'] ?? 'Setiap Hari: 06.00 - 21.00 WIB';
+        $igUrl = $settings['instagram_url'] ?? 'https://instagram.com/pujatourtravel';
+        $tiktokUrl = $settings['tiktok_url'] ?? 'https://tiktok.com/@pujatourtravel';
+    @endphp
 
     <!-- 1. TOP ANNOUNCEMENT BAR -->
     <div class="bg-gradient-to-r from-ocean-900 via-ocean-800 to-lagoon-800 text-white text-xs sm:text-sm py-2 px-4 shadow-sm">
@@ -42,9 +48,9 @@
                 <span class="text-slate-100 font-medium">Diskon s/d 15% untuk Rombongan & Paket Eksklusif Pangandaran!</span>
             </div>
             <div class="flex items-center gap-4 text-xs">
-                <a href="https://wa.me/6281234567890" target="_blank" class="flex items-center gap-1.5 text-cyan-200 hover:text-white transition">
+                <a href="https://wa.me/{{ $waNum }}" target="_blank" class="flex items-center gap-1.5 text-cyan-200 hover:text-white transition">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
-                    <span>Hotline: +62 812-3456-7890</span>
+                    <span>Hotline: {{ $phoneNum }}</span>
                 </a>
                 <span class="text-slate-400 hidden sm:inline">|</span>
                 <span class="text-slate-200 hidden sm:inline">📍 Pangandaran, Jawa Barat</span>
@@ -84,7 +90,7 @@
 
             <!-- Action Buttons -->
             <div class="hidden sm:flex items-center gap-3">
-                <a href="https://wa.me/6281234567890?text=Halo%20Puja%20Tour%20%26%20Travel,%20saya%20ingin%20tanya%20info%20paket%20wisata%20Pangandaran" 
+                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Puja%20Tour%20%26%20Travel,%20saya%20ingin%20tanya%20info%20paket%20wisata%20Pangandaran" 
                    target="_blank"
                    class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-lagoon-600/30 text-lagoon-800 bg-lagoon-50 hover:bg-lagoon-100 font-semibold text-sm transition shadow-sm">
                     <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
@@ -131,7 +137,7 @@
             </nav>
         </div>
         <div class="flex flex-col gap-3 pt-6 border-t border-slate-100">
-            <a href="https://wa.me/6281234567890" target="_blank" class="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-center flex items-center justify-center gap-2 shadow-md">
+            <a href="https://wa.me/{{ $waNum }}" target="_blank" class="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-center flex items-center justify-center gap-2 shadow-md">
                 <span>Chat via WhatsApp</span>
             </a>
             <a href="#booking-section" class="drawer-link w-full py-3 rounded-xl bg-ocean-600 text-white font-bold text-center">
@@ -191,14 +197,14 @@
                             <span>Jelajahi Paket Wisata</span>
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </a>
-                        <a href="https://wa.me/6281234567890?text=Halo%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="w-full sm:w-auto px-7 py-4 rounded-xl glass-dark border border-white/20 hover:bg-white/20 text-white font-semibold text-base transition flex items-center justify-center gap-2">
+                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="w-full sm:w-auto px-7 py-4 rounded-xl glass-dark border border-white/20 hover:bg-white/20 text-white font-semibold text-base transition flex items-center justify-center gap-2">
                             <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
                             <span>Konsultasi WhatsApp</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Hero Right: Quick Trip Finder Widget -->
+                <!-- Hero Right: Quick Trip Finder Widget (Dynamic Select Options) -->
                 <div class="lg:col-span-5">
                     <div class="glass-card bg-white/95 rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/60 text-slate-800">
                         <div class="flex items-center gap-3 pb-5 border-b border-slate-100">
@@ -216,12 +222,11 @@
                                 <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Pilih Paket Wisata</label>
                                 <div class="relative">
                                     <select id="calc-package" class="w-full pl-3.5 pr-10 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 font-medium text-sm focus:bg-white focus:ring-2 focus:ring-ocean-500 focus:border-ocean-500 transition outline-none">
-                                        <option value="gc-full" data-price="225000">Body Rafting Green Canyon Full Track (Rp 225.000 / pax)</option>
-                                        <option value="gc-semi" data-price="150000">Body Rafting Green Canyon Semi Track (Rp 150.000 / pax)</option>
-                                        <option value="pasir-putih" data-price="175000">Snorkeling & Wisata Bahari Pasir Putih (Rp 175.000 / pax)</option>
-                                        <option value="santirah" data-price="125000">River Tubing Santirah Adventure (Rp 125.000 / pax)</option>
-                                        <option value="vip-2d1n" data-price="750000">Eksklusif VIP Tour Pangandaran 2D1N (Rp 750.000 / pax)</option>
-                                        <option value="family-3d2n" data-price="1150000">Family Gathering Pangandaran 3D2N (Rp 1.150.000 / pax)</option>
+                                        @foreach($packages as $pkg)
+                                            <option value="{{ $pkg->slug }}" data-price="{{ (int) $pkg->price }}">
+                                                {{ $pkg->name }} ({{ $pkg->formatted_price }} / {{ $pkg->price_unit }})
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -309,7 +314,7 @@
         </div>
     </section>
 
-    <!-- 5. PAKET WISATA UNGGULAN (KATALOG DENGAN DYNAMIC FILTER) -->
+    <!-- 5. PAKET WISATA UNGGULAN (KATALOG DINAMIS BERBASIS DATABASE) -->
     <section id="paket" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-12">
             <span class="text-xs font-extrabold uppercase tracking-widest text-ocean-600 bg-ocean-50 px-3 py-1 rounded-full border border-ocean-200">
@@ -322,348 +327,89 @@
                 Pilih paket perjalanan impian Anda, mulai dari petualangan body rafting Green Canyon hingga paket eksklusif keluarga & corporate gathering.
             </p>
 
-            <!-- Filter Buttons -->
+            <!-- Dynamic Category Filter Buttons -->
             <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-8">
                 <button class="package-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-ocean-600 text-white shadow-md shadow-ocean-600/30" data-category="all">
                     Semua Paket
                 </button>
-                <button class="package-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-category="rafting">
-                    Body Rafting
-                </button>
-                <button class="package-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-category="bahari">
-                    Wisata Bahari & Snorkeling
-                </button>
-                <button class="package-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-category="vip">
-                    Paket VIP & 2D1N / 3D2N
-                </button>
+                @foreach($categories as $cat)
+                    <button class="package-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-category="{{ $cat->slug }}">
+                        {{ $cat->name }}
+                    </button>
+                @endforeach
             </div>
         </div>
 
-        <!-- Package Grid -->
+        <!-- Dynamic Package Grid from Database -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Package Card 1: Green Canyon Full Track -->
-            <div class="package-card flex flex-col bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-slate-100 group" data-category="rafting">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Body Rafting Green Canyon" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute top-4 left-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-teak-500 text-slate-900 shadow-sm">
-                            ⭐ Paling Populer
-                        </span>
-                    </div>
-                    <div class="absolute bottom-4 right-4">
-                        <span class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-900/80 text-cyan-300 backdrop-blur-md">
-                            ⏱️ 4 - 5 Jam
-                        </span>
-                    </div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2 text-xs font-semibold text-ocean-600 mb-1">
-                            <span>📍 Green Canyon (Cukang Taneuh)</span>
+            @forelse($packages as $pkg)
+                <div class="package-card flex flex-col bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-slate-100 group" data-category="{{ $pkg->category->slug ?? 'all' }}">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $pkg->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 left-4">
+                            @if($pkg->featured)
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-teak-500 text-slate-900 shadow-sm">
+                                    ⭐ Rekomendasi
+                                </span>
+                            @else
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-ocean-600 text-white shadow-sm">
+                                    {{ $pkg->category->name ?? 'Wisata' }}
+                                </span>
+                            @endif
                         </div>
-                        <h3 class="font-display font-bold text-xl text-slate-900 group-hover:text-ocean-600 transition">
-                            Body Rafting Green Canyon Full Track
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-2 line-clamp-2">
-                            Menyusuri ngarai stalaktit abadi sejauh 10 km dengan air zamrud jernih, lompatan tebing, dan air terjun alami.
-                        </p>
-
-                        <!-- Facilities Badge -->
-                        <div class="flex flex-wrap gap-1.5 mt-4">
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Pemandu HPI</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Helm & Lifejacket</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Perahu Jemput</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Makan Siang</span>
-                        </div>
+                        @if($pkg->duration)
+                            <div class="absolute bottom-4 right-4">
+                                <span class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-900/80 text-cyan-300 backdrop-blur-md">
+                                    ⏱️ {{ $pkg->duration }}
+                                </span>
+                            </div>
+                        @endif
                     </div>
-
-                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
-                            <span class="text-[11px] text-slate-400 block font-medium">Mulai dari</span>
-                            <span class="font-display font-bold text-xl text-ocean-600">Rp 225.000</span>
-                            <span class="text-xs text-slate-400">/ pax</span>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-ocean-600 mb-1">
+                                <span>📍 {{ $pkg->location ?? 'Pangandaran' }}</span>
+                            </div>
+                            <h3 class="font-display font-bold text-xl text-slate-900 group-hover:text-ocean-600 transition">
+                                {{ $pkg->name }}
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-2 line-clamp-2">
+                                {{ $pkg->short_description ?? 'Petualangan eksotis bersama Puja Tour & Travel Pangandaran.' }}
+                            </p>
+
+                            <!-- Facilities Badge -->
+                            @if(is_array($pkg->inclusions) && count($pkg->inclusions) > 0)
+                                <div class="flex flex-wrap gap-1.5 mt-4">
+                                    @foreach(array_slice($pkg->inclusions, 0, 4) as $inc)
+                                        <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ {{ $inc }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
-                        <button class="btn-view-package px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-ocean-600 text-white font-semibold text-xs transition"
-                                data-title="Body Rafting Green Canyon Full Track"
-                                data-desc="Petualangan menyusuri Green Canyon sepanjang 10 km dengan pemandu lokal profesional. Termasuk helm, pelampung standar, perahu jemput, makan siang prasmanan khas Sunda, tiket masuk, asuransi, dan dokumentasi."
-                                data-price="Rp 225.000 / pax"
-                                data-duration="4 - 5 Jam"
-                                data-img="{{ asset('images/greencanyon.jpg') }}">
-                            Lihat Detail
-                        </button>
+
+                        <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-[11px] text-slate-400 block font-medium">Mulai dari</span>
+                                <span class="font-display font-bold text-xl text-ocean-600">{{ $pkg->formatted_price }}</span>
+                                <span class="text-xs text-slate-400">/ {{ $pkg->price_unit }}</span>
+                            </div>
+                            <button class="btn-view-package px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-ocean-600 text-white font-semibold text-xs transition"
+                                    data-title="{{ $pkg->name }}"
+                                    data-desc="{{ $pkg->description ?? $pkg->short_description }}"
+                                    data-price="{{ $pkg->formatted_price }} / {{ $pkg->price_unit }}"
+                                    data-duration="{{ $pkg->duration ?? '-' }}"
+                                    data-img="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}">
+                                Lihat Detail
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Package Card 2: Pasir Putih & Snorkeling -->
-            <div class="package-card flex flex-col bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-slate-100 group" data-category="bahari">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Snorkeling Pasir Putih" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute top-4 left-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-lagoon-600 text-white shadow-sm">
-                            🐠 Wisata Bahari
-                        </span>
-                    </div>
-                    <div class="absolute bottom-4 right-4">
-                        <span class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-900/80 text-cyan-300 backdrop-blur-md">
-                            ⏱️ 3 - 4 Jam
-                        </span>
-                    </div>
+            @empty
+                <div class="col-span-3 text-center py-16 text-slate-400">
+                    <p class="text-base font-bold text-slate-600">Belum ada paket wisata aktif.</p>
+                    <p class="text-xs mt-1">Silakan tambahkan paket melalui dashboard Admin CMS.</p>
                 </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2 text-xs font-semibold text-lagoon-700 mb-1">
-                            <span>📍 Pantai Pasir Putih & Cagar Alam</span>
-                        </div>
-                        <h3 class="font-display font-bold text-xl text-slate-900 group-hover:text-ocean-600 transition">
-                            Snorkeling & Wisata Bahari Pasir Putih
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-2 line-clamp-2">
-                            Mengarungi laut dengan perahu wisata khas Pangandaran, melihat bangkai kapal MV Viking, dan snorkeling terumbu karang.
-                        </p>
-
-                        <!-- Facilities Badge -->
-                        <div class="flex flex-wrap gap-1.5 mt-4">
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Perahu Wisata</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Alat Snorkeling</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Tiket Cagar Alam</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Dokumentasi Underwater</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-[11px] text-slate-400 block font-medium">Mulai dari</span>
-                            <span class="font-display font-bold text-xl text-ocean-600">Rp 175.000</span>
-                            <span class="text-xs text-slate-400">/ pax</span>
-                        </div>
-                        <button class="btn-view-package px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-ocean-600 text-white font-semibold text-xs transition"
-                                data-title="Snorkeling & Wisata Bahari Pasir Putih"
-                                data-desc="Eksplorasi keindahan bawah laut Pasir Putih Pangandaran. Termasuk sewa perahu wisata, alat snorkel lengkap (mask, snorkel, fin), pemandu renang, tiket cagar alam, dan foto underwater dengan ikan karang."
-                                data-price="Rp 175.000 / pax"
-                                data-duration="3 - 4 Jam"
-                                data-img="{{ asset('images/pasir_putih.jpg') }}">
-                            Lihat Detail
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Package Card 3: Eksklusif VIP 2D1N -->
-            <div class="package-card flex flex-col bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-slate-100 group" data-category="vip">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Paket VIP Sunset Batu Karas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute top-4 left-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-slate-900 shadow-sm">
-                            👑 All-Inclusive VIP
-                        </span>
-                    </div>
-                    <div class="absolute bottom-4 right-4">
-                        <span class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-900/80 text-amber-300 backdrop-blur-md">
-                            ⏱️ 2 Hari 1 Malam
-                        </span>
-                    </div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2 text-xs font-semibold text-teak-700 mb-1">
-                            <span>📍 All-Pangandaran Highlights</span>
-                        </div>
-                        <h3 class="font-display font-bold text-xl text-slate-900 group-hover:text-ocean-600 transition">
-                            Eksklusif Tour Pangandaran 2D1N
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-2 line-clamp-2">
-                            Paket lengkap hotel resort tepi pantai, Green Canyon, Pasir Putih, sunset dinner seafood, dan transportasi AC private.
-                        </p>
-
-                        <!-- Facilities Badge -->
-                        <div class="flex flex-wrap gap-1.5 mt-4">
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Hotel Tepi Pantai</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Seafood Dinner</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Body Rafting GC</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Dokumentasi Drone</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-[11px] text-slate-400 block font-medium">Mulai dari</span>
-                            <span class="font-display font-bold text-xl text-teak-600">Rp 750.000</span>
-                            <span class="text-xs text-slate-400">/ pax</span>
-                        </div>
-                        <button class="btn-view-package px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-ocean-600 text-white font-semibold text-xs transition"
-                                data-title="Eksklusif Tour Pangandaran 2D1N"
-                                data-desc="Liburan tanpa pusing! Sudah termasuk akomodasi hotel bintang 3/resort pantai, makan 4x (termasuk gala dinner seafood segar), body rafting Green Canyon, perahu Pasir Putih, tiket masuk semua destinasi, guide berlisensi, dan dokumentasi drone."
-                                data-price="Rp 750.000 / pax"
-                                data-duration="2 Hari 1 Malam"
-                                data-img="{{ asset('images/sunset_batu_karas.jpg') }}">
-                            Lihat Detail
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Package Card 4: River Tubing Santirah -->
-            <div class="package-card flex flex-col bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-slate-100 group" data-category="rafting">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="River Tubing Santirah" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute top-4 left-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-600 text-white shadow-sm">
-                            🌊 Adrenalin Seru
-                        </span>
-                    </div>
-                    <div class="absolute bottom-4 right-4">
-                        <span class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-900/80 text-cyan-300 backdrop-blur-md">
-                            ⏱️ 2.5 - 3 Jam
-                        </span>
-                    </div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2 text-xs font-semibold text-cyan-700 mb-1">
-                            <span>📍 Santirah River Adventure</span>
-                        </div>
-                        <h3 class="font-display font-bold text-xl text-slate-900 group-hover:text-ocean-600 transition">
-                            River Tubing Santirah & Gua Air Purba
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-2 line-clamp-2">
-                            Menyusuri jeram sungai dengan ban pelampung khusus menembus 4 lorong gua alami yang menakjubkan.
-                        </p>
-
-                        <!-- Facilities Badge -->
-                        <div class="flex flex-wrap gap-1.5 mt-4">
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Ban Tubing & Helm</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ River Guide</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Asuransi</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Kelapa Muda</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-[11px] text-slate-400 block font-medium">Mulai dari</span>
-                            <span class="font-display font-bold text-xl text-ocean-600">Rp 125.000</span>
-                            <span class="text-xs text-slate-400">/ pax</span>
-                        </div>
-                        <button class="btn-view-package px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-ocean-600 text-white font-semibold text-xs transition"
-                                data-title="River Tubing Santirah & Gua Air Purba"
-                                data-desc="Petualangan tubing menyusuri sungai jernih dan 4 gua alami dengan pemandu sungai tersertifikasi. Termasuk ban khusus, rompi pelampung, helm, asuransi, dan sajian kelapa muda segar di garis finish."
-                                data-price="Rp 125.000 / pax"
-                                data-duration="2.5 - 3 Jam"
-                                data-img="{{ asset('images/greencanyon.jpg') }}">
-                            Lihat Detail
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Package Card 5: Cagar Alam & Budaya Semi Edukasi -->
-            <div class="package-card flex flex-col bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-slate-100 group" data-category="vip">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Cagar Alam Pananjung" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute top-4 left-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-sm">
-                            🌿 Edukasi & Konservasi
-                        </span>
-                    </div>
-                    <div class="absolute bottom-4 right-4">
-                        <span class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-900/80 text-emerald-300 backdrop-blur-md">
-                            ⏱️ 4 Jam
-                        </span>
-                    </div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2 text-xs font-semibold text-emerald-700 mb-1">
-                            <span>📍 Cagar Alam & Konservasi Penyu</span>
-                        </div>
-                        <h3 class="font-display font-bold text-xl text-slate-900 group-hover:text-ocean-600 transition">
-                            Safari Hutan Lindung & Budaya Pesisir
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-2 line-clamp-2">
-                            Eksplorasi flora-fauna rusa Pananjung, gua peninggalan purba, dan edukasi pelestarian penyu hijau serta hutan mangrove.
-                        </p>
-
-                        <!-- Facilities Badge -->
-                        <div class="flex flex-wrap gap-1.5 mt-4">
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Naturalist Guide</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Tiket Konservasi</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Pelepasan Tukik</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Snack Lokal</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-[11px] text-slate-400 block font-medium">Mulai dari</span>
-                            <span class="font-display font-bold text-xl text-ocean-600">Rp 150.000</span>
-                            <span class="text-xs text-slate-400">/ pax</span>
-                        </div>
-                        <button class="btn-view-package px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-ocean-600 text-white font-semibold text-xs transition"
-                                data-title="Safari Hutan Lindung & Budaya Pesisir"
-                                data-desc="Program semi edukasi yang sangat cocok untuk keluarga, pelajar, dan instansi. Mengunjungi cagar alam Pananjung, melihat satwa liar asli, gua purba, dan pusat penetasan penyu."
-                                data-price="Rp 150.000 / pax"
-                                data-duration="4 Jam"
-                                data-img="{{ asset('images/cagar_alam.jpg') }}">
-                            Lihat Detail
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Package Card 6: Corporate & Family Gathering 3D2N -->
-            <div class="package-card flex flex-col bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-slate-100 group" data-category="vip">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Family Gathering Pangandaran" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute top-4 left-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-teak-600 text-white shadow-sm">
-                            🏢 Corporate & Rombongan
-                        </span>
-                    </div>
-                    <div class="absolute bottom-4 right-4">
-                        <span class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-900/80 text-amber-300 backdrop-blur-md">
-                            ⏱️ 3 Hari 2 Malam
-                        </span>
-                    </div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2 text-xs font-semibold text-teak-800 mb-1">
-                            <span>📍 Custom Itinerary Pangandaran</span>
-                        </div>
-                        <h3 class="font-display font-bold text-xl text-slate-900 group-hover:text-ocean-600 transition">
-                            Family & Corporate Gathering 3D2N
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-2 line-clamp-2">
-                            Program lengkap outbound pantai, gala dinner live music & seafood bakar, Green Canyon, dan armada bus pariwisata.
-                        </p>
-
-                        <!-- Facilities Badge -->
-                        <div class="flex flex-wrap gap-1.5 mt-4">
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Hotel Bintang 4</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Fun Outbound Games</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Gala Dinner Live</span>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">✓ Bus & Spanduk</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-[11px] text-slate-400 block font-medium">Mulai dari</span>
-                            <span class="font-display font-bold text-xl text-teak-600">Rp 1.150.000</span>
-                            <span class="text-xs text-slate-400">/ pax</span>
-                        </div>
-                        <button class="btn-view-package px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-ocean-600 text-white font-semibold text-xs transition"
-                                data-title="Family & Corporate Gathering 3D2N"
-                                data-desc="Paket terlengkap untuk perusahaan, komunitas, dan rombongan keluarga besar. Termasuk akomodasi hotel premium, fun games outbound bersama fasilitator berlisensi, seafood barbecue night, dan liputan video dokumentasi profesional."
-                                data-price="Rp 1.150.000 / pax"
-                                data-duration="3 Hari 2 Malam"
-                                data-img="{{ asset('images/hero_pangandaran.jpg') }}">
-                            Lihat Detail
-                        </button>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </section>
 
@@ -690,7 +436,6 @@
 
             <!-- Destination Bento Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Large Item 1 -->
                 <div class="md:col-span-2 relative h-80 rounded-3xl overflow-hidden group shadow-lg">
                     <img src="{{ asset('images/greencanyon.jpg') }}" alt="Green Canyon Cukang Taneuh" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
@@ -701,7 +446,6 @@
                     </div>
                 </div>
 
-                <!-- Item 2 -->
                 <div class="relative h-80 rounded-3xl overflow-hidden group shadow-lg">
                     <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Pasir Putih & Snorkeling" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
@@ -712,7 +456,6 @@
                     </div>
                 </div>
 
-                <!-- Item 3 -->
                 <div class="relative h-80 rounded-3xl overflow-hidden group shadow-lg">
                     <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Sunset Batu Karas" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
@@ -723,7 +466,6 @@
                     </div>
                 </div>
 
-                <!-- Large Item 4 -->
                 <div class="md:col-span-2 relative h-80 rounded-3xl overflow-hidden group shadow-lg">
                     <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Cagar Alam Pananjung" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
@@ -772,7 +514,6 @@
                 </p>
 
                 <div class="space-y-4 pt-2">
-                    <!-- Feature 1 -->
                     <div class="flex items-start gap-4 p-4 rounded-2xl bg-white shadow-sm border border-slate-100 hover:border-ocean-300 transition">
                         <div class="w-10 h-10 rounded-xl bg-ocean-100 text-ocean-600 flex items-center justify-center shrink-0 font-bold">
                             01
@@ -783,7 +524,6 @@
                         </div>
                     </div>
 
-                    <!-- Feature 2 -->
                     <div class="flex items-start gap-4 p-4 rounded-2xl bg-white shadow-sm border border-slate-100 hover:border-lagoon-300 transition">
                         <div class="w-10 h-10 rounded-xl bg-lagoon-100 text-lagoon-600 flex items-center justify-center shrink-0 font-bold">
                             02
@@ -794,7 +534,6 @@
                         </div>
                     </div>
 
-                    <!-- Feature 3 -->
                     <div class="flex items-start gap-4 p-4 rounded-2xl bg-white shadow-sm border border-slate-100 hover:border-teak-300 transition">
                         <div class="w-10 h-10 rounded-xl bg-teak-100 text-teak-600 flex items-center justify-center shrink-0 font-bold">
                             03
@@ -809,7 +548,7 @@
         </div>
     </section>
 
-    <!-- 8. GALERI DOKUMENTASI AKTIVITAS (MASONRY WITH LIGHTBOX) -->
+    <!-- 8. GALERI DOKUMENTASI AKTIVITAS (MASONRY WITH DYNAMIC GALLERIES) -->
     <section id="galeri" class="py-20 bg-sand-100/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
@@ -824,92 +563,25 @@
                 </p>
             </div>
 
-            <!-- Gallery Grid -->
+            <!-- Dynamic Galleries Grid -->
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition"
-                     data-img="{{ asset('images/greencanyon.jpg') }}"
-                     data-caption="Body Rafting Green Canyon - Petualangan Ngarai Abadi">
-                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Body Rafting Green Canyon" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="w-10 h-10 rounded-full bg-white/80 text-slate-900 flex items-center justify-center font-bold">🔍</span>
+                @forelse($galleries as $gal)
+                    <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition"
+                         data-img="{{ $gal->image_url }}"
+                         data-caption="{{ $gal->title }} - {{ $gal->caption }}">
+                        <img src="{{ $gal->image_url }}" alt="{{ $gal->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="w-10 h-10 rounded-full bg-white/80 text-slate-900 flex items-center justify-center font-bold">🔍</span>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition"
-                     data-img="{{ asset('images/pasir_putih.jpg') }}"
-                     data-caption="Snorkeling & Wisata Perahu di Pasir Putih Pangandaran">
-                    <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Pasir Putih Snorkeling" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="w-10 h-10 rounded-full bg-white/80 text-slate-900 flex items-center justify-center font-bold">🔍</span>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition"
-                     data-img="{{ asset('images/hero_pangandaran.jpg') }}"
-                     data-caption="Pemandangan Garis Pantai & Perahu Nelayan Pangandaran">
-                    <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Pantai Pangandaran" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="w-10 h-10 rounded-full bg-white/80 text-slate-900 flex items-center justify-center font-bold">🔍</span>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition"
-                     data-img="{{ asset('images/sunset_batu_karas.jpg') }}"
-                     data-caption="Sunset Hangat di Tepian Pantai Batu Karas">
-                    <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Sunset Batu Karas" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="w-10 h-10 rounded-full bg-white/80 text-slate-900 flex items-center justify-center font-bold">🔍</span>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition"
-                     data-img="{{ asset('images/cagar_alam.jpg') }}"
-                     data-caption="Rusa Liar di Hutan Lindung Pananjung Pangandaran">
-                    <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Cagar Alam Pananjung" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="w-10 h-10 rounded-full bg-white/80 text-slate-900 flex items-center justify-center font-bold">🔍</span>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition"
-                     data-img="{{ asset('images/greencanyon.jpg') }}"
-                     data-caption="Keseruan Body Rafting Rombongan Corporate Gathering">
-                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Rombongan Rafting" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="w-10 h-10 rounded-full bg-white/80 text-slate-900 flex items-center justify-center font-bold">🔍</span>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 7 -->
-                <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition"
-                     data-img="{{ asset('images/pasir_putih.jpg') }}"
-                     data-caption="Terumbu Karang & Ikan Tropis Pasir Putih">
-                    <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Coral Reef Pangandaran" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="w-10 h-10 rounded-full bg-white/80 text-slate-900 flex items-center justify-center font-bold">🔍</span>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 8 -->
-                <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition"
-                     data-img="{{ asset('images/hero_pangandaran.jpg') }}"
-                     data-caption="Keceriaan Liburan Keluarga di Pantai Pangandaran">
-                    <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Wisatawan Pangandaran" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="w-10 h-10 rounded-full bg-white/80 text-slate-900 flex items-center justify-center font-bold">🔍</span>
-                    </div>
-                </div>
+                @empty
+                    <p class="col-span-4 text-center py-8 text-slate-400">Belum ada foto galeri.</p>
+                @endforelse
             </div>
         </div>
     </section>
 
-    <!-- 9. ULASAN & TESTIMONIAL PELANGGAN -->
+    <!-- 9. ULASAN & TESTIMONIAL PELANGGAN (DYNAMIC TESTIMONIALS) -->
     <section id="testimoni" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-14">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200">
@@ -924,68 +596,29 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Review 1 -->
-            <div class="bg-white rounded-3xl p-8 shadow-soft border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
-                <div>
-                    <div class="flex items-center text-amber-400 gap-1 text-sm mb-4">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                    <p class="text-slate-700 text-sm italic leading-relaxed">
-                        "Trip Green Canyon bareng Puja Tour bener-bener luar biasa! Pemandunya Kang Asep ramah banget, sabar bimbing keluarga saya yang baru pertama kali body rafting. Makan siang prasmanan Sundanya juga mantap!"
-                    </p>
-                </div>
-                <div class="flex items-center gap-4 pt-6 mt-6 border-t border-slate-100">
-                    <div class="w-12 h-12 rounded-full bg-ocean-100 text-ocean-700 flex items-center justify-center font-bold font-display text-lg">
-                        RA
-                    </div>
+            @forelse($testimonials as $testi)
+                <div class="bg-white rounded-3xl p-8 shadow-soft border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
                     <div>
-                        <h4 class="font-display font-bold text-slate-900 text-sm">Rian & Annisa</h4>
-                        <span class="text-xs text-slate-400">Bandung • Paket Green Canyon Full</span>
+                        <div class="flex items-center text-amber-400 gap-1 text-sm mb-4">
+                            {{ str_repeat('⭐', $testi->rating) }}
+                        </div>
+                        <p class="text-slate-700 text-sm italic leading-relaxed">
+                            "{{ $testi->review_text }}"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 mt-6 border-t border-slate-100">
+                        <div class="w-12 h-12 rounded-full bg-ocean-100 text-ocean-700 flex items-center justify-center font-bold font-display text-lg">
+                            {{ substr($testi->customer_name, 0, 2) }}
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold text-slate-900 text-sm">{{ $testi->customer_name }}</h4>
+                            <span class="text-xs text-slate-400">{{ $testi->customer_city ?? 'Wisatawan' }} • {{ $testi->package_name ?? 'Paket Pangandaran' }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Review 2 -->
-            <div class="bg-white rounded-3xl p-8 shadow-soft border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
-                <div>
-                    <div class="flex items-center text-amber-400 gap-1 text-sm mb-4">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                    <p class="text-slate-700 text-sm italic leading-relaxed">
-                        "Gathering kantor kami 40 orang dihandle sangat rapi oleh tim Puja Tour & Travel. Mulai dari bus, hotel resort tepi pantai, fun outbound, sampai gala dinner seafood bakar di Batu Karas. Sangat kami rekomendasikan!"
-                    </p>
-                </div>
-                <div class="flex items-center gap-4 pt-6 mt-6 border-t border-slate-100">
-                    <div class="w-12 h-12 rounded-full bg-teak-100 text-teak-700 flex items-center justify-center font-bold font-display text-lg">
-                        HP
-                    </div>
-                    <div>
-                        <h4 class="font-display font-bold text-slate-900 text-sm">Hendro Pramono</h4>
-                        <span class="text-xs text-slate-400">Jakarta • Corporate Gathering 3D2N</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Review 3 -->
-            <div class="bg-white rounded-3xl p-8 shadow-soft border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
-                <div>
-                    <div class="flex items-center text-amber-400 gap-1 text-sm mb-4">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                    <p class="text-slate-700 text-sm italic leading-relaxed">
-                        "Snorkeling di Pasir Putih seru banget, karangnya masih alami dan banyak ikan badut. Hasil foto underwater dan video drone dari tim dokumentasi jernih banget. Pelayanan bintang lima!"
-                    </p>
-                </div>
-                <div class="flex items-center gap-4 pt-6 mt-6 border-t border-slate-100">
-                    <div class="w-12 h-12 rounded-full bg-lagoon-100 text-lagoon-700 flex items-center justify-center font-bold font-display text-lg">
-                        DS
-                    </div>
-                    <div>
-                        <h4 class="font-display font-bold text-slate-900 text-sm">Dina Safitri</h4>
-                        <span class="text-xs text-slate-400">Yogyakarta • Paket Wisata Bahari</span>
-                    </div>
-                </div>
-            </div>
+            @empty
+                <p class="col-span-3 text-center py-8 text-slate-400">Belum ada testimoni.</p>
+            @endforelse
         </div>
     </section>
 
@@ -1118,28 +751,28 @@
                             <span class="text-lg">📍</span>
                             <div>
                                 <strong>Alamat Kantor:</strong>
-                                <p class="text-xs text-slate-600">Jl. Pantai Barat No. 88, Pangandaran, Jawa Barat 46396</p>
+                                <p class="text-xs text-slate-600">{{ $officeAddr }}</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3">
                             <span class="text-lg">📱</span>
                             <div>
                                 <strong>WhatsApp & Hotline:</strong>
-                                <p class="text-xs text-slate-600">+62 812-3456-7890 (Online 24 Jam)</p>
+                                <p class="text-xs text-slate-600">{{ $phoneNum }} (Online 24 Jam)</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3">
                             <span class="text-lg">✉️</span>
                             <div>
                                 <strong>Email Resmi:</strong>
-                                <p class="text-xs text-slate-600">info@pujatourtravel.com</p>
+                                <p class="text-xs text-slate-600">{{ $emailAddr }}</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3">
                             <span class="text-lg">⏰</span>
                             <div>
                                 <strong>Jam Pelayanan:</strong>
-                                <p class="text-xs text-slate-600">Setiap Hari: 06.00 - 21.00 WIB</p>
+                                <p class="text-xs text-slate-600">{{ $opHours }}</p>
                             </div>
                         </div>
                     </div>
@@ -1147,7 +780,6 @@
 
                 <div class="lg:col-span-7">
                     <div class="rounded-3xl overflow-hidden shadow-lg border border-slate-200 bg-slate-200 h-80 relative">
-                        <!-- Embedded Responsive Google Map for Pangandaran -->
                         <iframe 
                             title="Lokasi Puja Tour Pangandaran"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.739775073105!2d108.6477546!3d-7.6974127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6598c19958348b%3A0x6b45f949c256ca61!2sPantai%20Pangandaran!5e0!3m2!1sid!2sid!4v1709800000000!5m2!1sid!2sid" 
@@ -1173,7 +805,7 @@
                     <div class="flex items-center gap-3">
                         <img src="{{ asset('images/puja_logo.jpg') }}" alt="Puja Tour Travel" class="w-12 h-12 rounded-full border-2 border-teak-500">
                         <div>
-                            <span class="font-display font-extrabold text-xl text-white block">PUJA TOUR & TRAVEL</span>
+                            <span class="font-display font-extrabold text-xl text-white block">{{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}</span>
                             <span class="text-[10px] text-cyan-400 tracking-widest uppercase font-bold">Pangandaran Destination Specialist</span>
                         </div>
                     </div>
@@ -1181,8 +813,8 @@
                         Mitra terpercaya liburan dan petualangan di Pangandaran. Berbadan hukum resmi CV dengan pemandu lokal bersertifikat HPI dan standar keselamatan teruji.
                     </p>
                     <div class="flex items-center gap-3 pt-2 text-slate-300">
-                        <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center hover:bg-ocean-600 transition">📷</a>
-                        <a href="#" aria-label="TikTok" class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center hover:bg-ocean-600 transition">🎵</a>
+                        <a href="{{ $igUrl }}" target="_blank" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center hover:bg-ocean-600 transition">📷</a>
+                        <a href="{{ $tiktokUrl }}" target="_blank" aria-label="TikTok" class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center hover:bg-ocean-600 transition">🎵</a>
                         <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center hover:bg-ocean-600 transition">📘</a>
                         <a href="#" aria-label="YouTube" class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center hover:bg-ocean-600 transition">▶️</a>
                     </div>
@@ -1201,15 +833,13 @@
                     </ul>
                 </div>
 
-                <!-- Col 3: Paket Populer -->
+                <!-- Col 3: Paket Populer (Dynamic) -->
                 <div>
                     <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Paket Favorit</h4>
                     <ul class="space-y-2.5">
-                        <li><a href="#paket" class="hover:text-cyan-300 transition">Green Canyon Full Track</a></li>
-                        <li><a href="#paket" class="hover:text-cyan-300 transition">Snorkeling Pasir Putih</a></li>
-                        <li><a href="#paket" class="hover:text-cyan-300 transition">River Tubing Santirah</a></li>
-                        <li><a href="#paket" class="hover:text-cyan-300 transition">Eksklusif VIP 2D1N</a></li>
-                        <li><a href="#paket" class="hover:text-cyan-300 transition">Corporate Gathering 3D2N</a></li>
+                        @foreach($packages->take(5) as $fp)
+                            <li><a href="#paket" class="hover:text-cyan-300 transition">{{ $fp->name }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
 
@@ -1227,9 +857,9 @@
             </div>
 
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                <p>© {{ date('Y') }} PUJA TOUR & TRAVEL PANGANDARAN. Hak Cipta Dilindungi Undang-Undang.</p>
+                <p>© {{ date('Y') }} {{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}. Hak Cipta Dilindungi Undang-Undang.</p>
                 <div class="flex items-center gap-4">
-                    <a href="#" class="hover:text-slate-400">Syarat & Ketentuan</a>
+                    <a href="{{ route('admin.login') }}" class="hover:text-cyan-400 font-bold text-slate-400">🔒 Login Admin CMS</a>
                     <span>•</span>
                     <a href="#" class="hover:text-slate-400">Kebijakan Privasi</a>
                 </div>
@@ -1238,7 +868,7 @@
     </footer>
 
     <!-- 14. FLOATING WHATSAPP BUTTON (PULSE ANIMATION) -->
-    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Puja%20Tour%20%26%20Travel,%20saya%20ingin%20tanya%20info%20paket%20wisata%20Pangandaran" 
+    <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour%20%26%20Travel,%20saya%20ingin%20tanya%20info%20paket%20wisata%20Pangandaran" 
        target="_blank" 
        aria-label="Hubungi WhatsApp Puja Tour"
        class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 sm:p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center group">

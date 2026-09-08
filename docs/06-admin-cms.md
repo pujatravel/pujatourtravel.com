@@ -50,7 +50,7 @@ Otentikasi Sukses ──► Regenerasi Session ID ──► Redirect ke /admin/d
   - `password`: Wajib diisi (tipe password dengan toggle intip kata sandi).
   - `remember`: Checkbox opsional "Ingat Saya" untuk memperpanjang masa aktif token sesi.
 - **Kebijakan Keamanan**:
-  - *Password Hashing*: Wajib menggunakan algoritma Bcrypt (PHP 8.5/Laravel).
+  - *Password Hashing*: Wajib menggunakan algoritma Bcrypt (PHP 8.4+/Laravel).
   - *Rate Limiting*: Pembatasan maksimal 5 kali percobaan gagal berturut-turut per menit untuk mencegah serangan *brute-force*.
   - *Pesan Galat Ramah & Aman*: Jika login gagal, tampilkan pesan generik *"Email atau password yang Anda masukkan salah"* tanpa membocorkan keberadaan username/email di database.
   - *CSRF Protection*: Seluruh form admin wajib menyertakan token `@csrf`.

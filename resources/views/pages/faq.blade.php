@@ -6,6 +6,24 @@
     <title>FAQ — Pertanyaan Seputar Wisata Pangandaran & Puja Tour</title>
     <meta name="description" content="Pertanyaan umum seputar body rafting Green Canyon, snorkeling Pasir Putih, keamanan anak & pemula, dan cara pemesanan trip di Puja Tour & Travel.">
 
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Puja Tour Travel">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="FAQ — Pertanyaan Seputar Wisata Pangandaran & Puja Tour">
+    <meta property="og:description" content="Pertanyaan umum seputar body rafting Green Canyon, snorkeling Pasir Putih, keamanan anak & pemula.">
+    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FAQ — Pertanyaan Seputar Wisata Pangandaran & Puja Tour">
+    <meta name="twitter:description" content="Pertanyaan umum seputar body rafting Green Canyon, snorkeling Pasir Putih, keamanan anak & pemula.">
+    <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,6 +36,8 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
     </style>
+
+    @include('partials.analytics')
 </head>
 <body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white">
 

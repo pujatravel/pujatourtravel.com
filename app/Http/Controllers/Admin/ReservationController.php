@@ -18,6 +18,10 @@ class ReservationController extends Controller
             $query->where('status', $request->input('status'));
         }
 
+        if ($request->filled('source')) {
+            $query->where('source', $request->input('source'));
+        }
+
         if ($request->filled('search')) {
             $search = $request->input('search');
             $query->where(function ($q) use ($search) {
@@ -35,6 +39,7 @@ class ReservationController extends Controller
         $confirmedCount = Reservation::where('status', 'DIKONFIRMASI')->count();
         $completedCount = Reservation::where('status', 'SELESAI')->count();
         $cancelledCount = Reservation::where('status', 'DIBATALKAN')->count();
+        $availableSources = Reservation::select('source')->whereNotNull('source')->distinct()->pluck('source');
 
         return view('admin.reservations.index', compact(
             'reservations',
@@ -42,13 +47,19 @@ class ReservationController extends Controller
             'processCount',
             'confirmedCount',
             'completedCount',
-            'cancelledCount'
+            'cancelledCount',
+            'availableSources'
         ));
     }
 
     public function show(Reservation $reservation): View
     {
-        return view('admin.reservations.show', compact('reservation'));
+        $relatedReservations = Reservation::where('customer_phone', $reservation->customer_phone)
+            ->where('id', '!=', $reservation->id)
+            ->latest()
+            ->get();
+
+        return view('admin.reservations.show', compact('reservation', 'relatedReservations'));
     }
 
     public function updateStatus(Request $request, Reservation $reservation): RedirectResponse

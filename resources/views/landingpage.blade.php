@@ -7,11 +7,59 @@
     <meta name="description" content="Puja Tour & Travel Pangandaran menyediakan paket wisata eksklusif, body rafting Green Canyon, snorkeling Pasir Putih, dan petualangan alam terbaik bersama pemandu lokal berlisensi resmi.">
     <meta name="keywords" content="Puja Tour Travel, Wisata Pangandaran, Paket Wisata Pangandaran, Body Rafting Green Canyon, Pasir Putih Pangandaran, Batu Karas, Tour Guide Pangandaran">
 
+    <link rel="canonical" href="{{ url()->current() }}">
+
     <!-- Open Graph / Meta Sosial -->
+    <meta property="og:site_name" content="Puja Tour Travel">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="Puja Tour & Travel Pangandaran — Petualangan Alam & Bahari Terbaik">
     <meta property="og:description" content="Paket liburan Pangandaran terlengkap, legalitas resmi CV, pemandu bersertifikasi HPI, dan jaminan kenyamanan liburan Anda.">
     <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
-    <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Puja Tour & Travel Pangandaran — Petualangan Alam & Bahari Terbaik">
+    <meta name="twitter:description" content="Paket liburan Pangandaran terlengkap, legalitas resmi CV, pemandu bersertifikasi HPI, dan jaminan kenyamanan liburan Anda.">
+    <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+
+    <!-- Structured Data (JSON-LD): TravelAgency -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'TravelAgency',
+        'name' => 'Puja Tour Travel',
+        'description' => 'Biro perjalanan wisata resmi di Pangandaran yang menyediakan paket tur Green Canyon, body rafting, dan wisata bahari.',
+        'url' => url('/'),
+        'telephone' => $settings['phone_number'] ?? '+6281234567890',
+        'email' => $settings['email_address'] ?? 'info@pujatourtravel.com',
+        'address' => [
+            '@type' => 'PostalAddress',
+            'streetAddress' => $settings['office_address'] ?? 'Jl. Pantai Barat No. 88',
+            'addressLocality' => 'Pangandaran',
+            'addressRegion' => 'Jawa Barat',
+            'postalCode' => '46396',
+            'addressCountry' => 'ID',
+        ],
+        'geo' => [
+            '@type' => 'GeoCoordinates',
+            'latitude' => '-7.697500',
+            'longitude' => '108.652500',
+        ],
+        'openingHoursSpecification' => [
+            '@type' => 'OpeningHoursSpecification',
+            'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            'opens' => '06:00',
+            'closes' => '21:00',
+        ],
+        'sameAs' => [
+            'https://instagram.com/pujatourtravel',
+            'https://tiktok.com/@pujatourtravel',
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
 
     <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +76,8 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
     </style>
+
+    @include('partials.analytics')
 </head>
 <body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white">
 

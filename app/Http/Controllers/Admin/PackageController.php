@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Models\PackageCategory;
+use App\Models\Reservation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -55,7 +56,7 @@ class PackageController extends Controller
             'location' => ['nullable', 'string', 'max:150'],
             'short_description' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
-            'image' => ['nullable', 'image', 'max:3072'], // 3MB max
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:3072'], // 3MB max
             'status' => ['required', 'in:DRAFT,PUBLISHED,ARCHIVED'],
             'featured' => ['nullable', 'boolean'],
             'inclusions_text' => ['nullable', 'string'],
@@ -73,7 +74,8 @@ class PackageController extends Controller
         $imageUrl = '/images/greencanyon.jpg'; // default fallback
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time().'_'.Str::slug($file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
+            $ext = $file->guessExtension() ?: 'jpg';
+            $filename = 'pkg_'.time().'_'.Str::slug($validated['name']).'_'.Str::random(6).'.'.$ext;
             $file->move(public_path('images/uploads'), $filename);
             $imageUrl = '/images/uploads/'.$filename;
         }
@@ -127,7 +129,7 @@ class PackageController extends Controller
             'location' => ['nullable', 'string', 'max:150'],
             'short_description' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
-            'image' => ['nullable', 'image', 'max:3072'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:3072'],
             'status' => ['required', 'in:DRAFT,PUBLISHED,ARCHIVED'],
             'featured' => ['nullable', 'boolean'],
             'inclusions_text' => ['nullable', 'string'],
@@ -136,7 +138,8 @@ class PackageController extends Controller
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time().'_'.Str::slug($file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
+            $ext = $file->guessExtension() ?: 'jpg';
+            $filename = 'pkg_'.time().'_'.Str::slug($validated['name']).'_'.Str::random(6).'.'.$ext;
             $file->move(public_path('images/uploads'), $filename);
             $package->image_url = '/images/uploads/'.$filename;
         }
@@ -171,6 +174,15 @@ class PackageController extends Controller
 
     public function destroy(Package $package): RedirectResponse
     {
+        $hasReservations = Reservation::where('package_id', $package->id)->exists();
+        if ($hasReservations) {
+            $package->status = 'ARCHIVED';
+            $package->save();
+
+            return redirect()->route('admin.packages.index')
+                ->with('success', 'Paket wisata "'.$package->name.'" memiliki riwayat transaksi reservasi sehingga otomatis dialihkan ke status Diarsipkan (Archived).');
+        }
+
         $name = $package->name;
         $package->delete();
 

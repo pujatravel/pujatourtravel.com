@@ -6,11 +6,72 @@
     <title>{{ $package->seo_title ?? $package->name . ' — Puja Tour & Travel Pangandaran' }}</title>
     <meta name="description" content="{{ $package->seo_description ?? ($package->short_description ?? 'Paket wisata terbaik di Pangandaran bersama pemandu lokal berlisensi.') }}">
     
+    <link rel="canonical" href="{{ url()->current() }}">
+    
     <!-- Open Graph -->
+    <meta property="og:site_name" content="Puja Tour Travel">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="{{ $package->name }} — Puja Tour & Travel">
     <meta property="og:description" content="{{ $package->short_description }}">
     <meta property="og:image" content="{{ asset($package->image_url ?? 'images/greencanyon.jpg') }}">
-    <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $package->name }} — Puja Tour & Travel">
+    <meta name="twitter:description" content="{{ $package->short_description }}">
+    <meta name="twitter:image" content="{{ asset($package->image_url ?? 'images/greencanyon.jpg') }}">
+
+    <!-- Structured Data (JSON-LD): TouristTrip & BreadcrumbList -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'TouristTrip',
+        'name' => $package->name,
+        'description' => $package->short_description ?? $package->name,
+        'touristType' => 'Semua Usia',
+        'offers' => [
+            '@type' => 'Offer',
+            'price' => (int) $package->price,
+            'priceCurrency' => 'IDR',
+            'availability' => 'https://schema.org/InStock',
+            'url' => url()->current(),
+        ],
+        'provider' => [
+            '@type' => 'TravelAgency',
+            'name' => 'Puja Tour Travel',
+            'url' => url('/'),
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Beranda',
+                'item' => url('/'),
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => 'Paket Wisata',
+                'item' => route('packages.index'),
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 3,
+                'name' => $package->name,
+                'item' => url()->current(),
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +87,8 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
     </style>
+
+    @include('partials.analytics')
 </head>
 <body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white">
 
@@ -546,11 +609,31 @@
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
+    <!-- MOBILE STICKY BOTTOM BAR (Section 10.2 / 04-ui-ux-guidelines.md) -->
+    <div class="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/80 px-4 py-3 lg:hidden shadow-lg flex items-center justify-between gap-3">
+        <div class="flex flex-col">
+            <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Mulai Dari</span>
+            <div class="flex items-baseline gap-1">
+                <span class="font-display font-black text-emerald-700 text-base sm:text-lg">{{ $package->formatted_price }}</span>
+                <span class="text-[11px] text-slate-500 font-medium">/ {{ $package->price_unit }}</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <a href="https://wa.me/{{ $waNum }}?text={{ $bookingWaText }}" target="_blank" class="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition flex items-center gap-1.5 whitespace-nowrap">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span>Pesan Sekarang</span>
+            </a>
+            <a href="{{ route('calculator') }}" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition" title="Hitung Estimasi Biaya">
+                <i data-lucide="calculator" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button (With Safe Padding on Mobile) -->
     <a href="https://wa.me/{{ $waNum }}?text={{ $bookingWaText }}" 
        target="_blank" 
        aria-label="Hubungi WhatsApp Puja Tour"
-       class="fixed bottom-6 right-6 z-40 bg-emerald-700 hover:bg-emerald-800 text-white p-3.5 sm:p-4 rounded-full shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center group">
+       class="fixed bottom-20 lg:bottom-6 right-6 z-40 bg-emerald-700 hover:bg-emerald-800 text-white p-3.5 sm:p-4 rounded-full shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center group">
         <i data-lucide="message-circle" class="w-6 h-6"></i>
     </a>
 

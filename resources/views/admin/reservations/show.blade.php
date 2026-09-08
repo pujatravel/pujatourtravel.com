@@ -73,6 +73,42 @@
                 @endif
             </div>
 
+            @if(isset($relatedReservations) && $relatedReservations->isNotEmpty())
+                <!-- Repeat Customer History Card -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-emerald-100 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 rounded-xl bg-emerald-50 text-emerald-700">
+                                <i data-lucide="user-check" class="w-5 h-5"></i>
+                            </span>
+                            <div>
+                                <h3 class="font-display font-bold text-base text-slate-900">Riwayat Reservasi Pelanggan Ini</h3>
+                                <p class="text-[11px] text-emerald-700 font-bold">Pelanggan Berulang (Repeat Customer) — {{ $relatedReservations->count() }} transaksi lain terdeteksi</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divide-y divide-slate-100">
+                        @foreach($relatedReservations as $prevRes)
+                            <div class="py-3 flex items-center justify-between gap-3 text-xs">
+                                <div>
+                                    <span class="font-bold text-slate-800">#{{ $prevRes->code }} — {{ $prevRes->package_name }}</span>
+                                    <span class="text-slate-400 block text-[11px]">{{ $prevRes->travel_date ? $prevRes->travel_date->format('d M Y') : 'Fleksibel' }} • {{ $prevRes->pax_count }} Pax • {{ $prevRes->formatted_total }}</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold border {{ $prevRes->status_badge }}">
+                                        {{ $prevRes->status }}
+                                    </span>
+                                    <a href="{{ route('admin.reservations.show', $prevRes->id) }}" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition" title="Lihat Reservasi Ini">
+                                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             <!-- Admin Internal Notes -->
             <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80">
                 <h3 class="font-display font-bold text-base text-slate-900 mb-3">Catatan Internal Staf Admin</h3>

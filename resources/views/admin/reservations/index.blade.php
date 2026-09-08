@@ -27,16 +27,35 @@
         </a>
     </div>
 
-    <!-- Search Form -->
-    <div class="bg-surface-soft p-4 rounded-3xl border border-neutral-200 shadow-sm flex items-center justify-between">
-        <form action="{{ route('admin.reservations.index') }}" method="GET" class="flex items-center gap-3 w-full sm:w-auto flex-1 max-w-md">
+    <!-- Search & Source Filter Form -->
+    <div class="bg-surface-soft p-4 rounded-3xl border border-neutral-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+        <form action="{{ route('admin.reservations.index') }}" method="GET" class="flex flex-wrap items-center gap-3 w-full">
             @if(request('status'))
                 <input type="hidden" name="status" value="{{ request('status') }}">
             @endif
-            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama, no WA, kode reservasi..." class="w-full pl-4 pr-10 py-2.5 rounded-xl border border-neutral-200 text-xs bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none">
+            <div class="flex-1 min-w-48">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama, no WA, kode reservasi..." class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-xs bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none">
+            </div>
+
+            @if(isset($availableSources) && $availableSources->isNotEmpty())
+                <div class="min-w-36">
+                    <select name="source" onchange="this.form.submit()" class="w-full px-3 py-2.5 rounded-xl border border-neutral-200 text-xs bg-canvas font-bold text-slate-700 outline-none">
+                        <option value="">Semua Saluran Sumber</option>
+                        @foreach($availableSources as $src)
+                            <option value="{{ $src }}" {{ request('source') === $src ? 'selected' : '' }}>{{ $src }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
+
             <button type="submit" class="px-4 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">
-                Cari
+                Filter
             </button>
+            @if(request('search') || request('source') || request('status'))
+                <a href="{{ route('admin.reservations.index') }}" class="px-3 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-slate-700 rounded-xl text-xs font-bold transition">
+                    Reset
+                </a>
+            @endif
         </form>
     </div>
 

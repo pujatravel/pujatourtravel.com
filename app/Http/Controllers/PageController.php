@@ -70,4 +70,16 @@ class PageController extends Controller
 
         return view('pages.contact', compact('settings', 'faqs'));
     }
+
+    /**
+     * Display the Testimonials & Social Proof (Testimonial) page.
+     */
+    public function testimonial(): View
+    {
+        $settings = Setting::all()->pluck('value', 'key');
+        $testimonials = Testimonial::where('is_published', true)->latest()->get();
+        $averageRating = Testimonial::where('is_published', true)->avg('rating') ?: 5.0;
+
+        return view('pages.testimonial', compact('settings', 'testimonials', 'averageRating'));
+    }
 }

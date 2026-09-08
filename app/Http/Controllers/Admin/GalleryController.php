@@ -24,11 +24,12 @@ class GalleryController extends Controller
             'title' => ['required', 'string', 'max:150'],
             'category' => ['required', 'string', 'max:50'],
             'caption' => ['nullable', 'string'],
-            'image' => ['required', 'image', 'max:4096'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,webp', 'max:3072'],
         ]);
 
         $file = $request->file('image');
-        $filename = 'gal_'.time().'_'.Str::slug($validated['title']).'.'.$file->getClientOriginalExtension();
+        $ext = $file->guessExtension() ?: 'jpg';
+        $filename = 'gal_'.time().'_'.Str::slug($validated['title']).'_'.Str::random(6).'.'.$ext;
         $file->move(public_path('images/uploads'), $filename);
 
         Gallery::create([

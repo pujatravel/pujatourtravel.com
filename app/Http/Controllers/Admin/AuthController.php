@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class AuthController extends Controller
@@ -31,6 +33,15 @@ class AuthController extends Controller
         $loginInput = $credentials['login'];
         $password = $credentials['password'];
         $remember = $request->boolean('remember');
+        $throttleKey = Str::transliterate(Str::lower($loginInput).'|'.$request->ip());
+
+        if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+
+            return back()->withErrors([
+                'login' => "Terlalu banyak percobaan login gagal. Silakan coba lagi dalam {$seconds} detik.",
+            ])->onlyInput('login');
+        }
 
         // Check by username OR email
         $user = User::where(function ($query) use ($loginInput) {
@@ -39,12 +50,15 @@ class AuthController extends Controller
         })->where('is_active', true)->first();
 
         if ($user && Hash::check($password, $user->password)) {
+            RateLimiter::clear($throttleKey);
             Auth::login($user, $remember);
             $request->session()->regenerate();
 
             return redirect()->intended(route('admin.dashboard'))
                 ->with('success', 'Selamat datang kembali, '.$user->name.'!');
         }
+
+        RateLimiter::hit($throttleKey, 60);
 
         return back()->withErrors([
             'login' => 'ID Admin/Email atau Password yang Anda masukkan tidak cocok.',

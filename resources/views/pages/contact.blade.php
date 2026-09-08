@@ -6,6 +6,50 @@
     <title>Kontak & Lokasi Kantor — Puja Tour & Travel Pangandaran</title>
     <meta name="description" content="Hubungi kantor resmi Puja Tour & Travel Pangandaran. WhatsApp hotline 24 jam, alamat kantor operasional, dan petunjuk arah lokasi.">
 
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Puja Tour Travel">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Kontak & Lokasi Kantor — Puja Tour & Travel Pangandaran">
+    <meta property="og:description" content="Hubungi kantor resmi Puja Tour & Travel Pangandaran. WhatsApp hotline 24 jam, alamat kantor operasional, dan petunjuk arah lokasi.">
+    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kontak & Lokasi Kantor — Puja Tour & Travel Pangandaran">
+    <meta name="twitter:description" content="Hubungi kantor resmi Puja Tour & Travel Pangandaran. WhatsApp hotline 24 jam, alamat kantor operasional, dan petunjuk arah lokasi.">
+    <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+
+    <!-- Structured Data (JSON-LD): TravelAgency -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'TravelAgency',
+        'name' => 'Puja Tour Travel',
+        'description' => 'Biro perjalanan wisata resmi di Pangandaran yang menyediakan paket tur Green Canyon, body rafting, dan wisata bahari.',
+        'url' => url('/'),
+        'telephone' => $settings['phone_number'] ?? '+6281234567890',
+        'email' => $settings['email_address'] ?? 'info@pujatourtravel.com',
+        'address' => [
+            '@type' => 'PostalAddress',
+            'streetAddress' => $settings['office_address'] ?? 'Jl. Pantai Barat No. 88',
+            'addressLocality' => 'Pangandaran',
+            'addressRegion' => 'Jawa Barat',
+            'postalCode' => '46396',
+            'addressCountry' => 'ID',
+        ],
+        'geo' => [
+            '@type' => 'GeoCoordinates',
+            'latitude' => '-7.697500',
+            'longitude' => '108.652500',
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,6 +62,8 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
     </style>
+
+    @include('partials.analytics')
 </head>
 <body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white">
 
@@ -244,7 +290,7 @@
                     <h2 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Peta Navigasi & Lokasi Kantor</h2>
                     <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Temukan kantor operasional kami di Google Maps untuk panduan rute perjalanan.</p>
                 </div>
-                <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-bold text-xs border border-emerald-200 transition shrink-0">
+                <a href="{{ $settings['google_maps_url'] ?? 'https://maps.google.com/?q=-7.6974127,108.6477546' }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-bold text-xs border border-emerald-200 transition shrink-0">
                     <i data-lucide="external-link" class="w-4 h-4"></i>
                     <span>Buka di Google Maps</span>
                 </a>

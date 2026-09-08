@@ -6,6 +6,24 @@
     <title>Galeri Dokumentasi Wisata Pangandaran — Puja Tour & Travel</title>
     <meta name="description" content="Koleksi foto dan dokumentasi kegiatan body rafting Green Canyon, snorkeling Pasir Putih, pantai Batu Karas, dan keindahan alam Pangandaran.">
 
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Puja Tour Travel">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Galeri Dokumentasi Wisata Pangandaran — Puja Tour & Travel">
+    <meta property="og:description" content="Koleksi foto dan dokumentasi kegiatan body rafting Green Canyon, snorkeling Pasir Putih, pantai Batu Karas, dan keindahan alam Pangandaran.">
+    <meta property="og:image" content="{{ asset('images/cagar_alam.jpg') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Galeri Dokumentasi Wisata Pangandaran — Puja Tour & Travel">
+    <meta name="twitter:description" content="Koleksi foto dan dokumentasi kegiatan body rafting Green Canyon, snorkeling Pasir Putih, pantai Batu Karas, dan keindahan alam Pangandaran.">
+    <meta name="twitter:image" content="{{ asset('images/cagar_alam.jpg') }}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,6 +36,8 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
     </style>
+
+    @include('partials.analytics')
 </head>
 <body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white">
 

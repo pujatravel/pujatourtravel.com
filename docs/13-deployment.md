@@ -35,7 +35,7 @@ Reverse Proxy & Web Server (Nginx)
   └── FastCGI Pass (127.0.0.1:9000 / unix socket)
        │
        ▼
-Application Runtime (PHP 8.4+ / Laravel Framework)
+Application Runtime (PHP 8.4.25+ / Laravel Framework)
   ├── Process Manager (Systemd Queue Worker)
   ├── Background Scheduler (Cron: php artisan schedule:run)
   └── Internal Data Access

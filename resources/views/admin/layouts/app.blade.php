@@ -81,7 +81,7 @@
                         </div>
                         @php $pendingCount = \App\Models\Reservation::where('status', 'PENDING')->count(); @endphp
                         @if($pendingCount > 0)
-                            <span class="px-2 py-0.5 text-[10px] font-extrabold bg-amber-500 text-slate-950 rounded-full">{{ $pendingCount }}</span>
+                            <span class="px-2 py-0.5 text-[10px] font-extrabold bg-amber-500 text-slate-950 rounded-full animate-pulse">{{ $pendingCount }}</span>
                         @endif
                     </a>
 

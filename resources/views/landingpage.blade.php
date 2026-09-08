@@ -171,8 +171,8 @@
             <div class="absolute inset-0 bg-linear-to-b from-slate-950/85 via-slate-950/75 to-slate-950/90 z-1"></div>
         </div>
 
-        <!-- Floating Destination Badge (Auto-updates with slide) -->
-        <div class="absolute top-20 sm:top-24 left-4 sm:left-8 z-20 hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-medium text-emerald-300 shadow-lg">
+        <!-- Floating Destination Badge (Auto-updates with slide in top-right corner) -->
+        <div class="absolute top-6 right-4 sm:right-8 z-20 hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-medium text-emerald-300 shadow-lg">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span id="hero-location-text">Pantai Pangandaran • Hamparan Pasir & Pesona Bahari</span>
         </div>
@@ -185,8 +185,8 @@
             <i data-lucide="chevron-right" class="w-6 h-6"></i>
         </button>
 
-        <!-- Slide Indicators (Pills & Active Indicator) -->
-        <div id="hero-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/60 backdrop-blur-md border border-white/10">
+        <!-- Slide Indicators (Pills & Active Indicator elevated safely above bottom cards) -->
+        <div id="hero-dots" class="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/15 shadow-md">
             <button type="button" class="hero-dot w-8 h-2 rounded-full bg-emerald-400 transition-all duration-300 cursor-pointer" data-slide="0" aria-label="Slide 1"></button>
             <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="1" aria-label="Slide 2"></button>
             <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="2" aria-label="Slide 3"></button>
@@ -194,7 +194,7 @@
             <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="4" aria-label="Slide 5"></button>
         </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:pt-20 lg:pb-28 w-full">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 <!-- Hero Left Content -->
                 <div class="lg:col-span-7 text-center lg:text-left space-y-6">
@@ -850,13 +850,14 @@
                     <div class="rounded-3xl overflow-hidden shadow-md border border-neutral-200 bg-neutral-200 h-80 relative">
                         <iframe 
                             title="Lokasi Puja Tour Pangandaran"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.739775073105!2d108.6477546!3d-7.6974127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6598c19958348b%3A0x6b45f949c256ca61!2sPantai%20Pangandaran!5e0!3m2!1sid!2sid!4v1709800000000!5m2!1sid!2sid" 
+                            src="{{ $settings['google_maps_embed_url'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.739775073105!2d108.6477546!3d-7.6974127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6598c19958348b%3A0x6b45f949c256ca61!2sPantai%20Pangandaran!5e0!3m2!1sid!2sid!4v1709800000000!5m2!1sid!2sid' }}" 
                             width="100%" 
                             height="100%" 
                             style="border:0;" 
                             allowfullscreen="" 
                             loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="w-full h-full">
                         </iframe>
                     </div>
                 </div>
@@ -884,16 +885,26 @@
                     </p>
                     <div class="flex items-center gap-2.5 pt-2 text-slate-300">
                         <a href="{{ $igUrl }}" target="_blank" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
-                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                            </svg>
                         </a>
                         <a href="{{ $tiktokUrl }}" target="_blank" aria-label="TikTok" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
-                            <i data-lucide="music-2" class="w-4 h-4"></i>
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.89-4.49V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-.9-.07z"/>
+                            </svg>
                         </a>
-                        <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
-                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
                         </a>
-                        <a href="#" aria-label="YouTube" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
-                            <i data-lucide="youtube" class="w-4 h-4"></i>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.5l5.75 3.26-5.75 3.26z"/>
+                            </svg>
                         </a>
                     </div>
                 </div>

@@ -6,10 +6,23 @@ import { Indonesian } from 'flatpickr/dist/l10n/id.js';
 import Choices from 'choices.js';
 import 'choices.js/public/assets/styles/choices.min.css';
 
-// Make lucide, flatpickr, and Choices available globally
-window.lucide = { createIcons, icons };
+import Sortable from 'sortablejs';
+
+// Make lucide, flatpickr, Choices, and Sortable available globally
+window.lucide = {
+    createIcons: (options = {}) => createIcons({ icons, ...options }),
+    icons
+};
 window.flatpickr = flatpickr;
 window.Choices = Choices;
+window.Sortable = Sortable;
+
+// Initialize Lucide Icons immediately and on DOMContentLoaded
+try {
+    createIcons({ icons });
+} catch (e) {
+    // DOM not ready yet
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     // 0. Initialize Lucide Icons across all views

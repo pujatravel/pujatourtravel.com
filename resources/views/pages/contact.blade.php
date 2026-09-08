@@ -236,6 +236,34 @@
                 </form>
             </div>
         </div>
+
+        <!-- Dynamic Google Maps Section -->
+        <div class="mt-12 bg-surface-soft rounded-3xl p-6 sm:p-8 shadow-soft border border-neutral-200">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Peta Navigasi & Lokasi Kantor</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Temukan kantor operasional kami di Google Maps untuk panduan rute perjalanan.</p>
+                </div>
+                <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-bold text-xs border border-emerald-200 transition shrink-0">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    <span>Buka di Google Maps</span>
+                </a>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden shadow-inner border border-neutral-200 bg-slate-100 h-80 sm:h-96 relative">
+                <iframe 
+                    title="Lokasi Kantor Puja Tour & Travel Pangandaran"
+                    src="{{ $settings['google_maps_embed_url'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.739775073105!2d108.6477546!3d-7.6974127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6598c19958348b%3A0x6b45f949c256ca61!2sPantai%20Pangandaran!5e0!3m2!1sid!2sid!4v1709800000000!5m2!1sid!2sid' }}" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="w-full h-full">
+                </iframe>
+            </div>
+        </div>
     </main>
 
     <!-- FOOTER -->

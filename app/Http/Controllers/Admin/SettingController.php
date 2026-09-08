@@ -26,14 +26,28 @@ class SettingController extends Controller
             'email_address' => ['nullable', 'email', 'max:100'],
             'office_address' => ['nullable', 'string'],
             'operational_hours' => ['nullable', 'string', 'max:100'],
+            'google_maps_embed_url' => ['nullable', 'string'],
             'instagram_url' => ['nullable', 'url', 'max:200'],
             'tiktok_url' => ['nullable', 'url', 'max:200'],
         ]);
+
+        if (array_key_exists('google_maps_embed_url', $validated)) {
+            $rawMap = trim((string) $validated['google_maps_embed_url']);
+            if (! empty($rawMap)) {
+                if (preg_match('/src=["\']([^"\']+)["\']/', $rawMap, $matches)) {
+                    $validated['google_maps_embed_url'] = $matches[1];
+                } else {
+                    $validated['google_maps_embed_url'] = $rawMap;
+                }
+            } else {
+                $validated['google_maps_embed_url'] = null;
+            }
+        }
 
         foreach ($validated as $key => $value) {
             Setting::set($key, $value);
         }
 
-        return back()->with('success', 'Pengaturan sistem & kontak berhasil diperbarui!');
+        return back()->with('success', 'Pengaturan sistem, kontak & peta lokasi berhasil diperbarui!');
     }
 }

@@ -125,11 +125,17 @@
             <!-- Social Channel Buttons -->
             <div class="flex items-center justify-center gap-3 mt-6">
                 <a href="{{ $igUrl }}" target="_blank" class="px-4 py-2 rounded-xl bg-white border border-neutral-200 text-slate-700 hover:text-pink-600 hover:border-pink-300 text-xs font-semibold transition flex items-center gap-2 shadow-xs">
-                    <i data-lucide="instagram" class="w-4 h-4 text-pink-600"></i>
+                    <svg class="w-4 h-4 text-pink-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                    </svg>
                     <span>Instagram @pujatourtravel</span>
                 </a>
                 <a href="{{ $tiktokUrl }}" target="_blank" class="px-4 py-2 rounded-xl bg-white border border-neutral-200 text-slate-700 hover:text-slate-900 hover:border-slate-400 text-xs font-semibold transition flex items-center gap-2 shadow-xs">
-                    <i data-lucide="video" class="w-4 h-4"></i>
+                    <svg class="w-4 h-4 text-slate-900" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.89-4.49V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-.9-.07z"/>
+                    </svg>
                     <span>TikTok Resmi</span>
                 </a>
             </div>

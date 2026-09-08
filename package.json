@@ -19,6 +19,7 @@
     "dependencies": {
         "choices.js": "^11.2.4",
         "flatpickr": "^4.6.13",
-        "lucide": "^1.42.0"
+        "lucide": "^1.42.0",
+        "sortablejs": "^1.15.7"
     }
 }

@@ -16,6 +16,8 @@ use App\Models\Package;
 use App\Models\PackageCategory;
 use App\Models\Setting;
 use App\Models\Testimonial;
+use App\Services\VisitorTracker;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -105,6 +107,22 @@ Route::get('/sitemap.xml', function () {
     ]);
 })->name('sitemap');
 
+// Heartbeat & Pelacakan Pengunjung Realtime (Zero PII, Aman Privasi)
+Route::post('/visitor-ping', function (Request $request) {
+    $visitorId = (string) $request->input('visitor_id', '');
+    if (empty($visitorId)) {
+        $visitorId = hash('sha256', $request->ip().$request->userAgent());
+    }
+    $url = (string) $request->input('url', '/');
+    $title = (string) $request->input('title', 'Website');
+    $device = (string) $request->input('device', 'desktop');
+    $action = (string) $request->input('action', 'ping');
+
+    $result = VisitorTracker::recordPing($visitorId, $url, $title, $device, $action);
+
+    return response()->json($result);
+})->name('visitor.ping');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Authentication Routes
@@ -121,9 +139,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::middleware('auth')->group(function () {
-        // Dashboard
+        // Dashboard & Realtime Analytics
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/realtime-visitors', [DashboardController::class, 'realtimeVisitors'])->name('realtime-visitors');
 
         // Packages CRUD & Featured Toggle
         Route::resource('packages', AdminPackageController::class);

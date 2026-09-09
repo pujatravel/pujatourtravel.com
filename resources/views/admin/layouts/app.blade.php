@@ -154,5 +154,14 @@
         </div>
     </div>
 
+    <!-- Fallback Chart.js CDN if needed -->
+    <script>
+        if (!window.Chart) {
+            var cdnScript = document.createElement('script');
+            cdnScript.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js';
+            document.head.appendChild(cdnScript);
+        }
+    </script>
+    @stack('scripts')
 </body>
 </html>

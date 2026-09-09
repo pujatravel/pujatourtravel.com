@@ -7,6 +7,8 @@ use App\Models\Gallery;
 use App\Models\Package;
 use App\Models\Reservation;
 use App\Models\Testimonial;
+use App\Services\VisitorTracker;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -43,6 +45,7 @@ class DashboardController extends Controller
         $featuredPackages = Package::where('featured', true)->take(4)->get();
         $galleryCount = Gallery::count();
         $testimonialCount = Testimonial::count();
+        $realtimeStats = VisitorTracker::getRealtimeStats();
 
         return view('admin.dashboard', compact(
             'totalPackages',
@@ -59,7 +62,16 @@ class DashboardController extends Controller
             'recentReservations',
             'featuredPackages',
             'galleryCount',
-            'testimonialCount'
+            'testimonialCount',
+            'realtimeStats'
         ));
+    }
+
+    /**
+     * Endpoint API JSON untuk polling realtime pengunjung aktif.
+     */
+    public function realtimeVisitors(): JsonResponse
+    {
+        return response()->json(VisitorTracker::getRealtimeStats());
     }
 }

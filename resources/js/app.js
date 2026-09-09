@@ -7,8 +7,9 @@ import Choices from 'choices.js';
 import 'choices.js/public/assets/styles/choices.min.css';
 
 import Sortable from 'sortablejs';
+import Chart from 'chart.js/auto';
 
-// Make lucide, flatpickr, Choices, and Sortable available globally
+// Make lucide, flatpickr, Choices, Sortable, and Chart available globally
 window.lucide = {
     createIcons: (options = {}) => createIcons({ icons, ...options }),
     icons
@@ -16,6 +17,7 @@ window.lucide = {
 window.flatpickr = flatpickr;
 window.Choices = Choices;
 window.Sortable = Sortable;
+window.Chart = Chart;
 
 // Initialize Lucide Icons immediately and on DOMContentLoaded
 try {

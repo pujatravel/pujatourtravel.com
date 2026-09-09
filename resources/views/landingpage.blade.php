@@ -215,29 +215,53 @@
     </div>
 
     <!-- 3. HERO BANNER SECTION WITH CINEMATIC AUTO-SLIDER (Solid Slate 950) -->
+    @php
+        $heroBadge = $settings['hero_badge'] ?? 'Partner Resmi Wisata & Petualangan Pangandaran';
+        $heroTitle = $settings['hero_title'] ?? 'Jelajahi Pesona Bahari & Petualangan Pangandaran Tak Terlupakan';
+        $heroHighlight = $settings['hero_title_highlight'] ?? 'Pangandaran';
+        $heroSubtitle = $settings['hero_subtitle'] ?? 'Nikmati sensasi seru Body Rafting Green Canyon, panorama eksotis Pasir Putih, dan pesona bahari terbaik bersama pemandu lokal profesional tersertifikasi HPI. Liburan aman, nyaman, dan berkesan.';
+
+        $stat1Val = $settings['hero_stat_1_val'] ?? '5.000+';
+        $stat1Lbl = $settings['hero_stat_1_lbl'] ?? 'Wisatawan Puas';
+        $stat2Val = $settings['hero_stat_2_val'] ?? '100%';
+        $stat2Lbl = $settings['hero_stat_2_lbl'] ?? 'Pemandu Berlisensi';
+        $stat3Val = $settings['hero_stat_3_val'] ?? '4.9/5';
+        $stat3Lbl = $settings['hero_stat_3_lbl'] ?? 'Ulasan Google';
+
+        $heroSlidesList = collect();
+        if (isset($galleries) && $galleries->count() > 0) {
+            foreach ($galleries as $g) {
+                $heroSlidesList->push([
+                    'image' => asset($g->image_path),
+                    'location' => ($g->title ?? 'Destinasi Wisata') . ' • ' . ($g->caption ?? 'Pesona Indah Pangandaran'),
+                    'title' => $g->title ?? 'Galeri Pangandaran',
+                ]);
+            }
+        }
+
+        $defaultSlides = [
+            ['image' => asset('images/hero_pangandaran.jpg'), 'location' => 'Pantai Pangandaran • Hamparan Pasir & Pesona Bahari', 'title' => 'Pantai Pangandaran'],
+            ['image' => asset('images/greencanyon.jpg'), 'location' => 'Green Canyon Cukang Taneuh • Ngarai Stalaktit Air Zamrud', 'title' => 'Green Canyon'],
+            ['image' => asset('images/pasir_putih.jpg'), 'location' => 'Pantai Pasir Putih • Snorkeling Terumbu Karang & Ikan Badut', 'title' => 'Pasir Putih'],
+            ['image' => asset('images/sunset_batu_karas.jpg'), 'location' => 'Pantai Batu Karas • Golden Sunset & Wisata Selancar', 'title' => 'Batu Karas'],
+            ['image' => asset('images/cagar_alam.jpg'), 'location' => 'Cagar Alam Pananjung • Hutan Lindung Tropis & Satwa Liar', 'title' => 'Cagar Alam'],
+        ];
+
+        if ($heroSlidesList->count() < 3) {
+            foreach ($defaultSlides as $ds) {
+                if ($heroSlidesList->count() >= 5) break;
+                $heroSlidesList->push($ds);
+            }
+        }
+    @endphp
     <section id="beranda" class="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-slate-950 group">
         <!-- Hero Background Auto-Slider Container -->
         <div id="hero-slider" class="absolute inset-0 z-0 overflow-hidden select-none">
-            <!-- Slide 1 -->
-            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100" data-location="Pantai Pangandaran • Hamparan Pasir & Pesona Bahari">
-                <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Pantai Pangandaran" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
-            </div>
-            <!-- Slide 2 -->
-            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none" data-location="Green Canyon Cukang Taneuh • Ngarai Stalaktit Air Zamrud">
-                <img src="{{ asset('images/greencanyon.jpg') }}" alt="Green Canyon" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
-            </div>
-            <!-- Slide 3 -->
-            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none" data-location="Pantai Pasir Putih • Snorkeling Terumbu Karang & Ikan Badut">
-                <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Pasir Putih" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
-            </div>
-            <!-- Slide 4 -->
-            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none" data-location="Pantai Batu Karas • Golden Sunset & Wisata Selancar">
-                <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Batu Karas" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
-            </div>
-            <!-- Slide 5 -->
-            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none" data-location="Cagar Alam Pananjung • Hutan Lindung Tropis & Satwa Liar">
-                <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Cagar Alam" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
-            </div>
+            @foreach($heroSlidesList as $index => $slide)
+                <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out {{ $index === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none' }}" data-location="{{ $slide['location'] }}">
+                    <img src="{{ $slide['image'] }}" alt="{{ $slide['title'] }}" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
+                </div>
+            @endforeach
 
             <!-- Deep Scrim Overlay for Crystal Clear Text Contrast -->
             <div class="absolute inset-0 bg-linear-to-b from-slate-950/85 via-slate-950/75 to-slate-950/90 z-1"></div>
@@ -246,7 +270,7 @@
         <!-- Floating Destination Badge (Auto-updates with slide in top-right corner) -->
         <div class="absolute top-6 right-4 sm:right-8 z-20 hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-medium text-emerald-300 shadow-lg">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span id="hero-location-text">Pantai Pangandaran • Hamparan Pasir & Pesona Bahari</span>
+            <span id="hero-location-text">{{ $heroSlidesList->first()['location'] ?? 'Wisata Pangandaran' }}</span>
         </div>
 
         <!-- Hero Slider Arrow Navigation Controls -->
@@ -257,13 +281,11 @@
             <i data-lucide="chevron-right" class="w-6 h-6"></i>
         </button>
 
-        <!-- Slide Indicators (Pills & Active Indicator elevated safely above bottom cards) -->
+        <!-- Slide Indicators -->
         <div id="hero-dots" class="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/15 shadow-md">
-            <button type="button" class="hero-dot w-8 h-2 rounded-full bg-emerald-400 transition-all duration-300 cursor-pointer" data-slide="0" aria-label="Slide 1"></button>
-            <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="1" aria-label="Slide 2"></button>
-            <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="2" aria-label="Slide 3"></button>
-            <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="3" aria-label="Slide 4"></button>
-            <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="4" aria-label="Slide 5"></button>
+            @foreach($heroSlidesList as $index => $slide)
+                <button type="button" class="hero-dot {{ $index === 0 ? 'w-8 bg-emerald-400' : 'w-2.5 bg-white/40' }} h-2 rounded-full hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="{{ $index }}" aria-label="Slide {{ $index + 1 }}"></button>
+            @endforeach
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:pt-20 lg:pb-28 w-full">
@@ -273,35 +295,39 @@
                     <!-- Badge -->
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-emerald-300 text-xs sm:text-sm font-semibold">
                         <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
-                        <span>Partner Resmi Wisata & Petualangan Pangandaran</span>
+                        <span>{{ $heroBadge }}</span>
                     </div>
 
                     <!-- Main H1 Title (Solid Colors) -->
                     <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.15]">
-                        Jelajahi Pesona Bahari & Petualangan <span class="text-emerald-400">Pangandaran</span> Tak Terlupakan
+                        @if(!empty($heroHighlight) && str_contains($heroTitle, $heroHighlight))
+                            {!! str_replace($heroHighlight, '<span class="text-emerald-400">' . e($heroHighlight) . '</span>', e($heroTitle)) !!}
+                        @else
+                            {{ $heroTitle }}
+                        @endif
                     </h1>
 
                     <!-- Subtitle -->
                     <p class="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
-                        Nikmati sensasi seru Body Rafting Green Canyon, panorama eksotis Pasir Putih, dan pesona bahari terbaik bersama pemandu lokal profesional tersertifikasi HPI. Liburan aman, nyaman, dan berkesan.
+                        {{ $heroSubtitle }}
                     </p>
 
                     <!-- Trust Stats Counter -->
                     <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/15 max-w-lg mx-auto lg:mx-0 text-white">
                         <div>
-                            <div class="font-display font-bold text-2xl sm:text-3xl text-amber-400">5.000+</div>
-                            <div class="text-xs text-slate-300">Wisatawan Puas</div>
+                            <div class="font-display font-bold text-2xl sm:text-3xl text-amber-400">{{ $stat1Val }}</div>
+                            <div class="text-xs text-slate-300">{{ $stat1Lbl }}</div>
                         </div>
                         <div>
-                            <div class="font-display font-bold text-2xl sm:text-3xl text-emerald-400">100%</div>
-                            <div class="text-xs text-slate-300">Pemandu Berlisensi</div>
+                            <div class="font-display font-bold text-2xl sm:text-3xl text-emerald-400">{{ $stat2Val }}</div>
+                            <div class="text-xs text-slate-300">{{ $stat2Lbl }}</div>
                         </div>
                         <div>
                             <div class="font-display font-bold text-2xl sm:text-3xl text-white flex items-center justify-center lg:justify-start gap-1">
-                                <span>4.9/5</span>
+                                <span>{{ $stat3Val }}</span>
                                 <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
                             </div>
-                            <div class="text-xs text-slate-300">Ulasan Google</div>
+                            <div class="text-xs text-slate-300">{{ $stat3Lbl }}</div>
                         </div>
                     </div>
 

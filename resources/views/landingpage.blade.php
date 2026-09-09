@@ -146,7 +146,7 @@
 
             <!-- Header Action CTA -->
             <div class="hidden sm:flex items-center gap-3">
-                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20paket%20wisata%20Pangandaran" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition flex items-center gap-2">
+                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20paket%20wisata%20Pangandaran" target="_blank" class="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] flex items-center gap-2">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
                     <span>Tanya Trip CS</span>
                 </a>

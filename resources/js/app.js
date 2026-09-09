@@ -59,18 +59,42 @@ document.addEventListener('DOMContentLoaded', () => {
     if (drawerOverlay) drawerOverlay.addEventListener('click', closeMobileMenu);
     drawerLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
 
-    // 2. Sticky Navbar Solid Effect on Scroll
+    // 2. Automatic Smart Navbar Background Detection
+    // Automatically detects if what's behind the navbar is non-white (transparent navbar) or white (white navbar)
     const mainHeader = document.getElementById('main-header');
-    window.addEventListener('scroll', () => {
-        if (!mainHeader) return;
-        if (window.scrollY > 40) {
-            mainHeader.classList.add('shadow-md', 'py-3', 'bg-white');
-            mainHeader.classList.remove('py-4', 'bg-white/95');
-        } else {
-            mainHeader.classList.remove('shadow-md', 'py-3', 'bg-white');
-            mainHeader.classList.add('py-4', 'bg-white/95');
-        }
-    });
+    if (mainHeader) {
+        const updateNavbarTheme = () => {
+            const headerHeight = mainHeader.offsetHeight || 64;
+            const probeY = headerHeight / 2;
+
+            const darkElements = document.querySelectorAll(
+                '[data-nav-color="dark"], section.bg-slate-950, section.bg-slate-900, footer.bg-slate-950, footer.bg-slate-900'
+            );
+
+            let isOverDark = false;
+            for (let i = 0; i < darkElements.length; i++) {
+                const rect = darkElements[i].getBoundingClientRect();
+                if (rect.top <= probeY && rect.bottom >= probeY) {
+                    isOverDark = true;
+                    break;
+                }
+            }
+
+            if (isOverDark) {
+                // Non-white/dark background behind navbar -> TRANSPARENT
+                mainHeader.classList.remove('is-white-nav');
+                mainHeader.classList.add('is-transparent-nav');
+            } else {
+                // White background behind navbar -> WHITE NAVBAR
+                mainHeader.classList.remove('is-transparent-nav');
+                mainHeader.classList.add('is-white-nav');
+            }
+        };
+
+        window.addEventListener('scroll', updateNavbarTheme, { passive: true });
+        window.addEventListener('resize', updateNavbarTheme, { passive: true });
+        updateNavbarTheme();
+    }
 
     // 2.5 Hero Section Cinematic Auto-Slider
     const heroSection = document.getElementById('beranda');

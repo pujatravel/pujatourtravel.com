@@ -362,3 +362,101 @@ span.flatpickr-weekday {
     transform: rotate(180deg) !important;
     margin-top: -9px !important;
 }
+
+/* ==========================================================================
+   DYNAMIC SMART NAVBAR (Auto-detects Dark vs Light Background)
+   Strictly Zero Movement/Shift - Pure Color Cross-Fade Only
+   ========================================================================== */
+#main-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    padding-top: 0.875rem !important;
+    padding-bottom: 0.875rem !important;
+    transform: none !important;
+    transition: background-color 0.25s ease,
+                border-color 0.25s ease !important;
+}
+
+#main-header * {
+    transform: none !important;
+}
+
+#main-header .nav-brand-title,
+#main-header .nav-brand-accent,
+#main-header .nav-brand-subtitle,
+#main-header .nav-link-item,
+#main-header #mobile-menu-btn {
+    transition: color 0.25s ease, background-color 0.25s ease !important;
+}
+
+/* 1. STATE: NON-WHITE / DARK BACKGROUND BEHIND NAVBAR -> 100% TRANSPARENT */
+#main-header.is-transparent-nav {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+#main-header.is-transparent-nav .nav-brand-title {
+    color: #ffffff !important;
+}
+#main-header.is-transparent-nav .nav-brand-accent {
+    color: #34d399 !important; /* text-emerald-400 */
+}
+#main-header.is-transparent-nav .nav-brand-subtitle {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+#main-header.is-transparent-nav .nav-link-item {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+#main-header.is-transparent-nav .nav-link-item:hover {
+    color: #ffffff !important;
+}
+#main-header.is-transparent-nav .nav-link-item.active,
+#main-header.is-transparent-nav .nav-link-item:first-child {
+    color: #34d399 !important; /* text-emerald-400 */
+}
+#main-header.is-transparent-nav #mobile-menu-btn {
+    color: #ffffff !important;
+}
+#main-header.is-transparent-nav #mobile-menu-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 2. STATE: WHITE BACKGROUND BEHIND NAVBAR -> SOLID WHITE (NO DOWNWARD SHADOW SHIFT) */
+#main-header.is-white-nav,
+#main-header:not(.is-transparent-nav) {
+    background-color: #ffffff !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04) !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.95) !important;
+}
+
+#main-header.is-white-nav .nav-brand-title {
+    color: #0f172a !important; /* text-slate-900 */
+}
+#main-header.is-white-nav .nav-brand-accent {
+    color: #047857 !important; /* text-emerald-700 */
+}
+#main-header.is-white-nav .nav-brand-subtitle {
+    color: #64748b !important; /* text-slate-500 */
+}
+#main-header.is-white-nav .nav-link-item {
+    color: #334155 !important; /* text-slate-700 */
+}
+#main-header.is-white-nav .nav-link-item:hover {
+    color: #047857 !important; /* hover:text-emerald-700 */
+}
+#main-header.is-white-nav .nav-link-item.active,
+#main-header.is-white-nav .nav-link-item:first-child {
+    color: #047857 !important; /* active 'Beranda' link: text-emerald-700 */
+}
+#main-header.is-white-nav #mobile-menu-btn {
+    color: #334155 !important; /* text-slate-700 */
+}
+#main-header.is-white-nav #mobile-menu-btn:hover {
+    background-color: #f1f5f9 !important; /* hover:bg-slate-100 */
+}
+
+

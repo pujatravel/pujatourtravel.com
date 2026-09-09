@@ -2,6 +2,11 @@
     $gaMeasurementId = config('services.ga.measurement_id');
 @endphp
 
+@if(!request()->is('/'))
+    <!-- Google Search Console Verification Meta -->
+    <meta name="google-site-verification" content="qdDKl_CxJFHAbq1E6QwMEswIo28qlBmfiYo6ykUNxi0">
+@endif
+
 @if(!empty($gaMeasurementId))
     <!-- Google tag (gtag.js) GA4 Non-blocking -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ $gaMeasurementId }}"></script>

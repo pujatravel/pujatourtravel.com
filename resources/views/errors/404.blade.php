@@ -60,13 +60,13 @@
         <span class="font-semibold text-slate-700 block mb-2">Destinasi Populer yang Sering Dikunjungi:</span>
         <div class="flex flex-wrap items-center justify-center gap-2">
             <a href="{{ route('packages.index', ['search' => 'Green Canyon']) }}" class="px-3 py-1.5 rounded-lg bg-white border border-neutral-200 hover:border-emerald-700 hover:text-emerald-700 transition">
-                🌊 Green Canyon Body Rafting
+                Green Canyon Body Rafting
             </a>
             <a href="{{ route('packages.index', ['search' => 'Snorkeling']) }}" class="px-3 py-1.5 rounded-lg bg-white border border-neutral-200 hover:border-emerald-700 hover:text-emerald-700 transition">
-                🐠 Snorkeling Pasir Putih
+                Snorkeling Pasir Putih
             </a>
             <a href="{{ route('packages.index', ['search' => 'Santirah']) }}" class="px-3 py-1.5 rounded-lg bg-white border border-neutral-200 hover:border-emerald-700 hover:text-emerald-700 transition">
-                🏞️ River Tubing Santirah
+                River Tubing Santirah
             </a>
         </div>
     </div>

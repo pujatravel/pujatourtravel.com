@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="qdDKl_CxJFHAbq1E6QwMEswIo28qlBmfiYo6ykUNxi0">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Puja Tour & Travel Pangandaran">
     <title>Puja Tour & Travel Pangandaran — Jelajahi Pesona Bahari & Petualangan Green Canyon</title>
@@ -114,45 +115,45 @@
     @endphp
 
 
-    <!-- 2. STICKY NAVBAR (Seamless Borderless Design) -->
-    <header id="main-header" class="sticky top-0 z-40 w-full bg-surface-soft/95 backdrop-blur-md transition-all duration-300 py-3.5 shadow-sm">
+    <!-- 2. STICKY NAVBAR (Dynamic Background Detection) -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-40 w-full py-3.5 is-transparent-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
             <!-- Brand Logo (Clean Borderless) -->
-            <a href="#" class="flex items-center gap-3 group">
+            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
                 <div class="w-12 h-12 shrink-0 flex items-center justify-center">
                     <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja Tour & Travel" class="w-full h-full object-contain">
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-display font-extrabold text-xl leading-tight tracking-tight text-slate-900 group-hover:text-emerald-700 transition">
-                        PUJA<span class="text-emerald-700 ml-1">TOUR</span>
+                    <span class="nav-brand-title font-display font-extrabold text-xl leading-tight tracking-tight text-white transition-colors duration-300">
+                        PUJA<span class="nav-brand-accent text-emerald-400 transition-colors duration-300 ml-1">TOUR</span>
                     </span>
-                    <span class="text-[10px] tracking-widest font-bold text-slate-500 uppercase">
+                    <span class="nav-brand-subtitle text-[10px] tracking-widest font-bold text-white/70 uppercase transition-colors duration-300">
                         & Travel Pangandaran
                     </span>
                 </div>
             </a>
 
             <!-- Desktop Nav Items -->
-            <nav class="hidden lg:flex items-center gap-7 font-medium text-slate-600 text-sm">
-                <a href="{{ route('home') }}" class="text-emerald-700 font-semibold hover:text-emerald-800 transition">Beranda</a>
-                <a href="{{ route('packages.index') }}" class="hover:text-emerald-700 transition">Paket Wisata</a>
-                <a href="{{ route('about') }}" class="hover:text-emerald-700 transition">Tentang Kami</a>
-                <a href="{{ route('calculator') }}" class="hover:text-emerald-700 transition">Estimasi Biaya</a>
-                <a href="{{ route('faq') }}" class="hover:text-emerald-700 transition">FAQ</a>
-                <a href="{{ route('gallery') }}" class="hover:text-emerald-700 transition">Galeri</a>
-                <a href="{{ route('contact') }}" class="hover:text-emerald-700 transition">Kontak</a>
+            <nav class="hidden lg:flex items-center gap-7 font-medium text-sm">
+                <a href="{{ route('home') }}" class="nav-link-item text-emerald-400 font-semibold transition-colors duration-300">Beranda</a>
+                <a href="{{ route('packages.index') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Paket Wisata</a>
+                <a href="{{ route('about') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Tentang Kami</a>
+                <a href="{{ route('calculator') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Estimasi Biaya</a>
+                <a href="{{ route('faq') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">FAQ</a>
+                <a href="{{ route('gallery') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Galeri</a>
+                <a href="{{ route('contact') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Kontak</a>
             </nav>
 
             <!-- Header Action CTA -->
             <div class="hidden sm:flex items-center gap-3">
-                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20paket%20wisata%20Pangandaran" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition flex items-center gap-2">
+                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20paket%20wisata%20Pangandaran" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition flex items-center gap-2">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
                     <span>Tanya Trip CS</span>
                 </a>
             </div>
 
             <!-- Mobile Hamburger Button -->
-            <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-neutral-100 transition">
+            <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl text-white hover:bg-white/10 transition">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
@@ -254,7 +255,7 @@
             }
         }
     @endphp
-    <section id="beranda" class="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-slate-950 group">
+    <section id="beranda" data-nav-color="dark" class="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-slate-950 group">
         <!-- Hero Background Auto-Slider Container -->
         <div id="hero-slider" class="absolute inset-0 z-0 overflow-hidden select-none">
             @foreach($heroSlidesList as $index => $slide)
@@ -268,8 +269,8 @@
         </div>
 
         <!-- Floating Destination Badge (Auto-updates with slide in top-right corner) -->
-        <div class="absolute top-6 right-4 sm:right-8 z-20 hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-medium text-emerald-300 shadow-lg">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <div class="absolute top-24 sm:top-28 right-4 sm:right-8 z-20 hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-medium text-emerald-300 shadow-lg">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400 shrink-0"></i>
             <span id="hero-location-text">{{ $heroSlidesList->first()['location'] ?? 'Wisata Pangandaran' }}</span>
         </div>
 
@@ -288,13 +289,12 @@
             @endforeach
         </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:pt-20 lg:pb-28 w-full">
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-28 w-full">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 <!-- Hero Left Content -->
                 <div class="lg:col-span-7 text-center lg:text-left space-y-6">
                     <!-- Badge -->
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-emerald-300 text-xs sm:text-sm font-semibold">
-                        <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+                    <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-emerald-300 text-xs sm:text-sm font-semibold">
                         <span>{{ $heroBadge }}</span>
                     </div>
 
@@ -333,12 +333,11 @@
 
                     <!-- Call To Action Buttons (Solid Colors) -->
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="#paket" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-base shadow-sm transition flex items-center justify-center gap-2">
+                        <a href="#paket" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm sm:text-base shadow-sm transition flex items-center justify-center">
                             <span>Jelajahi Paket Wisata</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
-                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-slate-900/80 border border-white/20 hover:bg-slate-900 text-white font-semibold text-base transition flex items-center justify-center gap-2">
-                            <i data-lucide="message-circle" class="w-5 h-5 text-emerald-400"></i>
+                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-900/80 border border-white/20 hover:bg-slate-900 text-white font-semibold text-sm sm:text-base transition flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400"></i>
                             <span>Konsultasi WhatsApp</span>
                         </a>
                     </div>
@@ -403,50 +402,44 @@
         </div>
     </section>
 
-    <!-- 4. TRUST ELEMENTS / 4 PILAR KREDIBILITAS (Soft Natural Surface Cards) -->
-    <section class="relative -mt-10 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <!-- Card 1 -->
-            <div class="bg-surface-soft rounded-2xl p-6 shadow-soft border border-neutral-200 flex items-start gap-4">
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="landmark" class="w-6 h-6"></i>
+    <!-- 4. TRUST ELEMENTS / 4 PILAR KREDIBILITAS (Padat Berisi, Sleek & Modern) -->
+    <section class="relative -mt-6 sm:-mt-8 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-surface-soft/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3.5 border border-neutral-200/90 shadow-soft">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+                <!-- Pilar 1 -->
+                <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white/70 border border-neutral-100/80 transition hover:border-emerald-300 hover:bg-white">
+                    <span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0 mt-1.5"></span>
+                    <div class="min-w-0">
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm leading-tight">Legalitas Usaha Resmi</h3>
+                        <p class="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">Badan hukum CV resmi, amanah untuk keluarga & rombongan.</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="font-display font-bold text-slate-900 text-base">Legalitas Usaha Resmi</h3>
-                    <p class="text-xs text-slate-500 mt-1">Berbadan hukum CV resmi, terpercaya, dan amanah untuk corporate maupun keluarga.</p>
-                </div>
-            </div>
 
-            <!-- Card 2 -->
-            <div class="bg-surface-soft rounded-2xl p-6 shadow-soft border border-neutral-200 flex items-start gap-4">
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="badge-check" class="w-6 h-6"></i>
+                <!-- Pilar 2 -->
+                <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white/70 border border-neutral-100/80 transition hover:border-emerald-300 hover:bg-white">
+                    <span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0 mt-1.5"></span>
+                    <div class="min-w-0">
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm leading-tight">Pemandu Lisensi HPI</h3>
+                        <p class="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">Guide lokal bersertifikat resmi, ramah & berpengalaman.</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="font-display font-bold text-slate-900 text-base">Pemandu Lisensi HPI</h3>
-                    <p class="text-xs text-slate-500 mt-1">Guide lokal berpengalaman, ramah, dan bersertifikat resmi kepemanduan wisata.</p>
-                </div>
-            </div>
 
-            <!-- Card 3 -->
-            <div class="bg-surface-soft rounded-2xl p-6 shadow-soft border border-neutral-200 flex items-start gap-4">
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                <!-- Pilar 3 -->
+                <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white/70 border border-neutral-100/80 transition hover:border-emerald-300 hover:bg-white">
+                    <span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0 mt-1.5"></span>
+                    <div class="min-w-0">
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm leading-tight">Standar Safety Teruji</h3>
+                        <p class="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">Lifejacket, helmet SNI & asuransi perlindungan trip.</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="font-display font-bold text-slate-900 text-base">Standar Safety Teruji</h3>
-                    <p class="text-xs text-slate-500 mt-1">Perlengkapan lifejacket, helmet, dan asuransi kecelakaan diri di setiap trip.</p>
-                </div>
-            </div>
 
-            <!-- Card 4 -->
-            <div class="bg-surface-soft rounded-2xl p-6 shadow-soft border border-neutral-200 flex items-start gap-4">
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="banknote" class="w-6 h-6"></i>
-                </div>
-                <div>
-                    <h3 class="font-display font-bold text-slate-900 text-base">Harga Jujur & Transparan</h3>
-                    <p class="text-xs text-slate-500 mt-1">Tanpa biaya tersembunyi. Layanan all-inclusive tiket, instruktur, makan, dan dokumentasi.</p>
+                <!-- Pilar 4 -->
+                <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white/70 border border-neutral-100/80 transition hover:border-emerald-300 hover:bg-white">
+                    <span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0 mt-1.5"></span>
+                    <div class="min-w-0">
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm leading-tight">Harga Jujur & Transparan</h3>
+                        <p class="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">All-inclusive tiket, pemandu, tanpa biaya tersembunyi.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -610,7 +603,7 @@
     </section>
 
     <!-- 6. DESTINASI IKONIK & PENGALAMAN (Solid Slate 900) -->
-    <section id="destinasi" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+    <section id="destinasi" data-nav-color="dark" class="py-20 bg-slate-900 text-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                 <div>
@@ -823,7 +816,7 @@
     </section>
 
     <!-- 10. INTERACTIVE RESERVATION FORM / TRIP PLANNER (Solid Slate 900) -->
-    <section id="booking-section" class="py-20 bg-slate-900 text-white relative">
+    <section id="booking-section" data-nav-color="dark" class="py-20 bg-slate-900 text-white relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-12">
                 <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-slate-800 px-3.5 py-1 rounded-full border border-slate-700">
@@ -964,7 +957,7 @@
     </section>
 
     <!-- 13. GLOBAL FOOTER (Solid Slate 950) -->
-    <footer class="bg-slate-950 text-slate-400 text-xs py-14 border-t border-slate-800">
+    <footer data-nav-color="dark" class="bg-slate-950 text-slate-400 text-xs py-14 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
                 <!-- Col 1: Brand Info -->

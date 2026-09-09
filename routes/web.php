@@ -36,6 +36,7 @@ Route::get('/', function () {
     $featuredPackages = Package::where('status', 'PUBLISHED')->where('featured', true)->get();
     $categories = PackageCategory::where('is_active', true)->orderBy('display_order')->get();
     $galleries = Gallery::where('is_published', true)->orderBy('display_order')->take(8)->get();
+    $heroSliders = Gallery::where('is_published', true)->where('is_slider', true)->orderBy('display_order')->get();
     $testimonials = Testimonial::where('is_published', true)->latest()->take(6)->get();
     $faqs = Faq::where('is_published', true)->orderBy('display_order')->get();
     $settings = Setting::all()->pluck('value', 'key');
@@ -47,6 +48,7 @@ Route::get('/', function () {
         'featuredPackages',
         'categories',
         'galleries',
+        'heroSliders',
         'testimonials',
         'faqs',
         'settings'
@@ -157,6 +159,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Galleries
         Route::get('galleries', [GalleryController::class, 'index'])->name('galleries.index');
         Route::post('galleries', [GalleryController::class, 'store'])->name('galleries.store');
+        Route::post('galleries/{gallery}/toggle-slider', [GalleryController::class, 'toggleSlider'])->name('galleries.toggle-slider');
         Route::delete('galleries/{gallery}', [GalleryController::class, 'destroy'])->name('galleries.destroy');
 
         // Testimonials

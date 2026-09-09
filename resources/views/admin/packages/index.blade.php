@@ -98,7 +98,7 @@
                                 <a href="{{ route('admin.packages.edit', $pkg->id) }}" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-bold transition inline-block mr-1">
                                     Edit
                                 </a>
-                                <form action="{{ route('admin.packages.destroy', $pkg->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus paket wisata ini?');">
+                                <form action="{{ route('admin.packages.destroy', $pkg->id) }}" method="POST" class="inline-block" onsubmit="confirmDelete(event, 'Apakah Anda yakin ingin menghapus paket wisata {{ addslashes($pkg->name) }}?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 hover:bg-rose-100 font-bold transition">

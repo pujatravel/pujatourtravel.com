@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Package;
 use App\Models\Testimonial;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,8 +14,9 @@ class TestimonialController extends Controller
     public function index(): View
     {
         $testimonials = Testimonial::latest()->paginate(10);
+        $packages = Package::orderBy('name')->get();
 
-        return view('admin.testimonials.index', compact('testimonials'));
+        return view('admin.testimonials.index', compact('testimonials', 'packages'));
     }
 
     public function store(Request $request): RedirectResponse

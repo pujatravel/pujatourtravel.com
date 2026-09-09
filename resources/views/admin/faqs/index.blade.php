@@ -69,7 +69,7 @@
                                     <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
                                 </button>
                                 <form action="{{ route('admin.faqs.destroy', $faq->id) }}" method="POST"
-                                      onsubmit="return confirm('Hapus pertanyaan FAQ ini?');">
+                                      onsubmit="confirmDelete(event, 'Apakah Anda yakin ingin menghapus pertanyaan FAQ ini?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"

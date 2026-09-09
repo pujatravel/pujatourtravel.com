@@ -120,7 +120,7 @@
                                 <a href="{{ route('admin.reservations.show', $res->id) }}" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-bold transition inline-block mr-1">
                                     Rincian
                                 </a>
-                                <form action="{{ route('admin.reservations.destroy', $res->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Hapus reservasi ini?');">
+                                <form action="{{ route('admin.reservations.destroy', $res->id) }}" method="POST" class="inline-block" onsubmit="confirmDelete(event, 'Apakah Anda yakin ingin menghapus data reservasi {{ $res->code }}?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 transition" title="Hapus reservasi">

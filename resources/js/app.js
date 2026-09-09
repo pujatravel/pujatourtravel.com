@@ -193,14 +193,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
             heroSection.addEventListener('touchend', (e) => {
                 const touchEndX = e.changedTouches[0].screenX;
-                const diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > 40) {
-                    if (diff > 0) nextHeroSlide();
-                    else prevHeroSlide();
+                if (touchStartX - touchEndX > 50) {
+                    nextHeroSlide();
+                    startHeroSlider();
+                } else if (touchEndX - touchStartX > 50) {
+                    prevHeroSlide();
                     startHeroSlider();
                 }
             }, { passive: true });
         }
+    }
+
+    // 2.8 Traveloka-Style Scroll Reveal Observer
+    const revealElements = document.querySelectorAll('.reveal-fade-up, .reveal-fade-left, .reveal-fade-right, .reveal-scale-up');
+    if (revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
     }
 
     // 3. Package Category Filters

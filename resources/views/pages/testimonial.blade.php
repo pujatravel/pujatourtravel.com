@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Puja Tour & Travel Pangandaran">
     <title>Ulasan & Testimonial Wisatawan — Puja Tour & Travel Pangandaran</title>
     <meta name="description" content="Cerita dan testimoni nyata dari para wisatawan yang telah menikmati liburan seru di Pangandaran bersama Puja Tour & Travel.">
+    <meta name="keywords" content="testimoni Puja Tour, ulasan wisata Pangandaran, review body rafting Green Canyon, pengalaman wisatawan Pangandaran, rating tour guide">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph -->
+    <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -23,6 +27,62 @@
     <meta name="twitter:title" content="Ulasan & Testimonial Wisatawan — Puja Tour & Travel Pangandaran">
     <meta name="twitter:description" content="Cerita dan testimoni nyata dari para wisatawan yang telah menikmati liburan seru di Pangandaran bersama Puja Tour & Travel.">
     <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+
+    <!-- Structured Data (JSON-LD): TravelAgency with AggregateRating — enables Google star ratings -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'TravelAgency',
+        'name' => 'Puja Tour Travel',
+        'url' => url('/'),
+        'description' => 'Biro perjalanan wisata resmi di Pangandaran yang menyediakan paket tur Green Canyon, body rafting, dan wisata bahari.',
+        'aggregateRating' => [
+            '@type' => 'AggregateRating',
+            'ratingValue' => number_format($averageRating, 1),
+            'bestRating' => '5',
+            'worstRating' => '1',
+            'reviewCount' => $testimonials->count(),
+        ],
+        'review' => $testimonials->take(5)->map(function ($t) {
+            return [
+                '@type' => 'Review',
+                'author' => [
+                    '@type' => 'Person',
+                    'name' => $t->customer_name,
+                ],
+                'reviewRating' => [
+                    '@type' => 'Rating',
+                    'ratingValue' => $t->rating,
+                    'bestRating' => '5',
+                ],
+                'reviewBody' => $t->review_text,
+                'datePublished' => $t->trip_date ? $t->trip_date->toDateString() : $t->created_at->toDateString(),
+            ];
+        })->values()->toArray(),
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    </script>
+
+    <!-- Structured Data (JSON-LD): BreadcrumbList -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Beranda',
+                'item' => url('/'),
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => 'Testimonial',
+                'item' => url()->current(),
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

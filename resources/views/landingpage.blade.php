@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Puja Tour & Travel Pangandaran">
     <title>Puja Tour & Travel Pangandaran — Jelajahi Pesona Bahari & Petualangan Green Canyon</title>
     <meta name="description" content="Puja Tour & Travel Pangandaran menyediakan paket wisata eksklusif, body rafting Green Canyon, snorkeling Pasir Putih, dan petualangan alam terbaik bersama pemandu lokal berlisensi resmi.">
     <meta name="keywords" content="Puja Tour Travel, Wisata Pangandaran, Paket Wisata Pangandaran, Body Rafting Green Canyon, Pasir Putih Pangandaran, Batu Karas, Tour Guide Pangandaran">
@@ -10,6 +12,7 @@
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph / Meta Sosial -->
+    <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -57,6 +60,25 @@
         'sameAs' => [
             'https://instagram.com/pujatourtravel',
             'https://tiktok.com/@pujatourtravel',
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
+
+    <!-- Structured Data (JSON-LD): WebSite with SearchAction — enables Google Sitelinks Search Box -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'WebSite',
+        'name' => 'Puja Tour Travel',
+        'alternateName' => 'Puja Tour & Travel Pangandaran',
+        'url' => url('/'),
+        'potentialAction' => [
+            '@type' => 'SearchAction',
+            'target' => [
+                '@type' => 'EntryPoint',
+                'urlTemplate' => route('packages.index') . '?search={search_term_string}',
+            ],
+            'query-input' => 'required name=search_term_string',
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>

@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Puja Tour & Travel Pangandaran">
     <title>Katalog Paket Wisata Pangandaran Terlengkap — Puja Tour & Travel</title>
     <meta name="description" content="Pilihan paket wisata Pangandaran terlengkap: Body Rafting Green Canyon, Snorkeling Pasir Putih, River Tubing Santirah, dan Gathering Corporate.">
+    <meta name="keywords" content="paket wisata Pangandaran, body rafting Green Canyon, snorkeling Pasir Putih, river tubing Santirah, tour Pangandaran murah, harga wisata Pangandaran">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph -->
+    <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -23,6 +27,48 @@
     <meta name="twitter:title" content="Katalog Paket Wisata Pangandaran Terlengkap — Puja Tour & Travel">
     <meta name="twitter:description" content="Pilihan paket wisata Pangandaran terlengkap: Body Rafting Green Canyon, Snorkeling Pasir Putih, River Tubing Santirah, dan Gathering Corporate.">
     <meta name="twitter:image" content="{{ asset('images/greencanyon.jpg') }}">
+
+    <!-- Structured Data (JSON-LD): ItemList — enables Google product carousel -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'ItemList',
+        'name' => 'Paket Wisata Pangandaran — Puja Tour Travel',
+        'description' => 'Katalog lengkap paket wisata Pangandaran dari Puja Tour & Travel.',
+        'url' => url()->current(),
+        'numberOfItems' => $packages->total(),
+        'itemListElement' => $packages->map(function ($pkg, $index) {
+            return [
+                '@type' => 'ListItem',
+                'position' => $index + 1,
+                'url' => route('packages.show', $pkg->slug),
+                'name' => $pkg->name,
+            ];
+        })->values()->toArray(),
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    </script>
+
+    <!-- Structured Data (JSON-LD): BreadcrumbList -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Beranda',
+                'item' => url('/'),
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => 'Paket Wisata',
+                'item' => url()->current(),
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

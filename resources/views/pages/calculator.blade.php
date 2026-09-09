@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Puja Tour & Travel Pangandaran">
     <title>Kalkulator & Estimasi Biaya Wisata Pangandaran — Puja Tour & Travel</title>
     <meta name="description" content="Hitung estimasi biaya paket wisata Pangandaran, body rafting Green Canyon, diskon rombongan, dan booking via WhatsApp instan.">
+    <meta name="keywords" content="harga paket wisata Pangandaran, estimasi biaya body rafting Green Canyon, kalkulator wisata, biaya snorkeling Pasir Putih, harga tour Pangandaran">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph -->
+    <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -23,6 +27,28 @@
     <meta name="twitter:title" content="Kalkulator & Estimasi Biaya Wisata Pangandaran — Puja Tour & Travel">
     <meta name="twitter:description" content="Hitung estimasi biaya paket wisata Pangandaran, body rafting Green Canyon, diskon rombongan, dan booking via WhatsApp instan.">
     <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+
+    <!-- Structured Data (JSON-LD): BreadcrumbList -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Beranda',
+                'item' => url('/'),
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => 'Estimasi Biaya',
+                'item' => url()->current(),
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

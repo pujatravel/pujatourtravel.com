@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Puja Tour & Travel Pangandaran">
     <title>{{ $package->seo_title ?? $package->name . ' — Puja Tour & Travel Pangandaran' }}</title>
     <meta name="description" content="{{ $package->seo_description ?? ($package->short_description ?? 'Paket wisata terbaik di Pangandaran bersama pemandu lokal berlisensi.') }}">
+    <meta name="keywords" content="{{ $package->name }}, paket wisata Pangandaran, {{ $package->location ?? 'Pangandaran' }}, Puja Tour Travel, {{ $package->category->name ?? 'wisata alam' }}">
     
     <link rel="canonical" href="{{ url()->current() }}">
     
     <!-- Open Graph -->
+    <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="product">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="{{ $package->name }} — Puja Tour & Travel">
     <meta property="og:description" content="{{ $package->short_description }}">

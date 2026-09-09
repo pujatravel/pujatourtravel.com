@@ -29,6 +29,16 @@ class SettingController extends Controller
             'google_maps_embed_url' => ['nullable', 'string'],
             'instagram_url' => ['nullable', 'url', 'max:200'],
             'tiktok_url' => ['nullable', 'url', 'max:200'],
+            'hero_badge' => ['nullable', 'string', 'max:150'],
+            'hero_title' => ['nullable', 'string', 'max:255'],
+            'hero_title_highlight' => ['nullable', 'string', 'max:100'],
+            'hero_subtitle' => ['nullable', 'string'],
+            'hero_stat_1_val' => ['nullable', 'string', 'max:50'],
+            'hero_stat_1_lbl' => ['nullable', 'string', 'max:50'],
+            'hero_stat_2_val' => ['nullable', 'string', 'max:50'],
+            'hero_stat_2_lbl' => ['nullable', 'string', 'max:50'],
+            'hero_stat_3_val' => ['nullable', 'string', 'max:50'],
+            'hero_stat_3_lbl' => ['nullable', 'string', 'max:50'],
         ]);
 
         if (array_key_exists('google_maps_embed_url', $validated)) {

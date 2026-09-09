@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Puja Tour & Travel Pangandaran">
     <title>FAQ — Pertanyaan Seputar Wisata Pangandaran & Puja Tour</title>
     <meta name="description" content="Pertanyaan umum seputar body rafting Green Canyon, snorkeling Pasir Putih, keamanan anak & pemula, dan cara pemesanan trip di Puja Tour & Travel.">
+    <meta name="keywords" content="FAQ Puja Tour, pertanyaan wisata Pangandaran, body rafting aman, Green Canyon pemula, cara booking wisata Pangandaran, snorkeling Pasir Putih">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph -->
+    <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -23,6 +27,48 @@
     <meta name="twitter:title" content="FAQ — Pertanyaan Seputar Wisata Pangandaran & Puja Tour">
     <meta name="twitter:description" content="Pertanyaan umum seputar body rafting Green Canyon, snorkeling Pasir Putih, keamanan anak & pemula.">
     <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+
+    <!-- Structured Data (JSON-LD): FAQPage — enables Google FAQ Rich Results -->
+    @if($faqs->count() > 0)
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => $faqs->map(function ($faq) {
+            return [
+                '@type' => 'Question',
+                'name' => $faq->question,
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => $faq->answer,
+                ],
+            ];
+        })->values()->toArray(),
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    </script>
+    @endif
+
+    <!-- Structured Data (JSON-LD): BreadcrumbList -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Beranda',
+                'item' => url('/'),
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => 'FAQ',
+                'item' => url()->current(),
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

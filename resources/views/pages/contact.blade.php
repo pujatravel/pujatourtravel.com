@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Puja Tour & Travel Pangandaran">
     <title>Kontak & Lokasi Kantor — Puja Tour & Travel Pangandaran</title>
     <meta name="description" content="Hubungi kantor resmi Puja Tour & Travel Pangandaran. WhatsApp hotline 24 jam, alamat kantor operasional, dan petunjuk arah lokasi.">
+    <meta name="keywords" content="kontak Puja Tour Travel, WhatsApp Puja Tour, alamat kantor wisata Pangandaran, lokasi biro travel Pangandaran, hubungi tour guide Pangandaran">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph -->
+    <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -46,6 +50,28 @@
             '@type' => 'GeoCoordinates',
             'latitude' => '-7.697500',
             'longitude' => '108.652500',
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
+
+    <!-- Structured Data (JSON-LD): BreadcrumbList -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Beranda',
+                'item' => url('/'),
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => 'Kontak',
+                'item' => url()->current(),
+            ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>

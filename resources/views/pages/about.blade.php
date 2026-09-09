@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Puja Tour & Travel Pangandaran">
     <title>Tentang Kami — Puja Tour & Travel Pangandaran</title>
     <meta name="description" content="Profil resmi Puja Tour & Travel Pangandaran. Berbadan hukum CV resmi, pemandu bersertifikasi HPI, dan spesialis liburan bahari, Green Canyon, dan corporate gathering.">
+    <meta name="keywords" content="profil Puja Tour Travel, tentang Puja Tour Pangandaran, biro wisata resmi Pangandaran, tour guide bersertifikat HPI, CV travel Pangandaran">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph -->
+    <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -23,6 +27,71 @@
     <meta name="twitter:title" content="Tentang Kami — Puja Tour & Travel Pangandaran">
     <meta name="twitter:description" content="Profil resmi Puja Tour & Travel Pangandaran. Berbadan hukum CV resmi, pemandu bersertifikasi HPI, dan spesialis liburan bahari.">
     <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+
+    <!-- Structured Data (JSON-LD): Organization — helps Google Knowledge Panel -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'TravelAgency',
+        'name' => 'Puja Tour Travel',
+        'alternateName' => 'Puja Tour & Travel Pangandaran',
+        'description' => 'Biro perjalanan wisata resmi di Pangandaran yang menyediakan paket tur Green Canyon, body rafting, dan wisata bahari.',
+        'url' => url('/'),
+        'logo' => asset('images/puja_logo.png'),
+        'image' => asset('images/hero_pangandaran.jpg'),
+        'telephone' => $settings['phone_number'] ?? '+6281234567890',
+        'email' => $settings['email_address'] ?? 'info@pujatourtravel.com',
+        'foundingDate' => '2020',
+        'numberOfEmployees' => [
+            '@type' => 'QuantitativeValue',
+            'minValue' => 5,
+            'maxValue' => 20,
+        ],
+        'address' => [
+            '@type' => 'PostalAddress',
+            'streetAddress' => $settings['office_address'] ?? 'Jl. Pantai Barat No. 88',
+            'addressLocality' => 'Pangandaran',
+            'addressRegion' => 'Jawa Barat',
+            'postalCode' => '46396',
+            'addressCountry' => 'ID',
+        ],
+        'geo' => [
+            '@type' => 'GeoCoordinates',
+            'latitude' => '-7.697500',
+            'longitude' => '108.652500',
+        ],
+        'areaServed' => [
+            '@type' => 'Place',
+            'name' => 'Pangandaran, Jawa Barat, Indonesia',
+        ],
+        'sameAs' => [
+            $settings['instagram_url'] ?? 'https://instagram.com/pujatourtravel',
+            $settings['tiktok_url'] ?? 'https://tiktok.com/@pujatourtravel',
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    </script>
+
+    <!-- Structured Data (JSON-LD): BreadcrumbList -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Beranda',
+                'item' => url('/'),
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => 'Tentang Kami',
+                'item' => url()->current(),
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

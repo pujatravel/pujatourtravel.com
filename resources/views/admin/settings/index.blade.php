@@ -114,6 +114,58 @@
                 </div>
             </div>
 
+            <!-- Hero Banner Content Customization Section -->
+            <h3 class="font-display font-bold text-lg text-slate-900 border-t border-b border-slate-100 py-3 mt-8 flex items-center justify-between">
+                <span>Konten Banner Utama (Hero Section)</span>
+                <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">Dinamis Landing Page</span>
+            </h3>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Badge Teks Atas (Header Tagline)</label>
+                    <input type="text" name="hero_badge" value="{{ old('hero_badge', $settings['hero_badge'] ?? 'Partner Resmi Wisata & Petualangan Pangandaran') }}" placeholder="Contoh: Partner Resmi Wisata & Petualangan Pangandaran" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Judul Utama Hero Banner (H1)</label>
+                        <input type="text" name="hero_title" value="{{ old('hero_title', $settings['hero_title'] ?? 'Jelajahi Pesona Bahari & Petualangan Pangandaran Tak Terlupakan') }}" placeholder="Contoh: Jelajahi Pesona Bahari & Petualangan Pangandaran Tak Terlupakan" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Kata Highlight (Warna Hijau)</label>
+                        <input type="text" name="hero_title_highlight" value="{{ old('hero_title_highlight', $settings['hero_title_highlight'] ?? 'Pangandaran') }}" placeholder="Contoh: Pangandaran" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Deskripsi / Subjudul Hero Banner</label>
+                    <textarea name="hero_subtitle" rows="3" placeholder="Contoh: Nikmati sensasi seru Body Rafting Green Canyon..." class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">{{ old('hero_subtitle', $settings['hero_subtitle'] ?? 'Nikmati sensasi seru Body Rafting Green Canyon, panorama eksotis Pasir Putih, dan pesona bahari terbaik bersama pemandu lokal profesional tersertifikasi HPI. Liburan aman, nyaman, dan berkesan.') }}</textarea>
+                </div>
+
+                <div class="pt-2">
+                    <label class="block text-xs font-bold text-slate-700 mb-2 uppercase">Angka Benchmark / Keunggulan (3 Kolom Stats Counter)</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                            <span class="text-[11px] font-bold text-slate-500 uppercase block">Statistik #1</span>
+                            <input type="text" name="hero_stat_1_val" value="{{ old('hero_stat_1_val', $settings['hero_stat_1_val'] ?? '5.000+') }}" placeholder="Val: 5.000+" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs font-bold bg-white outline-none focus:ring-2 focus:ring-emerald-600">
+                            <input type="text" name="hero_stat_1_lbl" value="{{ old('hero_stat_1_lbl', $settings['hero_stat_1_lbl'] ?? 'Wisatawan Puas') }}" placeholder="Label: Wisatawan Puas" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs bg-white outline-none focus:ring-2 focus:ring-emerald-600">
+                        </div>
+
+                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                            <span class="text-[11px] font-bold text-slate-500 uppercase block">Statistik #2</span>
+                            <input type="text" name="hero_stat_2_val" value="{{ old('hero_stat_2_val', $settings['hero_stat_2_val'] ?? '100%') }}" placeholder="Val: 100%" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs font-bold bg-white outline-none focus:ring-2 focus:ring-emerald-600">
+                            <input type="text" name="hero_stat_2_lbl" value="{{ old('hero_stat_2_lbl', $settings['hero_stat_2_lbl'] ?? 'Pemandu Berlisensi') }}" placeholder="Label: Pemandu Berlisensi" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs bg-white outline-none focus:ring-2 focus:ring-emerald-600">
+                        </div>
+
+                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                            <span class="text-[11px] font-bold text-slate-500 uppercase block">Statistik #3</span>
+                            <input type="text" name="hero_stat_3_val" value="{{ old('hero_stat_3_val', $settings['hero_stat_3_val'] ?? '4.9/5') }}" placeholder="Val: 4.9/5" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs font-bold bg-white outline-none focus:ring-2 focus:ring-emerald-600">
+                            <input type="text" name="hero_stat_3_lbl" value="{{ old('hero_stat_3_lbl', $settings['hero_stat_3_lbl'] ?? 'Ulasan Google') }}" placeholder="Label: Ulasan Google" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs bg-white outline-none focus:ring-2 focus:ring-emerald-600">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="pt-6 border-t border-slate-100 flex items-center justify-end">
                 <button type="submit" class="px-8 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition">
                     Simpan Perubahan Pengaturan

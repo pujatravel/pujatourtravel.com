@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Puja Tour & Travel Pangandaran">
     <title>Galeri Dokumentasi Wisata Pangandaran — Puja Tour & Travel</title>
     <meta name="description" content="Koleksi foto dan dokumentasi kegiatan body rafting Green Canyon, snorkeling Pasir Putih, pantai Batu Karas, dan keindahan alam Pangandaran.">
+    <meta name="keywords" content="galeri wisata Pangandaran, foto body rafting Green Canyon, dokumentasi snorkeling Pasir Putih, foto Batu Karas, galeri Puja Tour">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph -->
+    <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -23,6 +27,45 @@
     <meta name="twitter:title" content="Galeri Dokumentasi Wisata Pangandaran — Puja Tour & Travel">
     <meta name="twitter:description" content="Koleksi foto dan dokumentasi kegiatan body rafting Green Canyon, snorkeling Pasir Putih, pantai Batu Karas, dan keindahan alam Pangandaran.">
     <meta name="twitter:image" content="{{ asset('images/cagar_alam.jpg') }}">
+
+    <!-- Structured Data (JSON-LD): ImageGallery — helps Google Images -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'ImageGallery',
+        'name' => 'Galeri Dokumentasi Wisata Pangandaran — Puja Tour & Travel',
+        'description' => 'Koleksi foto dan dokumentasi kegiatan body rafting Green Canyon, snorkeling Pasir Putih, pantai Batu Karas, dan keindahan alam Pangandaran.',
+        'url' => url()->current(),
+        'publisher' => [
+            '@type' => 'TravelAgency',
+            'name' => 'Puja Tour Travel',
+            'url' => url('/'),
+            'logo' => asset('images/puja_logo.png'),
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    </script>
+
+    <!-- Structured Data (JSON-LD): BreadcrumbList -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Beranda',
+                'item' => url('/'),
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => 'Galeri',
+                'item' => url()->current(),
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

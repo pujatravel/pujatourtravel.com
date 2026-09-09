@@ -57,18 +57,30 @@ document.addEventListener('DOMContentLoaded', () => {
     if (drawerOverlay) drawerOverlay.addEventListener('click', closeMobileMenu);
     drawerLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
 
-    // 2. Sticky Navbar Solid Effect on Scroll
+    // 2. Traveloka-Style Navbar: Transparent → Frosted Glass with Slide-Down
     const mainHeader = document.getElementById('main-header');
-    window.addEventListener('scroll', () => {
+    let navbarScrolled = false;
+
+    function updateNavbar() {
         if (!mainHeader) return;
-        if (window.scrollY > 40) {
-            mainHeader.classList.add('shadow-md', 'py-3', 'bg-white');
-            mainHeader.classList.remove('py-4', 'bg-white/95');
-        } else {
-            mainHeader.classList.remove('shadow-md', 'py-3', 'bg-white');
-            mainHeader.classList.add('py-4', 'bg-white/95');
+        const scrolled = window.scrollY > 60;
+
+        if (scrolled && !navbarScrolled) {
+            // Transitioning from transparent to scrolled: trigger slide-down animation
+            mainHeader.classList.remove('navbar-transparent');
+            mainHeader.classList.add('navbar-scrolled');
+            navbarScrolled = true;
+        } else if (!scrolled && navbarScrolled) {
+            // Back to top: restore transparency
+            mainHeader.classList.remove('navbar-scrolled');
+            mainHeader.classList.add('navbar-transparent');
+            navbarScrolled = false;
         }
-    });
+    }
+
+    // Set initial state
+    updateNavbar();
+    window.addEventListener('scroll', updateNavbar, { passive: true });
 
     // 2.5 Hero Section Cinematic Auto-Slider
     const heroSection = document.getElementById('beranda');
@@ -169,14 +181,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
             heroSection.addEventListener('touchend', (e) => {
                 const touchEndX = e.changedTouches[0].screenX;
-                const diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > 40) {
-                    if (diff > 0) nextHeroSlide();
-                    else prevHeroSlide();
+                if (touchStartX - touchEndX > 50) {
+                    nextHeroSlide();
+                    startHeroSlider();
+                } else if (touchEndX - touchStartX > 50) {
+                    prevHeroSlide();
                     startHeroSlider();
                 }
             }, { passive: true });
         }
+    }
+
+    // 2.8 Traveloka-Style Scroll Reveal Observer
+    const revealElements = document.querySelectorAll('.reveal-fade-up, .reveal-fade-left, .reveal-fade-right, .reveal-scale-up');
+    if (revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
     }
 
     // 3. Package Category Filters

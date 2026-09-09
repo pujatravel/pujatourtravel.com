@@ -362,3 +362,173 @@ span.flatpickr-weekday {
     transform: rotate(180deg) !important;
     margin-top: -9px !important;
 }
+
+/* ==========================================================================
+   Scroll Reveal & Traveloka-Style Micro-Animations
+   ========================================================================== */
+.reveal-fade-up {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-fade-left {
+    opacity: 0;
+    transform: translateX(-36px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-fade-right {
+    opacity: 0;
+    transform: translateX(36px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-scale-up {
+    opacity: 0;
+    transform: scale(0.93);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-active {
+    opacity: 1 !important;
+    transform: translateY(0) translateX(0) scale(1) !important;
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-150 { transition-delay: 150ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+/* ==========================================================================
+   Traveloka-Style Navbar: Transparent → Frosted Glass on Scroll
+   ========================================================================== */
+
+/* Slide-down animation for navbar reveal */
+@keyframes navbarSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* State 1: Transparent (at top of page, overlaying hero) */
+#main-header.navbar-transparent {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+/* Logo text colors in transparent state */
+#main-header.navbar-transparent .navbar-logo-title {
+    color: #ffffff;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+}
+
+#main-header.navbar-transparent .navbar-logo-sub {
+    color: rgba(255,255,255,0.7);
+}
+
+/* Nav links in transparent state: white */
+#main-header.navbar-transparent .navbar-link {
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+#main-header.navbar-transparent .navbar-link:hover {
+    color: #ffffff;
+}
+
+/* CTA button in transparent state: ghost white outline */
+#main-header.navbar-transparent .navbar-cta {
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.5);
+    color: #ffffff;
+    backdrop-filter: blur(4px);
+    box-shadow: none;
+}
+
+#main-header.navbar-transparent .navbar-cta:hover {
+    background: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.8);
+}
+
+/* Hamburger in transparent state */
+#main-header.navbar-transparent .navbar-hamburger {
+    color: #ffffff;
+}
+
+#main-header.navbar-transparent .navbar-hamburger:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+/* State 2: Scrolled — frosted glass, slightly transparent */
+#main-header.navbar-scrolled {
+    background: rgba(251, 252, 249, 0.88);
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 4px 16px -4px rgba(15,23,42,0.08);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    animation: navbarSlideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Logo text in scrolled state */
+#main-header.navbar-scrolled .navbar-logo-title {
+    color: #0f172a;
+    text-shadow: none;
+}
+
+#main-header.navbar-scrolled .navbar-logo-sub {
+    color: #64748b;
+}
+
+/* Nav links in scrolled state */
+#main-header.navbar-scrolled .navbar-link {
+    color: #475569;
+    text-shadow: none;
+}
+
+#main-header.navbar-scrolled .navbar-link:hover {
+    color: #047857;
+}
+
+/* CTA button in scrolled state: solid emerald */
+#main-header.navbar-scrolled .navbar-cta {
+    background: #047857;
+    border: 1.5px solid #047857;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(4, 120, 87, 0.25);
+}
+
+#main-header.navbar-scrolled .navbar-cta:hover {
+    background: #065f46;
+    border-color: #065f46;
+}
+
+/* Hamburger in scrolled state */
+#main-header.navbar-scrolled .navbar-hamburger {
+    color: #475569;
+}
+
+#main-header.navbar-scrolled .navbar-hamburger:hover {
+    background: #f1f5f9;
+}
+
+/* Hero section needs extra top-padding to account for fixed navbar */
+#beranda {
+    padding-top: 0;
+}
+

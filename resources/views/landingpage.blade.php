@@ -114,45 +114,45 @@
     @endphp
 
 
-    <!-- 2. STICKY NAVBAR (Seamless Borderless Design) -->
-    <header id="main-header" class="sticky top-0 z-40 w-full bg-surface-soft/95 backdrop-blur-md transition-all duration-300 py-3.5 shadow-sm">
+    <!-- 2. STICKY NAVBAR (Traveloka-style: transparent → frosted glass on scroll) -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-40 w-full transition-all duration-500 ease-out py-4 navbar-transparent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
             <!-- Brand Logo (Clean Borderless) -->
             <a href="#" class="flex items-center gap-3 group">
                 <div class="w-12 h-12 shrink-0 flex items-center justify-center">
-                    <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja Tour & Travel" class="w-full h-full object-contain">
+                    <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja Tour & Travel" class="w-full h-full object-contain drop-shadow-sm">
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-display font-extrabold text-xl leading-tight tracking-tight text-slate-900 group-hover:text-emerald-700 transition">
-                        PUJA<span class="text-emerald-700 ml-1">TOUR</span>
+                    <span class="font-display font-extrabold text-xl leading-tight tracking-tight navbar-logo-title transition-colors duration-500">
+                        PUJA<span class="text-emerald-400 ml-1">TOUR</span>
                     </span>
-                    <span class="text-[10px] tracking-widest font-bold text-slate-500 uppercase">
+                    <span class="text-[10px] tracking-widest font-bold navbar-logo-sub uppercase transition-colors duration-500">
                         & Travel Pangandaran
                     </span>
                 </div>
             </a>
 
             <!-- Desktop Nav Items -->
-            <nav class="hidden lg:flex items-center gap-7 font-medium text-slate-600 text-sm">
-                <a href="{{ route('home') }}" class="text-emerald-700 font-semibold hover:text-emerald-800 transition">Beranda</a>
-                <a href="{{ route('packages.index') }}" class="hover:text-emerald-700 transition">Paket Wisata</a>
-                <a href="{{ route('about') }}" class="hover:text-emerald-700 transition">Tentang Kami</a>
-                <a href="{{ route('calculator') }}" class="hover:text-emerald-700 transition">Estimasi Biaya</a>
-                <a href="{{ route('faq') }}" class="hover:text-emerald-700 transition">FAQ</a>
-                <a href="{{ route('gallery') }}" class="hover:text-emerald-700 transition">Galeri</a>
-                <a href="{{ route('contact') }}" class="hover:text-emerald-700 transition">Kontak</a>
+            <nav class="hidden lg:flex items-center gap-7 font-medium text-sm">
+                <a href="{{ route('home') }}" class="navbar-link font-semibold transition-colors duration-300">Beranda</a>
+                <a href="{{ route('packages.index') }}" class="navbar-link transition-colors duration-300">Paket Wisata</a>
+                <a href="{{ route('about') }}" class="navbar-link transition-colors duration-300">Tentang Kami</a>
+                <a href="{{ route('calculator') }}" class="navbar-link transition-colors duration-300">Estimasi Biaya</a>
+                <a href="{{ route('faq') }}" class="navbar-link transition-colors duration-300">FAQ</a>
+                <a href="{{ route('gallery') }}" class="navbar-link transition-colors duration-300">Galeri</a>
+                <a href="{{ route('contact') }}" class="navbar-link transition-colors duration-300">Kontak</a>
             </nav>
 
             <!-- Header Action CTA -->
             <div class="hidden sm:flex items-center gap-3">
-                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20paket%20wisata%20Pangandaran" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition flex items-center gap-2">
+                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20paket%20wisata%20Pangandaran" target="_blank" class="navbar-cta px-5 py-2.5 rounded-xl font-bold text-xs transition-all duration-300 flex items-center gap-2">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
                     <span>Tanya Trip CS</span>
                 </a>
             </div>
 
             <!-- Mobile Hamburger Button -->
-            <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-neutral-100 transition">
+            <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl navbar-hamburger transition-colors duration-300">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
@@ -268,7 +268,7 @@
         </div>
 
         <!-- Floating Destination Badge (Auto-updates with slide in top-right corner) -->
-        <div class="absolute top-6 right-4 sm:right-8 z-20 hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-medium text-emerald-300 shadow-lg">
+        <div class="absolute top-6 right-4 sm:right-8 z-20 hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-medium text-emerald-300 shadow-lg animate-float-slow">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span id="hero-location-text">{{ $heroSlidesList->first()['location'] ?? 'Wisata Pangandaran' }}</span>
         </div>
@@ -291,7 +291,7 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:pt-20 lg:pb-28 w-full">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 <!-- Hero Left Content -->
-                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6 reveal-fade-left">
                     <!-- Badge -->
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-emerald-300 text-xs sm:text-sm font-semibold">
                         <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
@@ -312,23 +312,16 @@
                         {{ $heroSubtitle }}
                     </p>
 
-                    <!-- Trust Stats Counter -->
-                    <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/15 max-w-lg mx-auto lg:mx-0 text-white">
-                        <div>
-                            <div class="font-display font-bold text-2xl sm:text-3xl text-amber-400">{{ $stat1Val }}</div>
-                            <div class="text-xs text-slate-300">{{ $stat1Lbl }}</div>
-                        </div>
-                        <div>
-                            <div class="font-display font-bold text-2xl sm:text-3xl text-emerald-400">{{ $stat2Val }}</div>
-                            <div class="text-xs text-slate-300">{{ $stat2Lbl }}</div>
-                        </div>
-                        <div>
-                            <div class="font-display font-bold text-2xl sm:text-3xl text-white flex items-center justify-center lg:justify-start gap-1">
-                                <span>{{ $stat3Val }}</span>
-                                <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
-                            </div>
-                            <div class="text-xs text-slate-300">{{ $stat3Lbl }}</div>
-                        </div>
+                    <!-- Clean Understated Trust Note -->
+                    <div class="flex items-center justify-center lg:justify-start gap-2.5 pt-2 text-xs text-slate-300 font-medium">
+                        <span class="inline-flex items-center gap-1 text-amber-400 font-bold">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <span>{{ $stat3Val }}</span>
+                        </span>
+                        <span class="text-white/30">•</span>
+                        <span>{{ $stat1Val }} {{ $stat1Lbl }}</span>
+                        <span class="text-white/30">•</span>
+                        <span class="text-emerald-300 font-semibold">{{ $stat2Lbl }}</span>
                     </div>
 
                     <!-- Call To Action Buttons (Solid Colors) -->
@@ -345,7 +338,7 @@
                 </div>
 
                 <!-- Hero Right: Quick Trip Finder Widget -->
-                <div class="lg:col-span-5">
+                <div class="lg:col-span-5 reveal-fade-right delay-150">
                     <div class="bg-surface-soft rounded-3xl p-6 sm:p-8 shadow-soft border border-neutral-200 text-slate-800">
                         <div class="flex items-center gap-3 pb-5 border-b border-neutral-200">
                             <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
@@ -403,58 +396,11 @@
         </div>
     </section>
 
-    <!-- 4. TRUST ELEMENTS / 4 PILAR KREDIBILITAS (Soft Natural Surface Cards) -->
-    <section class="relative -mt-10 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <!-- Card 1 -->
-            <div class="bg-surface-soft rounded-2xl p-6 shadow-soft border border-neutral-200 flex items-start gap-4">
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="landmark" class="w-6 h-6"></i>
-                </div>
-                <div>
-                    <h3 class="font-display font-bold text-slate-900 text-base">Legalitas Usaha Resmi</h3>
-                    <p class="text-xs text-slate-500 mt-1">Berbadan hukum CV resmi, terpercaya, dan amanah untuk corporate maupun keluarga.</p>
-                </div>
-            </div>
 
-            <!-- Card 2 -->
-            <div class="bg-surface-soft rounded-2xl p-6 shadow-soft border border-neutral-200 flex items-start gap-4">
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="badge-check" class="w-6 h-6"></i>
-                </div>
-                <div>
-                    <h3 class="font-display font-bold text-slate-900 text-base">Pemandu Lisensi HPI</h3>
-                    <p class="text-xs text-slate-500 mt-1">Guide lokal berpengalaman, ramah, dan bersertifikat resmi kepemanduan wisata.</p>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bg-surface-soft rounded-2xl p-6 shadow-soft border border-neutral-200 flex items-start gap-4">
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="shield-check" class="w-6 h-6"></i>
-                </div>
-                <div>
-                    <h3 class="font-display font-bold text-slate-900 text-base">Standar Safety Teruji</h3>
-                    <p class="text-xs text-slate-500 mt-1">Perlengkapan lifejacket, helmet, dan asuransi kecelakaan diri di setiap trip.</p>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="bg-surface-soft rounded-2xl p-6 shadow-soft border border-neutral-200 flex items-start gap-4">
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="banknote" class="w-6 h-6"></i>
-                </div>
-                <div>
-                    <h3 class="font-display font-bold text-slate-900 text-base">Harga Jujur & Transparan</h3>
-                    <p class="text-xs text-slate-500 mt-1">Tanpa biaya tersembunyi. Layanan all-inclusive tiket, instruktur, makan, dan dokumentasi.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- 5. PAKET WISATA UNGGULAN (KATALOG DINAMIS BERBASIS DATABASE) -->
     <section id="paket" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="text-center max-w-3xl mx-auto mb-12 reveal-fade-up">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
                 Katalog Pilihan
             </span>
@@ -480,8 +426,8 @@
 
         <!-- Dynamic Package Grid from Database (Menampilkan Pilihan Unggulan) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @forelse($packages as $pkg)
-                <div class="package-card flex flex-col bg-surface-soft rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group" data-category="{{ $pkg->category->slug ?? 'all' }}">
+            @forelse($packages as $loopIndex => $pkg)
+                <div class="package-card flex flex-col bg-surface-soft rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group reveal-fade-up {{ $loopIndex % 3 === 1 ? 'delay-100' : ($loopIndex % 3 === 2 ? 'delay-200' : '') }}" data-category="{{ $pkg->category->slug ?? 'all' }}">
                     <!-- Card Image Area with Multi-Image Auto-Slider & Lightbox Click -->
                     @php
                         $galleryImages = $pkg->gallery_images;
@@ -612,7 +558,7 @@
     <!-- 6. DESTINASI IKONIK & PENGALAMAN (Solid Slate 900) -->
     <section id="destinasi" class="py-20 bg-slate-900 text-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 reveal-fade-up">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950 px-3 py-1 rounded-full border border-emerald-800">
                         Destinasi Terbaik
@@ -632,7 +578,7 @@
 
             <!-- Destination Bento Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="md:col-span-2 relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800">
+                <div class="md:col-span-2 relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up">
                     <img src="{{ asset('images/greencanyon.jpg') }}" alt="Green Canyon Cukang Taneuh" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-slate-950/60"></div>
                     <div class="absolute bottom-6 left-6 right-6">
@@ -642,7 +588,7 @@
                     </div>
                 </div>
 
-                <div class="relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800">
+                <div class="relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-100">
                     <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Pasir Putih & Snorkeling" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-slate-950/60"></div>
                     <div class="absolute bottom-6 left-6 right-6">
@@ -652,7 +598,7 @@
                     </div>
                 </div>
 
-                <div class="relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800">
+                <div class="relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-150">
                     <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Sunset Batu Karas" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-slate-950/60"></div>
                     <div class="absolute bottom-6 left-6 right-6">
@@ -662,7 +608,7 @@
                     </div>
                 </div>
 
-                <div class="md:col-span-2 relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800">
+                <div class="md:col-span-2 relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-200">
                     <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Cagar Alam Pananjung" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-slate-950/60"></div>
                     <div class="absolute bottom-6 left-6 right-6">
@@ -675,68 +621,64 @@
         </div>
     </section>
 
-    <!-- 7. KEUNGGULAN / WHY CHOOSE PUJA TOUR & TRAVEL -->
-    <section id="keunggulan" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-12 gap-12 items-center">
-            <!-- Left Image & Badge -->
-            <div class="lg:col-span-5 relative">
-                <div class="relative rounded-3xl overflow-hidden shadow-lg border border-neutral-200">
-                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Puja Tour Experience" class="w-full h-112.5 object-cover">
+    <!-- 7. KEUNGGULAN & BUKTI KEPERCAYAN (Authentic Local Travel Agency) -->
+    <section id="keunggulan" class="py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <!-- Left Image with Clean Authentic Caption -->
+            <div class="lg:col-span-5 relative reveal-fade-left">
+                <div class="rounded-3xl overflow-hidden shadow-sm border border-neutral-200 bg-neutral-200">
+                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Pemandu Lokal Puja Tour Pangandaran" class="w-full h-[420px] object-cover">
                 </div>
-                <!-- Floating Card (Soft Surface) -->
-                <div class="absolute -bottom-6 -right-6 bg-surface-soft rounded-2xl p-5 shadow-soft border border-neutral-200 max-w-xs hidden sm:block">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
-                            <i data-lucide="award" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <div class="font-display font-bold text-slate-900 text-base">Pemandu Terpercaya</div>
-                            <div class="text-xs text-slate-500">Pilihan #1 Wisatawan di Pangandaran</div>
-                        </div>
-                    </div>
+                <div class="mt-3 text-center lg:text-left">
+                    <p class="text-xs text-slate-500 font-medium">
+                        📍 Titik awal penyusunan rute & pengawalan trip di Green Canyon, Pangandaran.
+                    </p>
                 </div>
             </div>
 
-            <!-- Right Content -->
-            <div class="lg:col-span-7 space-y-6">
-                <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200">
-                    Nilai Keunggulan Kami
-                </span>
-                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
-                    Mengapa Wisatawan Memilih <span class="text-emerald-700">Puja Tour & Travel</span>?
-                </h2>
-                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-                    Kami bukan sekadar agen perjalanan umum. Kami adalah putra daerah asli Pangandaran yang berdedikasi menghadirkan petualangan autentik dengan standar keselamatan tertinggi, keramahan khas Sunda, dan harga transparan.
-                </p>
+            <!-- Right Content: Evidence-Driven Hierarchy -->
+            <div class="lg:col-span-7 space-y-6 reveal-fade-right delay-100">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-md border border-emerald-200">
+                        Pengalaman Lokal Autentik
+                    </span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-3 tracking-tight leading-snug">
+                        Dikelola Langsung oleh Putra Daerah Pangandaran
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+                        Kami menyusun rute dan mendampingi trip berdasarkan pemahaman lapangan langsung—mulai dari kondisi debit air sungai, spot terumbu karang yang aman, hingga pertolongan keselamatan di pantai.
+                    </p>
+                </div>
 
-                <div class="space-y-4 pt-2">
-                    <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-soft shadow-soft border border-neutral-200">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 font-bold">
-                            01
-                        </div>
+                <!-- 3 Concrete Primary Proofs (Clean Typography, No Heavy Card Clutter) -->
+                <div class="space-y-6 pt-4 border-t border-neutral-200">
+                    <div class="flex items-start gap-4 reveal-fade-up">
+                        <span class="font-display font-extrabold text-2xl text-emerald-700 leading-none pt-1">01</span>
                         <div>
-                            <h4 class="font-display font-bold text-slate-900 text-base">Pemandu Lokal Berlisensi Resmi HPI</h4>
-                            <p class="text-xs text-slate-500 mt-0.5">Memahami setiap sudut rahasia, arus sungai yang aman, dan spot foto terbaik yang jarang diketahui turis biasa.</p>
+                            <h3 class="font-display font-bold text-slate-900 text-base">Tim Guide Asli Pangandaran (Berlisensi HPI)</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                                Pemandu kami lahir dan tumbuh di Pangandaran. Memahami karakter debit air Green Canyon, titik terumbu karang aman di Pasir Putih, serta penanganan darurat di lapangan.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-soft shadow-soft border border-neutral-200">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 font-bold">
-                            02
-                        </div>
+                    <div class="flex items-start gap-4 reveal-fade-up delay-100">
+                        <span class="font-display font-extrabold text-2xl text-emerald-700 leading-none pt-1">02</span>
                         <div>
-                            <h4 class="font-display font-bold text-slate-900 text-base">Safety First & Perlengkapan Standar</h4>
-                            <p class="text-xs text-slate-500 mt-0.5">Semua perlengkapan pelampung, helm, dan asuransi kecelakaan diri selalu diperiksa secara berkala sebelum trip.</p>
+                            <h3 class="font-display font-bold text-slate-900 text-base">Peralatan Standar & Asuransi Keselamatan Diri</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                                Setiap peserta dilengkapi *lifejacket* terawat, helm sungai standar, serta asuransi keselamatan resmi di setiap paket trip tanpa biaya tambahan.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-soft shadow-soft border border-neutral-200">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 font-bold">
-                            03
-                        </div>
+                    <div class="flex items-start gap-4 reveal-fade-up delay-200">
+                        <span class="font-display font-extrabold text-2xl text-emerald-700 leading-none pt-1">03</span>
                         <div>
-                            <h4 class="font-display font-bold text-slate-900 text-base">Dokumentasi HD & Drone Eksklusif</h4>
-                            <p class="text-xs text-slate-500 mt-0.5">Abadikan momen petualangan Anda dengan foto underwater dan video drone tanpa ribet bawa kamera sendiri.</p>
+                            <h3 class="font-display font-bold text-slate-900 text-base">Rincian Biaya Transparan (All-Inclusive)</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                                Seluruh harga paket sudah mencakup tiket masuk destinasi, sewa peralatan, instruktur, hingga retribusi lokal. Tanpa kaget biaya tersembunyi di tempat wisata.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -747,7 +689,7 @@
     <!-- 8. GALERI DOKUMENTASI AKTIVITAS (Soft Canvas Background) -->
     <section id="galeri" class="py-20 bg-canvas-soft border-y border-neutral-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
+            <div class="text-center max-w-2xl mx-auto mb-12 reveal-fade-up">
                 <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-surface-soft px-3 py-1 rounded-full border border-neutral-200">
                     Dokumentasi Asli
                 </span>
@@ -761,8 +703,8 @@
 
             <!-- Dynamic Galleries Grid -->
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                @forelse($galleries as $gal)
-                    <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition bg-neutral-200"
+                @forelse($galleries as $gIndex => $gal)
+                    <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition bg-neutral-200 reveal-scale-up {{ $gIndex % 4 === 1 ? 'delay-100' : ($gIndex % 4 === 2 ? 'delay-150' : ($gIndex % 4 === 3 ? 'delay-200' : '')) }}"
                          data-img="{{ $gal->image_url }}"
                          data-caption="{{ $gal->title }} - {{ $gal->caption }}">
                         <img src="{{ $gal->image_url }}" alt="{{ $gal->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
@@ -781,7 +723,7 @@
 
     <!-- 9. ULASAN & TESTIMONIAL PELANGGAN (Soft Surface Cards) -->
     <section id="testimoni" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-14">
+        <div class="text-center max-w-2xl mx-auto mb-14 reveal-fade-up">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
                 Ulasan Terverifikasi
             </span>
@@ -794,8 +736,8 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            @forelse($testimonials as $testi)
-                <div class="bg-surface-soft rounded-3xl p-8 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover transition">
+            @forelse($testimonials as $tIndex => $testi)
+                <div class="bg-surface-soft rounded-3xl p-8 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover transition reveal-fade-up {{ $tIndex % 3 === 1 ? 'delay-100' : ($tIndex % 3 === 2 ? 'delay-200' : '') }}">
                     <div>
                         <div class="flex items-center text-amber-500 gap-1 text-sm mb-4">
                             @for($i = 0; $i < ($testi->rating ?? 5); $i++)
@@ -825,7 +767,7 @@
     <!-- 10. INTERACTIVE RESERVATION FORM / TRIP PLANNER (Solid Slate 900) -->
     <section id="booking-section" class="py-20 bg-slate-900 text-white relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal-fade-up">
                 <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-slate-800 px-3.5 py-1 rounded-full border border-slate-700">
                     Formulir Reservasi Cepat
                 </span>
@@ -837,7 +779,7 @@
                 </p>
             </div>
 
-            <div class="bg-surface-soft rounded-3xl p-6 sm:p-10 shadow-soft text-slate-800 border border-neutral-200">
+            <div class="bg-surface-soft rounded-3xl p-6 sm:p-10 shadow-soft text-slate-800 border border-neutral-200 reveal-scale-up delay-100">
                 <form class="space-y-6">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Nama Lengkap *</label>
@@ -866,7 +808,7 @@
 
     <!-- 11. FAQ (FREQUENTLY ASKED QUESTIONS) ACCORDION -->
     <section id="faq" class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 reveal-fade-up">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
                 Tanya Jawab
             </span>
@@ -879,8 +821,8 @@
         </div>
 
         <div class="space-y-4">
-            @forelse($faqs as $index => $faq)
-                <div class="bg-surface-soft rounded-2xl border border-neutral-200 overflow-hidden shadow-soft">
+            @forelse($faqs as $fIndex => $faq)
+                <div class="bg-surface-soft rounded-2xl border border-neutral-200 overflow-hidden shadow-soft reveal-fade-up {{ $fIndex % 2 === 1 ? 'delay-100' : '' }}">
                     <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-display font-bold text-slate-900 text-base hover:text-emerald-700 transition">
                         <span>{{ $faq->question }}</span>
                         <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-slate-400 transition-transform duration-300"></i>
@@ -901,7 +843,7 @@
     <section id="kontak" class="py-20 bg-canvas-soft border-t border-neutral-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-5 space-y-5">
+                <div class="lg:col-span-5 space-y-5 reveal-fade-left">
                     <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-surface-soft px-3 py-1 rounded-full border border-neutral-200">
                         Kantor Operasional
                     </span>

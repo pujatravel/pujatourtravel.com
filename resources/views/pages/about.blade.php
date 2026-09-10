@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Puja Tour & Travel Pangandaran">
-    <title>Tentang Kami — Puja Tour & Travel Pangandaran</title>
-    <meta name="description" content="Profil resmi Puja Tour & Travel Pangandaran. Berbadan hukum CV resmi, pemandu bersertifikasi HPI, dan spesialis liburan bahari, Green Canyon, dan corporate gathering.">
+    <title>Tentang Kami | Profil Puja Tour & Travel Pangandaran</title>
+    <meta name="description" content="Profil resmi Puja Tour & Travel, biro wisata berbadan hukum CV di Pangandaran. Pemandu berlisensi HPI, standar keselamatan teruji, dan pengalaman 5.000+ wisatawan puas.">
     <meta name="keywords" content="profil Puja Tour Travel, tentang Puja Tour Pangandaran, biro wisata resmi Pangandaran, tour guide bersertifikat HPI, CV travel Pangandaran">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ url('/tentang-kami') }}">
 
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
-    <meta property="og:site_name" content="Puja Tour Travel">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="Tentang Kami — Puja Tour & Travel Pangandaran">
-    <meta property="og:description" content="Profil resmi Puja Tour & Travel Pangandaran. Berbadan hukum CV resmi, pemandu bersertifikasi HPI, dan spesialis liburan bahari.">
+    <meta property="og:site_name" content="Puja Tour & Travel Pangandaran">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ url('/tentang-kami') }}">
+    <meta property="og:title" content="Tentang Kami | Profil Puja Tour & Travel Pangandaran">
+    <meta property="og:description" content="Profil resmi Puja Tour & Travel, biro wisata berbadan hukum CV di Pangandaran. Pemandu berlisensi HPI, standar keselamatan teruji, dan pengalaman 5.000+ wisatawan puas.">
     <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tentang Kami — Puja Tour & Travel Pangandaran">
-    <meta name="twitter:description" content="Profil resmi Puja Tour & Travel Pangandaran. Berbadan hukum CV resmi, pemandu bersertifikasi HPI, dan spesialis liburan bahari.">
+    <meta name="twitter:title" content="Tentang Kami | Profil Puja Tour & Travel Pangandaran">
+    <meta name="twitter:description" content="Profil resmi Puja Tour & Travel, biro wisata berbadan hukum CV di Pangandaran. Pemandu berlisensi HPI, standar keselamatan teruji, dan pengalaman 5.000+ wisatawan puas.">
     <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
 
     <!-- Structured Data (JSON-LD): Organization — helps Google Knowledge Panel -->

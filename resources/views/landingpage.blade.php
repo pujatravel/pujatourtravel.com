@@ -6,39 +6,48 @@
     <meta name="google-site-verification" content="qdDKl_CxJFHAbq1E6QwMEswIo28qlBmfiYo6ykUNxi0">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Puja Tour & Travel Pangandaran">
-    <title>Puja Tour & Travel Pangandaran — Jelajahi Pesona Bahari & Petualangan Green Canyon</title>
-    <meta name="description" content="Puja Tour & Travel Pangandaran menyediakan paket wisata eksklusif, body rafting Green Canyon, snorkeling Pasir Putih, dan petualangan alam terbaik bersama pemandu lokal berlisensi resmi.">
-    <meta name="keywords" content="Puja Tour Travel, Wisata Pangandaran, Paket Wisata Pangandaran, Body Rafting Green Canyon, Pasir Putih Pangandaran, Batu Karas, Tour Guide Pangandaran">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    {{-- SEO: Title sesuai foto 2 — singkat, natural, kaya keyword --}}
+    <title>Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran</title>
+    <meta name="description" content="Nikmati liburan seru di Pangandaran bersama Puja Tour & Travel. Tersedia paket wisata Pangandaran, Green Canyon, snorkeling, pantai, dan berbagai pilihan perjalanan menarik lainnya.">
+    <meta name="keywords" content="Puja Tour Travel, wisata Pangandaran, paket wisata Pangandaran, Green Canyon, body rafting, snorkeling Pasir Putih, tour guide Pangandaran, liburan Pangandaran">
+
+    {{-- Canonical: homepage eksplisit, bukan current() agar tidak ada variasi URL --}}
+    <link rel="canonical" href="{{ url('/') }}">
 
     <!-- Open Graph / Meta Sosial -->
     <meta property="og:locale" content="id_ID">
-    <meta property="og:site_name" content="Puja Tour Travel">
+    <meta property="og:site_name" content="Puja Tour & Travel Pangandaran">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="Puja Tour & Travel Pangandaran — Petualangan Alam & Bahari Terbaik">
-    <meta property="og:description" content="Paket liburan Pangandaran terlengkap, legalitas resmi CV, pemandu bersertifikasi HPI, dan jaminan kenyamanan liburan Anda.">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:title" content="Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran">
+    <meta property="og:description" content="Nikmati liburan seru di Pangandaran bersama Puja Tour & Travel. Tersedia paket wisata Pangandaran, Green Canyon, snorkeling, pantai, dan berbagai pilihan perjalanan menarik lainnya.">
     <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Puja Tour & Travel Pangandaran — Paket Wisata Green Canyon & Pantai">
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Puja Tour & Travel Pangandaran — Petualangan Alam & Bahari Terbaik">
-    <meta name="twitter:description" content="Paket liburan Pangandaran terlengkap, legalitas resmi CV, pemandu bersertifikasi HPI, dan jaminan kenyamanan liburan Anda.">
+    <meta name="twitter:title" content="Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran">
+    <meta name="twitter:description" content="Nikmati liburan seru di Pangandaran bersama Puja Tour & Travel. Tersedia paket wisata Pangandaran, Green Canyon, snorkeling, pantai, dan berbagai pilihan perjalanan menarik lainnya.">
     <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
 
-    <!-- Structured Data (JSON-LD): TravelAgency -->
+    <!-- Structured Data (JSON-LD): TravelAgency — homepage utama -->
     <script type="application/ld+json">
     {!! json_encode([
         '@context' => 'https://schema.org',
         '@type' => 'TravelAgency',
-        'name' => 'Puja Tour Travel',
-        'description' => 'Biro perjalanan wisata resmi di Pangandaran yang menyediakan paket tur Green Canyon, body rafting, dan wisata bahari.',
+        '@id' => url('/') . '#travelagency',
+        'name' => 'Puja Tour & Travel Pangandaran',
+        'alternateName' => ['Puja Tour Travel', 'Puja Tour Pangandaran'],
+        'description' => 'Biro perjalanan wisata resmi di Pangandaran. Tersedia paket wisata Green Canyon, body rafting, snorkeling, dan wisata pantai dengan pemandu lokal berlisensi HPI.',
         'url' => url('/'),
+        'logo' => asset('images/puja_logo.png'),
+        'image' => asset('images/hero_pangandaran.jpg'),
         'telephone' => $settings['phone_number'] ?? '+6281234567890',
         'email' => $settings['email_address'] ?? 'info@pujatourtravel.com',
+        'priceRange' => '$$',
         'address' => [
             '@type' => 'PostalAddress',
             'streetAddress' => $settings['office_address'] ?? 'Jl. Pantai Barat No. 88',
@@ -59,29 +68,58 @@
             'closes' => '21:00',
         ],
         'sameAs' => [
-            'https://instagram.com/pujatourtravel',
-            'https://tiktok.com/@pujatourtravel',
+            $settings['instagram_url'] ?? 'https://instagram.com/pujatourtravel',
+            $settings['tiktok_url'] ?? 'https://tiktok.com/@pujatourtravel',
         ],
-    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+        'hasMap' => 'https://maps.google.com/?q=Pangandaran',
+        'areaServed' => 'Pangandaran, Jawa Barat',
+        'knowsAbout' => ['Green Canyon', 'Body Rafting', 'Wisata Pantai Pangandaran', 'Snorkeling', 'Batu Karas'],
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
     </script>
 
-    <!-- Structured Data (JSON-LD): WebSite with SearchAction — enables Google Sitelinks Search Box -->
+    <!-- Structured Data (JSON-LD): WebSite + WebPage (homepage) -->
     <script type="application/ld+json">
     {!! json_encode([
         '@context' => 'https://schema.org',
-        '@type' => 'WebSite',
-        'name' => 'Puja Tour Travel',
-        'alternateName' => 'Puja Tour & Travel Pangandaran',
-        'url' => url('/'),
-        'potentialAction' => [
-            '@type' => 'SearchAction',
-            'target' => [
-                '@type' => 'EntryPoint',
-                'urlTemplate' => route('packages.index') . '?search={search_term_string}',
+        '@graph' => [
+            [
+                '@type' => 'WebSite',
+                '@id' => url('/') . '#website',
+                'name' => 'Puja Tour & Travel Pangandaran',
+                'url' => url('/'),
+                'publisher' => ['@id' => url('/') . '#travelagency'],
+                'potentialAction' => [
+                    '@type' => 'SearchAction',
+                    'target' => [
+                        '@type' => 'EntryPoint',
+                        'urlTemplate' => route('packages.index') . '?search={search_term_string}',
+                    ],
+                    'query-input' => 'required name=search_term_string',
+                ],
             ],
-            'query-input' => 'required name=search_term_string',
+            [
+                '@type' => 'WebPage',
+                '@id' => url('/') . '#webpage',
+                'url' => url('/'),
+                'name' => 'Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran',
+                'description' => 'Nikmati liburan seru di Pangandaran bersama Puja Tour & Travel. Tersedia paket wisata Pangandaran, Green Canyon, snorkeling, pantai, dan berbagai pilihan perjalanan menarik lainnya.',
+                'isPartOf' => ['@id' => url('/') . '#website'],
+                'about' => ['@id' => url('/') . '#travelagency'],
+                'inLanguage' => 'id-ID',
+                'breadcrumb' => [
+                    '@type' => 'BreadcrumbList',
+                    'itemListElement' => [
+                        [
+                            '@type' => 'ListItem',
+                            'position' => 1,
+                            'name' => 'Beranda',
+                            'item' => url('/'),
+                        ],
+                    ],
+                ],
+            ],
         ],
-    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
     </script>
 
     <!-- Google Fonts: Plus Jakarta Sans & Outfit -->

@@ -106,7 +106,7 @@
 
     @include('partials.analytics')
 </head>
-<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white">
+<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white overflow-x-hidden">
 
     @php
         $waNum = $settings['whatsapp_number'] ?? '6281234567890';
@@ -120,18 +120,18 @@
 
 
     <!-- 2. STICKY NAVBAR (Dynamic Background Detection) -->
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-40 w-full py-3.5 is-transparent-nav">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-40 w-full py-3 sm:py-3.5 is-transparent-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
             <!-- Brand Logo (Clean Borderless) -->
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 shrink-0 flex items-center justify-center">
+            <a href="{{ route('home') }}" class="flex items-center gap-2 sm:gap-3 group shrink-0">
+                <div class="w-9 h-9 sm:w-12 sm:h-12 shrink-0 flex items-center justify-center">
                     <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja Tour & Travel" class="w-full h-full object-contain drop-shadow-sm">
                 </div>
                 <div class="flex flex-col">
-                    <span class="nav-brand-title font-display font-extrabold text-xl leading-tight tracking-tight text-white transition-colors duration-300">
+                    <span class="nav-brand-title font-display font-extrabold text-base sm:text-xl leading-tight tracking-tight text-white transition-colors duration-300">
                         PUJA<span class="nav-brand-accent text-emerald-400 transition-colors duration-300 ml-1">TOUR</span>
                     </span>
-                    <span class="nav-brand-subtitle text-[10px] tracking-widest font-bold text-white/70 uppercase transition-colors duration-300">
+                    <span class="nav-brand-subtitle text-[9px] sm:text-[10px] tracking-widest font-bold text-white/70 uppercase transition-colors duration-300 hidden sm:block">
                         & Travel Pangandaran
                     </span>
                 </div>
@@ -149,7 +149,7 @@
             </nav>
 
             <!-- Header Action CTA -->
-            <div class="hidden sm:flex items-center gap-3">
+            <div class="hidden lg:flex items-center gap-3">
                 <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20paket%20wisata%20Pangandaran" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition flex items-center gap-2">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
                     <span>Tanya Trip CS</span>
@@ -259,7 +259,7 @@
             }
         }
     @endphp
-    <section id="beranda" data-nav-color="dark" class="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-slate-950 group">
+    <section id="beranda" data-nav-color="dark" class="relative min-h-[100svh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 group">
         <!-- Hero Background Auto-Slider Container -->
         <div id="hero-slider" class="absolute inset-0 z-0 overflow-hidden select-none">
             @foreach($heroSlidesList as $index => $slide)
@@ -268,42 +268,45 @@
                 </div>
             @endforeach
 
-            <!-- Deep Scrim Overlay for Crystal Clear Text Contrast -->
-            <div class="absolute inset-0 bg-linear-to-b from-slate-950/85 via-slate-950/75 to-slate-950/90 z-1"></div>
+            <!-- Deep Scrim Overlay -->
+            <div class="absolute inset-0 bg-linear-to-b from-slate-950/90 via-slate-950/75 to-slate-950/90 z-1"></div>
         </div>
 
-        <!-- Floating Destination Badge (Auto-updates with slide in top-right corner) -->
-        <div class="absolute top-24 sm:top-28 right-4 sm:right-8 z-20 hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-medium text-emerald-300 shadow-lg">
+        <!-- Floating Destination Badge - desktop only -->
+        <div class="absolute top-20 sm:top-28 right-4 sm:right-8 z-20 hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-medium text-emerald-300 shadow-lg">
             <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400 shrink-0"></i>
             <span id="hero-location-text">{{ $heroSlidesList->first()['location'] ?? 'Wisata Pangandaran' }}</span>
         </div>
 
-        <!-- Hero Slider Arrow Navigation Controls -->
-        <button id="hero-prev-btn" type="button" aria-label="Slide Sebelumnya" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/60 hover:bg-slate-900/90 border border-white/20 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-300 shadow-xl cursor-pointer">
-            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        <!-- Hero Slider Arrow Navigation -->
+        <button id="hero-prev-btn" type="button" aria-label="Slide Sebelumnya" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-slate-900/60 hover:bg-slate-900/90 border border-white/20 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-300 shadow-xl cursor-pointer">
+            <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
         </button>
-        <button id="hero-next-btn" type="button" aria-label="Slide Selanjutnya" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/60 hover:bg-slate-900/90 border border-white/20 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-300 shadow-xl cursor-pointer">
-            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        <button id="hero-next-btn" type="button" aria-label="Slide Selanjutnya" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-slate-900/60 hover:bg-slate-900/90 border border-white/20 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-300 shadow-xl cursor-pointer">
+            <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
         </button>
 
         <!-- Slide Indicators -->
-        <div id="hero-dots" class="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/15 shadow-md">
+        <div id="hero-dots" class="absolute bottom-8 sm:bottom-16 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/15 shadow-md">
             @foreach($heroSlidesList as $index => $slide)
-                <button type="button" class="hero-dot {{ $index === 0 ? 'w-8 bg-emerald-400' : 'w-2.5 bg-white/40' }} h-2 rounded-full hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="{{ $index }}" aria-label="Slide {{ $index + 1 }}"></button>
+                <button type="button" class="hero-dot {{ $index === 0 ? 'w-6 sm:w-8 bg-emerald-400' : 'w-2 sm:w-2.5 bg-white/40' }} h-1.5 sm:h-2 rounded-full hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="{{ $index }}" aria-label="Slide {{ $index + 1 }}"></button>
             @endforeach
         </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-28 w-full">
-            <div class="grid lg:grid-cols-12 gap-12 items-center">
-                <!-- Hero Left Content -->
-                <div class="lg:col-span-7 text-center lg:text-left space-y-6 reveal-fade-left">
+        <!-- Hero Content -->
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 sm:pt-28 sm:pb-16 lg:pt-36 lg:pb-28">
+            <div class="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
+
+                <!-- Hero Left: Main Text Content -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-4 sm:space-y-5">
+
                     <!-- Badge -->
-                    <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-emerald-300 text-xs sm:text-sm font-semibold">
-                        <span>{{ $heroBadge }}</span>
+                    <div class="inline-flex items-center px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-emerald-300 text-[11px] sm:text-sm font-semibold max-w-full">
+                        <span class="truncate">{{ $heroBadge }}</span>
                     </div>
 
-                    <!-- Main H1 Title (Solid Colors) -->
-                    <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.15]">
+                    <!-- Main H1 Title -->
+                    <h1 class="font-display font-extrabold text-[1.75rem] sm:text-4xl lg:text-6xl text-white tracking-tight leading-tight sm:leading-[1.15] break-words">
                         @if(!empty($heroHighlight) && str_contains($heroTitle, $heroHighlight))
                             {!! str_replace($heroHighlight, '<span class="text-emerald-400">' . e($heroHighlight) . '</span>', e($heroTitle)) !!}
                         @else
@@ -312,37 +315,45 @@
                     </h1>
 
                     <!-- Subtitle -->
-                    <p class="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+                    <p class="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
                         {{ $heroSubtitle }}
                     </p>
 
-                    <!-- Clean Understated Trust Note -->
-                    <div class="flex items-center justify-center lg:justify-start gap-2.5 pt-2 text-xs text-slate-300 font-medium">
+                    <!-- Trust Stats -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1.5 text-xs text-slate-300 font-medium">
                         <span class="inline-flex items-center gap-1 text-amber-400 font-bold">
-                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
                             <span>{{ $stat3Val }}</span>
                         </span>
-                        <span class="text-white/30">•</span>
+                        <span class="text-white/30 hidden sm:inline">•</span>
                         <span>{{ $stat1Val }} {{ $stat1Lbl }}</span>
-                        <span class="text-white/30">•</span>
+                        <span class="text-white/30 hidden sm:inline">•</span>
                         <span class="text-emerald-300 font-semibold">{{ $stat2Lbl }}</span>
                     </div>
 
-                    <!-- Call To Action Buttons (Solid Colors) -->
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="#paket" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm sm:text-base shadow-sm transition flex items-center justify-center">
-                            <span>Jelajahi Paket Wisata</span>
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3">
+                        <a href="#paket" class="px-6 py-3 sm:px-8 sm:py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm shadow-sm transition flex items-center justify-center">
+                            Jelajahi Paket Wisata
                         </a>
-                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-900/80 border border-white/20 hover:bg-slate-900 text-white font-semibold text-sm sm:text-base transition flex items-center justify-center gap-2">
-                            <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400"></i>
+                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl bg-slate-900/80 border border-white/20 hover:bg-slate-900 text-white font-semibold text-sm transition flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
                             <span>Konsultasi WhatsApp</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile: Compact Trip Planner CTA (replaces widget on mobile) -->
+                    <div class="lg:hidden pt-1">
+                        <a href="#booking-section" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/20 bg-white/5 text-white/80 text-xs font-semibold hover:bg-white/10 transition">
+                            <i data-lucide="compass" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            <span>Atau isi formulir reservasi lengkap ↓</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Hero Right: Quick Trip Finder Widget -->
-                <div class="lg:col-span-5 reveal-fade-right delay-150">
-                    <div class="bg-surface-soft rounded-3xl p-6 sm:p-8 shadow-soft border border-neutral-200 text-slate-800">
+                <!-- Hero Right: Trip Finder Widget (desktop only) -->
+                <div class="hidden lg:block lg:col-span-5">
+                    <div class="bg-surface-soft rounded-3xl p-6 lg:p-8 shadow-soft border border-neutral-200 text-slate-800">
                         <div class="flex items-center gap-3 pb-5 border-b border-neutral-200">
                             <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
                                 <i data-lucide="compass" class="w-5 h-5"></i>
@@ -372,22 +383,20 @@
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Rencana Tanggal</label>
-                                    <input type="date" id="calc-date" min="{{ date('Y-m-d') }}" placeholder="Pilih tanggal trip..." class="w-full px-3.5 py-3 rounded-xl border border-neutral-200 bg-canvas text-slate-800 font-medium text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 transition outline-none custom-datepicker-input">
+                                    <input type="date" id="calc-date" min="{{ date('Y-m-d') }}" class="w-full px-3.5 py-3 rounded-xl border border-neutral-200 bg-canvas text-slate-800 font-medium text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 transition outline-none custom-datepicker-input">
                                 </div>
                             </div>
 
-                            <!-- Calculation Result Box (Soft Natural Canvas) -->
                             <div class="p-4 rounded-2xl bg-canvas border border-neutral-200 flex items-center justify-between">
                                 <div>
                                     <span class="text-xs font-medium text-slate-500 block">Estimasi Total Biaya</span>
                                     <span class="text-[10px] text-emerald-800 font-semibold bg-emerald-100 px-2 py-0.5 rounded inline-block mt-0.5">Termasuk Pemandu & Alat</span>
                                 </div>
                                 <div class="text-right">
-                                    <span id="calc-total-display" class="font-display font-extrabold text-xl sm:text-2xl text-emerald-800">Rp 900.000</span>
+                                    <span id="calc-total-display" class="font-display font-extrabold text-2xl text-emerald-800">Rp 900.000</span>
                                 </div>
                             </div>
 
-                            <!-- Quick Action Button (Solid Emerald) -->
                             <button type="button" id="btn-order-whatsapp" data-whatsapp="{{ $waNum }}" class="w-full py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm shadow-sm transition flex items-center justify-center gap-2">
                                 <i data-lucide="message-circle" class="w-4 h-4"></i>
                                 <span>Kirim & Booking via WhatsApp</span>
@@ -395,6 +404,48 @@
                         </form>
                     </div>
                 </div>
+
+                <!-- Mobile Trip Finder Widget (compact, below hero text) -->
+                <div class="lg:hidden">
+                    <div class="bg-surface-soft rounded-2xl p-4 shadow-soft border border-neutral-200 text-slate-800">
+                        <div class="flex items-center gap-2.5 pb-3 border-b border-neutral-200 mb-3">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                                <i data-lucide="compass" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <p class="font-display font-bold text-sm text-slate-900">Rencanakan Trip Anda</p>
+                                <p class="text-[11px] text-slate-500">Estimasi harga instan</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2.5">
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-600 mb-1 uppercase tracking-wide">Pilih Paket</label>
+                                <select class="w-full px-3 py-2.5 rounded-xl border border-neutral-200 bg-white text-slate-800 font-medium text-xs outline-none" onchange="document.getElementById('calc-package').value = this.value; document.getElementById('calc-package').dispatchEvent(new Event('change'))">
+                                    @foreach($allPackages as $pkg)
+                                        <option value="{{ $pkg->slug }}" data-price="{{ (int) $pkg->price }}">{{ $pkg->name }} ({{ $pkg->formatted_price }})</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-600 mb-1 uppercase tracking-wide">Peserta</label>
+                                    <input type="number" value="4" min="1" max="200" class="w-full px-3 py-2.5 rounded-xl border border-neutral-200 bg-white text-slate-800 font-bold text-xs outline-none" onchange="document.getElementById('calc-pax').value = this.value; document.getElementById('calc-pax').dispatchEvent(new Event('input'))">
+                                </div>
+                                <div class="flex flex-col justify-end">
+                                    <div class="px-3 py-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-center">
+                                        <span class="text-[10px] text-slate-500 block">Estimasi</span>
+                                        <span class="font-display font-extrabold text-sm text-emerald-700" id="mobile-calc-total">Rp 0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="btn-order-whatsapp-mobile" data-whatsapp="{{ $waNum }}" class="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition flex items-center justify-center gap-1.5">
+                                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                                <span>Kirim & Booking via WhatsApp</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -667,11 +718,11 @@
 
     <!-- 7. KEUNGGULAN & BUKTI KEPERCAYAN (Authentic Local Travel Agency) -->
     <section id="keunggulan" class="py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-16 items-center">
             <!-- Left Image with Clean Authentic Caption -->
             <div class="lg:col-span-5 relative reveal-fade-left">
-                <div class="rounded-3xl overflow-hidden shadow-sm border border-neutral-200 bg-neutral-200">
-                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Pemandu Lokal Puja Tour Pangandaran" class="w-full h-[420px] object-cover">
+                <div class="rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm border border-neutral-200 bg-neutral-200">
+                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Pemandu Lokal Puja Tour Pangandaran" class="w-full h-[260px] sm:h-[340px] lg:h-[420px] object-cover">
                 </div>
                 <div class="mt-3 text-center lg:text-left">
                     <p class="text-xs text-slate-500 font-medium">
@@ -746,9 +797,9 @@
             </div>
 
             <!-- Dynamic Galleries Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                 @forelse($galleries as $gIndex => $gal)
-                    <div class="gallery-item cursor-pointer group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition bg-neutral-200 reveal-scale-up {{ $gIndex % 4 === 1 ? 'delay-100' : ($gIndex % 4 === 2 ? 'delay-150' : ($gIndex % 4 === 3 ? 'delay-200' : '')) }}"
+                    <div class="gallery-item cursor-pointer group relative h-40 sm:h-52 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition bg-neutral-200 reveal-scale-up {{ $gIndex % 4 === 1 ? 'delay-100' : ($gIndex % 4 === 2 ? 'delay-150' : ($gIndex % 4 === 3 ? 'delay-200' : '')) }}"
                          data-img="{{ $gal->image_url }}"
                          data-caption="{{ $gal->title }} - {{ $gal->caption }}">
                         <img src="{{ $gal->image_url }}" alt="{{ $gal->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
@@ -781,7 +832,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             @forelse($testimonials as $tIndex => $testi)
-                <div class="bg-surface-soft rounded-3xl p-8 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover transition reveal-fade-up {{ $tIndex % 3 === 1 ? 'delay-100' : ($tIndex % 3 === 2 ? 'delay-200' : '') }}">
+                <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover transition reveal-fade-up {{ $tIndex % 3 === 1 ? 'delay-100' : ($tIndex % 3 === 2 ? 'delay-200' : '') }}">
                     <div>
                         <div class="flex items-center text-amber-500 gap-1 text-sm mb-4">
                             @for($i = 0; $i < ($testi->rating ?? 5); $i++)
@@ -887,7 +938,7 @@
     <section id="kontak" class="py-20 bg-canvas-soft border-t border-neutral-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-5 space-y-5 reveal-fade-left">
+                <div class="lg:col-span-5 space-y-4 sm:space-y-5 reveal-fade-left">
                     <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-surface-soft px-3 py-1 rounded-full border border-neutral-200">
                         Kantor Operasional
                     </span>
@@ -931,7 +982,7 @@
                 </div>
 
                 <div class="lg:col-span-7">
-                    <div class="rounded-3xl overflow-hidden shadow-md border border-neutral-200 bg-neutral-200 h-80 relative">
+                    <div class="rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-neutral-200 bg-neutral-200 h-64 sm:h-80 relative">
                         <iframe 
                             title="Lokasi Puja Tour Pangandaran"
                             src="{{ $settings['google_maps_embed_url'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.739775073105!2d108.6477546!3d-7.6974127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6598c19958348b%3A0x6b45f949c256ca61!2sPantai%20Pangandaran!5e0!3m2!1sid!2sid!4v1709800000000!5m2!1sid!2sid' }}" 

@@ -344,6 +344,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (calcPackage) updatePriceEstimate();
 
+    // 4.5 Mobile Widget Sync
+    // Sync the mobile calc total display with the desktop calculator result
+    const mobileCalcTotal = document.getElementById('mobile-calc-total');
+
+    function syncMobileCalcTotal() {
+        if (mobileCalcTotal && priceDisplay) {
+            mobileCalcTotal.textContent = priceDisplay.textContent;
+        }
+    }
+
+    // Patch updatePriceEstimate to also update mobile display
+    const _origUpdatePriceEstimate = updatePriceEstimate;
+    // We already assigned updatePriceEstimate above, we just add a side-effect via event listener
+    if (calcPackage) calcPackage.addEventListener('change', syncMobileCalcTotal);
+    if (calcPax) calcPax.addEventListener('input', syncMobileCalcTotal);
+
+    // Initial sync
+    syncMobileCalcTotal();
+
+    // Mobile WhatsApp button handler (mirrors desktop)
+    const submitWhatsappBtnMobile = document.getElementById('btn-order-whatsapp-mobile');
+    if (submitWhatsappBtnMobile) {
+        submitWhatsappBtnMobile.addEventListener('click', (e) => {
+            e.preventDefault();
+            const selectedOption = calcPackage ? (calcPackage.querySelector(`option[value="${calcPackage.value}"]`) || calcPackage.options[calcPackage.selectedIndex]) : null;
+            const packageName = selectedOption ? selectedOption.text : 'Paket Wisata Pangandaran';
+
+            let pax = parseInt(calcPax?.value || '1', 10);
+            if (isNaN(pax) || pax < 1) pax = 1;
+            else if (pax > 500) pax = 500;
+
+            const today = new Date().toISOString().split('T')[0];
+            const altDateInput = calcDate?.parentElement?.querySelector('.flatpickr-input[type="text"]');
+            let date = altDateInput && altDateInput.value ? altDateInput.value : (calcDate?.value || 'Akan disesuaikan');
+            if (calcDate && calcDate.value && calcDate.value < today) {
+                date = today;
+                calcDate.value = today;
+            }
+
+            const name = calcName && calcName.value.trim() ? calcName.value.trim() : 'Wisatawan';
+            const total = mobileCalcTotal ? mobileCalcTotal.textContent : (priceDisplay ? priceDisplay.textContent : '-');
+
+            let message = `Halo Admin Puja Tour & Travel Pangandaran,\n\n`;
+            message += `Saya ingin konsultasi & reservasi paket wisata melalui website (mobile):\n\n`;
+            message += `📋 *Detail Rencana Trip:*\n`;
+            message += `• *Nama Pemesan:* ${name}\n`;
+            message += `• *Paket Pilihan:* ${packageName}\n`;
+            message += `• *Jumlah Peserta:* ${pax} Orang\n`;
+            message += `• *Rencana Tanggal:* ${date}\n`;
+            message += `• *Estimasi Total:* ${total}\n`;
+            message += `\nMohon info ketersediaan slot dan jadwalnya. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappNumber = submitWhatsappBtnMobile.getAttribute('data-whatsapp') || '6281234567890';
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+        });
+    }
+
     if (submitWhatsappBtn) {
         submitWhatsappBtn.addEventListener('click', (e) => {
             e.preventDefault();

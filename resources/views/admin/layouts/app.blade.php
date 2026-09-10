@@ -50,27 +50,27 @@
     <div id="admin-mobile-overlay" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs z-40 transition-opacity duration-300 opacity-0 pointer-events-none md:hidden"></div>
 
     <!-- Admin Mobile Navigation Drawer -->
-    <aside id="admin-mobile-drawer" class="fixed inset-y-0 left-0 z-50 w-72 max-w-[85vw] bg-slate-900 text-slate-300 flex flex-col justify-between transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden shadow-2xl overflow-y-auto">
+    <aside id="admin-mobile-drawer" class="fixed inset-y-0 left-0 z-50 w-72 max-w-[85vw] bg-white text-slate-700 flex flex-col justify-between transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden shadow-2xl overflow-y-auto border-r border-neutral-200">
         <div>
             <!-- Mobile Drawer Brand Header & Close Button -->
-            <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+            <div class="p-5 border-b border-neutral-200 flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 shrink-0 flex items-center justify-center">
                         <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja" class="w-full h-full object-contain">
                     </div>
                     <div>
-                        <span class="font-display font-bold text-white text-base leading-tight block">PUJA ADMIN</span>
+                        <span class="font-display font-bold text-slate-900 text-base leading-tight block">PUJA ADMIN</span>
                         <span class="text-[10px] text-emerald-400 font-bold tracking-wider uppercase">CMS Panel</span>
                     </div>
                 </div>
-                <button type="button" id="admin-close-mobile-btn" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition" aria-label="Tutup Menu">
+                <button type="button" id="admin-close-mobile-btn" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition" aria-label="Tutup Menu">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
 
             <!-- Mobile Navigation Links -->
             <nav class="p-4 space-y-1.5 text-sm font-medium">
-                <a href="{{ route('admin.dashboard') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.dashboard') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                <a href="{{ route('admin.dashboard') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.dashboard') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                     <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i>
                     <span>Dashboard</span>
                 </a>
@@ -78,7 +78,7 @@
                 <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Katalog & Produk
                 </div>
-                <a href="{{ route('admin.packages.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.packages.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                <a href="{{ route('admin.packages.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.packages.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                     <i data-lucide="palmtree" class="w-5 h-5 shrink-0"></i>
                     <span>Paket Wisata</span>
                 </a>
@@ -86,7 +86,7 @@
                 <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Operasional
                 </div>
-                <a href="{{ route('admin.reservations.index') }}" class="admin-mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.reservations.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                <a href="{{ route('admin.reservations.index') }}" class="admin-mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.reservations.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                     <div class="flex items-center gap-3">
                         <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i>
                         <span>Reservasi Trip</span>
@@ -100,15 +100,15 @@
                 <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Manajemen Konten
                 </div>
-                <a href="{{ route('admin.galleries.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.galleries.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                <a href="{{ route('admin.galleries.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.galleries.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                     <i data-lucide="image" class="w-5 h-5 shrink-0"></i>
                     <span>Galeri Foto</span>
                 </a>
-                <a href="{{ route('admin.testimonials.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.testimonials.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                <a href="{{ route('admin.testimonials.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.testimonials.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                     <i data-lucide="message-square-quote" class="w-5 h-5 shrink-0"></i>
                     <span>Ulasan Testimoni</span>
                 </a>
-                <a href="{{ route('admin.faqs.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.faqs.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                <a href="{{ route('admin.faqs.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.faqs.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                     <i data-lucide="help-circle" class="w-5 h-5 shrink-0"></i>
                     <span>Tanya Jawab (FAQ)</span>
                 </a>
@@ -116,7 +116,7 @@
                 <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Pengaturan
                 </div>
-                <a href="{{ route('admin.settings.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.settings.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                <a href="{{ route('admin.settings.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.settings.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                     <i data-lucide="settings" class="w-5 h-5 shrink-0"></i>
                     <span>Kontak & CMS</span>
                 </a>
@@ -124,18 +124,18 @@
         </div>
 
         <!-- User Info & Logout -->
-        <div class="p-4 border-t border-slate-800 bg-slate-950">
+        <div class="p-4 border-t border-neutral-200 bg-neutral-50">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3 overflow-hidden">
                     <div class="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-sm shrink-0">
                         {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
                     </div>
                     <div class="truncate">
-                        <span class="text-xs font-bold text-white block truncate">{{ auth()->user()->name ?? 'Admin' }}</span>
-                        <span class="text-[10px] text-slate-400 block">{{ auth()->user()->username ?? 'admin' }}</span>
+                        <span class="text-xs font-bold text-slate-900 block truncate">{{ auth()->user()->name ?? 'Admin' }}</span>
+                        <span class="text-[10px] text-slate-500 block">{{ auth()->user()->username ?? 'admin' }}</span>
                     </div>
                 </div>
-                <a href="{{ route('admin.logout') }}" title="Keluar" class="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition">
+                <a href="{{ route('admin.logout') }}" title="Keluar" class="p-2 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition">
                     <i data-lucide="log-out" class="w-5 h-5"></i>
                 </a>
             </div>
@@ -144,22 +144,22 @@
 
     <div class="flex-1 flex overflow-hidden">
         <!-- Desktop Sidebar Navigation (Solid Slate 900) -->
-        <aside id="admin-sidebar" class="w-64 bg-slate-900 text-slate-300 shrink-0 flex-col justify-between hidden md:flex border-r border-slate-800">
+        <aside id="admin-sidebar" class="w-64 bg-white text-slate-700 shrink-0 flex-col justify-between hidden md:flex border-r border-neutral-200">
             <div>
                 <!-- Brand Header -->
-                <div class="p-5 border-b border-slate-800 flex items-center gap-3">
+                <div class="p-5 border-b border-neutral-200 flex items-center gap-3">
                     <div class="w-11 h-11 shrink-0 flex items-center justify-center">
                         <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja" class="w-full h-full object-contain">
                     </div>
                     <div>
-                        <span class="font-display font-bold text-white text-base leading-tight block">PUJA ADMIN</span>
+                        <span class="font-display font-bold text-slate-900 text-base leading-tight block">PUJA ADMIN</span>
                         <span class="text-[10px] text-emerald-400 font-bold tracking-wider uppercase">CMS Panel</span>
                     </div>
                 </div>
 
                 <!-- Navigation Links -->
                 <nav class="p-4 space-y-1.5 text-sm font-medium">
-                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.dashboard') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.dashboard') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i>
                         <span>Dashboard</span>
                     </a>
@@ -167,7 +167,7 @@
                     <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Katalog & Produk
                     </div>
-                    <a href="{{ route('admin.packages.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.packages.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <a href="{{ route('admin.packages.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.packages.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="palmtree" class="w-5 h-5 shrink-0"></i>
                         <span>Paket Wisata</span>
                     </a>
@@ -175,7 +175,7 @@
                     <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Operasional
                     </div>
-                    <a href="{{ route('admin.reservations.index') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.reservations.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <a href="{{ route('admin.reservations.index') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.reservations.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <div class="flex items-center gap-3">
                             <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i>
                             <span>Reservasi Trip</span>
@@ -189,15 +189,15 @@
                     <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Manajemen Konten
                     </div>
-                    <a href="{{ route('admin.galleries.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.galleries.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <a href="{{ route('admin.galleries.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.galleries.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="image" class="w-5 h-5 shrink-0"></i>
                         <span>Galeri Foto</span>
                     </a>
-                    <a href="{{ route('admin.testimonials.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.testimonials.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <a href="{{ route('admin.testimonials.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.testimonials.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="message-square-quote" class="w-5 h-5 shrink-0"></i>
                         <span>Ulasan Testimoni</span>
                     </a>
-                    <a href="{{ route('admin.faqs.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.faqs.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <a href="{{ route('admin.faqs.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.faqs.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="help-circle" class="w-5 h-5 shrink-0"></i>
                         <span>Tanya Jawab (FAQ)</span>
                     </a>
@@ -205,7 +205,7 @@
                     <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Pengaturan
                     </div>
-                    <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.settings.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.settings.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="settings" class="w-5 h-5 shrink-0"></i>
                         <span>Kontak & CMS</span>
                     </a>
@@ -213,18 +213,18 @@
             </div>
 
             <!-- User Info & Logout -->
-            <div class="p-4 border-t border-slate-800 bg-slate-950">
+            <div class="p-4 border-t border-neutral-200 bg-neutral-50">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3 overflow-hidden">
                         <div class="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-sm shrink-0">
                             {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
                         </div>
                         <div class="truncate">
-                            <span class="text-xs font-bold text-white block truncate">{{ auth()->user()->name ?? 'Admin' }}</span>
-                            <span class="text-[10px] text-slate-400 block">{{ auth()->user()->username ?? 'admin' }}</span>
+                            <span class="text-xs font-bold text-slate-900 block truncate">{{ auth()->user()->name ?? 'Admin' }}</span>
+                            <span class="text-[10px] text-slate-500 block">{{ auth()->user()->username ?? 'admin' }}</span>
                         </div>
                     </div>
-                    <a href="{{ route('admin.logout') }}" title="Keluar" class="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition">
+                    <a href="{{ route('admin.logout') }}" title="Keluar" class="p-2 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition">
                         <i data-lucide="log-out" class="w-5 h-5"></i>
                     </a>
                 </div>

@@ -1095,7 +1095,7 @@
             <div class="relative w-full h-full flex items-center justify-center overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl border border-white/10 bg-slate-900/60">
                 <img id="lightbox-image" src="" alt="Galeri Preview" class="max-w-full max-h-full object-contain transition-opacity duration-300">
             </div>
-            <p id="lightbox-caption" class="text-slate-300 text-xs sm:text-sm mt-3 font-medium text-center px-4 max-w-2xl line-clamp-2"></p>
+            <p id="lightbox-caption" class="text-slate-300 text-xs sm:text-sm mt-3 font-medium text-center px-4 max-w-2xl line-clamp-2" style="transition: opacity 0.2s ease, transform 0.2s ease;"></p>
         </div>
 
         <!-- Bottom Actions & Dot Thumbnails -->

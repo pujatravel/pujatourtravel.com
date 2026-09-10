@@ -511,6 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxWaLink = document.getElementById('lightbox-wa-link');
 
     let currentLightboxImages = [];
+    let currentLightboxCaptions = [];
     let currentLightboxIndex = 0;
     let lightboxTimer = null;
     let isLightboxAutoplay = true;
@@ -521,13 +522,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const total = currentLightboxImages.length;
         currentLightboxIndex = (currentLightboxIndex + total) % total;
         const currentSrc = currentLightboxImages[currentLightboxIndex];
+        const currentCaption = currentLightboxCaptions[currentLightboxIndex] || '';
 
-        // Smooth fade effect
+        // Smooth fade effect for image
         lightboxImage.style.opacity = '0';
         setTimeout(() => {
             lightboxImage.src = currentSrc;
             lightboxImage.style.opacity = '1';
         }, 150);
+
+        // Smooth slide/fade effect for caption
+        if (lightboxCaption) {
+            lightboxCaption.style.opacity = '0';
+            lightboxCaption.style.transform = 'translateY(8px)';
+            setTimeout(() => {
+                lightboxCaption.textContent = currentCaption;
+                lightboxCaption.style.opacity = '1';
+                lightboxCaption.style.transform = 'translateY(0)';
+            }, 150);
+        }
 
         if (lightboxCounter) {
             lightboxCounter.textContent = `Foto ${currentLightboxIndex + 1} / ${total}`;
@@ -596,15 +609,22 @@ document.addEventListener('DOMContentLoaded', () => {
         createIcons({ icons });
     }
 
-    function openLightboxCarousel({ title, caption, images, startIndex = 0, slug = '', price = '' }) {
+    function openLightboxCarousel({ title, caption, captions = [], images, startIndex = 0, slug = '', price = '' }) {
         if (!lightboxModal) return;
 
         currentLightboxImages = images && images.length ? images : ['/images/greencanyon.jpg'];
         currentLightboxIndex = startIndex;
         isLightboxAutoplay = currentLightboxImages.length > 1;
 
+        // Build per-image captions array; fall back to single caption for all slides
+        if (captions && captions.length === currentLightboxImages.length) {
+            currentLightboxCaptions = captions;
+        } else {
+            currentLightboxCaptions = currentLightboxImages.map(() => caption || '');
+        }
+
         if (lightboxTitle) lightboxTitle.textContent = title || 'Galeri Foto';
-        if (lightboxCaption) lightboxCaption.textContent = caption || '';
+        // Caption will be set dynamically per slide in renderLightboxSlide
 
         // Detail Link
         if (lightboxDetailLink) {
@@ -700,12 +720,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (src) allGalleryImages.push(src);
     });
 
+    // Also collect per-image captions
+    const allGalleryCaptions = [];
+    galleryItems.forEach(item => {
+        const cap = item.getAttribute('data-caption') || 'Dokumentasi Wisatawan Puja Tour';
+        allGalleryCaptions.push(cap);
+    });
+
     galleryItems.forEach((item, index) => {
         item.addEventListener('click', () => {
-            const caption = item.getAttribute('data-caption') || 'Dokumentasi Wisatawan Puja Tour';
             openLightboxCarousel({
                 title: 'Dokumentasi Wisatawan Pangandaran',
-                caption: caption,
+                caption: item.getAttribute('data-caption') || 'Dokumentasi Wisatawan Puja Tour',
+                captions: allGalleryCaptions,
                 images: allGalleryImages.length ? allGalleryImages : [item.getAttribute('data-img')],
                 startIndex: index,
             });

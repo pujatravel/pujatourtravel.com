@@ -125,11 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         heroDots.forEach((dot, idx) => {
             if (idx === currentHeroIndex) {
-                dot.classList.remove('w-2.5', 'bg-white/40');
-                dot.classList.add('w-8', 'bg-emerald-400');
+                dot.classList.remove('w-2', 'w-2.5', 'w-6', 'w-8', 'sm:w-2.5', 'sm:w-8', 'bg-white/40');
+                dot.classList.add('w-6', 'sm:w-8', 'bg-emerald-400');
             } else {
-                dot.classList.remove('w-8', 'bg-emerald-400');
-                dot.classList.add('w-2.5', 'bg-white/40');
+                dot.classList.remove('w-6', 'w-8', 'sm:w-8', 'bg-emerald-400');
+                dot.classList.add('w-2', 'sm:w-2.5', 'bg-white/40');
             }
         });
     }
@@ -490,7 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             dots.forEach((d, i) => {
                 if (i === activeIdx) {
-                    d.classList.remove('w-1.5', 'bg-white/50');
+                    d.classList.remove('w-1.5', 'w-3.5', 'bg-white/50');
                     d.classList.add('w-3.5', 'bg-emerald-400');
                 } else {
                     d.classList.remove('w-3.5', 'bg-emerald-400');

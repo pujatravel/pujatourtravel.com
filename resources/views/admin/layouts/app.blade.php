@@ -100,6 +100,10 @@
                 <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Manajemen Konten
                 </div>
+                <a href="{{ route('admin.banners.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.banners.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                    <i data-lucide="sparkles" class="w-5 h-5 shrink-0"></i>
+                    <span>Banner Hero</span>
+                </a>
                 <a href="{{ route('admin.galleries.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.galleries.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                     <i data-lucide="image" class="w-5 h-5 shrink-0"></i>
                     <span>Galeri Foto</span>
@@ -189,6 +193,10 @@
                     <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Manajemen Konten
                     </div>
+                    <a href="{{ route('admin.banners.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.banners.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                        <i data-lucide="sparkles" class="w-5 h-5 shrink-0"></i>
+                        <span>Banner Hero</span>
+                    </a>
                     <a href="{{ route('admin.galleries.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.galleries.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="image" class="w-5 h-5 shrink-0"></i>
                         <span>Galeri Foto</span>

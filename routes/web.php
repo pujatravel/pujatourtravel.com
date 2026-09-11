@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -155,6 +156,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('reservations/{reservation}', [ReservationController::class, 'show'])->name('reservations.show');
         Route::patch('reservations/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.update-status');
         Route::delete('reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
+
+        // Banner Hero Section CRUD
+        Route::get('banners', [BannerController::class, 'index'])->name('banners.index');
+        Route::put('banners/text', [BannerController::class, 'updateText'])->name('banners.update-text');
+        Route::post('banners/slider', [BannerController::class, 'storeSlider'])->name('banners.store-slider');
+        Route::post('banners/add-from-gallery', [BannerController::class, 'addFromGallery'])->name('banners.add-from-gallery');
+        Route::post('banners/slider/{gallery}/toggle', [BannerController::class, 'toggleSlider'])->name('banners.toggle-slider');
+        Route::delete('banners/slider/{gallery}', [BannerController::class, 'destroySlider'])->name('banners.destroy-slider');
 
         // Galleries
         Route::get('galleries', [GalleryController::class, 'index'])->name('galleries.index');

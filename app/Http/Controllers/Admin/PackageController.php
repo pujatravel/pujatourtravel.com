@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Models\PackageCategory;
-use App\Models\Reservation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -195,15 +194,6 @@ class PackageController extends Controller
 
     public function destroy(Package $package): RedirectResponse
     {
-        $hasReservations = Reservation::where('package_id', $package->id)->exists();
-        if ($hasReservations) {
-            $package->status = 'ARCHIVED';
-            $package->save();
-
-            return redirect()->route('admin.packages.index')
-                ->with('success', 'Paket wisata "'.$package->name.'" memiliki riwayat transaksi reservasi sehingga otomatis dialihkan ke status Diarsipkan (Archived).');
-        }
-
         $name = $package->name;
         $package->delete();
 

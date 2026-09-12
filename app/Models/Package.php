@@ -46,11 +46,6 @@ class Package extends Model
         return $this->belongsTo(PackageCategory::class, 'category_id');
     }
 
-    public function reservations(): HasMany
-    {
-        return $this->hasMany(Reservation::class, 'package_id');
-    }
-
     public function getFormattedPriceAttribute(): string
     {
         return 'Rp '.number_format((float) $this->price, 0, ',', '.');

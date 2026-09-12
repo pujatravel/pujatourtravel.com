@@ -84,20 +84,6 @@
                 </a>
 
                 <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                    Operasional
-                </div>
-                <a href="{{ route('admin.reservations.index') }}" class="admin-mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.reservations.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
-                    <div class="flex items-center gap-3">
-                        <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i>
-                        <span>Reservasi Trip</span>
-                    </div>
-                    @php $pendingCount = \App\Models\Reservation::where('status', 'PENDING')->count(); @endphp
-                    @if($pendingCount > 0)
-                        <span class="px-2 py-0.5 text-[10px] font-extrabold bg-amber-500 text-slate-950 rounded-full animate-pulse">{{ $pendingCount }}</span>
-                    @endif
-                </a>
-
-                <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Manajemen Konten
                 </div>
                 <a href="{{ route('admin.galleries.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.galleries.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
@@ -170,20 +156,6 @@
                     <a href="{{ route('admin.packages.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.packages.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="palmtree" class="w-5 h-5 shrink-0"></i>
                         <span>Paket Wisata</span>
-                    </a>
-
-                    <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                        Operasional
-                    </div>
-                    <a href="{{ route('admin.reservations.index') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.reservations.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
-                        <div class="flex items-center gap-3">
-                            <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i>
-                            <span>Reservasi Trip</span>
-                        </div>
-                        @php $pendingCount = \App\Models\Reservation::where('status', 'PENDING')->count(); @endphp
-                        @if($pendingCount > 0)
-                            <span class="px-2 py-0.5 text-[10px] font-extrabold bg-amber-500 text-slate-950 rounded-full animate-pulse">{{ $pendingCount }}</span>
-                        @endif
                     </a>
 
                     <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">

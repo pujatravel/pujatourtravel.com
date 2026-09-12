@@ -3,7 +3,6 @@
 namespace App\Helpers;
 
 use App\Models\Package;
-use App\Models\Reservation;
 use App\Models\Setting;
 
 class WhatsAppHelper
@@ -66,25 +65,11 @@ class WhatsAppHelper
     }
 
     /**
-     * Generate reservation confirmation inquiry URL.
-     */
-    public static function reservationConfirmationUrl(Reservation $reservation, ?string $phone = null): string
-    {
-        $message = "Halo Puja Tour Travel, saya baru saja mengirim permintaan reservasi untuk paket {$reservation->package_name} dengan Kode Reservasi [{$reservation->code}]. Mohon konfirmasinya.";
-
-        return static::buildUrl($phone, $message);
-    }
-
-    /**
      * Generate quick chat URL for admin to contact customer directly.
      */
-    public static function adminChatUrl(string $customerPhone, string $customerName, ?string $reservationCode = null): string
+    public static function adminChatUrl(string $customerPhone, string $customerName): string
     {
-        $message = "Halo {$customerName}, kami dari Puja Tour & Travel Pangandaran";
-        if ($reservationCode) {
-            $message .= " terkait reservasi #{$reservationCode}";
-        }
-        $message .= '. Ada yang bisa kami bantu?';
+        $message = "Halo {$customerName}, kami dari Puja Tour & Travel Pangandaran. Ada yang bisa kami bantu?";
 
         return static::buildUrl($customerPhone, $message);
     }

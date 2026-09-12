@@ -5,7 +5,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\PackageController as AdminPackageController;
-use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\PackageController;
@@ -61,7 +60,6 @@ Route::get('/paket/{slug}', [PackageController::class, 'show'])->name('packages.
 Route::get('/paket-wisata/{slug}', [PackageController::class, 'show'])->name('packages.show-alt');
 Route::get('/tentang-kami', [PageController::class, 'about'])->name('about');
 Route::get('/estimasi-biaya', [PageController::class, 'calculator'])->name('calculator');
-Route::get('/reservasi', [PageController::class, 'calculator'])->name('reservations.request');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/galeri', [PageController::class, 'gallery'])->name('gallery');
 Route::get('/testimonial', [PageController::class, 'testimonial'])->name('testimonial');
@@ -146,15 +144,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/realtime-visitors', [DashboardController::class, 'realtimeVisitors'])->name('realtime-visitors');
 
-        // Packages CRUD & Featured Toggle
+// Packages CRUD & Featured Toggle
         Route::resource('packages', AdminPackageController::class);
         Route::post('packages/{package}/toggle-featured', [AdminPackageController::class, 'toggleFeatured'])->name('packages.toggle-featured');
-
-        // Reservations
-        Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
-        Route::get('reservations/{reservation}', [ReservationController::class, 'show'])->name('reservations.show');
-        Route::patch('reservations/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.update-status');
-        Route::delete('reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
         // Galleries
         Route::get('galleries', [GalleryController::class, 'index'])->name('galleries.index');

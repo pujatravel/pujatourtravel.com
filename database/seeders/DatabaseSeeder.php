@@ -6,7 +6,6 @@ use App\Models\Faq;
 use App\Models\Gallery;
 use App\Models\Package;
 use App\Models\PackageCategory;
-use App\Models\Reservation;
 use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\User;
@@ -244,68 +243,7 @@ class DatabaseSeeder extends Seeder
             'seo_description' => 'Paket belajar surfing Batu Karas Pangandaran dengan instruktur lokal dan sunset di Pantai Madasari.',
         ]);
 
-        // 4. Sample Reservations
-        Reservation::updateOrCreate(['code' => 'RES-2026-000101'], [
-            'customer_name' => 'Budi Santoso',
-            'customer_phone' => '081298765432',
-            'customer_email' => 'budi.santoso@gmail.com',
-            'package_id' => $pkg1->id,
-            'package_name' => $pkg1->name,
-            'travel_date' => now()->addDays(5)->format('Y-m-d'),
-            'pax_count' => 6,
-            'total_price' => 1215000, // discount 10%
-            'source' => 'Website',
-            'notes' => 'Tolong sediakan pemandu yang ramah untuk anak-anak.',
-            'admin_notes' => 'Sudah ditindaklanjuti via WA, DP 30% diterima via BCA.',
-            'status' => 'DIKONFIRMASI',
-        ]);
-
-        Reservation::updateOrCreate(['code' => 'RES-2026-000102'], [
-            'customer_name' => 'PT Surya Digital Pratama (Ibu Maya)',
-            'customer_phone' => '081388776655',
-            'customer_email' => 'maya.hrd@suryadigital.co.id',
-            'package_id' => $pkg6->id,
-            'package_name' => $pkg6->name,
-            'travel_date' => now()->addDays(12)->format('Y-m-d'),
-            'pax_count' => 45,
-            'total_price' => 44000000,
-            'source' => 'Website',
-            'notes' => 'Butuh panggung kecil untuk acara internal di malam kedua.',
-            'admin_notes' => 'Tahap negosiasi menu banquet dan koordinasi hotel.',
-            'status' => 'DIPROSES',
-        ]);
-
-        Reservation::updateOrCreate(['code' => 'RES-2026-000103'], [
-            'customer_name' => 'dr. Hendra Wijaya',
-            'customer_phone' => '085712345678',
-            'customer_email' => 'hendra.wijaya@yahoo.com',
-            'package_id' => $pkg2->id,
-            'package_name' => $pkg2->name,
-            'travel_date' => now()->addDays(2)->format('Y-m-d'),
-            'pax_count' => 4,
-            'total_price' => 700000,
-            'source' => 'WhatsApp',
-            'notes' => 'Minta foto underwater banyak dengan ikan badut.',
-            'admin_notes' => 'Menunggu transfer DP.',
-            'status' => 'PENDING',
-        ]);
-
-        Reservation::updateOrCreate(['code' => 'RES-2026-000098'], [
-            'customer_name' => 'Dian Kusuma',
-            'customer_phone' => '082133445566',
-            'customer_email' => 'dian.kusuma@gmail.com',
-            'package_id' => $pkg3->id,
-            'package_name' => $pkg3->name,
-            'travel_date' => now()->subDays(3)->format('Y-m-d'),
-            'pax_count' => 2,
-            'total_price' => 1500000,
-            'source' => 'Website',
-            'notes' => 'Paket honeymoon 2D1N.',
-            'admin_notes' => 'Trip sukses tuntas, customer sangat puas bintang 5.',
-            'status' => 'SELESAI',
-        ]);
-
-        // 5. Galleries
+        // 4. Galleries
         $galleries = [
             ['title' => 'Body Rafting Green Canyon', 'image_url' => '/images/greencanyon.jpg', 'category' => 'Rafting', 'caption' => 'Petualangan menyusuri ngarai stalaktit Green Canyon'],
             ['title' => 'Snorkeling Pasir Putih', 'image_url' => '/images/pasir_putih.jpg', 'category' => 'Bahari', 'caption' => 'Terumbu karang dan kejernihan air laut Pasir Putih'],

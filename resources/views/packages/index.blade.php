@@ -74,11 +74,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Favicons for Google Search & Browsers -->
-    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('favicon-48x48.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <!-- Favicons for Browsers & Google Search -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('favicon-48x48.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('favicon-192x192.png') }}?v=3">
+    <link rel="icon" type="image/png" href="{{ asset('favicon-32x32.png') }}?v=3">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v=3">
 
     <!-- Vite Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -90,7 +94,7 @@
 
     @include('partials.analytics')
 </head>
-<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white">
+<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white pt-20 sm:pt-24">
 
     @php
         $waNum = $settings['whatsapp_number'] ?? '6281234567890';
@@ -129,13 +133,7 @@
                 <a href="{{ route('contact') }}" class="hover:text-emerald-700 transition">Kontak</a>
             </nav>
 
-            <!-- Header Action CTA -->
-            <div class="hidden sm:flex items-center gap-3">
-                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20paket%20wisata%20Pangandaran" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition flex items-center gap-2">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>Tanya Trip CS</span>
-                </a>
-            </div>
+
 
             <!-- Mobile Home Link -->
             <div class="flex items-center gap-2 lg:hidden">
@@ -161,7 +159,7 @@
     <!-- CATALOG HEADER -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
         <div class="bg-surface-soft rounded-3xl p-8 sm:p-12 shadow-soft border border-neutral-200 text-center relative overflow-hidden">
-            <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">
                 Katalog Lengkap
             </span>
             <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mt-3 tracking-tight">
@@ -351,10 +349,30 @@
                 <div>
                     <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Navigasi</h4>
                     <ul class="space-y-2 text-xs text-slate-400">
-                        <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
-                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Semua Paket Wisata</a></li>
-                        <li><a href="{{ route('home') }}#tentang" class="hover:text-white transition">Tentang Kami</a></li>
-                        <li><a href="{{ route('home') }}#faq" class="hover:text-white transition">Pertanyaan Umum (FAQ)</a></li>
+                        @if(!request()->routeIs('home'))
+                            <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
+                        @endif
+                        @if(!request()->routeIs('packages.index'))
+                            <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Semua Paket Wisata</a></li>
+                        @endif
+                        @if(!request()->routeIs('about'))
+                            <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang Kami</a></li>
+                        @endif
+                        @if(!request()->routeIs('calculator'))
+                            <li><a href="{{ route('calculator') }}" class="hover:text-white transition">Estimasi Biaya</a></li>
+                        @endif
+                        @if(!request()->routeIs('gallery'))
+                            <li><a href="{{ route('gallery') }}" class="hover:text-white transition">Galeri Foto</a></li>
+                        @endif
+                        @if(!request()->routeIs('testimonial'))
+                            <li><a href="{{ route('testimonial') }}" class="hover:text-white transition">Ulasan Wisatawan</a></li>
+                        @endif
+                        @if(!request()->routeIs('faq'))
+                            <li><a href="{{ route('faq') }}" class="hover:text-white transition">Pertanyaan Umum (FAQ)</a></li>
+                        @endif
+                        @if(!request()->routeIs('contact'))
+                            <li><a href="{{ route('contact') }}" class="hover:text-white transition">Kontak & Lokasi</a></li>
+                        @endif
                     </ul>
                 </div>
                 <div>
@@ -372,11 +390,12 @@
             </div>
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
                 <p>© {{ date('Y') }} {{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}. All rights reserved.</p>
-                <div class="flex items-center gap-4">
-                    <a href="{{ route('admin.login') }}" class="hover:text-emerald-400 font-bold text-slate-400 flex items-center gap-1">
-                        <i data-lucide="lock" class="w-3.5 h-3.5"></i>
-                        <span>Login Admin</span>
-                    </a>
+                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
+                    <span>•</span>
+                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
+                    <span>•</span>
+                    <a href="{{ route('refund-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Pengembalian</a>
                 </div>
             </div>
         </div>

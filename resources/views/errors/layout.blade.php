@@ -11,11 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Favicons for Google Search & Browsers -->
-    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('favicon-48x48.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}?v=3">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v=3">
 
     <!-- Vite Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -27,7 +27,7 @@
 
     @include('partials.analytics')
 </head>
-<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white flex flex-col min-h-screen">
+<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white flex flex-col min-h-screen relative overflow-x-hidden">
 
     @php
         try {
@@ -41,9 +41,18 @@
         $emailAddr = $settings['email_address'] ?? 'info@pujatourtravel.com';
         $officeAddr = $settings['office_address'] ?? 'Jl. Pantai Barat No. 88, Pangandaran, Jawa Barat 46396';
         $companyName = $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN';
+        $igUrl = $settings['instagram_url'] ?? 'https://www.instagram.com/puja_tourtravel/';
+        $tiktokUrl = $settings['tiktok_url'] ?? 'https://tiktok.com/@pujatourtravel';
     @endphp
 
-    <!-- STICKY NAVBAR (Identik dengan Halaman Utama) -->
+    <!-- Background Ambient Glow Effects (Identik dengan Beranda) -->
+    <div class="pointer-events-none fixed inset-0 overflow-hidden z-0">
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 -left-32 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 right-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- STICKY NAVBAR -->
     <header id="main-header" class="sticky top-0 z-40 w-full bg-surface-soft/95 backdrop-blur-md transition-all duration-300 py-3.5 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
             <!-- Brand Logo -->
@@ -61,7 +70,7 @@
                 </div>
             </a>
 
-            <!-- Desktop Navigation (Semua Menu Lengkap) -->
+            <!-- Desktop Navigation -->
             <nav class="hidden lg:flex items-center gap-7 font-medium text-slate-600 text-sm">
                 <a href="{{ route('home') }}" class="hover:text-emerald-700 transition">Beranda</a>
                 <a href="{{ route('packages.index') }}" class="hover:text-emerald-700 transition">Paket Wisata</a>
@@ -72,11 +81,13 @@
                 <a href="{{ route('contact') }}" class="hover:text-emerald-700 transition">Kontak</a>
             </nav>
 
-            <!-- Header Action CTA -->
-            <div class="hidden sm:flex items-center gap-3">
-                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20butuh%20bantuan%20di%20website" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition flex items-center gap-2">
+            <!-- Quick Action CTA -->
+            <div class="hidden lg:flex items-center gap-3">
+                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20butuh%20bantuan%20di%20website" 
+                   target="_blank" 
+                   class="px-4.5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm hover:shadow transition flex items-center gap-2">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>Tanya Trip CS</span>
+                    <span>Tanya Admin</span>
                 </a>
             </div>
 
@@ -93,7 +104,7 @@
         <div>
             <div class="flex items-center justify-between pb-6 border-b border-neutral-200">
                 <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 shrink-0 flex items-center justify-center">
+                    <div class="w-10 h-10 shrink-0 flex items-center justify-center">
                         <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja" class="w-full h-full object-contain">
                     </div>
                     <div>
@@ -106,108 +117,140 @@
                 </button>
             </div>
 
-            <nav class="py-6 space-y-1.5 font-medium text-slate-700 text-sm">
-                <a href="{{ route('home') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Beranda</span>
-                </a>
-                <a href="{{ route('packages.index') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Paket Wisata</span>
-                </a>
-                <a href="{{ route('about') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Tentang Kami</span>
-                </a>
-                <a href="{{ route('calculator') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Estimasi Biaya</span>
-                </a>
-                <a href="{{ route('faq') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>FAQ</span>
-                </a>
-                <a href="{{ route('gallery') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Galeri</span>
-                </a>
-                <a href="{{ route('contact') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Kontak & Lokasi</span>
-                </a>
+            <nav class="py-6 space-y-1 text-sm font-medium">
+                <a href="{{ route('home') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">Beranda</a>
+                <a href="{{ route('packages.index') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">Paket Wisata</a>
+                <a href="{{ route('about') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">Tentang Kami</a>
+                <a href="{{ route('calculator') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">Estimasi Biaya</a>
+                <a href="{{ route('faq') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">FAQ</a>
+                <a href="{{ route('gallery') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">Galeri</a>
+                <a href="{{ route('contact') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">Kontak</a>
             </nav>
         </div>
 
         <div class="pt-6 border-t border-neutral-200 space-y-3">
-            <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20butuh%20bantuan%20di%20website" target="_blank" class="w-full py-3 rounded-xl bg-slate-900 text-white font-semibold text-xs flex items-center justify-center gap-2 hover:bg-slate-800 transition">
-                <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
+            <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20butuh%20bantuan%20di%20website" target="_blank" class="w-full py-3 rounded-xl bg-emerald-700 text-white font-semibold text-xs flex items-center justify-center gap-2 hover:bg-emerald-800 transition shadow-sm">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
                 <span>Chat WhatsApp Resmi</span>
             </a>
-            <a href="{{ route('calculator') }}" class="drawer-link w-full py-3 rounded-xl bg-emerald-700 text-white font-semibold text-xs flex items-center justify-center gap-2 hover:bg-emerald-800 transition shadow-sm">
-                <span>Hitung Estimasi Biaya</span>
-                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <a href="{{ route('home') }}" class="drawer-link w-full py-3 rounded-xl bg-slate-100 text-slate-700 font-semibold text-xs flex items-center justify-center gap-2 hover:bg-slate-200 transition">
+                <i data-lucide="home" class="w-4 h-4"></i>
+                <span>Kembali ke Beranda</span>
             </a>
         </div>
     </div>
 
     <!-- MAIN ERROR CONTENT -->
-    <main class="flex-1 flex items-center justify-center py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <main class="relative z-10 flex-1 flex items-center justify-center py-10 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl w-full text-center">
             @yield('content')
         </div>
     </main>
 
-    <!-- FOOTER (Identik 4-Kolom dengan Halaman Utama) -->
-    <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800 mt-auto">
+    <!-- FOOTER -->
+    <footer data-nav-color="dark" class="relative z-10 bg-slate-950 text-slate-400 text-xs py-14 border-t border-slate-800 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
                 <!-- Col 1: Brand & Profil -->
-                <div class="space-y-4">
+                <div class="lg:col-span-2 space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 shrink-0">
-                            <img src="{{ asset('images/puja_logo.png') }}" alt="Logo" class="w-full h-full object-contain">
+                        <div class="w-14 h-14 shrink-0 flex items-center justify-center">
+                            <img src="{{ asset('images/puja_logo.png') }}" alt="Puja Tour Travel" class="w-full h-full object-contain">
                         </div>
-                        <span class="font-display font-extrabold text-xl text-white">
-                            PUJA<span class="text-emerald-400 ml-1">TOUR</span>
-                        </span>
+                        <div>
+                            <span class="font-display font-extrabold text-xl text-white block">{{ $companyName }}</span>
+                            <span class="text-[10px] text-emerald-400 tracking-widest uppercase font-bold">Pangandaran Destination Specialist</span>
+                        </div>
                     </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
+                    <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
                         Penyedia paket wisata resmi Pangandaran, body rafting Green Canyon, snorkeling Pasir Putih, dan gathering perusahaan terpercaya.
                     </p>
+                    <div class="flex items-center gap-2.5 pt-2 text-slate-300">
+                        <a href="{{ $igUrl }}" target="_blank" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <a href="{{ $tiktokUrl }}" target="_blank" aria-label="TikTok" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.89-4.49V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-.9-.07z"/>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Col 2: Navigasi Lengkap -->
+                <!-- Col 2: Navigasi Utama -->
                 <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Navigasi</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
-                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Paket Wisata</a></li>
-                        <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang Kami</a></li>
-                        <li><a href="{{ route('calculator') }}" class="hover:text-white transition">Estimasi Biaya</a></li>
-                        <li><a href="{{ route('faq') }}" class="hover:text-white transition">FAQ</a></li>
-                        <li><a href="{{ route('gallery') }}" class="hover:text-white transition">Galeri</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-white transition">Kontak</a></li>
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Navigasi Utama</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        @if(!request()->routeIs('home'))
+                            <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
+                        @endif
+                        @if(!request()->routeIs('packages.index'))
+                            <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Paket Wisata</a></li>
+                        @endif
+                        @if(!request()->routeIs('about'))
+                            <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang Kami</a></li>
+                        @endif
+                        @if(!request()->routeIs('calculator'))
+                            <li><a href="{{ route('calculator') }}" class="hover:text-white transition">Estimasi Biaya</a></li>
+                        @endif
+                        @if(!request()->routeIs('gallery'))
+                            <li><a href="{{ route('gallery') }}" class="hover:text-white transition">Galeri Wisata</a></li>
+                        @endif
+                        @if(!request()->routeIs('testimonial'))
+                            <li><a href="{{ route('testimonial') }}" class="hover:text-white transition">Ulasan Wisatawan</a></li>
+                        @endif
+                        @if(!request()->routeIs('faq'))
+                            <li><a href="{{ route('faq') }}" class="hover:text-white transition">Pertanyaan Umum (FAQ)</a></li>
+                        @endif
+                        @if(!request()->routeIs('contact'))
+                            <li><a href="{{ route('contact') }}" class="hover:text-white transition">Kontak & Lokasi</a></li>
+                        @endif
                     </ul>
                 </div>
 
-                <!-- Col 3: Kantor Operasional -->
+                <!-- Col 3: Destinasi Populer -->
+                <div>
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Destinasi Populer</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Body Rafting Green Canyon</a></li>
+                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">River Tubing Santirah</a></li>
+                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Body Rafting Citumang</a></li>
+                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Snorkeling Pasir Putih</a></li>
+                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Jelajah Gua Cagar Alam</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Kantor Operasional -->
                 <div>
                     <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Kantor Operasional</h4>
                     <p class="text-xs text-slate-400 leading-relaxed">{{ $officeAddr }}</p>
                     <p class="text-xs text-emerald-400 font-bold mt-2">Hotline: {{ $phoneNum }}</p>
                     <p class="text-xs text-slate-400 mt-1">Email: {{ $emailAddr }}</p>
-                </div>
-
-                <!-- Col 4: Legalitas Resmi -->
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Legalitas Resmi</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Berbadan hukum resmi CV dengan izin pariwisata terdaftar dan pemandu bersertifikasi kepemanduan HPI Jawa Barat.
-                    </p>
+                    <div class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-emerald-400">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span>Buka Setiap Hari (06.00 - 21.00)</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Bottom Row: Copyright & Admin Link -->
+            <!-- Bottom Row: Copyright & Links -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
                 <p>© {{ date('Y') }} {{ $companyName }}. All rights reserved.</p>
-                <div class="flex items-center gap-4">
-                    <a href="{{ route('admin.login') }}" class="hover:text-emerald-400 font-bold text-slate-400 flex items-center gap-1 transition">
-                        <i data-lucide="lock" class="w-3.5 h-3.5"></i>
-                        <span>Login Admin</span>
-                    </a>
+                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
+                    <span>•</span>
+                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
+                    <span>•</span>
+                    <a href="{{ route('refund-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Pengembalian</a>
                 </div>
             </div>
         </div>
@@ -225,5 +268,17 @@
         <i data-lucide="message-circle" class="w-6 h-6"></i>
     </a>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            const btn = document.getElementById('mobile-menu-btn');
+            const drawer = document.getElementById('mobile-drawer');
+            const closeBtn = document.getElementById('close-drawer-btn');
+            if (btn && drawer) {
+                btn.addEventListener('click', () => drawer.classList.remove('hidden'));
+                if (closeBtn) closeBtn.addEventListener('click', () => drawer.classList.add('hidden'));
+            }
+        });
+    </script>
 </body>
 </html>

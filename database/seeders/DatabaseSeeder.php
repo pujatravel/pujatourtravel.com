@@ -303,7 +303,7 @@ class DatabaseSeeder extends Seeder
         Setting::set('email_address', 'info@pujatourtravel.com');
         Setting::set('office_address', 'Jl. Pantai Barat No. 88, Pangandaran, Jawa Barat 46396');
         Setting::set('operational_hours', 'Setiap Hari: 06.00 - 21.00 WIB');
-        Setting::set('instagram_url', 'https://instagram.com/pujatourtravel');
+        Setting::set('instagram_url', 'https://www.instagram.com/puja_tourtravel/');
         Setting::set('tiktok_url', 'https://tiktok.com/@pujatourtravel');
 
         // 8. FAQs

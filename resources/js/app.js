@@ -446,20 +446,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. FAQ Accordion
+    // 5. FAQ Accordion with Smooth Slide-Down Animation
     const faqToggles = document.querySelectorAll('.faq-toggle');
     faqToggles.forEach(toggle => {
         toggle.addEventListener('click', () => {
-            const content = toggle.nextElementSibling;
+            const item = toggle.closest('.faq-item') || toggle.parentElement;
+            const collapse = item ? item.querySelector('.faq-collapse') : toggle.nextElementSibling;
             const icon = toggle.querySelector('.faq-icon');
-            const isOpen = !content.classList.contains('hidden');
+            const isCurrentlyOpen = collapse ? collapse.classList.contains('is-open') : false;
 
-            // Close all
-            document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
-            document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-180'));
+            // Close all open accordions smoothly
+            document.querySelectorAll('.faq-collapse.is-open').forEach(c => {
+                c.classList.remove('is-open');
+                const pItem = c.closest('.faq-item');
+                if (pItem) pItem.classList.remove('is-active');
+                const pToggle = pItem ? pItem.querySelector('.faq-toggle') : null;
+                const pIcon = pToggle ? pToggle.querySelector('.faq-icon') : null;
+                if (pIcon) pIcon.classList.remove('rotate-180');
+            });
 
-            if (!isOpen) {
-                content.classList.remove('hidden');
+            // Backward compatibility fallback for static hidden class
+            document.querySelectorAll('.faq-content:not(.faq-collapse-content)').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.faq-icon:not(.rotate-180)').forEach(i => i.classList.remove('rotate-180'));
+
+            // Open clicked item if it was closed
+            if (!isCurrentlyOpen) {
+                if (collapse) {
+                    collapse.classList.remove('hidden');
+                    collapse.classList.add('is-open');
+                }
+                if (item) item.classList.add('is-active');
                 if (icon) icon.classList.add('rotate-180');
             }
         });
@@ -565,6 +581,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxAutoplayBtn = document.getElementById('lightbox-autoplay-btn');
     const lightboxAutoplayLabel = document.getElementById('lightbox-autoplay-label');
     const lightboxPlayIcon = document.getElementById('lightbox-play-icon');
+    const lightboxFitBtn = document.getElementById('lightbox-fit-btn');
+    const lightboxFitLabel = document.getElementById('lightbox-fit-label');
+    const lightboxFitIcon = document.getElementById('lightbox-fit-icon');
+    const lightboxFullscreenBtn = document.getElementById('lightbox-fullscreen-btn');
+    const lightboxFullscreenLabel = document.getElementById('lightbox-fullscreen-label');
+    const lightboxFullscreenIcon = document.getElementById('lightbox-fullscreen-icon');
     const lightboxDetailLink = document.getElementById('lightbox-detail-link');
     const lightboxWaLink = document.getElementById('lightbox-wa-link');
 
@@ -573,6 +595,63 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLightboxIndex = 0;
     let lightboxTimer = null;
     let isLightboxAutoplay = true;
+    let isLightboxCoverMode = false;
+
+    function setLightboxFitMode(cover) {
+        isLightboxCoverMode = cover;
+        if (!lightboxImage) return;
+
+        if (isLightboxCoverMode) {
+            // Mode Penuh (fill container completely edge-to-edge)
+            lightboxImage.classList.remove('max-w-full', 'max-h-full', 'w-auto', 'h-auto', 'object-contain', 'cursor-zoom-in');
+            lightboxImage.classList.add('w-full', 'h-full', 'object-cover', 'cursor-zoom-out');
+            lightboxImage.title = 'Klik untuk kembali ke Mode Asli (Proporsional)';
+            if (lightboxFitLabel) lightboxFitLabel.textContent = 'Mode Asli';
+            if (lightboxFitIcon) lightboxFitIcon.setAttribute('data-lucide', 'minimize');
+        } else {
+            // Mode Asli / Proporsional (natural aspect ratio without cropping)
+            lightboxImage.classList.remove('w-full', 'h-full', 'object-cover', 'cursor-zoom-out');
+            lightboxImage.classList.add('max-w-full', 'max-h-full', 'w-auto', 'h-auto', 'object-contain', 'cursor-zoom-in');
+            lightboxImage.title = 'Klik untuk Mode Layar Penuh (Zoom)';
+            if (lightboxFitLabel) lightboxFitLabel.textContent = 'Mode Penuh';
+            if (lightboxFitIcon) lightboxFitIcon.setAttribute('data-lucide', 'maximize');
+        }
+        createIcons({ icons });
+    }
+
+    function toggleLightboxFitMode() {
+        setLightboxFitMode(!isLightboxCoverMode);
+    }
+
+    function toggleLightboxFullscreen() {
+        if (!document.fullscreenElement) {
+            if (lightboxModal && lightboxModal.requestFullscreen) {
+                lightboxModal.requestFullscreen().catch(() => {});
+            } else if (lightboxModal && lightboxModal.webkitRequestFullscreen) {
+                lightboxModal.webkitRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+        }
+    }
+
+    function syncFullscreenState() {
+        const isFs = !!document.fullscreenElement;
+        if (lightboxFullscreenIcon) {
+            lightboxFullscreenIcon.setAttribute('data-lucide', isFs ? 'shrink' : 'expand');
+        }
+        if (lightboxFullscreenLabel) {
+            lightboxFullscreenLabel.textContent = isFs ? 'Normal' : 'Layar Penuh';
+        }
+        createIcons({ icons });
+    }
+
+    document.addEventListener('fullscreenchange', syncFullscreenState);
+    document.addEventListener('webkitfullscreenchange', syncFullscreenState);
 
     function renderLightboxSlide() {
         if (!currentLightboxImages.length || !lightboxImage) return;
@@ -674,6 +753,9 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLightboxIndex = startIndex;
         isLightboxAutoplay = currentLightboxImages.length > 1;
 
+        // Reset fit mode to original proportional aspect ratio
+        setLightboxFitMode(false);
+
         // Build per-image captions array; fall back to single caption for all slides
         if (captions && captions.length === currentLightboxImages.length) {
             currentLightboxCaptions = captions;
@@ -682,7 +764,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (lightboxTitle) lightboxTitle.textContent = title || 'Galeri Foto';
-        // Caption will be set dynamically per slide in renderLightboxSlide
 
         // Detail Link
         if (lightboxDetailLink) {
@@ -737,6 +818,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeLightbox() {
         if (!lightboxModal) return;
         stopLightboxTimer();
+        if (document.fullscreenElement) {
+            document.exitFullscreen().catch(() => {});
+        }
         lightboxModal.classList.add('hidden');
         lightboxModal.classList.remove('flex');
         document.body.style.overflow = '';
@@ -761,6 +845,24 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxAutoplayBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             toggleLightboxAutoplay();
+        });
+    }
+    if (lightboxFitBtn) {
+        lightboxFitBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleLightboxFitMode();
+        });
+    }
+    if (lightboxFullscreenBtn) {
+        lightboxFullscreenBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleLightboxFullscreen();
+        });
+    }
+    if (lightboxImage) {
+        lightboxImage.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleLightboxFitMode();
         });
     }
 
@@ -797,6 +899,151 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Section 8.1: Authentic Experience / Putra Daerah Local Slider
+    const authenticContainer = document.getElementById('authentic-slider-container');
+    const authenticSlides = document.querySelectorAll('.authentic-slide');
+    const authenticCaption = document.getElementById('authentic-location-caption');
+    const authenticTag = document.getElementById('authentic-slide-tag');
+    const authenticDotsContainer = document.getElementById('authentic-dots');
+    const authenticPrevBtn = document.getElementById('authentic-prev');
+    const authenticNextBtn = document.getElementById('authentic-next');
+
+    if (authenticSlides.length > 0) {
+        let currentAuthenticIndex = 0;
+        let authenticTimer = null;
+        const totalAuthenticSlides = authenticSlides.length;
+
+        // Build dots
+        if (authenticDotsContainer) {
+            authenticDotsContainer.innerHTML = '';
+            authenticSlides.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Lihat foto spot ${idx + 1}`);
+                dot.className = `h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    idx === 0 ? 'w-5 bg-emerald-400' : 'w-1.5 bg-white/50 hover:bg-white/80'
+                }`;
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    updateAuthenticSlide(idx);
+                    restartAuthenticTimer();
+                });
+                authenticDotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateAuthenticSlide(index) {
+            currentAuthenticIndex = (index + totalAuthenticSlides) % totalAuthenticSlides;
+
+            authenticSlides.forEach((slide, idx) => {
+                if (idx === currentAuthenticIndex) {
+                    slide.classList.remove('opacity-0', 'z-0');
+                    slide.classList.add('opacity-100', 'z-10');
+                } else {
+                    slide.classList.remove('opacity-100', 'z-10');
+                    slide.classList.add('opacity-0', 'z-0');
+                }
+            });
+
+            // Update caption with smooth fade
+            const activeSlide = authenticSlides[currentAuthenticIndex];
+            if (activeSlide && authenticCaption) {
+                const newLocation = activeSlide.getAttribute('data-location') || '';
+                authenticCaption.style.opacity = '0';
+                authenticCaption.style.transform = 'translateY(4px)';
+                setTimeout(() => {
+                    authenticCaption.textContent = newLocation;
+                    authenticCaption.style.opacity = '1';
+                    authenticCaption.style.transform = 'translateY(0)';
+                }, 200);
+            }
+
+            // Update tag badge
+            if (activeSlide && authenticTag) {
+                const newTag = activeSlide.getAttribute('data-tag') || 'Pangandaran';
+                authenticTag.textContent = newTag;
+            }
+
+            // Update dots
+            if (authenticDotsContainer) {
+                const dots = authenticDotsContainer.querySelectorAll('button');
+                dots.forEach((d, idx) => {
+                    if (idx === currentAuthenticIndex) {
+                        d.className = 'h-1.5 rounded-full transition-all duration-300 cursor-pointer w-5 bg-emerald-400';
+                    } else {
+                        d.className = 'h-1.5 rounded-full transition-all duration-300 cursor-pointer w-1.5 bg-white/50 hover:bg-white/80';
+                    }
+                });
+            }
+        }
+
+        function nextAuthenticSlide() {
+            updateAuthenticSlide(currentAuthenticIndex + 1);
+        }
+
+        function prevAuthenticSlide() {
+            updateAuthenticSlide(currentAuthenticIndex - 1);
+        }
+
+        function startAuthenticTimer() {
+            if (authenticTimer) clearInterval(authenticTimer);
+            authenticTimer = setInterval(nextAuthenticSlide, 4500);
+        }
+
+        function stopAuthenticTimer() {
+            if (authenticTimer) {
+                clearInterval(authenticTimer);
+                authenticTimer = null;
+            }
+        }
+
+        function restartAuthenticTimer() {
+            startAuthenticTimer();
+        }
+
+        if (authenticPrevBtn) {
+            authenticPrevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevAuthenticSlide();
+                restartAuthenticTimer();
+            });
+        }
+
+        if (authenticNextBtn) {
+            authenticNextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nextAuthenticSlide();
+                restartAuthenticTimer();
+            });
+        }
+
+        // Pause auto-slide on hover & Lightbox integration on image click
+        if (authenticContainer) {
+            authenticContainer.addEventListener('mouseenter', stopAuthenticTimer);
+            authenticContainer.addEventListener('mouseleave', startAuthenticTimer);
+
+            authenticContainer.addEventListener('click', (e) => {
+                if (e.target.closest('#authentic-prev') || e.target.closest('#authentic-next') || e.target.closest('#authentic-dots')) {
+                    return;
+                }
+                const authenticImages = Array.from(authenticSlides).map(s => s.querySelector('img')?.src).filter(Boolean);
+                const authenticCaptions = Array.from(authenticSlides).map(s => s.getAttribute('data-location') || '');
+                if (authenticImages.length && typeof openLightboxCarousel === 'function') {
+                    openLightboxCarousel({
+                        title: 'Spot Destinasi Pengalaman Lokal Autentik',
+                        caption: authenticCaptions[currentAuthenticIndex] || '',
+                        captions: authenticCaptions,
+                        images: authenticImages,
+                        startIndex: currentAuthenticIndex,
+                    });
+                }
+            });
+        }
+
+        // Start auto-slider
+        startAuthenticTimer();
+    }
+
     // 8. Global Keyboard Navigation
     window.addEventListener('keydown', (e) => {
         if (lightboxModal && !lightboxModal.classList.contains('hidden')) {
@@ -808,6 +1055,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'ArrowRight') {
                 nextLightboxSlide();
                 if (isLightboxAutoplay) resetLightboxTimer();
+            }
+            if (e.key === 'f' || e.key === 'F') {
+                toggleLightboxFullscreen();
+            }
+            if (e.key === 'm' || e.key === 'M') {
+                toggleLightboxFitMode();
+            }
+            if (e.key === ' ' || e.code === 'Space') {
+                e.preventDefault();
+                toggleLightboxAutoplay();
             }
             return;
         }

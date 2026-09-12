@@ -391,7 +391,7 @@ Jejak audit operasional (*Audit Trail*) perubahan status reservasi.
 |---|---|---|---|
 | `id` | Bigint unsigned | No | Primary Key. |
 | `platform` | Varchar(30) | No | Platform (`INSTAGRAM`, `TIKTOK`, `FACEBOOK`, `YOUTUBE`). |
-| `label` | Varchar(50) | No | Label display (misal: "@pujatourtravel"). |
+| `label` | Varchar(50) | No | Label display (misal: "@puja_tourtravel"). |
 | `url` | Varchar(255) | No | URL lengkap profil resmi. |
 | `username` | Varchar(50) | Yes | Handle akun. |
 | `display_order`| Integer | No | Urutan tampil di footer & header. |

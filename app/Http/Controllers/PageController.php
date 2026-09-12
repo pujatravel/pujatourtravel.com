@@ -7,6 +7,7 @@ use App\Models\Gallery;
 use App\Models\Package;
 use App\Models\Setting;
 use App\Models\Testimonial;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -19,8 +20,9 @@ class PageController extends Controller
         $settings = Setting::all()->pluck('value', 'key');
         $testimonials = Testimonial::where('is_published', true)->latest()->take(6)->get();
         $totalPackages = Package::where('status', 'PUBLISHED')->count();
+        $galleries = Gallery::where('is_published', true)->orderBy('display_order')->take(8)->get();
 
-        return view('pages.about', compact('settings', 'testimonials', 'totalPackages'));
+        return view('pages.about', compact('settings', 'testimonials', 'totalPackages', 'galleries'));
     }
 
     /**
@@ -79,7 +81,81 @@ class PageController extends Controller
         $settings = Setting::all()->pluck('value', 'key');
         $testimonials = Testimonial::where('is_published', true)->latest()->get();
         $averageRating = Testimonial::where('is_published', true)->avg('rating') ?: 5.0;
+        $packages = Package::where('status', 'PUBLISHED')->orderBy('name')->get();
 
-        return view('pages.testimonial', compact('settings', 'testimonials', 'averageRating'));
+        return view('pages.testimonial', compact('settings', 'testimonials', 'averageRating', 'packages'));
+    }
+
+    /**
+     * Submit a customer review / testimonial (Requires Admin Approval / ACC).
+     */
+    public function storeTestimonial(Request $request)
+    {
+        $validated = $request->validate([
+            'customer_name' => ['required', 'string', 'max:100'],
+            'customer_city' => ['nullable', 'string', 'max:100'],
+            'package_name' => ['nullable', 'string', 'max:150'],
+            'rating' => ['required', 'integer', 'min:1', 'max:5'],
+            'review_text' => ['required', 'string', 'min:5', 'max:1000'],
+        ], [
+            'customer_name.required' => 'Nama lengkap wajib diisi.',
+            'rating.required' => 'Rating bintang wajib dipilih.',
+            'rating.min' => 'Rating minimal 1 bintang.',
+            'rating.max' => 'Rating maksimal 5 bintang.',
+            'review_text.required' => 'Ulasan pengalaman wajib diisi.',
+            'review_text.min' => 'Ulasan minimal 5 karakter.',
+        ]);
+
+        Testimonial::create([
+            'customer_name' => strip_tags(trim($validated['customer_name'])),
+            'customer_city' => !empty($validated['customer_city']) ? strip_tags(trim($validated['customer_city'])) : null,
+            'package_name' => !empty($validated['package_name']) ? strip_tags(trim($validated['package_name'])) : null,
+            'rating' => (int) $validated['rating'],
+            'review_text' => strip_tags(trim($validated['review_text'])),
+            'is_featured' => false,
+            'is_published' => false, // Menunggu persetujuan / ACC admin!
+            'trip_date' => now()->format('Y-m-d'),
+        ]);
+
+        $successMsg = 'Terima kasih atas ulasan Anda! Testimoni telah dikirim ke panel admin untuk diverifikasi sebelum dipublikasikan.';
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $successMsg,
+            ]);
+        }
+
+        return back()->with('testimonial_success', $successMsg);
+    }
+
+    /**
+     * Display the Privacy Policy (Kebijakan Privasi) page.
+     */
+    public function privacyPolicy(): View
+    {
+        $settings = Setting::all()->pluck('value', 'key');
+
+        return view('pages.privacy-policy', compact('settings'));
+    }
+
+    /**
+     * Display the Terms and Conditions (Syarat & Ketentuan) page.
+     */
+    public function termsConditions(): View
+    {
+        $settings = Setting::all()->pluck('value', 'key');
+
+        return view('pages.terms-conditions', compact('settings'));
+    }
+
+    /**
+     * Display the Refund & Cancellation Policy (Kebijakan Pengembalian) page.
+     */
+    public function refundPolicy(): View
+    {
+        $settings = Setting::all()->pluck('value', 'key');
+
+        return view('pages.refund-policy', compact('settings'));
     }
 }

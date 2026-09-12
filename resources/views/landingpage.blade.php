@@ -68,7 +68,7 @@
             'closes' => '21:00',
         ],
         'sameAs' => [
-            $settings['instagram_url'] ?? 'https://instagram.com/pujatourtravel',
+            $settings['instagram_url'] ?? 'https://www.instagram.com/puja_tourtravel/',
             $settings['tiktok_url'] ?? 'https://tiktok.com/@pujatourtravel',
         ],
         'hasMap' => 'https://maps.google.com/?q=Pangandaran',
@@ -127,12 +127,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Favicons for Google Search & Browsers -->
-    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('favicon-48x48.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('favicon-192x192.png') }}">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <!-- Favicons for Browsers & Google Search -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('favicon-48x48.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('favicon-192x192.png') }}?v=3">
+    <link rel="icon" type="image/png" href="{{ asset('favicon-32x32.png') }}?v=3">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v=3">
 
     <!-- Vite Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -152,7 +155,7 @@
         $emailAddr = $settings['email_address'] ?? 'info@pujatourtravel.com';
         $officeAddr = $settings['office_address'] ?? 'Jl. Pantai Barat No. 88, Pangandaran, Jawa Barat 46396';
         $opHours = $settings['operational_hours'] ?? 'Setiap Hari: 06.00 - 21.00 WIB';
-        $igUrl = $settings['instagram_url'] ?? 'https://instagram.com/pujatourtravel';
+        $igUrl = $settings['instagram_url'] ?? 'https://www.instagram.com/puja_tourtravel/';
         $tiktokUrl = $settings['tiktok_url'] ?? 'https://tiktok.com/@pujatourtravel';
     @endphp
 
@@ -177,7 +180,7 @@
 
             <!-- Desktop Nav Items -->
             <nav class="hidden lg:flex items-center gap-7 font-medium text-sm">
-                <a href="{{ route('home') }}" class="nav-link-item text-emerald-400 font-semibold transition-colors duration-300">Beranda</a>
+                <a href="#beranda" class="nav-link-item text-emerald-400 font-semibold transition-colors duration-300">Beranda</a>
                 <a href="{{ route('packages.index') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Paket Wisata</a>
                 <a href="{{ route('about') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Tentang Kami</a>
                 <a href="{{ route('calculator') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Estimasi Biaya</a>
@@ -186,13 +189,7 @@
                 <a href="{{ route('contact') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Kontak</a>
             </nav>
 
-            <!-- Header Action CTA -->
-            <div class="hidden lg:flex items-center gap-3">
-                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20paket%20wisata%20Pangandaran" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition flex items-center gap-2">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>Tanya Trip CS</span>
-                </a>
-            </div>
+
 
             <!-- Mobile Hamburger Button -->
             <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl text-white hover:bg-white/10 transition">
@@ -221,7 +218,7 @@
             </div>
 
             <nav class="py-6 space-y-1.5 font-medium text-slate-700 text-sm">
-                <a href="{{ route('home') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 text-emerald-700 font-bold transition">
+                <a href="#beranda" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 text-emerald-700 font-bold transition">
                     <span>Beranda</span>
                 </a>
                 <a href="{{ route('packages.index') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
@@ -300,7 +297,7 @@
             }
         }
     @endphp
-    <section id="beranda" data-nav-color="dark" class="relative min-h-[100svh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 group pt-16 sm:pt-0">
+    <section id="beranda" data-nav-color="dark" class="relative min-h-svh sm:min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 group pt-16 sm:pt-0">
         <!-- Hero Background Auto-Slider Container -->
         <div id="hero-slider" class="absolute inset-0 z-0 overflow-hidden select-none">
             @foreach($heroSlidesList as $index => $slide)
@@ -347,7 +344,7 @@
                     </div>
 
                     <!-- Main H1 Title -->
-                    <h1 class="font-display font-extrabold text-[1.75rem] sm:text-4xl lg:text-6xl text-white tracking-tight leading-tight sm:leading-[1.15] break-words">
+                    <h1 class="font-display font-extrabold text-[1.75rem] sm:text-4xl lg:text-6xl text-white tracking-tight leading-tight sm:leading-[1.15] wrap-break-word">
                         @if(!empty($heroHighlight) && str_contains($heroTitle, $heroHighlight))
                             {!! str_replace($heroHighlight, '<span class="text-emerald-400">' . e($heroHighlight) . '</span>', e($heroTitle)) !!}
                         @else
@@ -491,43 +488,71 @@
         </div>
     </section>
 
-    <!-- 4. TRUST ELEMENTS / 4 PILAR KREDIBILITAS (Padat Berisi, Sleek & Modern) -->
-    <section class="relative -mt-6 sm:-mt-8 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-surface-soft/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3.5 border border-neutral-200/90 shadow-soft">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
-                <!-- Pilar 1 -->
-                <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white/70 border border-neutral-100/80 transition hover:border-emerald-300 hover:bg-white">
-                    <span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0 mt-1.5"></span>
+    <!-- 4. TRUST ELEMENTS / 4 PILAR KREDIBILITAS RESMI (Corporate, Formal & Terpercaya) -->
+    <section class="relative -mt-8 sm:-mt-10 lg:-mt-12 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 border border-slate-200/90 shadow-xl shadow-slate-950/5">
+            <!-- Top Verified Strip -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-5 border-b border-slate-100">
+                <div class="flex items-center gap-2.5">
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-800">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                    </span>
+                    <span class="text-xs sm:text-sm font-bold tracking-wide text-slate-900 uppercase">
+                        Standar Layanan & Jaminan Legalitas Resmi Puja Tour
+                    </span>
+                </div>
+                <div class="text-xs font-semibold text-slate-500">
+                    <span>Terdaftar & Beroperasi Resmi di Pangandaran</span>
+                </div>
+            </div>
+
+            <!-- 4 Pillar Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+                <!-- Pilar 1: Legalitas Usaha -->
+                <div class="group flex items-start gap-3.5 p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300">
+                    <div class="w-11 h-11 rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
+                        <i data-lucide="building-2" class="w-5 h-5"></i>
+                    </div>
                     <div class="min-w-0">
-                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm leading-tight">Legalitas Usaha Resmi</h3>
-                        <p class="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">Badan hukum CV resmi, amanah untuk keluarga & rombongan.</p>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700">Badan Hukum Resmi</span>
+                        <h3 class="font-display font-bold text-slate-900 text-sm mt-0.5 leading-snug">Legalitas CV Terdaftar</h3>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Berizin resmi Kemenkumham & NIB OSS. Amanah untuk trip keluarga, dinas & gathering instansi.</p>
                     </div>
                 </div>
 
-                <!-- Pilar 2 -->
-                <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white/70 border border-neutral-100/80 transition hover:border-emerald-300 hover:bg-white">
-                    <span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0 mt-1.5"></span>
+                <!-- Pilar 2: Pemandu Lisensi HPI -->
+                <div class="group flex items-start gap-3.5 p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300">
+                    <div class="w-11 h-11 rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
+                        <i data-lucide="badge-check" class="w-5 h-5"></i>
+                    </div>
                     <div class="min-w-0">
-                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm leading-tight">Pemandu Lisensi HPI</h3>
-                        <p class="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">Guide lokal bersertifikat resmi, ramah & berpengalaman.</p>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700">Lisensi Resmi HPI</span>
+                        <h3 class="font-display font-bold text-slate-900 text-sm mt-0.5 leading-snug">Pemandu Bersertifikat</h3>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Guide lokal asli Pangandaran dengan lisensi HPI resmi dan pelatihan keselamatan susur sungai.</p>
                     </div>
                 </div>
 
-                <!-- Pilar 3 -->
-                <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white/70 border border-neutral-100/80 transition hover:border-emerald-300 hover:bg-white">
-                    <span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0 mt-1.5"></span>
+                <!-- Pilar 3: Standar Safety Teruji -->
+                <div class="group flex items-start gap-3.5 p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300">
+                    <div class="w-11 h-11 rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
+                        <i data-lucide="life-buoy" class="w-5 h-5"></i>
+                    </div>
                     <div class="min-w-0">
-                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm leading-tight">Standar Safety Teruji</h3>
-                        <p class="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">Lifejacket, helmet SNI & asuransi perlindungan trip.</p>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700">Proteksi & Asuransi</span>
+                        <h3 class="font-display font-bold text-slate-900 text-sm mt-0.5 leading-snug">Standar K3 & Keamanan</h3>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Peralatan standar SNI/CE terawat (pelampung/life jacket & helm), dilengkapi asuransi keselamatan peserta.</p>
                     </div>
                 </div>
 
-                <!-- Pilar 4 -->
-                <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white/70 border border-neutral-100/80 transition hover:border-emerald-300 hover:bg-white">
-                    <span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0 mt-1.5"></span>
+                <!-- Pilar 4: Harga Jujur & Transparan -->
+                <div class="group flex items-start gap-3.5 p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300">
+                    <div class="w-11 h-11 rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
+                        <i data-lucide="receipt-text" class="w-5 h-5"></i>
+                    </div>
                     <div class="min-w-0">
-                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm leading-tight">Harga Jujur & Transparan</h3>
-                        <p class="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">All-inclusive tiket, pemandu, tanpa biaya tersembunyi.</p>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700">All-Inclusive & Invoice</span>
+                        <h3 class="font-display font-bold text-slate-900 text-sm mt-0.5 leading-snug">Transparansi Biaya</h3>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Biaya pasti tanpa pungli di lokasi. Menerbitkan invoice & kwitansi resmi untuk reimbursement.</p>
                     </div>
                 </div>
             </div>
@@ -537,7 +562,7 @@
     <!-- 5. PAKET WISATA UNGGULAN (KATALOG DINAMIS BERBASIS DATABASE) -->
     <section id="paket" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-12 reveal-fade-up">
-            <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">
                 Katalog Pilihan
             </span>
             <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-3 tracking-tight">
@@ -591,20 +616,6 @@
                         <!-- Subtle Gradient Overlay -->
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/75 via-transparent to-slate-950/30 pointer-events-none"></div>
 
-                        <!-- Category / Rekomendasi Badge (Top Left) -->
-                        <div class="absolute top-4 left-4 z-10 pointer-events-none">
-                            @if($pkg->featured)
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow-sm flex items-center gap-1">
-                                    <i data-lucide="star" class="w-3 h-3 fill-slate-950"></i>
-                                    <span>Rekomendasi</span>
-                                </span>
-                            @else
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-700 text-white shadow-sm">
-                                    {{ $pkg->category->name ?? 'Wisata' }}
-                                </span>
-                            @endif
-                        </div>
-
                         <!-- Click to View Gallery Hover Badge (Top Right) -->
                         <div class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                             <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-900/85 backdrop-blur-md text-emerald-300 border border-white/20 shadow-md flex items-center gap-1.5">
@@ -612,16 +623,6 @@
                                 <span>{{ count($galleryImages) }} Foto (Buka)</span>
                             </span>
                         </div>
-
-                        <!-- Duration Badge (Bottom Right) -->
-                        @if($pkg->duration)
-                            <div class="absolute bottom-3 right-3 z-10 pointer-events-none">
-                                <span class="px-2.5 py-1 rounded-xl text-[11px] font-bold bg-slate-900/90 text-white flex items-center gap-1 backdrop-blur-xs shadow-md border border-white/10">
-                                    <i data-lucide="clock" class="w-3 h-3 text-emerald-400"></i>
-                                    <span>{{ $pkg->duration }}</span>
-                                </span>
-                            </div>
-                        @endif
 
                         <!-- Slide Dots (Bottom Left) -->
                         @if(count($galleryImages) > 1)
@@ -696,7 +697,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 reveal-fade-up">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950 px-3 py-1 rounded-full border border-emerald-800">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">
                         Destinasi Terbaik
                     </span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-3 tracking-tight">
@@ -718,8 +719,7 @@
                     <img src="{{ asset('images/greencanyon.jpg') }}" alt="Green Canyon Cukang Taneuh" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-slate-950/60"></div>
                     <div class="absolute bottom-6 left-6 right-6">
-                        <span class="text-xs font-bold text-emerald-300 bg-slate-900/80 px-3 py-1 rounded-full border border-emerald-700/50">Ngarai Tropis Ikonik</span>
-                        <h3 class="font-display font-bold text-2xl text-white mt-2">Green Canyon (Cukang Taneuh)</h3>
+                        <h3 class="font-display font-bold text-2xl text-white">Green Canyon (Cukang Taneuh)</h3>
                         <p class="text-xs text-slate-300 mt-1 max-w-md">Air zamrud berkilau di antara tebing stalaktit purba berusia jutaan tahun dengan pemandangan alami yang menenangkan.</p>
                     </div>
                 </div>
@@ -728,8 +728,7 @@
                     <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Pasir Putih & Snorkeling" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-slate-950/60"></div>
                     <div class="absolute bottom-6 left-6 right-6">
-                        <span class="text-xs font-bold text-emerald-300 bg-slate-900/80 px-3 py-1 rounded-full border border-emerald-700/50">Taman Laut Terumbu Karang</span>
-                        <h3 class="font-display font-bold text-xl text-white mt-2">Pantai Pasir Putih</h3>
+                        <h3 class="font-display font-bold text-xl text-white">Pantai Pasir Putih</h3>
                         <p class="text-xs text-slate-300 mt-1">Snorkeling bersama ratusan ikan karang tropis di air laut yang jernih dan tenang.</p>
                     </div>
                 </div>
@@ -738,8 +737,7 @@
                     <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Sunset Batu Karas" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-slate-950/60"></div>
                     <div class="absolute bottom-6 left-6 right-6">
-                        <span class="text-xs font-bold text-amber-400 bg-slate-900/80 px-3 py-1 rounded-full border border-amber-700/50">Surfing & Golden Sunset</span>
-                        <h3 class="font-display font-bold text-xl text-white mt-2">Pantai Batu Karas</h3>
+                        <h3 class="font-display font-bold text-xl text-white">Pantai Batu Karas</h3>
                         <p class="text-xs text-slate-300 mt-1">Titik sunset terindah di Jawa Barat dengan suasana santai dan deretan cafe kayu estetik.</p>
                     </div>
                 </div>
@@ -748,8 +746,7 @@
                     <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Cagar Alam Pananjung" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-slate-950/60"></div>
                     <div class="absolute bottom-6 left-6 right-6">
-                        <span class="text-xs font-bold text-emerald-300 bg-slate-900/80 px-3 py-1 rounded-full border border-emerald-700/50">Hutan Lindung & Satwa Asli</span>
-                        <h3 class="font-display font-bold text-2xl text-white mt-2">Taman Wisata Alam & Cagar Alam Pananjung</h3>
+                        <h3 class="font-display font-bold text-2xl text-white">Taman Wisata Alam & Cagar Alam Pananjung</h3>
                         <p class="text-xs text-slate-300 mt-1 max-w-md">Jelajahi keasrian hutan hujan tropis dengan kawanan rusa liar, pohon beringin raksasa, dan situs gua bersejarah.</p>
                     </div>
                 </div>
@@ -760,14 +757,73 @@
     <!-- 7. KEUNGGULAN & BUKTI KEPERCAYAN (Authentic Local Travel Agency) -->
     <section id="keunggulan" class="py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-16 items-center">
-            <!-- Left Image with Clean Authentic Caption -->
+            <!-- Left Image with Clean Authentic Caption & Dynamic Slider -->
             <div class="lg:col-span-5 relative reveal-fade-left">
-                <div class="rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm border border-neutral-200 bg-neutral-200">
-                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Pemandu Lokal Puja Tour Pangandaran" class="w-full h-[260px] sm:h-[340px] lg:h-[420px] object-cover">
+                <!-- Slider Frame Container -->
+                <div id="authentic-slider-container" class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-md border border-neutral-200 bg-neutral-900 h-70 sm:h-90 lg:h-107.5 cursor-pointer" title="Klik untuk melihat foto lebih besar">
+                    <!-- Slide Items -->
+                    <div id="authentic-slides" class="relative w-full h-full">
+                        <!-- Slide 1: Green Canyon -->
+                        <div class="authentic-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10"
+                             data-location="Titik awal penyusunan rute & pengawalan trip di Green Canyon, Pangandaran."
+                             data-tag="Green Canyon">
+                            <img src="{{ asset('images/greencanyon.jpg') }}" alt="Pemandu Lokal Puja Tour di Green Canyon" class="w-full h-full object-cover">
+                        </div>
+
+                        <!-- Slide 2: Pasir Putih & Snorkeling -->
+                        <div class="authentic-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0"
+                             data-location="Spot snorkeling & penyeberangan perahu di Pantai Pasir Putih, Pangandaran."
+                             data-tag="Pasir Putih">
+                            <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Spot Snorkeling & Perahu Wisata Pasir Putih" class="w-full h-full object-cover">
+                        </div>
+
+                        <!-- Slide 3: Cagar Alam Pananjung -->
+                        <div class="authentic-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0"
+                             data-location="Rute susur rimba cagar alam & jalur konservasi fauna Pananjung, Pangandaran."
+                             data-tag="Cagar Alam">
+                            <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Eksplorasi Rimba & Cagar Alam Pangandaran" class="w-full h-full object-cover">
+                        </div>
+
+                        <!-- Slide 4: Sunset Batu Karas -->
+                        <div class="authentic-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0"
+                             data-location="Area santai sunset & pengawalan watersport di Pantai Batu Karas, Pangandaran."
+                             data-tag="Batu Karas">
+                            <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Sunset & Wisata Bahari Batu Karas" class="w-full h-full object-cover">
+                        </div>
+
+                        <!-- Slide 5: Pantai Barat Pangandaran -->
+                        <div class="authentic-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0"
+                             data-location="Pusat koordinasi pemandu lokal & pengawasan keselamatan di Pantai Barat Pangandaran."
+                             data-tag="Pantai Barat">
+                            <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Pusat Koordinasi Wisata Pantai Barat Pangandaran" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Top Floating Tag Badge -->
+                    <div class="absolute top-3.5 left-3.5 z-20 pointer-events-none">
+                        <span id="authentic-slide-tag" class="px-3 py-1 rounded-full text-xs font-bold bg-slate-900/80 text-white backdrop-blur-md border border-white/20 shadow-md">
+                            Green Canyon
+                        </span>
+                    </div>
+
+                    <!-- Slide Navigation Arrows (Appear on hover) -->
+                    <button type="button" id="authentic-prev" aria-label="Foto Sebelumnya" class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md cursor-pointer border border-white/20">
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                    </button>
+                    <button type="button" id="authentic-next" aria-label="Foto Selanjutnya" class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md cursor-pointer border border-white/20">
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+
+                    <!-- Bottom Indicator Dots -->
+                    <div id="authentic-dots" class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/15">
+                    </div>
                 </div>
-                <div class="mt-3 text-center lg:text-left">
-                    <p class="text-xs text-slate-500 font-medium">
-                        📍 Titik awal penyusunan rute & pengawalan trip di Green Canyon, Pangandaran.
+
+                <!-- Dynamic Location Caption with Lucide Icon (NO Windows Emoji, Clean Direct Icon) -->
+                <div class="mt-3 flex items-start gap-1.5 text-left">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5"></i>
+                    <p id="authentic-location-caption" class="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed transition-all duration-300">
+                        Titik awal penyusunan rute & pengawalan trip di Green Canyon, Pangandaran.
                     </p>
                 </div>
             </div>
@@ -775,7 +831,7 @@
             <!-- Right Content: Evidence-Driven Hierarchy -->
             <div class="lg:col-span-7 space-y-6 reveal-fade-right delay-100">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-md border border-emerald-200">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">
                         Pengalaman Lokal Autentik
                     </span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-3 tracking-tight leading-snug">
@@ -803,7 +859,7 @@
                         <div>
                             <h3 class="font-display font-bold text-slate-900 text-base">Peralatan Standar & Asuransi Keselamatan Diri</h3>
                             <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-                                Setiap peserta dilengkapi *lifejacket* terawat, helm sungai standar, serta asuransi keselamatan resmi di setiap paket trip tanpa biaya tambahan.
+                                Setiap peserta dilengkapi pelampung (life jacket) terawat, helm sungai standar, serta asuransi keselamatan resmi di setiap paket trip tanpa biaya tambahan.
                             </p>
                         </div>
                     </div>
@@ -826,7 +882,7 @@
     <section id="galeri" class="py-20 bg-canvas-soft border-y border-neutral-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12 reveal-fade-up">
-                <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-surface-soft px-3 py-1 rounded-full border border-neutral-200">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">
                     Dokumentasi Asli
                 </span>
                 <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-3 tracking-tight">
@@ -837,9 +893,9 @@
                 </p>
             </div>
 
-            <!-- Dynamic Galleries Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-                @forelse($galleries as $gIndex => $gal)
+            <!-- Dynamic Galleries Grid (Maks 4 Foto) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+                @forelse($galleries->take(4) as $gIndex => $gal)
                     <div class="gallery-item cursor-pointer group relative h-40 sm:h-52 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition bg-neutral-200 reveal-scale-up {{ $gIndex % 4 === 1 ? 'delay-100' : ($gIndex % 4 === 2 ? 'delay-150' : ($gIndex % 4 === 3 ? 'delay-200' : '')) }}"
                          data-img="{{ $gal->image_url }}"
                          data-caption="{{ $gal->title }} - {{ $gal->caption }}">
@@ -854,57 +910,129 @@
                     <p class="col-span-4 text-center py-8 text-slate-400">Belum ada foto galeri.</p>
                 @endforelse
             </div>
+
+            <!-- CTA: Lihat Selengkapnya (Halaman Galeri) -->
+            <div class="mt-10 text-center reveal-fade-up">
+                <a href="{{ route('gallery') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md transition group">
+                    <span>Lihat Selengkapnya</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- 9. ULASAN & TESTIMONIAL PELANGGAN (Soft Surface Cards) -->
-    <section id="testimoni" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-14 reveal-fade-up">
-            <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                Ulasan Terverifikasi
-            </span>
-            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-3 tracking-tight">
-                Apa Kata Wisatawan Tentang Puja Tour?
-            </h2>
-            <p class="text-slate-600 text-sm mt-2">
-                Kepuasan dan senyuman Anda adalah prioritas utama seluruh tim kami di lapangan.
-            </p>
-        </div>
+    <!-- 9. ULASAN & TESTIMONIAL PELANGGAN (Auto-Scrolling Marquee & Review Submission) -->
+    <section id="testimoni" class="py-20 lg:py-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 reveal-fade-up">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">
+                        Ulasan Terverifikasi
+                    </span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-2 tracking-tight">
+                        Apa Kata Wisatawan Tentang Puja Tour?
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2 max-w-xl">
+                        Cerita nyata kepuasan dari wisatawan yang menikmati keindahan alam dan petualangan bahari Pangandaran bersama tim kami.
+                    </p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 shrink-0">
+                    <button type="button" id="btn-open-review-modal" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md transition cursor-pointer">
+                        <i data-lucide="edit-3" class="w-4 h-4"></i>
+                        <span>Tulis Ulasan Anda</span>
+                    </button>
+                    <a href="{{ route('testimonial') }}" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-soft hover:bg-neutral-100 text-slate-700 font-semibold text-xs sm:text-sm border border-neutral-200 transition">
+                        <span>Lihat Semua ({{ $testimonials->count() }})</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            @forelse($testimonials as $tIndex => $testi)
-                <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover transition reveal-fade-up {{ $tIndex % 3 === 1 ? 'delay-100' : ($tIndex % 3 === 2 ? 'delay-200' : '') }}">
+            @if(session('testimonial_success'))
+                <div class="mt-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs sm:text-sm flex items-start gap-3 shadow-2xs">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-700 shrink-0 mt-0.5"></i>
                     <div>
-                        <div class="flex items-center text-amber-500 gap-1 text-sm mb-4">
-                            @for($i = 0; $i < ($testi->rating ?? 5); $i++)
-                                <i data-lucide="star" class="w-4 h-4 fill-amber-400 text-amber-400"></i>
-                            @endfor
-                        </div>
-                        <p class="text-slate-700 text-sm italic leading-relaxed">
-                            "{{ $testi->review_text }}"
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-4 pt-6 mt-6 border-t border-neutral-200">
-                        <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center font-bold font-display text-lg">
-                            {{ substr($testi->customer_name, 0, 2) }}
-                        </div>
-                        <div>
-                            <h4 class="font-display font-bold text-slate-900 text-sm">{{ $testi->customer_name }}</h4>
-                            <span class="text-xs text-slate-400">{{ $testi->customer_city ?? 'Wisatawan' }} • {{ $testi->package_name ?? 'Paket Pangandaran' }}</span>
-                        </div>
+                        <strong>Berhasil Terkirim!</strong>
+                        <p class="mt-0.5">{{ session('testimonial_success') }}</p>
                     </div>
                 </div>
-            @empty
-                <p class="col-span-3 text-center py-8 text-slate-400">Belum ada testimoni.</p>
-            @endforelse
+            @endif
         </div>
+
+        <!-- Marquee Showcase Container with Edge Fade Masks -->
+        <div class="relative w-full overflow-hidden select-none py-2" id="testimonial-marquee-wrapper">
+            <!-- Left & Right Gradient Fade Masks -->
+            <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-linear-to-r from-[#f4f6f1] to-transparent z-10"></div>
+            <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-linear-to-l from-[#f4f6f1] to-transparent z-10"></div>
+
+            <!-- SVG Gold Star Gradient Definition -->
+            <svg class="sr-only" aria-hidden="true" width="0" height="0">
+                <defs>
+                    <linearGradient id="goldStarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#FDE047" />
+                        <stop offset="45%" stop-color="#F59E0B" />
+                        <stop offset="100%" stop-color="#D97706" />
+                    </linearGradient>
+                </defs>
+            </svg>
+
+            <!-- The Marquee Track (Smooth Walking Animation, Pauses on Hover) -->
+            <div id="testimonial-track" class="testimonial-marquee-track flex gap-6 px-4">
+                @php
+                    // Ensure at least 6-8 items for an infinite loop with zero visual gaps
+                    $loopCount = $testimonials->count() < 4 ? 4 : 2;
+                @endphp
+                @for($repeat = 0; $repeat < $loopCount; $repeat++)
+                    @foreach($testimonials as $tIndex => $testi)
+                        <div class="testimonial-card w-77.5 sm:w-95 shrink-0 bg-surface-soft rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300">
+                            <div>
+                                <!-- Header: Bintang Emas di Tengah & Badge Terverifikasi -->
+                                <div class="flex flex-col items-center justify-center text-center mb-4">
+                                    <div class="flex items-center justify-center gap-1.5 mb-2">
+                                        @php $rating = (int)($testi->rating ?? 5); @endphp
+                                        @for($i = 1; $i <= 5; $i++)
+                                            @if($i <= $rating)
+                                                <svg class="w-5 h-5 drop-shadow-[0_2px_4px_rgba(245,158,11,0.35)] transition-transform duration-200 hover:scale-115" viewBox="0 0 24 24" fill="url(#goldStarGrad)" stroke="#d97706" stroke-width="0.5">
+                                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                                </svg>
+                                            @else
+                                                <svg class="w-5 h-5 text-slate-200" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                                </svg>
+                                            @endif
+                                        @endfor
+                                    </div>
+                                    <span class="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-2xs">
+                                        <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                                        <span>Terverifikasi</span>
+                                    </span>
+                                </div>
+                                <p class="text-slate-700 text-xs sm:text-sm italic leading-relaxed line-clamp-4 text-center">
+                                    "{{ $testi->review_text }}"
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-3.5 pt-5 mt-5 border-t border-neutral-200">
+                                <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold font-display text-base shrink-0 shadow-inner">
+                                    {{ substr($testi->customer_name, 0, 2) }}
+                                </div>
+                                <div class="min-w-0">
+                                    <h4 class="font-display font-bold text-slate-900 text-sm truncate">{{ $testi->customer_name }}</h4>
+                                    <span class="text-xs text-slate-400 block truncate">{{ $testi->customer_city ?? 'Wisatawan' }} • {{ $testi->package_name ?? 'Paket Pangandaran' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endfor
+            </div>
+        </div>
+
     </section>
 
     <!-- 10. INTERACTIVE RESERVATION FORM / TRIP PLANNER (Solid Slate 900) -->
     <section id="booking-section" data-nav-color="dark" class="py-20 bg-slate-900 text-white relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-12 reveal-fade-up">
-                <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-slate-800 px-3.5 py-1 rounded-full border border-slate-700">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">
                     Formulir Reservasi Cepat
                 </span>
                 <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-3 tracking-tight">
@@ -945,7 +1073,7 @@
     <!-- 11. FAQ (FREQUENTLY ASKED QUESTIONS) ACCORDION -->
     <section id="faq" class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12 reveal-fade-up">
-            <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">
                 Tanya Jawab
             </span>
             <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-3 tracking-tight">
@@ -958,13 +1086,17 @@
 
         <div class="space-y-4">
             @forelse($faqs as $fIndex => $faq)
-                <div class="bg-surface-soft rounded-2xl border border-neutral-200 overflow-hidden shadow-soft reveal-fade-up {{ $fIndex % 2 === 1 ? 'delay-100' : '' }}">
-                    <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-display font-bold text-slate-900 text-base hover:text-emerald-700 transition">
+                <div class="faq-item bg-surface-soft rounded-2xl border border-neutral-200 overflow-hidden shadow-soft reveal-fade-up {{ $fIndex % 2 === 1 ? 'delay-100' : '' }} {{ $fIndex === 0 ? 'is-active' : '' }}">
+                    <button type="button" class="faq-toggle w-full px-6 py-4.5 text-left flex items-center justify-between font-display font-bold text-slate-900 text-base hover:text-emerald-700 transition cursor-pointer">
                         <span>{{ $faq->question }}</span>
-                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-slate-400 transition-transform duration-300"></i>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-slate-400 transition-transform duration-300 shrink-0 {{ $fIndex === 0 ? 'rotate-180 text-emerald-700' : '' }}"></i>
                     </button>
-                    <div class="faq-content hidden px-6 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-neutral-200 pt-3">
-                        {!! nl2br(e($faq->answer)) !!}
+                    <div class="faq-collapse {{ $fIndex === 0 ? 'is-open' : '' }}">
+                        <div class="faq-collapse-inner">
+                            <div class="faq-collapse-content px-6 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-neutral-200/70 pt-3">
+                                {!! nl2br(e($faq->answer)) !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
             @empty
@@ -975,57 +1107,78 @@
         </div>
     </section>
 
-    <!-- 12. OFFICE LOCATION & CONTACT -->
-    <section id="kontak" class="py-20 bg-canvas-soft border-t border-neutral-200">
+    <!-- 12. OFFICE LOCATION & CONTACT (CLEAN & SIMPLE) -->
+    <section id="kontak" class="py-16 sm:py-20 bg-surface-soft border-t border-neutral-200/80 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-5 space-y-4 sm:space-y-5 reveal-fade-left">
-                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-surface-soft px-3 py-1 rounded-full border border-neutral-200">
-                        Kantor Operasional
-                    </span>
-                    <h2 class="font-display font-extrabold text-3xl text-slate-900 tracking-tight">
-                        Kunjungi Kami di Pangandaran
-                    </h2>
-                    <p class="text-slate-600 text-sm">
-                        Kantor operasional kami siap menyambut Anda untuk konsultasi rute, titik kumpul trip, maupun penjemputan rombongan.
-                    </p>
+            <div class="max-w-2xl mb-10 reveal-fade-up">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 block mb-2">Lokasi & Kontak</span>
+                <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight">
+                    Kunjungi Kami di Pangandaran
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2 leading-relaxed">
+                    Kantor operasional kami siap menyambut Anda untuk konsultasi rute, briefing keselamatan, titik kumpul trip, hingga penjemputan rombongan bus.
+                </p>
+            </div>
 
-                    <div class="space-y-3.5 pt-2 text-sm text-slate-700">
-                        <div class="flex items-start gap-3">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-emerald-700 shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong>Alamat Kantor:</strong>
-                                <p class="text-xs text-slate-600 mt-0.5">{{ $officeAddr }}</p>
-                            </div>
+            <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+                <!-- Left: Compact & Clean Contact Card (1/2 width) -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 lg:p-9 shadow-sm border border-neutral-200 flex flex-col justify-between reveal-fade-left h-full">
+                    <div class="space-y-5 text-sm">
+                        <!-- 1. Alamat -->
+                        <div>
+                            <span class="text-[11px] font-semibold text-slate-600 block uppercase tracking-wider">Alamat Kantor</span>
+                            <p class="font-medium text-slate-800 mt-1 leading-relaxed">{{ $officeAddr }}</p>
+                            <span class="text-xs text-emerald-700 font-semibold block mt-1">Dekat Pantai Barat Pangandaran</span>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <i data-lucide="phone" class="w-5 h-5 text-emerald-700 shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong>WhatsApp & Hotline:</strong>
-                                <p class="text-xs text-slate-600 mt-0.5">{{ $phoneNum }} (Online 24 Jam)</p>
-                            </div>
+
+                        <hr class="border-neutral-100">
+
+                        <!-- 2. WhatsApp & Telepon -->
+                        <div>
+                            <span class="text-[11px] font-semibold text-slate-600 block uppercase tracking-wider">WhatsApp & Hotline</span>
+                            <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="font-display font-bold text-lg text-emerald-700 hover:underline block mt-0.5">
+                                {{ $phoneNum }}
+                            </a>
+                            <span class="text-xs text-slate-600 block mt-0.5">Online 24 Jam • Respon Cepat</span>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <i data-lucide="mail" class="w-5 h-5 text-emerald-700 shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong>Email Resmi:</strong>
-                                <p class="text-xs text-slate-600 mt-0.5">{{ $emailAddr }}</p>
-                            </div>
+
+                        <hr class="border-neutral-100">
+
+                        <!-- 3. Jam Operasional -->
+                        <div>
+                            <span class="text-[11px] font-semibold text-slate-600 block uppercase tracking-wider">Jam Operasional</span>
+                            <p class="font-medium text-slate-800 mt-0.5">{{ $opHours }}</p>
+                            <span class="text-xs text-slate-600 block mt-0.5">Buka setiap hari termasuk akhir pekan & libur nasional</span>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <i data-lucide="clock" class="w-5 h-5 text-emerald-700 shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong>Jam Pelayanan:</strong>
-                                <p class="text-xs text-slate-600 mt-0.5">{{ $opHours }}</p>
-                            </div>
+
+                        <hr class="border-neutral-100">
+
+                        <!-- 4. Email -->
+                        <div>
+                            <span class="text-[11px] font-semibold text-slate-600 block uppercase tracking-wider">Email Resmi</span>
+                            <a href="mailto:{{ $emailAddr }}" class="font-medium text-slate-800 hover:text-emerald-700 transition block mt-0.5">
+                                {{ $emailAddr }}
+                            </a>
+                            <span class="text-xs text-slate-600 block mt-0.5">Untuk permintaan surat, proposal & invoice instansi</span>
                         </div>
+                    </div>
+
+                    <!-- Clean Action Buttons -->
+                    <div class="pt-6 mt-6 border-t border-neutral-100 flex flex-col sm:flex-row gap-3">
+                        <a href="https://maps.google.com/?q={{ urlencode($officeAddr) }}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm text-center transition shadow-xs">
+                            Buka Google Maps
+                        </a>
+                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs sm:text-sm text-center transition">
+                            Chat WhatsApp
+                        </a>
                     </div>
                 </div>
 
-                <div class="lg:col-span-7">
-                    <div class="rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-neutral-200 bg-neutral-200 h-64 sm:h-80 relative">
+                <!-- Right: Clean Interactive Google Map (1/2 width, exact same height) -->
+                <div class="reveal-fade-right h-full flex flex-col">
+                    <div class="flex-1 w-full min-h-95 lg:min-h-0 rounded-3xl overflow-hidden shadow-sm border border-neutral-200 bg-slate-100 relative">
                         <iframe 
-                            title="Lokasi Puja Tour Pangandaran"
+                            title="Lokasi Kantor Puja Tour Pangandaran"
                             src="{{ $settings['google_maps_embed_url'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.739775073105!2d108.6477546!3d-7.6974127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6598c19958348b%3A0x6b45f949c256ca61!2sPantai%20Pangandaran!5e0!3m2!1sid!2sid!4v1709800000000!5m2!1sid!2sid' }}" 
                             width="100%" 
                             height="100%" 
@@ -1033,7 +1186,7 @@
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade"
-                            class="w-full h-full">
+                            class="absolute inset-0 w-full h-full">
                         </iframe>
                     </div>
                 </div>
@@ -1089,12 +1242,27 @@
                 <div>
                     <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Navigasi</h4>
                     <ul class="space-y-2.5">
-                        <li><a href="#beranda" class="hover:text-emerald-400 transition">Beranda</a></li>
-                        <li><a href="#paket" class="hover:text-emerald-400 transition">Paket Wisata</a></li>
-                        <li><a href="#destinasi" class="hover:text-emerald-400 transition">Destinasi Populer</a></li>
-                        <li><a href="#keunggulan" class="hover:text-emerald-400 transition">Keunggulan Layanan</a></li>
-                        <li><a href="#galeri" class="hover:text-emerald-400 transition">Galeri Foto</a></li>
-                        <li><a href="#testimoni" class="hover:text-emerald-400 transition">Ulasan Wisatawan</a></li>
+                        @if(!request()->routeIs('packages.index'))
+                            <li><a href="{{ route('packages.index') }}" class="hover:text-emerald-400 transition">Paket Wisata</a></li>
+                        @endif
+                        @if(!request()->routeIs('about'))
+                            <li><a href="{{ route('about') }}" class="hover:text-emerald-400 transition">Tentang Kami</a></li>
+                        @endif
+                        @if(!request()->routeIs('calculator'))
+                            <li><a href="{{ route('calculator') }}" class="hover:text-emerald-400 transition">Estimasi Biaya</a></li>
+                        @endif
+                        @if(!request()->routeIs('gallery'))
+                            <li><a href="{{ route('gallery') }}" class="hover:text-emerald-400 transition">Galeri Foto</a></li>
+                        @endif
+                        @if(!request()->routeIs('testimonial'))
+                            <li><a href="{{ route('testimonial') }}" class="hover:text-emerald-400 transition">Ulasan Wisatawan</a></li>
+                        @endif
+                        @if(!request()->routeIs('faq'))
+                            <li><a href="{{ route('faq') }}" class="hover:text-emerald-400 transition">Tanya Jawab (FAQ)</a></li>
+                        @endif
+                        @if(!request()->routeIs('contact'))
+                            <li><a href="{{ route('contact') }}" class="hover:text-emerald-400 transition">Kontak & Lokasi</a></li>
+                        @endif
                     </ul>
                 </div>
 
@@ -1103,7 +1271,7 @@
                     <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Paket Favorit</h4>
                     <ul class="space-y-2.5">
                         @foreach($packages->take(5) as $fp)
-                            <li><a href="#paket" class="hover:text-emerald-400 transition">{{ $fp->name }}</a></li>
+                            <li><a href="{{ route('packages.show', $fp->slug) }}" class="hover:text-emerald-400 transition">{{ $fp->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -1123,13 +1291,12 @@
 
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
                 <p>© {{ date('Y') }} {{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}. Hak Cipta Dilindungi Undang-Undang.</p>
-                <div class="flex items-center gap-4">
-                    <a href="{{ route('admin.login') }}" class="hover:text-emerald-400 font-bold text-slate-400 flex items-center gap-1">
-                        <i data-lucide="lock" class="w-3.5 h-3.5"></i>
-                        <span>Login Admin CMS</span>
-                    </a>
+                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
                     <span>•</span>
-                    <a href="#" class="hover:text-slate-400">Kebijakan Privasi</a>
+                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
+                    <span>•</span>
+                    <a href="{{ route('refund-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Pengembalian</a>
                 </div>
             </div>
         </div>
@@ -1162,36 +1329,44 @@
                 </span>
             </div>
 
-            <!-- Right Controls (Autoplay Toggle & Close) -->
+            <!-- Right Controls (Autoplay Toggle, Fit Mode, Fullscreen & Close) -->
             <div class="flex items-center gap-2 pointer-events-auto">
-                <button id="lightbox-autoplay-btn" type="button" aria-label="Jeda Slide Otomatis" title="Jeda / Lanjut Putar Otomatis" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 text-xs font-medium text-white/90 cursor-pointer transition shadow-lg">
+                <button id="lightbox-autoplay-btn" type="button" aria-label="Jeda Slide Otomatis" title="Jeda / Lanjut Putar Otomatis (Spasi)" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 text-xs font-medium text-white/90 cursor-pointer transition shadow-lg">
                     <i data-lucide="pause" class="w-3.5 h-3.5 text-emerald-400" id="lightbox-play-icon"></i>
-                    <span id="lightbox-autoplay-label">Auto-Slide Aktif</span>
+                    <span id="lightbox-autoplay-label" class="hidden md:inline">Auto-Slide Aktif</span>
                 </button>
-                <button id="lightbox-close" aria-label="Tutup Galeri" class="text-white/80 hover:text-white p-2.5 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 transition cursor-pointer shadow-lg">
+                <button id="lightbox-fit-btn" type="button" aria-label="Mode Tampilan" title="Ganti Mode Tampilan (Penuh / Proporsional) (M)" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 text-xs font-medium text-white/90 cursor-pointer transition shadow-lg">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5 text-emerald-400" id="lightbox-fit-icon"></i>
+                    <span id="lightbox-fit-label">Mode Penuh</span>
+                </button>
+                <button id="lightbox-fullscreen-btn" type="button" aria-label="Layar Penuh" title="Layar Penuh (F)" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 text-xs font-medium text-white/90 cursor-pointer transition shadow-lg">
+                    <i data-lucide="expand" class="w-3.5 h-3.5 text-emerald-400" id="lightbox-fullscreen-icon"></i>
+                    <span id="lightbox-fullscreen-label" class="hidden md:inline">Layar Penuh</span>
+                </button>
+                <button id="lightbox-close" aria-label="Tutup Galeri" title="Tutup (Esc)" class="text-white/80 hover:text-white p-2 sm:p-2.5 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 transition cursor-pointer shadow-lg">
                     <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                 </button>
             </div>
         </div>
 
         <!-- Slider Navigation Arrows -->
-        <button id="lightbox-prev" aria-label="Foto Sebelumnya" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 text-white flex items-center justify-center transition-all duration-200 shadow-2xl hover:scale-105 cursor-pointer">
+        <button id="lightbox-prev" aria-label="Foto Sebelumnya" title="Sebelumnya (←)" class="absolute left-2 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 text-white flex items-center justify-center transition-all duration-200 shadow-2xl hover:scale-105 cursor-pointer">
             <i data-lucide="chevron-left" class="w-6 h-6 sm:w-7 sm:h-7"></i>
         </button>
-        <button id="lightbox-next" aria-label="Foto Selanjutnya" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 text-white flex items-center justify-center transition-all duration-200 shadow-2xl hover:scale-105 cursor-pointer">
+        <button id="lightbox-next" aria-label="Foto Selanjutnya" title="Selanjutnya (→)" class="absolute right-2 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 text-white flex items-center justify-center transition-all duration-200 shadow-2xl hover:scale-105 cursor-pointer">
             <i data-lucide="chevron-right" class="w-6 h-6 sm:w-7 sm:h-7"></i>
         </button>
 
-        <!-- Main Slider Viewport -->
-        <div class="relative w-full max-w-5xl h-[64vh] sm:h-[70vh] flex flex-col items-center justify-center pt-8 sm:pt-4">
-            <div class="relative w-full h-full flex items-center justify-center overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl border border-white/10 bg-slate-900/60">
-                <img id="lightbox-image" src="" alt="Galeri Preview" class="max-w-full max-h-full object-contain transition-opacity duration-300">
+        <!-- Main Slider Viewport (Immersive Full Dimensions, Edge-to-Edge Responsive) -->
+        <div class="relative w-full max-w-[94vw] 2xl:max-w-[92vw] h-[82vh] sm:h-[86vh] flex flex-col items-center justify-center pt-14 sm:pt-16 pb-16 px-1 sm:px-6">
+            <div id="lightbox-image-container" class="relative w-full h-full flex items-center justify-center overflow-hidden">
+                <img id="lightbox-image" src="" alt="Galeri Preview" title="Klik untuk beralih mode penuh / pas" class="max-w-full max-h-full w-auto h-auto object-contain rounded-2xl sm:rounded-3xl shadow-2xl border border-white/15 cursor-zoom-in transition-all duration-300 select-none">
             </div>
-            <p id="lightbox-caption" class="text-slate-300 text-xs sm:text-sm mt-3 font-medium text-center px-4 max-w-2xl line-clamp-2" style="transition: opacity 0.2s ease, transform 0.2s ease;"></p>
+            <p id="lightbox-caption" class="text-slate-200 text-xs sm:text-sm mt-2.5 font-medium text-center px-4 max-w-4xl line-clamp-2 drop-shadow-md" style="transition: opacity 0.2s ease, transform 0.2s ease;"></p>
         </div>
 
         <!-- Bottom Actions & Dot Thumbnails -->
-        <div class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col sm:flex-row items-center gap-3 w-full max-w-xl px-4 justify-center">
+        <div class="absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-30 flex flex-col sm:flex-row items-center gap-2.5 w-full max-w-xl px-4 justify-center">
             <!-- Thumbnail Dots -->
             <div id="lightbox-dots" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/80 border border-white/15 backdrop-blur-md shadow-md">
             </div>
@@ -1210,5 +1385,252 @@
         </div>
     </div>
 
+    <!-- MODAL TULIS ULASAN / TESTIMONI WISATAWAN -->
+    <div id="review-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div id="review-modal-backdrop" class="fixed inset-0 bg-slate-950/65 backdrop-blur-xs transition-opacity duration-300 opacity-0 cursor-pointer"></div>
+
+        <!-- Modal Box -->
+        <div id="review-modal-box" class="relative bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-neutral-200 z-10 transition-all duration-300 scale-95 opacity-0 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-start justify-between pb-4 border-b border-neutral-200">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">Form Ulasan Tamu</span>
+                    <h3 class="font-display font-extrabold text-xl text-slate-900 mt-1">Bagikan Pengalaman Liburan Anda</h3>
+                </div>
+                <button type="button" id="btn-close-review-modal" aria-label="Tutup Modal" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-neutral-100 transition cursor-pointer">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                Ceritakan kepuasan dan momen berkesan Anda bersama Puja Tour & Travel. Ulasan Anda akan ditinjau oleh admin sebelum ditampilkan ke publik.
+            </p>
+
+            <form id="form-submit-review" action="{{ route('testimonial.store') }}" method="POST" class="mt-5 space-y-4">
+                @csrf
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Nama Lengkap / Panggilan *</label>
+                    <input type="text" name="customer_name" required placeholder="Contoh: Rian & Annisa / Budi Santoso" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Kota Asal / Domisili</label>
+                        <input type="text" name="customer_city" placeholder="Contoh: Bandung / Jakarta" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Paket yang Diikuti</label>
+                        <select name="package_name" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition">
+                            <option value="">-- Pilih Paket (Opsional) --</option>
+                            @if(isset($allPackages))
+                                @foreach($allPackages as $p)
+                                    <option value="{{ $p->name }}">{{ $p->name }}</option>
+                                @endforeach
+                            @endif
+                            <option value="Body Rafting Green Canyon">Body Rafting Green Canyon</option>
+                            <option value="Snorkeling Pantai Pasir Putih">Snorkeling Pantai Pasir Putih</option>
+                            <option value="Sunset & Surfing Batu Karas">Sunset & Surfing Batu Karas</option>
+                            <option value="Custom Family / Corporate Gathering">Custom Family / Corporate Gathering</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Interactive Star Rating -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Rating Kepuasan *</label>
+                    <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-neutral-200">
+                        <div class="flex items-center gap-1 text-2xl text-slate-300" id="star-rating-group">
+                            <button type="button" data-rating="1" class="star-btn cursor-pointer text-amber-400">★</button>
+                            <button type="button" data-rating="2" class="star-btn cursor-pointer text-amber-400">★</button>
+                            <button type="button" data-rating="3" class="star-btn cursor-pointer text-amber-400">★</button>
+                            <button type="button" data-rating="4" class="star-btn cursor-pointer text-amber-400">★</button>
+                            <button type="button" data-rating="5" class="star-btn cursor-pointer text-amber-400">★</button>
+                        </div>
+                        <span id="star-rating-label" class="text-xs font-bold text-slate-800">5 Bintang (Sangat Puas)</span>
+                    </div>
+                    <input type="hidden" name="rating" id="input-rating-value" value="5">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Ulasan Pengalaman Wisata *</label>
+                    <textarea name="review_text" rows="3" required placeholder="Ceritakan bagaimana keseruan trip, keramahan pemandu, atau keamanan fasilitas bersama Puja Tour..." class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition"></textarea>
+                </div>
+
+                <!-- Moderation Notice -->
+                <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
+                    <p class="leading-relaxed">
+                        Ulasan Anda akan diteruskan ke <strong>panel admin Puja Tour</strong> untuk diverifikasi (ACC) sebelum ditampilkan di website agar terhindar dari spam.
+                    </p>
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-3">
+                    <button type="button" id="btn-cancel-review" class="px-5 py-2.5 rounded-xl border border-neutral-200 text-slate-600 hover:bg-neutral-100 font-semibold text-xs transition cursor-pointer">
+                        Batal
+                    </button>
+                    <button type="submit" id="btn-submit-review" class="px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition flex items-center gap-2 cursor-pointer">
+                        <span id="btn-submit-text">Kirim Ulasan</span>
+                        <i data-lucide="send" class="w-3.5 h-3.5" id="btn-submit-icon"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success State Message (hidden by default) -->
+            <div id="review-success-state" class="hidden py-8 text-center space-y-4">
+                <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center shadow-inner">
+                    <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+                </div>
+                <h4 class="font-display font-extrabold text-xl text-slate-900">Ulasan Berhasil Dikirim!</h4>
+                <p class="text-xs text-slate-600 max-w-sm mx-auto leading-relaxed">
+                    Terima kasih atas ulasan berharga Anda! Testimoni telah diteruskan ke panel admin Puja Tour & Travel untuk diverifikasi sebelum dipublikasikan.
+                </p>
+                <div class="pt-2">
+                    <button type="button" id="btn-close-review-success" class="px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition cursor-pointer">
+                        Selesai
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal Interactive Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Review Submission Modal Logic ---
+        var reviewModal = document.getElementById('review-modal');
+        var modalBackdrop = document.getElementById('review-modal-backdrop');
+        var modalBox = document.getElementById('review-modal-box');
+        var openModalBtn = document.getElementById('btn-open-review-modal');
+        var closeModalBtn = document.getElementById('btn-close-review-modal');
+        var cancelModalBtn = document.getElementById('btn-cancel-review');
+        var closeSuccessBtn = document.getElementById('btn-close-review-success');
+        var reviewForm = document.getElementById('form-submit-review');
+        var reviewSuccessState = document.getElementById('review-success-state');
+
+        function openReviewModal() {
+            if (!reviewModal) return;
+            reviewModal.classList.remove('hidden');
+            reviewModal.classList.add('flex');
+            setTimeout(function() {
+                modalBackdrop.classList.remove('opacity-0');
+                modalBox.classList.remove('scale-95', 'opacity-0');
+                modalBox.classList.add('scale-100', 'opacity-100');
+            }, 20);
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function closeReviewModal() {
+            if (!reviewModal) return;
+            modalBackdrop.classList.add('opacity-0');
+            modalBox.classList.remove('scale-100', 'opacity-100');
+            modalBox.classList.add('scale-95', 'opacity-0');
+            setTimeout(function() {
+                reviewModal.classList.remove('flex');
+                reviewModal.classList.add('hidden');
+                if (reviewSuccessState) reviewSuccessState.classList.add('hidden');
+                if (reviewForm) {
+                    reviewForm.classList.remove('hidden');
+                    reviewForm.reset();
+                    setRating(5);
+                }
+            }, 300);
+        }
+
+        if (openModalBtn) openModalBtn.addEventListener('click', openReviewModal);
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeReviewModal);
+        if (cancelModalBtn) cancelModalBtn.addEventListener('click', closeReviewModal);
+        if (closeSuccessBtn) closeSuccessBtn.addEventListener('click', closeReviewModal);
+        if (modalBackdrop) modalBackdrop.addEventListener('click', closeReviewModal);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && reviewModal && !reviewModal.classList.contains('hidden')) {
+                closeReviewModal();
+            }
+        });
+
+        // --- Star Rating Interactive Selector ---
+        var starButtons = document.querySelectorAll('.star-btn');
+        var ratingInput = document.getElementById('input-rating-value');
+        var ratingLabel = document.getElementById('star-rating-label');
+
+        var ratingLabels = {
+            1: '1 Bintang (Kurang Puas)',
+            2: '2 Bintang (Cukup)',
+            3: '3 Bintang (Puas)',
+            4: '4 Bintang (Sangat Puas)',
+            5: '5 Bintang (Sangat Puas & Istimewa)'
+        };
+
+        function setRating(val) {
+            val = parseInt(val, 10);
+            if (ratingInput) ratingInput.value = val;
+            if (ratingLabel) ratingLabel.textContent = ratingLabels[val] || (val + ' Bintang');
+
+            starButtons.forEach(function(btn) {
+                var r = parseInt(btn.getAttribute('data-rating'), 10);
+                if (r <= val) {
+                    btn.classList.add('text-amber-400');
+                    btn.classList.remove('text-slate-300');
+                } else {
+                    btn.classList.remove('text-amber-400');
+                    btn.classList.add('text-slate-300');
+                }
+            });
+        }
+
+        starButtons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var r = this.getAttribute('data-rating');
+                setRating(r);
+            });
+        });
+
+        // --- Form AJAX Submission ---
+        if (reviewForm) {
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                var submitBtn = document.getElementById('btn-submit-review');
+                var submitText = document.getElementById('btn-submit-text');
+
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    if (submitText) submitText.textContent = 'Mengirim...';
+                }
+
+                var formData = new FormData(reviewForm);
+
+                fetch(reviewForm.action, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: formData
+                })
+                .then(function(res) {
+                    return res.json();
+                })
+                .then(function(data) {
+                    if (data.success) {
+                        reviewForm.classList.add('hidden');
+                        if (reviewSuccessState) {
+                            reviewSuccessState.classList.remove('hidden');
+                        }
+                    } else {
+                        alert(data.message || 'Gagal mengirim ulasan. Silakan periksa kembali formulir.');
+                        if (submitBtn) submitBtn.disabled = false;
+                        if (submitText) submitText.textContent = 'Kirim Ulasan';
+                    }
+                    if (typeof lucide !== 'undefined') lucide.createIcons();
+                })
+                .catch(function(err) {
+                    console.error(err);
+                    reviewForm.submit();
+                });
+            });
+        }
+    });
+    </script>
 </body>
 </html>

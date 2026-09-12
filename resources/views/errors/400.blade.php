@@ -1,39 +1,59 @@
 @extends('errors.layout')
 
 @section('title', '400 - Permintaan Tidak Valid')
-@section('description', 'Format permintaan atau parameter URL tidak dikenali oleh sistem.')
+@section('description', 'Format permintaan atau parameter URL tidak dikenali oleh sistem server.')
 
 @section('content')
-<div class="bg-surface-soft rounded-3xl p-8 sm:p-12 shadow-soft border border-neutral-200">
-    <!-- Status Badge -->
-    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-300 text-slate-800 text-xs font-bold uppercase tracking-wider mb-6">
-        <span class="w-2 h-2 rounded-full bg-slate-600 animate-pulse"></span>
-        <span>Error 400 • Permintaan Tidak Valid</span>
-    </div>
+<div class="relative bg-white rounded-3xl p-7 sm:p-12 shadow-soft border border-neutral-200 overflow-hidden text-center">
+    <!-- Big Decorative Watermark -->
+    <span class="font-display font-black text-8xl sm:text-9xl text-slate-100 select-none absolute -top-8 left-1/2 -translate-x-1/2 pointer-events-none tracking-tighter opacity-80 z-0">
+        400
+    </span>
 
-    <!-- Visual Icon -->
-    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-slate-100 text-slate-700 mx-auto flex items-center justify-center mb-6 shadow-inner">
-        <i data-lucide="alert-circle" class="w-12 h-12 sm:w-14 sm:h-14 stroke-[1.5]"></i>
-    </div>
+    <div class="relative z-10">
+        <!-- Status Pill Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold uppercase tracking-wider mb-6 shadow-2xs">
+            <span class="w-2 h-2 rounded-full bg-slate-500 animate-pulse"></span>
+            <span>Error 400 • Permintaan Tidak Valid</span>
+        </div>
 
-    <!-- Main Message -->
-    <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
-        Permintaan Tidak Dapat Diproses
-    </h1>
-    <p class="text-slate-600 text-sm sm:text-base mt-3 max-w-lg mx-auto leading-relaxed">
-        Sistem mendeteksi adanya data atau parameter URL yang tidak sesuai format. Silakan mulai kembali dari halaman utama kami.
-    </p>
+        <!-- Visual Icon Box -->
+        <div class="relative w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 flex items-center justify-center">
+            <div class="absolute inset-0 rounded-3xl bg-slate-500/10 animate-ping opacity-30"></div>
+            <div class="w-full h-full rounded-3xl bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shadow-xs">
+                <i data-lucide="alert-circle" class="w-10 h-10 sm:w-12 sm:h-12 stroke-[1.5]"></i>
+            </div>
+        </div>
 
-    <!-- Quick Action Buttons -->
-    <div class="flex flex-wrap items-center justify-center gap-3 mt-8">
-        <a href="{{ route('home') }}" class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition flex items-center gap-2 shadow-sm">
-            <i data-lucide="home" class="w-4 h-4"></i>
-            <span>Kembali ke Beranda</span>
-        </a>
-        <a href="{{ route('packages.index') }}" class="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm transition flex items-center gap-2 shadow-sm">
-            <i data-lucide="map" class="w-4 h-4"></i>
-            <span>Katalog Paket Wisata</span>
-        </a>
+        <!-- Headline & Description -->
+        <h1 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
+            Arah Kompas Kurang Tepat
+        </h1>
+        <p class="text-slate-600 text-xs sm:text-sm mt-3 max-w-lg mx-auto leading-relaxed">
+            Sistem mendeteksi adanya format data atau tautan parameter yang tidak dikenali oleh server. Silakan kembali ke beranda untuk memulai eksplorasi destinasi dari awal.
+        </p>
+
+        <!-- Action CTA Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mt-7">
+            <a href="{{ route('home') }}" class="px-5 sm:px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 shadow-xs hover:-translate-y-0.5">
+                <i data-lucide="home" class="w-4 h-4"></i>
+                <span>Kembali ke Beranda</span>
+            </a>
+            <a href="{{ route('packages.index') }}" class="px-5 sm:px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 shadow-xs hover:-translate-y-0.5">
+                <i data-lucide="map" class="w-4 h-4"></i>
+                <span>Jelajah Paket Wisata</span>
+            </a>
+            <a href="https://wa.me/{{ $waNum ?? '6281234567890' }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20mengalami%20error%20400%20di%20website" 
+               target="_blank" 
+               class="px-5 sm:px-6 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm border border-neutral-200 shadow-2xs hover:shadow-xs transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5">
+                <i data-lucide="message-circle" class="w-4 h-4 text-emerald-700"></i>
+                <span>Bantuan Admin</span>
+            </a>
+        </div>
+
+        <div class="mt-8 pt-7 border-t border-neutral-100 text-[11px] text-slate-400">
+            <p>Jika masalah ini berulang secara terus-menerus, coba bersihkan cache peramban Anda atau gunakan mode privat.</p>
+        </div>
     </div>
 </div>
 @endsection

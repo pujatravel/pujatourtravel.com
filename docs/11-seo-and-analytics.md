@@ -183,7 +183,7 @@ Membantu bot Google memahami entitas bisnis dan memicu tampilan *Rich Snippets* 
     "closes": "21:00"
   },
   "sameAs": [
-    "https://instagram.com/pujatourtravel",
+    "https://www.instagram.com/puja_tourtravel/",
     "https://tiktok.com/@pujatourtravel",
     "https://facebook.com/pujatourtravel"
   ]

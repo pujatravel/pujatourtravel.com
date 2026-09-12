@@ -38,7 +38,7 @@ Route::get('/', function () {
     $categories = PackageCategory::where('is_active', true)->orderBy('display_order')->get();
     $galleries = Gallery::where('is_published', true)->orderBy('display_order')->take(8)->get();
     $heroSliders = Gallery::where('is_published', true)->where('is_slider', true)->orderBy('display_order')->get();
-    $testimonials = Testimonial::where('is_published', true)->latest()->take(6)->get();
+    $testimonials = Testimonial::where('is_published', true)->latest()->get();
     $faqs = Faq::where('is_published', true)->orderBy('display_order')->get();
     $settings = Setting::all()->pluck('value', 'key');
 
@@ -66,7 +66,11 @@ Route::get('/reservasi', [PageController::class, 'calculator'])->name('reservati
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/galeri', [PageController::class, 'gallery'])->name('gallery');
 Route::get('/testimonial', [PageController::class, 'testimonial'])->name('testimonial');
+Route::post('/testimonial', [PageController::class, 'storeTestimonial'])->name('testimonial.store');
 Route::get('/kontak', [PageController::class, 'contact'])->name('contact');
+Route::get('/kebijakan-privasi', [PageController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('/syarat-ketentuan', [PageController::class, 'termsConditions'])->name('terms-conditions');
+Route::get('/kebijakan-pengembalian', [PageController::class, 'refundPolicy'])->name('refund-policy');
 
 Route::get('/sitemap.xml', function () {
     $packages = Package::where('status', 'PUBLISHED')->latest()->get();
@@ -80,6 +84,9 @@ Route::get('/sitemap.xml', function () {
         ['loc' => route('testimonial'), 'priority' => '0.8', 'changefreq' => 'weekly', 'lastmod' => now()->toAtomString()],
         ['loc' => route('faq'), 'priority' => '0.7', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
         ['loc' => route('contact'), 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
+        ['loc' => route('privacy-policy'), 'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
+        ['loc' => route('terms-conditions'), 'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
+        ['loc' => route('refund-policy'), 'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
     ];
 
     foreach ($packages as $pkg) {
@@ -174,6 +181,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Testimonials
         Route::get('testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
         Route::post('testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
+        Route::patch('testimonials/{testimonial}/toggle-publish', [TestimonialController::class, 'togglePublish'])->name('testimonials.toggle-publish');
         Route::delete('testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
 
         // FAQs

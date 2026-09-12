@@ -11,11 +11,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Favicons for Google Search & Browsers -->
-    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('favicon-48x48.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <!-- Favicons for Browsers & Google Search -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('favicon-48x48.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('favicon-192x192.png') }}?v=3">
+    <link rel="icon" type="image/png" href="{{ asset('favicon-32x32.png') }}?v=3">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v=3">
 
     <!-- Vite Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -108,9 +112,15 @@
                     <i data-lucide="image" class="w-5 h-5 shrink-0"></i>
                     <span>Galeri Foto</span>
                 </a>
-                <a href="{{ route('admin.testimonials.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.testimonials.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
-                    <i data-lucide="message-square-quote" class="w-5 h-5 shrink-0"></i>
-                    <span>Ulasan Testimoni</span>
+                <a href="{{ route('admin.testimonials.index') }}" class="admin-mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.testimonials.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="message-square-quote" class="w-5 h-5 shrink-0"></i>
+                        <span>Ulasan Testimoni</span>
+                    </div>
+                    @php $pendingTestiCount = \App\Models\Testimonial::where('is_published', false)->count(); @endphp
+                    @if($pendingTestiCount > 0)
+                        <span class="px-2 py-0.5 text-[10px] font-extrabold bg-amber-500 text-slate-950 rounded-full animate-pulse">{{ $pendingTestiCount }}</span>
+                    @endif
                 </a>
                 <a href="{{ route('admin.faqs.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.faqs.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                     <i data-lucide="help-circle" class="w-5 h-5 shrink-0"></i>
@@ -201,9 +211,14 @@
                         <i data-lucide="image" class="w-5 h-5 shrink-0"></i>
                         <span>Galeri Foto</span>
                     </a>
-                    <a href="{{ route('admin.testimonials.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.testimonials.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
-                        <i data-lucide="message-square-quote" class="w-5 h-5 shrink-0"></i>
-                        <span>Ulasan Testimoni</span>
+                    <a href="{{ route('admin.testimonials.index') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.testimonials.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="message-square-quote" class="w-5 h-5 shrink-0"></i>
+                            <span>Ulasan Testimoni</span>
+                        </div>
+                        @if($pendingTestiCount > 0)
+                            <span class="px-2 py-0.5 text-[10px] font-extrabold bg-amber-500 text-slate-950 rounded-full animate-pulse">{{ $pendingTestiCount }}</span>
+                        @endif
                     </a>
                     <a href="{{ route('admin.faqs.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.faqs.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="help-circle" class="w-5 h-5 shrink-0"></i>

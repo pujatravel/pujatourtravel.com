@@ -269,9 +269,6 @@
                         <p>
                             {{ $package->description ?? 'Nikmati petualangan tak terlupakan di Pangandaran bersama tim Puja Tour & Travel. Paket ini telah dirancang dengan standar keselamatan tertinggi, jadwal yang terorganisir rapi, dan fasilitas lengkap untuk kenyamanan maksimal Anda dan keluarga.' }}
                         </p>
-                        <p>
-                            Dengan dipandu langsung oleh pemandu lokal berlisensi resmi HPI (Himpunan Pramuwisata Indonesia), Anda akan diajak menjelajahi sudut-sudut eksotis terbaik, menikmati sajian kuliner khas Sunda yang lezat, serta mengabadikan momen-momen indah tanpa khawatir mengenai keamanan perlengkapan.
-                        </p>
                     </div>
                 </div>
 

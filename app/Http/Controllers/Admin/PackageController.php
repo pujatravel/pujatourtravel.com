@@ -61,6 +61,7 @@ class PackageController extends Controller
             'featured' => ['nullable', 'boolean'],
             'inclusions_text' => ['nullable', 'string'],
             'exclusions_text' => ['nullable', 'string'],
+            'itinerary_json' => ['nullable', 'string'],
         ]);
 
         $slug = Str::slug($validated['name']);
@@ -91,6 +92,15 @@ class PackageController extends Controller
             $exclusions = array_filter(array_map('trim', explode("\n", $validated['exclusions_text'])));
         }
 
+        // Parse itinerary JSON dari hidden input
+        $itinerary = [];
+        if (! empty($validated['itinerary_json'])) {
+            $decoded = json_decode($validated['itinerary_json'], true);
+            if (is_array($decoded)) {
+                $itinerary = array_values(array_filter($decoded, fn ($item) => ! empty($item['title'])));
+            }
+        }
+
         Package::create([
             'category_id' => $validated['category_id'],
             'name' => $validated['name'],
@@ -105,7 +115,7 @@ class PackageController extends Controller
             'featured' => $request->boolean('featured'),
             'inclusions' => $inclusions,
             'exclusions' => $exclusions,
-            'itinerary' => [],
+            'itinerary' => $itinerary,
         ]);
 
         return redirect()->route('admin.packages.index')
@@ -134,6 +144,7 @@ class PackageController extends Controller
             'featured' => ['nullable', 'boolean'],
             'inclusions_text' => ['nullable', 'string'],
             'exclusions_text' => ['nullable', 'string'],
+            'itinerary_json' => ['nullable', 'string'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -154,6 +165,15 @@ class PackageController extends Controller
             $exclusions = array_filter(array_map('trim', explode("\n", $validated['exclusions_text'])));
         }
 
+        // Parse itinerary JSON dari hidden input
+        $itinerary = [];
+        if (! empty($validated['itinerary_json'])) {
+            $decoded = json_decode($validated['itinerary_json'], true);
+            if (is_array($decoded)) {
+                $itinerary = array_values(array_filter($decoded, fn ($item) => ! empty($item['title'])));
+            }
+        }
+
         $package->update([
             'category_id' => $validated['category_id'],
             'name' => $validated['name'],
@@ -166,6 +186,7 @@ class PackageController extends Controller
             'featured' => $request->boolean('featured'),
             'inclusions' => $inclusions,
             'exclusions' => $exclusions,
+            'itinerary' => $itinerary,
         ]);
 
         return redirect()->route('admin.packages.index')

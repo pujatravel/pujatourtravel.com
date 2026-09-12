@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -144,9 +145,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/realtime-visitors', [DashboardController::class, 'realtimeVisitors'])->name('realtime-visitors');
 
-// Packages CRUD & Featured Toggle
+        // Packages CRUD & Featured Toggle
         Route::resource('packages', AdminPackageController::class);
         Route::post('packages/{package}/toggle-featured', [AdminPackageController::class, 'toggleFeatured'])->name('packages.toggle-featured');
+
+        // Banner Hero Section CRUD
+        Route::get('banners', [BannerController::class, 'index'])->name('banners.index');
+        Route::put('banners/text', [BannerController::class, 'updateText'])->name('banners.update-text');
+        Route::post('banners/slider', [BannerController::class, 'storeSlider'])->name('banners.store-slider');
+        Route::post('banners/add-from-gallery', [BannerController::class, 'addFromGallery'])->name('banners.add-from-gallery');
+        Route::post('banners/slider/{gallery}/toggle', [BannerController::class, 'toggleSlider'])->name('banners.toggle-slider');
+        Route::delete('banners/slider/{gallery}', [BannerController::class, 'destroySlider'])->name('banners.destroy-slider');
 
         // Galleries
         Route::get('galleries', [GalleryController::class, 'index'])->name('galleries.index');

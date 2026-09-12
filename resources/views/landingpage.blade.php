@@ -272,10 +272,13 @@
         $stat3Lbl = $settings['hero_stat_3_lbl'] ?? 'Ulasan Google';
 
         $heroSlidesList = collect();
-        if (isset($galleries) && $galleries->count() > 0) {
-            foreach ($galleries as $g) {
+        $sourceSlides = (isset($heroSliders) && $heroSliders->count() > 0) ? $heroSliders : ((isset($galleries) && $galleries->count() > 0) ? $galleries->where('is_slider', true) : collect());
+
+        foreach ($sourceSlides as $g) {
+            $imgPath = $g->image_url ?? $g->image_path;
+            if ($imgPath) {
                 $heroSlidesList->push([
-                    'image' => asset($g->image_path),
+                    'image' => asset($imgPath),
                     'location' => ($g->title ?? 'Destinasi Wisata') . ' • ' . ($g->caption ?? 'Pesona Indah Pangandaran'),
                     'title' => $g->title ?? 'Galeri Pangandaran',
                 ]);
@@ -297,7 +300,7 @@
             }
         }
     @endphp
-    <section id="beranda" data-nav-color="dark" class="relative min-h-[100svh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 group">
+    <section id="beranda" data-nav-color="dark" class="relative min-h-[100svh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 group pt-16 sm:pt-0">
         <!-- Hero Background Auto-Slider Container -->
         <div id="hero-slider" class="absolute inset-0 z-0 overflow-hidden select-none">
             @foreach($heroSlidesList as $index => $slide)
@@ -332,14 +335,14 @@
         </div>
 
         <!-- Hero Content -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 sm:pt-28 sm:pb-16 lg:pt-36 lg:pb-28">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-28">
             <div class="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
 
                 <!-- Hero Left: Main Text Content -->
                 <div class="lg:col-span-7 text-center lg:text-left space-y-4 sm:space-y-5">
 
                     <!-- Badge -->
-                    <div class="inline-flex items-center px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-emerald-300 text-[11px] sm:text-sm font-semibold max-w-full">
+                    <div class="inline-flex items-center px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-emerald-300 text-[11px] sm:text-sm font-semibold max-w-full mt-1 sm:mt-0">
                         <span class="truncate">{{ $heroBadge }}</span>
                     </div>
 

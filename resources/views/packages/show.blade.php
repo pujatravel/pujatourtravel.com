@@ -112,48 +112,8 @@
         $bookingWaText = urlencode("Halo Admin Puja Tour & Travel, saya ingin konsultasi & booking paket \"{$package->name}\" ({$package->formatted_price}/{$package->price_unit}). Mohon info jadwal dan ketersediaannya.");
     @endphp
 
-    <!-- STICKY NAVBAR -->
-    <header id="main-header" class="sticky top-0 z-40 w-full bg-surface-soft/95 backdrop-blur-md transition-all duration-300 py-3.5 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 shrink-0 flex items-center justify-center">
-                    <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja Tour & Travel" class="w-full h-full object-contain">
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-display font-extrabold text-xl leading-tight tracking-tight text-slate-900 group-hover:text-emerald-700 transition">
-                        PUJA<span class="text-emerald-700 ml-1">TOUR</span>
-                    </span>
-                    <span class="text-[10px] tracking-widest font-bold text-slate-500 uppercase">
-                        & Travel Pangandaran
-                    </span>
-                </div>
-            </a>
-
-            <!-- Desktop Navigation -->
-            <nav class="hidden lg:flex items-center gap-7 font-medium text-slate-600 text-sm">
-                <a href="{{ route('home') }}" class="hover:text-emerald-700 transition">Beranda</a>
-                <a href="{{ route('packages.index') }}" class="text-emerald-700 font-semibold hover:text-emerald-800 transition">Paket Wisata</a>
-                <a href="{{ route('about') }}" class="hover:text-emerald-700 transition">Tentang Kami</a>
-                <a href="{{ route('calculator') }}" class="hover:text-emerald-700 transition">Estimasi Biaya</a>
-                <a href="{{ route('faq') }}" class="hover:text-emerald-700 transition">FAQ</a>
-                <a href="{{ route('gallery') }}" class="hover:text-emerald-700 transition">Galeri</a>
-                <a href="{{ route('contact') }}" class="hover:text-emerald-700 transition">Kontak</a>
-            </nav>
-
-
-
-            <!-- Mobile Hamburger -->
-            <div class="flex items-center gap-2 lg:hidden">
-                <a href="{{ route('packages.index') }}" class="text-xs font-bold text-emerald-700 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200">
-                    Paket Wisata
-                </a>
-                <a href="{{ route('home') }}" class="p-2 rounded-xl text-slate-700 hover:bg-neutral-100 transition" aria-label="Kembali ke Beranda">
-                    <i data-lucide="home" class="w-5 h-5"></i>
-                </a>
-            </div>
-        </div>
-    </header>
+    <!-- GLOBAL NAVBAR -->
+    @include('partials.navbar')
 
     <!-- BREADCRUMBS -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

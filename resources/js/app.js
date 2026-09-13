@@ -53,7 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
-    if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+    document.querySelectorAll('#close-menu-btn, #close-drawer-btn, .close-drawer-btn').forEach(btn => {
+        btn.addEventListener('click', closeMobileMenu);
+    });
     if (drawerOverlay) drawerOverlay.addEventListener('click', closeMobileMenu);
     drawerLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
 

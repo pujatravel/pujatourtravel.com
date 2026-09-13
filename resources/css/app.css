@@ -447,9 +447,9 @@ body:not(:has(#beranda)) {
 #main-header.is-transparent-nav .nav-link-item:hover {
     color: #ffffff !important;
 }
-#main-header.is-transparent-nav .nav-link-item.active,
-#main-header.is-transparent-nav .nav-link-item:first-child {
+#main-header.is-transparent-nav .nav-link-item.active {
     color: #34d399 !important; /* text-emerald-400 */
+    font-weight: 700 !important;
 }
 #main-header.is-transparent-nav #mobile-menu-btn {
     color: #ffffff !important;
@@ -482,13 +482,16 @@ body:not(:has(#beranda)) {
     color: #047857 !important; /* hover:text-emerald-700 */
 }
 #main-header.is-white-nav .nav-link-item.active,
-#main-header.is-white-nav .nav-link-item:first-child {
-    color: #047857 !important; /* active 'Beranda' link: text-emerald-700 */
+#main-header:not(.is-transparent-nav) .nav-link-item.active {
+    color: #047857 !important; /* active link: text-emerald-700 */
+    font-weight: 700 !important;
 }
-#main-header.is-white-nav #mobile-menu-btn {
+#main-header.is-white-nav #mobile-menu-btn,
+#main-header:not(.is-transparent-nav) #mobile-menu-btn {
     color: #334155 !important; /* text-slate-700 */
 }
-#main-header.is-white-nav #mobile-menu-btn:hover {
+#main-header.is-white-nav #mobile-menu-btn:hover,
+#main-header:not(.is-transparent-nav) #mobile-menu-btn:hover {
     background-color: #f1f5f9 !important; /* hover:bg-slate-100 */
 }
 

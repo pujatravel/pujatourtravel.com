@@ -118,74 +118,8 @@
         $tiktokUrl = $settings['tiktok_url'] ?? 'https://tiktok.com/@pujatourtravel';
     @endphp
 
-    <!-- STICKY NAVBAR -->
-    <header id="main-header" class="sticky top-0 z-40 w-full bg-surface-soft/95 backdrop-blur-md transition-all duration-300 py-3.5 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 shrink-0 flex items-center justify-center">
-                    <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja" class="w-full h-full object-contain">
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-display font-extrabold text-xl leading-tight tracking-tight text-slate-900 group-hover:text-emerald-700 transition">
-                        PUJA<span class="text-emerald-700 ml-1">TOUR</span>
-                    </span>
-                    <span class="text-[10px] tracking-widest font-bold text-slate-500 uppercase">
-                        & Travel Pangandaran
-                    </span>
-                </div>
-            </a>
-
-            <nav class="hidden lg:flex items-center gap-7 font-medium text-slate-600 text-sm">
-                <a href="{{ route('home') }}" class="hover:text-emerald-700 transition">Beranda</a>
-                <a href="{{ route('packages.index') }}" class="hover:text-emerald-700 transition">Paket Wisata</a>
-                <a href="{{ route('about') }}" class="hover:text-emerald-700 transition">Tentang Kami</a>
-                <a href="{{ route('calculator') }}" class="hover:text-emerald-700 transition">Estimasi Biaya</a>
-                <a href="{{ route('faq') }}" class="hover:text-emerald-700 transition">FAQ</a>
-                <a href="{{ route('gallery') }}" class="hover:text-emerald-700 transition">Galeri</a>
-                <a href="{{ route('testimonial') }}" class="text-emerald-700 font-semibold hover:text-emerald-800 transition">Testimonial</a>
-                <a href="{{ route('contact') }}" class="hover:text-emerald-700 transition">Kontak</a>
-            </nav>
-
-
-
-            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-neutral-100 transition" aria-label="Toggle Menu">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- MOBILE DRAWER -->
-    <div id="mobile-drawer" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden lg:hidden">
-        <div class="fixed top-0 right-0 bottom-0 w-5/6 max-w-sm bg-white p-6 shadow-2xl flex flex-col justify-between overflow-y-auto">
-            <div>
-                <div class="flex items-center justify-between pb-6 border-b border-slate-100">
-                    <div class="flex items-center gap-2">
-                        <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja" class="w-10 h-10 object-contain">
-                        <span class="font-display font-extrabold text-lg text-slate-900">PUJA TOUR</span>
-                    </div>
-                    <button id="close-drawer-btn" class="p-2 rounded-xl text-slate-500 hover:bg-slate-100">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </div>
-                <nav class="mt-6 flex flex-col gap-3 font-medium text-slate-700 text-sm">
-                    <a href="{{ route('home') }}" class="px-4 py-2.5 rounded-xl hover:bg-slate-50">Beranda</a>
-                    <a href="{{ route('packages.index') }}" class="px-4 py-2.5 rounded-xl hover:bg-slate-50">Paket Wisata</a>
-                    <a href="{{ route('about') }}" class="px-4 py-2.5 rounded-xl hover:bg-slate-50">Tentang Kami</a>
-                    <a href="{{ route('calculator') }}" class="px-4 py-2.5 rounded-xl hover:bg-slate-50">Estimasi Biaya</a>
-                    <a href="{{ route('faq') }}" class="px-4 py-2.5 rounded-xl hover:bg-slate-50">FAQ</a>
-                    <a href="{{ route('gallery') }}" class="px-4 py-2.5 rounded-xl hover:bg-slate-50">Galeri</a>
-                    <a href="{{ route('testimonial') }}" class="px-4 py-2.5 rounded-xl bg-emerald-50 text-emerald-800 font-bold">Testimonial</a>
-                    <a href="{{ route('contact') }}" class="px-4 py-2.5 rounded-xl hover:bg-slate-50">Kontak</a>
-                </nav>
-            </div>
-            <div class="pt-6 border-t border-slate-100">
-                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20info%20paket%20wisata" target="_blank" class="w-full py-3 rounded-xl bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>Hubungi via WhatsApp</span>
-                </a>
-            </div>
-        </div>
-    </div>
+    <!-- GLOBAL NAVBAR -->
+    @include('partials.navbar')
 
     <!-- MAIN CONTENT -->
     <main class="py-12 sm:py-16">

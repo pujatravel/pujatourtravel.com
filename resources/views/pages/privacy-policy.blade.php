@@ -70,66 +70,8 @@
         $companyName = $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN';
     @endphp
 
-    <!-- STICKY NAVBAR -->
-    <header id="main-header" class="sticky top-0 z-40 w-full bg-surface-soft/95 backdrop-blur-md transition-all duration-300 py-3.5 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 shrink-0 flex items-center justify-center">
-                    <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja" class="w-full h-full object-contain">
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-display font-extrabold text-xl leading-tight tracking-tight text-slate-900 group-hover:text-emerald-700 transition">
-                        PUJA<span class="text-emerald-700 ml-1">TOUR</span>
-                    </span>
-                    <span class="text-[10px] tracking-widest font-bold text-slate-500 uppercase">
-                        & Travel Pangandaran
-                    </span>
-                </div>
-            </a>
-
-            <nav class="hidden lg:flex items-center gap-7 font-medium text-slate-600 text-sm">
-                <a href="{{ route('home') }}" class="hover:text-emerald-700 transition">Beranda</a>
-                <a href="{{ route('packages.index') }}" class="hover:text-emerald-700 transition">Paket Wisata</a>
-                <a href="{{ route('about') }}" class="hover:text-emerald-700 transition">Tentang Kami</a>
-                <a href="{{ route('calculator') }}" class="hover:text-emerald-700 transition">Estimasi Biaya</a>
-                <a href="{{ route('gallery') }}" class="hover:text-emerald-700 transition">Galeri</a>
-                <a href="{{ route('testimonial') }}" class="hover:text-emerald-700 transition">Ulasan</a>
-                <a href="{{ route('faq') }}" class="hover:text-emerald-700 transition">FAQ</a>
-                <a href="{{ route('contact') }}" class="hover:text-emerald-700 transition">Kontak</a>
-            </nav>
-
-            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-neutral-100 transition">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- Mobile Drawer -->
-    <div id="mobile-drawer" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs hidden lg:hidden">
-        <div class="fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-white p-6 shadow-2xl flex flex-col justify-between">
-            <div>
-                <div class="flex items-center justify-between pb-6 border-b border-neutral-200">
-                    <span class="font-display font-bold text-lg text-slate-900">Menu Utama</span>
-                    <button id="close-drawer-btn" class="p-2 text-slate-500 hover:text-slate-800">
-                        <i data-lucide="x" class="w-6 h-6"></i>
-                    </button>
-                </div>
-                <div class="py-6 flex flex-col gap-4 font-medium text-slate-700">
-                    <a href="{{ route('home') }}" class="py-2 hover:text-emerald-700 transition">Beranda</a>
-                    <a href="{{ route('packages.index') }}" class="py-2 hover:text-emerald-700 transition">Paket Wisata</a>
-                    <a href="{{ route('about') }}" class="py-2 hover:text-emerald-700 transition">Tentang Kami</a>
-                    <a href="{{ route('calculator') }}" class="py-2 hover:text-emerald-700 transition">Estimasi Biaya</a>
-                    <a href="{{ route('gallery') }}" class="py-2 hover:text-emerald-700 transition">Galeri Foto</a>
-                    <a href="{{ route('testimonial') }}" class="py-2 hover:text-emerald-700 transition">Ulasan Wisatawan</a>
-                    <a href="{{ route('faq') }}" class="py-2 hover:text-emerald-700 transition">FAQ</a>
-                    <a href="{{ route('contact') }}" class="py-2 hover:text-emerald-700 transition">Kontak</a>
-                </div>
-            </div>
-            <div class="pt-6 border-t border-neutral-200 text-xs text-slate-400">
-                &copy; {{ date('Y') }} {{ $companyName }}.
-            </div>
-        </div>
-    </div>
+    <!-- GLOBAL NAVBAR -->
+    @include('partials.navbar')
 
     <!-- MAIN CONTENT -->
     <main class="py-10 sm:py-16">

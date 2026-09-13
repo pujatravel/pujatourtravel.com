@@ -328,6 +328,26 @@ class DatabaseSeeder extends Seeder
                 'answer' => 'Setelah berkonsultasi via WhatsApp dan sepakat jadwal, Anda cukup membayar DP (uang muka) sebesar 20-30% via transfer Bank (BCA/Mandiri/BRI) atau QRIS resmi kami. Pelunasan dapat dilakukan saat tiba di Pangandaran.',
                 'display_order' => 4,
             ],
+            [
+                'question' => 'Apakah melayani rombongan gathering kantor, instansi kedinasan, atau study tour?',
+                'answer' => 'Tentu! Kami berpengalaman menangani gathering instansi, corporate outing, komunitas, maupun study tour sekolah. Fasilitas dapat dipesan secara custom (all-in) meliputi armada bus pariwisata, booking hotel rekanan, makan prasmanan hidangan laut (seafood), outbound games, hingga dokumentasi drone.',
+                'display_order' => 5,
+            ],
+            [
+                'question' => 'Kapan waktu terbaik untuk berlibur ke Green Canyon dan Pangandaran?',
+                'answer' => 'Pangandaran dan Green Canyon dapat dinikmati sepanjang tahun. Namun waktu paling ideal dengan air Green Canyon yang jernih berwarna hijau toska eksotis umumnya terjadi pada musim kemarau antara bulan Mei hingga Oktober. Tim pemandu kami selalu memantau debit air setiap hari sebelum trip dimulai.',
+                'display_order' => 6,
+            ],
+            [
+                'question' => 'Apakah harga paket wisata sudah termasuk tiket masuk destinasi dan asuransi?',
+                'answer' => 'Ya, seluruh paket trip di Puja Tour bersifat all-inclusive tanpa biaya siluman. Biaya yang Anda bayarkan sudah mencakup tiket retribusi resmi Pemkab, perahu antar-jemput, asuransi jiwa pariwisata, perlengkapan safety K3, serta instruktur pemandu lokal berlisensi.',
+                'display_order' => 7,
+            ],
+            [
+                'question' => 'Di mana lokasi titik kumpul (meeting point) sebelum aktivitas dimulai?',
+                'answer' => 'Titik kumpul utama berada di Kantor Operasional Puja Tour & Travel (dekat Pantai Barat Pangandaran) atau langsung di basecamp destinasi trip (Green Canyon / Citumang / Santirah). Kami juga melayani penjemputan langsung di hotel atau homestay tempat Anda menginap di area Pangandaran.',
+                'display_order' => 8,
+            ],
         ];
 
         foreach ($faqs as $faq) {

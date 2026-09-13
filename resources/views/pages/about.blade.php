@@ -115,86 +115,8 @@
         $tiktokUrl = $settings['tiktok_url'] ?? 'https://tiktok.com/@pujatourtravel';
     @endphp
 
-    <!-- STICKY NAVBAR -->
-    <header id="main-header" class="sticky top-0 z-40 w-full bg-surface-soft/95 backdrop-blur-md transition-all duration-300 py-3.5 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 shrink-0 flex items-center justify-center">
-                    <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja Tour & Travel" class="w-full h-full object-contain">
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-display font-extrabold text-xl leading-tight tracking-tight text-slate-900 group-hover:text-emerald-700 transition">
-                        PUJA<span class="text-emerald-700 ml-1">TOUR</span>
-                    </span>
-                    <span class="text-[10px] tracking-widest font-bold text-slate-500 uppercase">
-                        & Travel Pangandaran
-                    </span>
-                </div>
-            </a>
-
-            <!-- Desktop Navigation -->
-            <nav class="hidden lg:flex items-center gap-7 font-medium text-slate-600 text-sm">
-                <a href="{{ route('home') }}" class="hover:text-emerald-700 transition">Beranda</a>
-                <a href="{{ route('packages.index') }}" class="hover:text-emerald-700 transition">Paket Wisata</a>
-                <a href="{{ route('about') }}" class="text-emerald-700 font-bold hover:text-emerald-800 transition">Tentang Kami</a>
-                <a href="{{ route('calculator') }}" class="hover:text-emerald-700 transition">Estimasi Biaya</a>
-                <a href="{{ route('faq') }}" class="hover:text-emerald-700 transition">FAQ</a>
-                <a href="{{ route('gallery') }}" class="hover:text-emerald-700 transition">Galeri</a>
-                <a href="{{ route('contact') }}" class="hover:text-emerald-700 transition">Kontak</a>
-            </nav>
-
-            <!-- Quick Action CTA -->
-            <div class="hidden lg:flex items-center gap-3">
-                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20profil%20dan%20paket%20wisata" 
-                   target="_blank" 
-                   class="px-4.5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm hover:shadow transition flex items-center gap-2">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>Tanya Admin</span>
-                </a>
-            </div>
-
-            <!-- Mobile Hamburger -->
-            <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-neutral-100 transition">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- Mobile Drawer -->
-    <div id="drawer-overlay" class="fixed inset-0 bg-slate-900/60 z-50 hidden opacity-0 transition-opacity duration-300"></div>
-    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-6">
-        <div>
-            <div class="flex items-center justify-between pb-6 border-b border-neutral-200">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 shrink-0">
-                        <img src="{{ asset('images/puja_logo.png') }}" alt="Logo" class="w-full h-full object-contain">
-                    </div>
-                    <span class="font-display font-extrabold text-base text-slate-900">PUJA TOUR</span>
-                </div>
-                <button id="close-menu-btn" class="p-2 text-slate-500 hover:bg-neutral-100 rounded-xl">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-            </div>
-            <nav class="py-6 space-y-1 text-sm font-medium">
-                <a href="{{ route('home') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100">Beranda</a>
-                <a href="{{ route('packages.index') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100">Paket Wisata</a>
-                <a href="{{ route('about') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl bg-emerald-50 text-emerald-700 font-bold">Tentang Kami</a>
-                <a href="{{ route('calculator') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100">Estimasi Biaya</a>
-                <a href="{{ route('faq') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100">FAQ</a>
-                <a href="{{ route('gallery') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100">Galeri</a>
-                <a href="{{ route('contact') }}" class="drawer-link block px-3.5 py-2.5 rounded-xl hover:bg-neutral-100">Kontak</a>
-            </nav>
-        </div>
-        <div class="pt-6 border-t border-neutral-200 space-y-3">
-            <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip" 
-               target="_blank" 
-               class="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs text-center flex items-center justify-center gap-2">
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span>Chat WhatsApp Admin</span>
-            </a>
-        </div>
-    </div>
+    <!-- GLOBAL NAVBAR -->
+    @include('partials.navbar')
 
     <!-- BREADCRUMBS -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -450,11 +372,6 @@
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
                     <!-- Milestone 1: 2014 -->
                     <div class="relative bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group overflow-hidden">
-                        <!-- Big Watermark Year -->
-                        <span class="font-display font-black text-6xl text-slate-100 select-none absolute top-2 right-3 pointer-events-none group-hover:text-emerald-50 transition-colors">
-                            '14
-                        </span>
-
                         <div class="relative z-10">
                             <!-- Node Indicator -->
                             <div class="flex items-center justify-between mb-5">
@@ -482,11 +399,6 @@
 
                     <!-- Milestone 2: 2018 -->
                     <div class="relative bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group overflow-hidden">
-                        <!-- Big Watermark Year -->
-                        <span class="font-display font-black text-6xl text-slate-100 select-none absolute top-2 right-3 pointer-events-none group-hover:text-emerald-50 transition-colors">
-                            '18
-                        </span>
-
                         <div class="relative z-10">
                             <!-- Node Indicator -->
                             <div class="flex items-center justify-between mb-5">
@@ -514,11 +426,6 @@
 
                     <!-- Milestone 3: 2022 -->
                     <div class="relative bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group overflow-hidden">
-                        <!-- Big Watermark Year -->
-                        <span class="font-display font-black text-6xl text-slate-100 select-none absolute top-2 right-3 pointer-events-none group-hover:text-emerald-50 transition-colors">
-                            '22
-                        </span>
-
                         <div class="relative z-10">
                             <!-- Node Indicator -->
                             <div class="flex items-center justify-between mb-5">
@@ -581,8 +488,8 @@
         </div>
     </section>
 
-    <!-- 4. EMPAT PILAR KEUNGGULAN (Dynamic Asymmetrical Bento Grid) -->
-    <section class="py-16 bg-[#eef1eb] border-y border-neutral-200/90 relative overflow-hidden">
+    <!-- 4. EMPAT PILAR KEUNGGULAN (Clean Unified Emerald Theme - Sesuai Tema Beranda) -->
+    <section class="py-16 bg-[#f4f6f1] border-y border-neutral-200/90 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 block mb-2">
@@ -596,150 +503,173 @@
                 </p>
             </div>
 
-            <!-- Asymmetrical 3-Column Bento Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-                <!-- Bento Tile 1 (HERO PILLAR - Spans 2 cols): Pemandu HPI -->
-                <div class="lg:col-span-2 bg-linear-to-br from-slate-900 via-slate-950 to-emerald-950 text-white p-7 sm:p-9 rounded-3xl border border-slate-800 shadow-xl relative overflow-hidden flex flex-col justify-between group">
-                    <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-emerald-600/10 rounded-full blur-2xl pointer-events-none"></div>
-
-                    <div class="relative z-10">
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-bold uppercase tracking-wider">
-                                <i data-lucide="award" class="w-3.5 h-3.5"></i>
-                                <span>Pilar Keunggulan Utama</span>
-                            </div>
-                            <div class="w-11 h-11 rounded-2xl bg-white/10 border border-white/15 text-emerald-400 flex items-center justify-center">
-                                <i data-lucide="compass" class="w-6 h-6"></i>
-                            </div>
-                        </div>
-
-                        <h3 class="font-display font-extrabold text-xl sm:text-2xl text-white tracking-tight mb-3">
-                            Pemandu Lokal Berlisensi Resmi HPI Jawa Barat
-                        </h3>
-                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-xl">
-                            Bukan sekadar pemandu jalan. Seluruh tim river guide dan pemandu bahari kami adalah warga asli Pangandaran yang bersertifikasi resmi HPI (Himpunan Pramuwisata Indonesia). Menguasai navigasi arus Green Canyon, terlatih teknik penyelamatan air (water rescue), dan melayani dengan senyum keramahan Sunda.
-                        </p>
-                    </div>
-
-                    <div class="relative z-10 pt-6 mt-6 border-t border-white/10 flex flex-wrap items-center gap-3 text-xs">
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-emerald-300 font-semibold text-[11px]">
-                            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
-                            Sertifikat Resmi HPI DPC Jabar
-                        </span>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-emerald-300 font-semibold text-[11px]">
-                            <i data-lucide="waves" class="w-3.5 h-3.5 text-emerald-400"></i>
-                            Water Rescue Standard SNI
-                        </span>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-slate-300 font-semibold text-[11px]">
-                            <i data-lucide="smile" class="w-3.5 h-3.5 text-amber-400"></i>
-                            Ramah & Informatif
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Bento Tile 2 (Safety - Amber Accent - 1 col): Standar K3 -->
-                <div class="lg:col-span-1 bg-linear-to-b from-amber-50/50 via-white to-white p-7 rounded-3xl border border-amber-200/90 shadow-soft hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+            <!-- 4 Unified Theme Cards (Maks 3 Warna: Putih, Emerald, Slate) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+                <!-- Card 1: Pemandu Lokal Berlisensi HPI -->
+                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
-                                <i data-lucide="life-buoy" class="w-6 h-6"></i>
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
+                                <i data-lucide="compass" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold text-amber-800 uppercase tracking-wider bg-amber-100/80 px-2.5 py-1 rounded-full">
-                                Standar K3
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-full">
+                                Pemandu HPI
                             </span>
                         </div>
 
-                        <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2">
-                            Peralatan K3 & Asuransi Resmi
+                        <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2 group-hover:text-emerald-700 transition">
+                            Pemandu Lokal Berlisensi HPI
                         </h3>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Peralatan standar SNI/CE terawat: life jacket berdaya apung tinggi, helm sungai, dan dry bag, dilengkapi proteksi asuransi jiwa pariwisata resmi.
+                            Seluruh pemandu kami adalah warga lokal asli Pangandaran yang bersertifikasi resmi HPI (Himpunan Pramuwisata Indonesia) dan teruji navigasi arus air.
                         </p>
 
                         <!-- Checklist -->
                         <ul class="space-y-2 text-xs text-slate-700">
                             <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-amber-600 shrink-0"></i>
-                                <span>Life Jacket SNI Berdaya Apung Tinggi</span>
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Sertifikat Resmi HPI DPC Jabar</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-amber-600 shrink-0"></i>
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Water Rescue Standard SNI</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Ramah, Santun & Berpengalaman</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 mt-6 border-t border-neutral-100 text-[11px] font-bold text-emerald-700 flex items-center gap-1.5">
+                        <i data-lucide="award" class="w-3.5 h-3.5 text-emerald-600"></i>
+                        <span>Sertifikasi Resmi HPI Jabar</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Standar K3 & Asuransi Resmi -->
+                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
+                                <i data-lucide="life-buoy" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-full">
+                                Standar K3
+                            </span>
+                        </div>
+
+                        <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2 group-hover:text-emerald-700 transition">
+                            Peralatan K3 & Asuransi Resmi
+                        </h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Peralatan standar SNI/CE terawat: life jacket berdaya apung tinggi, helm sungai, dry bag, dilengkapi proteksi asuransi jiwa pariwisata resmi.
+                        </p>
+
+                        <!-- Checklist -->
+                        <ul class="space-y-2 text-xs text-slate-700">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Life Jacket SNI Berdaya Apung</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
                                 <span>Helm Arung Jeram & Dry Bag</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-amber-600 shrink-0"></i>
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
                                 <span>Polis Asuransi Jiwa Pariwisata Sah</span>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="pt-4 mt-6 border-t border-amber-100 text-[11px] font-bold text-amber-800 flex items-center gap-1.5">
-                        <i data-lucide="shield" class="w-3.5 h-3.5 text-amber-600"></i>
+                    <div class="pt-4 mt-6 border-t border-neutral-100 text-[11px] font-bold text-emerald-700 flex items-center gap-1.5">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
                         <span>Zero Compromise Safety</span>
                     </div>
                 </div>
 
-                <!-- Bento Tile 3 (Financial Clarity - Blue Accent - 1 col): Harga Jujur -->
-                <div class="lg:col-span-1 bg-linear-to-b from-blue-50/50 via-white to-white p-7 rounded-3xl border border-blue-200/90 shadow-soft hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+                <!-- Card 3: Harga Jujur Tanpa Biaya Siluman -->
+                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
                                 <i data-lucide="receipt-text" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold text-blue-800 uppercase tracking-wider bg-blue-100/80 px-2.5 py-1 rounded-full">
-                                Transparansi Tarif
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-full">
+                                Harga Jujur
                             </span>
                         </div>
 
-                        <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2">
+                        <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2 group-hover:text-emerald-700 transition">
                             Harga Jujur Tanpa Biaya Siluman
                         </h3>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Seluruh rincian tiket retribusi, sewa perahu nelayan, pemandu HPI, hingga prasmanan seafood sudah tercakup tanpa ada pungli tersembunyi di lokasi trip.
+                            Seluruh rincian fasilitas tertulis transparan. Tiket retribusi, sewa perahu nelayan, pemandu, dan makan siang sudah tercakup tanpa pungli di lokasi.
                         </p>
 
-                        <div class="p-3.5 rounded-2xl bg-blue-50/80 border border-blue-200/70 text-blue-900 text-xs">
-                            <span class="font-bold block mb-1">Jaminan All-Inclusive:</span>
-                            <p class="text-[11px] text-blue-800 leading-relaxed">Apa yang tertulis di invoice resmi adalah jumlah final yang Anda bayarkan.</p>
-                        </div>
+                        <!-- Checklist -->
+                        <ul class="space-y-2 text-xs text-slate-700">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Rincian All-Inclusive Sesuai Invoice</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Tiket Retribusi & Perahu Tercakup</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Bebas Pungli & Biaya Tersembunyi</span>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div class="pt-4 mt-6 border-t border-blue-100 text-[11px] font-bold text-blue-800 flex items-center gap-1.5">
-                        <i data-lucide="check" class="w-3.5 h-3.5 text-blue-600"></i>
-                        <span>Bebas Pungli & Biaya Tersembunyi</span>
+                    <div class="pt-4 mt-6 border-t border-neutral-100 text-[11px] font-bold text-emerald-700 flex items-center gap-1.5">
+                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i>
+                        <span>All-Inclusive Transparan</span>
                     </div>
                 </div>
 
-                <!-- Bento Tile 4 (Nature & Community - Emerald Banner - Spans 2 cols): Ekowisata -->
-                <div class="lg:col-span-2 bg-linear-to-br from-emerald-800 via-emerald-900 to-teal-950 text-white p-7 sm:p-9 rounded-3xl border border-emerald-700 shadow-lg relative overflow-hidden flex flex-col justify-between group">
-                    <div class="relative z-10">
+                <!-- Card 4: Ekowisata & Kearifan Budaya -->
+                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
                         <div class="flex items-center justify-between mb-5">
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-bold uppercase tracking-wider">
-                                <i data-lucide="leaf" class="w-3.5 h-3.5"></i>
-                                <span>Ekowisata Berkelanjutan</span>
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
+                                <i data-lucide="leaf" class="w-6 h-6"></i>
                             </div>
-                            <div class="w-11 h-11 rounded-2xl bg-white/10 border border-white/15 text-emerald-300 flex items-center justify-center">
-                                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
-                            </div>
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-full">
+                                Ekowisata
+                            </span>
                         </div>
 
-                        <h3 class="font-display font-extrabold text-xl sm:text-2xl text-white tracking-tight mb-2">
-                            Kelestarian Alam & Pemberdayaan Warga Lokal
+                        <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2 group-hover:text-emerald-700 transition">
+                            Ekowisata & Kearifan Budaya
                         </h3>
-                        <p class="text-slate-200 text-xs sm:text-sm leading-relaxed max-w-xl">
-                            Kami menerapkan aturan zero-littering dan larangan perusakan ekosistem stalaktit di sungai Green Canyon. Setiap perjalanan bersama Puja Tour secara langsung memberdayakan nelayan tradisional perahu, warung kuliner rumahan, dan konservasi penyu Pangandaran.
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Menghargai alam dengan aturan zero-littering dan larangan perusakan ekosistem sungai. Kami memberdayakan nelayan dan masyarakat kuliner lokal.
                         </p>
+
+                        <!-- Checklist -->
+                        <ul class="space-y-2 text-xs text-slate-700">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Zero Plastic River Trail di Green Canyon</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Edukasi Pelestarian Penyu Pesisir</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Pemberdayaan Nelayan Tradisional</span>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div class="relative z-10 pt-6 mt-6 border-t border-white/10 flex flex-wrap items-center gap-3 text-xs">
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-emerald-300 font-semibold text-[11px]">
-                            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-400"></i>
-                            Zero Plastic River Trail
-                        </span>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-emerald-300 font-semibold text-[11px]">
-                            <i data-lucide="users-round" class="w-3.5 h-3.5 text-emerald-400"></i>
-                            Mitra Nelayan & Kuliner Tradisional
-                        </span>
+                    <div class="pt-4 mt-6 border-t border-neutral-100 text-[11px] font-bold text-emerald-700 flex items-center gap-1.5">
+                        <i data-lucide="heart-handshake" class="w-3.5 h-3.5 text-emerald-600"></i>
+                        <span>Pemberdayaan Warga Pesisir</span>
                     </div>
                 </div>
             </div>
@@ -1091,13 +1021,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof lucide !== 'undefined') lucide.createIcons();
-            const btn = document.getElementById('mobile-menu-btn');
-            const drawer = document.getElementById('mobile-drawer');
-            const closeBtn = document.getElementById('close-drawer-btn');
-            if (btn && drawer) {
-                btn.addEventListener('click', () => drawer.classList.remove('hidden'));
-                if (closeBtn) closeBtn.addEventListener('click', () => drawer.classList.add('hidden'));
-            }
         });
     </script>
 </body>

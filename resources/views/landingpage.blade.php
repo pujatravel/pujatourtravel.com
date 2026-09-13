@@ -160,99 +160,8 @@
     @endphp
 
 
-    <!-- 2. STICKY NAVBAR (Dynamic Background Detection) -->
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-40 w-full py-3 sm:py-3.5 is-transparent-nav">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
-            <!-- Brand Logo (Clean Borderless) -->
-            <a href="{{ route('home') }}" class="flex items-center gap-2 sm:gap-3 group shrink-0">
-                <div class="w-9 h-9 sm:w-12 sm:h-12 shrink-0 flex items-center justify-center">
-                    <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja Tour & Travel" class="w-full h-full object-contain drop-shadow-sm">
-                </div>
-                <div class="flex flex-col">
-                    <span class="nav-brand-title font-display font-extrabold text-base sm:text-xl leading-tight tracking-tight text-white transition-colors duration-300">
-                        PUJA<span class="nav-brand-accent text-emerald-400 transition-colors duration-300 ml-1">TOUR</span>
-                    </span>
-                    <span class="nav-brand-subtitle text-[9px] sm:text-[10px] tracking-widest font-bold text-white/70 uppercase transition-colors duration-300 hidden sm:block">
-                        & Travel Pangandaran
-                    </span>
-                </div>
-            </a>
-
-            <!-- Desktop Nav Items -->
-            <nav class="hidden lg:flex items-center gap-7 font-medium text-sm">
-                <a href="#beranda" class="nav-link-item text-emerald-400 font-semibold transition-colors duration-300">Beranda</a>
-                <a href="{{ route('packages.index') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Paket Wisata</a>
-                <a href="{{ route('about') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Tentang Kami</a>
-                <a href="{{ route('calculator') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Estimasi Biaya</a>
-                <a href="{{ route('faq') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">FAQ</a>
-                <a href="{{ route('gallery') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Galeri</a>
-                <a href="{{ route('contact') }}" class="nav-link-item text-white/90 hover:text-white transition-colors duration-300">Kontak</a>
-            </nav>
-
-
-
-            <!-- Mobile Hamburger Button -->
-            <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl text-white hover:bg-white/10 transition">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- Mobile Drawer & Backdrop -->
-    <div id="drawer-overlay" class="fixed inset-0 bg-slate-900/60 z-50 hidden opacity-0 transition-opacity duration-300"></div>
-    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-6">
-        <div>
-            <div class="flex items-center justify-between pb-6 border-b border-neutral-200">
-                <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 shrink-0 flex items-center justify-center">
-                        <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja" class="w-full h-full object-contain">
-                    </div>
-                    <div>
-                        <span class="font-display font-extrabold text-base text-slate-900">PUJA TOUR</span>
-                        <span class="text-[10px] text-slate-500 block uppercase font-bold">Pangandaran</span>
-                    </div>
-                </div>
-                <button id="close-menu-btn" aria-label="Tutup Menu" class="p-2 rounded-xl text-slate-500 hover:bg-neutral-100 transition">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-            </div>
-
-            <nav class="py-6 space-y-1.5 font-medium text-slate-700 text-sm">
-                <a href="#beranda" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 text-emerald-700 font-bold transition">
-                    <span>Beranda</span>
-                </a>
-                <a href="{{ route('packages.index') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Paket Wisata</span>
-                </a>
-                <a href="{{ route('about') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Tentang Kami</span>
-                </a>
-                <a href="{{ route('calculator') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Estimasi Biaya</span>
-                </a>
-                <a href="{{ route('faq') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>FAQ</span>
-                </a>
-                <a href="{{ route('gallery') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Galeri</span>
-                </a>
-                <a href="{{ route('contact') }}" class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-neutral-100 transition">
-                    <span>Kontak & Lokasi</span>
-                </a>
-            </nav>
-        </div>
-
-        <div class="pt-6 border-t border-neutral-200 space-y-3">
-            <a href="https://wa.me/{{ $waNum }}" target="_blank" class="w-full py-3 rounded-xl bg-slate-900 text-white font-semibold text-xs flex items-center justify-center gap-2 hover:bg-slate-800 transition">
-                <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
-                <span>Chat WhatsApp Resmi</span>
-            </a>
-            <a href="#booking-section" class="drawer-link w-full py-3 rounded-xl bg-emerald-700 text-white font-semibold text-xs flex items-center justify-center gap-2 hover:bg-emerald-800 transition shadow-sm">
-                <span>Formulir Pemesanan</span>
-                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-        </div>
-    </div>
+    <!-- GLOBAL NAVBAR -->
+    @include('partials.navbar')
 
     <!-- 3. HERO BANNER SECTION WITH CINEMATIC AUTO-SLIDER (Solid Slate 950) -->
     @php
@@ -1085,13 +994,13 @@
         </div>
 
         <div class="space-y-4">
-            @forelse($faqs as $fIndex => $faq)
-                <div class="faq-item bg-surface-soft rounded-2xl border border-neutral-200 overflow-hidden shadow-soft reveal-fade-up {{ $fIndex % 2 === 1 ? 'delay-100' : '' }} {{ $fIndex === 0 ? 'is-active' : '' }}">
-                    <button type="button" class="faq-toggle w-full px-6 py-4.5 text-left flex items-center justify-between font-display font-bold text-slate-900 text-base hover:text-emerald-700 transition cursor-pointer">
+            @forelse($faqs->take(5) as $fIndex => $faq)
+                <div class="faq-item bg-surface-soft rounded-2xl border border-neutral-200 overflow-hidden shadow-soft hover:border-emerald-300 transition-all duration-300 reveal-fade-up {{ $fIndex % 2 === 1 ? 'delay-100' : '' }}">
+                    <button type="button" class="faq-toggle w-full px-6 py-4.5 text-left flex items-center justify-between gap-4 font-display font-bold text-slate-900 text-base hover:text-emerald-700 transition cursor-pointer">
                         <span>{{ $faq->question }}</span>
-                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-slate-400 transition-transform duration-300 shrink-0 {{ $fIndex === 0 ? 'rotate-180 text-emerald-700' : '' }}"></i>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-slate-400 transition-transform duration-300 shrink-0"></i>
                     </button>
-                    <div class="faq-collapse {{ $fIndex === 0 ? 'is-open' : '' }}">
+                    <div class="faq-collapse">
                         <div class="faq-collapse-inner">
                             <div class="faq-collapse-content px-6 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-neutral-200/70 pt-3">
                                 {!! nl2br(e($faq->answer)) !!}
@@ -1104,6 +1013,15 @@
                     <p class="text-sm">Belum ada daftar FAQ.</p>
                 </div>
             @endforelse
+        </div>
+
+        <!-- Tombol Lihat Lebih Banyak FAQ -->
+        <div class="mt-10 text-center reveal-fade-up">
+            <a href="{{ route('faq') }}" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white hover:bg-emerald-50 text-slate-900 hover:text-emerald-700 font-bold text-sm border border-neutral-200 hover:border-emerald-300 shadow-soft hover:shadow-card-hover transition-all duration-300 group">
+                <i data-lucide="help-circle" class="w-4 h-4 text-emerald-700"></i>
+                <span>Lihat Lebih Banyak FAQ</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400 group-hover:text-emerald-700 group-hover:translate-x-1.5 transition-all"></i>
+            </a>
         </div>
     </section>
 

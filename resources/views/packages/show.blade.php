@@ -135,9 +135,8 @@
         </nav>
     </div>
 
-    <!-- MAIN DETAIL CONTENT -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
             <!-- LEFT / MAIN CONTENT (8 COLS) -->
             <div class="lg:col-span-8 space-y-8">
@@ -231,92 +230,92 @@
                 </div>
 
                 <!-- 2. Fasilitas Termasuk & Tidak Termasuk -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-2 gap-3 sm:gap-6 items-stretch">
                     <!-- Termasuk (Inclusions) -->
-                    <div class="bg-surface-soft rounded-3xl p-6 sm:p-8 shadow-soft border border-neutral-200">
-                        <div class="flex items-center gap-3 pb-4 mb-4 border-b border-neutral-200">
-                            <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
-                                <i data-lucide="check" class="w-5 h-5"></i>
+                    <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 lg:p-8 shadow-soft border border-neutral-200 flex flex-col justify-start">
+                        <div class="flex items-center gap-2 sm:gap-3 pb-3 sm:pb-4 mb-3 sm:mb-4 border-b border-neutral-200">
+                            <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                                <i data-lucide="check" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             </div>
-                            <h3 class="font-display font-bold text-lg text-slate-900">Fasilitas Termasuk</h3>
+                            <h3 class="font-display font-bold text-xs sm:text-base lg:text-lg text-slate-900 leading-tight">Fasilitas Termasuk</h3>
                         </div>
 
-                        <ul class="space-y-3 text-xs sm:text-sm text-slate-700 font-medium">
+                        <ul class="space-y-2.5 sm:space-y-3 text-[11px] sm:text-xs md:text-sm text-slate-700 font-medium">
                             @if(is_array($package->inclusions) && count($package->inclusions) > 0)
                                 @foreach($package->inclusions as $inc)
-                                    <li class="flex items-start gap-2.5">
-                                        <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
-                                            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                    <li class="flex items-start gap-2 sm:gap-2.5">
+                                        <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i data-lucide="check" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5"></i>
                                         </div>
-                                        <span>{{ $inc }}</span>
+                                        <span class="leading-snug">{{ $inc }}</span>
                                     </li>
                                 @endforeach
                             @else
-                                <li class="flex items-start gap-2.5">
-                                    <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
-                                        <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                <li class="flex items-start gap-2 sm:gap-2.5">
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="check" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5"></i>
                                     </div>
-                                    <span>Pemandu Wisata Lokal Bersertifikasi HPI</span>
+                                    <span class="leading-snug">Pemandu Wisata Lokal Bersertifikasi HPI</span>
+                                </li>
+                                <li class="flex items-start gap-2 sm:gap-2.5">
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="check" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5"></i>
+                                    </div>
+                                    <span class="leading-snug">Peralatan Standard Keselamatan Lengkap</span>
                                 </li>
                                 <li class="flex items-start gap-2.5">
-                                    <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
-                                        <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="check" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5"></i>
                                     </div>
-                                    <span>Peralatan Standard Keselamatan Lengkap</span>
+                                    <span class="leading-snug">Tiket Masuk Obyek Wisata & Asuransi Jiwa</span>
                                 </li>
                                 <li class="flex items-start gap-2.5">
-                                    <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
-                                        <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="check" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5"></i>
                                     </div>
-                                    <span>Tiket Masuk Obyek Wisata & Asuransi Jiwa</span>
-                                </li>
-                                <li class="flex items-start gap-2.5">
-                                    <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
-                                        <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                                    </div>
-                                    <span>Dokumentasi Foto Selama Kegiatan</span>
+                                    <span class="leading-snug">Dokumentasi Foto Selama Kegiatan</span>
                                 </li>
                             @endif
                         </ul>
                     </div>
 
                     <!-- Tidak Termasuk (Exclusions) -->
-                    <div class="bg-surface-soft rounded-3xl p-6 sm:p-8 shadow-soft border border-neutral-200">
-                        <div class="flex items-center gap-3 pb-4 mb-4 border-b border-neutral-200">
-                            <div class="w-9 h-9 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center">
-                                <i data-lucide="x" class="w-5 h-5"></i>
+                    <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 lg:p-8 shadow-soft border border-neutral-200 flex flex-col justify-start">
+                        <div class="flex items-center gap-2 sm:gap-3 pb-3 sm:pb-4 mb-3 sm:mb-4 border-b border-neutral-200">
+                            <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center shrink-0">
+                                <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             </div>
-                            <h3 class="font-display font-bold text-lg text-slate-900">Belum Termasuk</h3>
+                            <h3 class="font-display font-bold text-xs sm:text-base lg:text-lg text-slate-900 leading-tight">Belum Termasuk</h3>
                         </div>
 
-                        <ul class="space-y-3 text-xs sm:text-sm text-slate-600 font-medium">
+                        <ul class="space-y-2.5 sm:space-y-3 text-[11px] sm:text-xs md:text-sm text-slate-600 font-medium">
                             @if(is_array($package->exclusions) && count($package->exclusions) > 0)
                                 @foreach($package->exclusions as $exc)
-                                    <li class="flex items-start gap-2.5">
-                                        <div class="w-5 h-5 rounded-full bg-neutral-200 text-slate-500 flex items-center justify-center shrink-0 mt-0.5">
-                                            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                                    <li class="flex items-start gap-2 sm:gap-2.5">
+                                        <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-neutral-200 text-slate-500 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i data-lucide="x" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5"></i>
                                         </div>
-                                        <span>{{ $exc }}</span>
+                                        <span class="leading-snug">{{ $exc }}</span>
                                     </li>
                                 @endforeach
                             @else
-                                <li class="flex items-start gap-2.5">
-                                    <div class="w-5 h-5 rounded-full bg-neutral-200 text-slate-500 flex items-center justify-center shrink-0 mt-0.5">
-                                        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                                <li class="flex items-start gap-2 sm:gap-2.5">
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-neutral-200 text-slate-500 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="x" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5"></i>
                                     </div>
-                                    <span>Transportasi pribadi menuju titik kumpul</span>
+                                    <span class="leading-snug">Transportasi pribadi menuju titik kumpul</span>
                                 </li>
                                 <li class="flex items-start gap-2.5">
-                                    <div class="w-5 h-5 rounded-full bg-neutral-200 text-slate-500 flex items-center justify-center shrink-0 mt-0.5">
-                                        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-neutral-200 text-slate-500 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="x" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5"></i>
                                     </div>
-                                    <span>Pengeluaran pribadi di luar kesepakatan paket</span>
+                                    <span class="leading-snug">Pengeluaran pribadi di luar kesepakatan paket</span>
                                 </li>
                                 <li class="flex items-start gap-2.5">
-                                    <div class="w-5 h-5 rounded-full bg-neutral-200 text-slate-500 flex items-center justify-center shrink-0 mt-0.5">
-                                        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-neutral-200 text-slate-500 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="x" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5"></i>
                                     </div>
-                                    <span>Tips sukarela pemandu lapangan</span>
+                                    <span class="leading-snug">Tips sukarela pemandu lapangan</span>
                                 </li>
                             @endif
                         </ul>
@@ -390,74 +389,74 @@
             </div>
 
             <!-- RIGHT / BOOKING SIDEBAR (4 COLS STICKY) -->
-            <div class="lg:col-span-4 self-start sticky top-24 space-y-6">
-                
-                <!-- Main Booking Card -->
-                <div class="bg-surface-soft rounded-3xl p-5 sm:p-7 shadow-soft border border-neutral-200">
-                    <div class="pb-5 border-b border-neutral-200">
-                        <span class="text-xs font-semibold text-slate-400 block uppercase tracking-wider">Harga Resmi Paket</span>
-                        <div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2 mt-1">
-                            <span class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-emerald-700 tracking-tight">{{ $package->formatted_price }}</span>
-                            <span class="text-xs font-bold text-slate-500">/ {{ $package->price_unit }}</span>
+            <div class="lg:col-span-4">
+                <div class="sticky top-24 space-y-6">
+                    <!-- Main Booking Card -->
+                    <div class="bg-surface-soft rounded-3xl p-5 sm:p-7 shadow-soft border border-neutral-200">
+                        <div class="pb-5 border-b border-neutral-200">
+                            <span class="text-xs font-semibold text-slate-400 block uppercase tracking-wider">Harga Resmi Paket</span>
+                            <div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2 mt-1">
+                                <span class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-emerald-700 tracking-tight">{{ $package->formatted_price }}</span>
+                                <span class="text-xs font-bold text-slate-500">/ {{ $package->price_unit }}</span>
+                            </div>
+                            <span class="inline-block mt-2 px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-100 text-amber-900">
+                                Diskon s/d 15% untuk Rombongan 10+ Orang
+                            </span>
                         </div>
-                        <span class="inline-block mt-2 px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-100 text-amber-900">
-                            Diskon s/d 15% untuk Rombongan 10+ Orang
-                        </span>
+
+                        <!-- Quick WhatsApp Booking CTA -->
+                        <div class="py-5 space-y-3">
+                            <a href="https://wa.me/{{ $waNum }}?text={{ $bookingWaText }}" 
+                               target="_blank" 
+                               class="w-full py-4 px-6 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm text-center transition flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg hover:-translate-y-0.5 duration-200">
+                                <i data-lucide="message-circle" class="w-5 h-5"></i>
+                                <span>Booking Cepat via WhatsApp</span>
+                            </a>
+
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $phoneNum) }}" 
+                               class="w-full py-3 px-4 rounded-xl bg-white hover:bg-neutral-100 text-slate-800 font-bold text-xs text-center border border-neutral-200 transition flex items-center justify-center gap-2">
+                                <i data-lucide="phone" class="w-4 h-4 text-emerald-700"></i>
+                                <span>Hubungi Hotline: {{ $phoneNum }}</span>
+                            </a>
+                        </div>
+
+                        <!-- Quick Information Summary List -->
+                        <div class="pt-5 border-t border-neutral-200 space-y-3 text-xs text-slate-600">
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400">Minimal Peserta:</span>
+                                <span class="font-bold text-slate-800">1 Orang / Fleksibel</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400">Lokasi Penjemputan:</span>
+                                <span class="font-bold text-slate-800">Pangandaran</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400">Metode Bayar:</span>
+                                <span class="font-bold text-slate-800">DP Transfer & Pelunasan di Tempat</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400">Konfirmasi Jadwal:</span>
+                                <span class="font-bold text-emerald-700">Instan via WhatsApp</span>
+                            </div>
+                        </div>
+
+                        <!-- Quick Consultation Box -->
+                        <div class="mt-6 p-4 rounded-2xl bg-canvas border border-neutral-200 text-xs">
+                            <span class="font-bold text-slate-900 block mb-1">Butuh Jadwal Khusus?</span>
+                            <p class="text-slate-500 leading-relaxed">
+                                Kami siap menyesuaikan jadwal keberangkatan, custom menu makan, atau penjemputan stasiun/bandara.
+                            </p>
+                        </div>
                     </div>
 
-                    <!-- Quick WhatsApp Booking CTA -->
-                    <div class="py-5 space-y-3">
-                        <a href="https://wa.me/{{ $waNum }}?text={{ $bookingWaText }}" 
-                           target="_blank" 
-                           class="w-full py-4 px-6 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm text-center transition flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg hover:-translate-y-0.5 duration-200">
-                            <i data-lucide="message-circle" class="w-5 h-5"></i>
-                            <span>Booking Cepat via WhatsApp</span>
+                    <!-- Back to All Packages Button -->
+                    <div class="text-center">
+                        <a href="{{ route('packages.index') }}" class="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-emerald-700 transition">
+                            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                            <span>Lihat Semua Katalog Paket Wisata</span>
                         </a>
-
-                        <a href="tel:{{ preg_replace('/[^0-9+]/', '', $phoneNum) }}" 
-                           class="w-full py-3 px-4 rounded-xl bg-white hover:bg-neutral-100 text-slate-800 font-bold text-xs text-center border border-neutral-200 transition flex items-center justify-center gap-2">
-                            <i data-lucide="phone" class="w-4 h-4 text-emerald-700"></i>
-                            <span>Hubungi Hotline: {{ $phoneNum }}</span>
-                        </a>
-                    </div>
-
-                    <!-- Quick Information Summary List -->
-                    <div class="pt-5 border-t border-neutral-200 space-y-3 text-xs text-slate-600">
-                        <div class="flex items-center justify-between">
-                            <span class="text-slate-400">Minimal Peserta:</span>
-                            <span class="font-bold text-slate-800">1 Orang / Fleksibel</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-slate-400">Lokasi Penjemputan:</span>
-                            <span class="font-bold text-slate-800">Pangandaran</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-slate-400">Metode Bayar:</span>
-                            <span class="font-bold text-slate-800">DP Transfer & Pelunasan di Tempat</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-slate-400">Konfirmasi Jadwal:</span>
-                            <span class="font-bold text-emerald-700">Instan via WhatsApp</span>
-                        </div>
-                    </div>
-
-                    <!-- Quick Consultation Box -->
-                    <div class="mt-6 p-4 rounded-2xl bg-canvas border border-neutral-200 text-xs">
-                        <span class="font-bold text-slate-900 block mb-1">Butuh Jadwal Khusus?</span>
-                        <p class="text-slate-500 leading-relaxed">
-                            Kami siap menyesuaikan jadwal keberangkatan, custom menu makan, atau penjemputan stasiun/bandara.
-                        </p>
                     </div>
                 </div>
-
-                <!-- Back to All Packages Button -->
-                <div class="text-center">
-                    <a href="{{ route('packages.index') }}" class="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-emerald-700 transition">
-                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                        <span>Lihat Semua Katalog Paket Wisata</span>
-                    </a>
-                </div>
-
             </div>
 
         </div>
@@ -479,38 +478,81 @@
                     </a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 xs:gap-3.5 sm:gap-6">
                     @foreach($relatedPackages as $rel)
-                        <div class="flex flex-col bg-surface-soft rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group">
-                            <div class="relative h-48 overflow-hidden bg-neutral-100">
-                                <img src="{{ $rel->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $rel->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                <div class="absolute top-3 left-3">
-                                    <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-700 text-white">
-                                        {{ $rel->category->name ?? 'Wisata' }}
-                                    </span>
+                        @php $relImages = $rel->gallery_images; @endphp
+                        <div class="package-card flex flex-col bg-surface-soft rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group">
+
+                            {{-- Gambar --}}
+                            <div class="relative h-32 xs:h-40 sm:h-52 overflow-hidden bg-neutral-100">
+                                <img src="{{ $rel->image_url ?? asset('images/greencanyon.jpg') }}"
+                                     alt="{{ $rel->name }}"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+
+                                {{-- Badge Featured / Category --}}
+                                <div class="absolute top-2 left-2 sm:top-3 sm:left-3 z-10">
+                                    @if($rel->featured)
+                                        <span class="px-2 py-0.5 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-amber-500 text-slate-950 shadow-xs flex items-center gap-1">
+                                            <i data-lucide="star" class="w-2.5 h-2.5 fill-slate-950"></i>
+                                            <span>Rekomendasi</span>
+                                        </span>
+                                    @else
+                                        <span class="px-2 py-0.5 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-emerald-700 text-white shadow-xs">
+                                            {{ $rel->category->name ?? 'Wisata' }}
+                                        </span>
+                                    @endif
                                 </div>
-                            </div>
-                            <div class="p-5 flex-1 flex flex-col justify-between">
-                                <div>
-                                    <div class="flex items-center gap-1 text-[11px] font-semibold text-emerald-700 mb-1">
-                                        <i data-lucide="map-pin" class="w-3 h-3"></i>
-                                        <span>{{ $rel->location ?? 'Pangandaran' }}</span>
+
+                                {{-- Duration badge --}}
+                                @if($rel->duration)
+                                    <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-10">
+                                        <span class="px-1.5 py-0.5 sm:px-3 sm:py-1 rounded-md sm:rounded-xl text-[9px] xs:text-[10px] sm:text-xs font-bold bg-slate-900/85 backdrop-blur-xs text-white flex items-center gap-1">
+                                            <i data-lucide="clock" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-emerald-400"></i>
+                                            <span>{{ $rel->duration }}</span>
+                                        </span>
                                     </div>
-                                    <h4 class="font-display font-bold text-base text-slate-900 group-hover:text-emerald-700 transition line-clamp-1">
+                                @endif
+                            </div>
+
+                            {{-- Card Body --}}
+                            <div class="p-2.5 xs:p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center gap-1 text-[10px] xs:text-[11px] sm:text-xs font-semibold text-emerald-700 mb-1 truncate">
+                                        <i data-lucide="map-pin" class="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0"></i>
+                                        <span class="truncate">{{ $rel->location ?? 'Pangandaran' }}</span>
+                                    </div>
+                                    <h4 class="font-display font-bold text-xs xs:text-sm sm:text-base text-slate-900 group-hover:text-emerald-700 transition leading-snug line-clamp-2">
                                         {{ $rel->name }}
                                     </h4>
-                                    <p class="text-xs text-slate-500 mt-1 line-clamp-2">
+                                    <p class="text-[10px] xs:text-[11px] sm:text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
                                         {{ $rel->short_description }}
                                     </p>
+
+                                    {{-- Inclusions --}}
+                                    @if(is_array($rel->inclusions) && count($rel->inclusions) > 0)
+                                        <div class="flex flex-wrap gap-1 sm:gap-1.5 mt-2 sm:mt-3">
+                                            @foreach(array_slice($rel->inclusions, 0, 3) as $iIdx => $inc)
+                                                <span class="text-[9px] xs:text-[10px] sm:text-[11px] bg-neutral-100 text-slate-700 px-1.5 py-0.5 rounded-md {{ $iIdx >= 2 ? 'hidden sm:inline-flex' : 'inline-flex' }} items-center gap-1">
+                                                    <i data-lucide="check" class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-700 shrink-0"></i>
+                                                    <span class="truncate">{{ $inc }}</span>
+                                                </span>
+                                            @endforeach
+                                        </div>
+                                    @endif
                                 </div>
-                                <div class="pt-4 mt-4 border-t border-neutral-200 flex items-center justify-between">
+
+                                <div class="pt-2.5 sm:pt-4 mt-2.5 sm:mt-4 border-t border-neutral-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
                                     <div>
-                                        <span class="text-[10px] text-slate-400 block font-medium">Mulai dari</span>
-                                        <span class="font-display font-bold text-base text-emerald-700">{{ $rel->formatted_price }}</span>
+                                        <span class="text-[9px] xs:text-[10px] sm:text-[11px] text-slate-400 block font-medium leading-none mb-0.5">Mulai dari</span>
+                                        <div class="flex items-baseline gap-1">
+                                            <span class="font-display font-bold text-xs xs:text-sm sm:text-base text-emerald-700 leading-tight">{{ $rel->formatted_price }}</span>
+                                            <span class="text-[9px] xs:text-[10px] sm:text-xs text-slate-400">/ {{ $rel->price_unit }}</span>
+                                        </div>
                                     </div>
-                                    <a href="{{ route('packages.show', $rel->slug) }}" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-emerald-700 text-white font-semibold text-xs transition flex items-center gap-1">
-                                        <span>Detail</span>
-                                        <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                                    <a href="{{ route('packages.show', $rel->slug) }}" class="w-full sm:w-auto px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl bg-slate-900 hover:bg-emerald-700 text-white font-semibold text-[10px] xs:text-xs transition flex items-center justify-center gap-1 shadow-xs">
+                                        <span class="sm:hidden">Detail</span>
+                                        <span class="hidden sm:inline">Baca Selengkapnya</span>
+                                        <i data-lucide="arrow-right" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i>
                                     </a>
                                 </div>
                             </div>

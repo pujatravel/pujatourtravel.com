@@ -136,19 +136,39 @@
                     Lebih dari ribuan wisatawan keluarga, rombongan kantor, dan komunitas telah mempercayakan liburan Pangandaran mereka bersama kami.
                 </p>
 
-                <!-- STATS BAR -->
-                <div class="mt-6 sm:mt-8 grid grid-cols-1 xs:grid-cols-3 gap-3 xs:gap-0 divide-y xs:divide-y-0 xs:divide-x divide-neutral-200 max-w-lg mx-auto bg-surface-soft p-4 rounded-2xl border border-neutral-200 shadow-xs">
-                    <div class="pb-2.5 xs:pb-0 xs:px-2">
-                        <span class="font-display font-black text-xl sm:text-2xl text-slate-900">4.9/5</span>
-                        <span class="text-[11px] text-slate-500 block font-medium mt-0.5">Rating Rata-Rata</span>
+                <!-- STATS CARDS (2 di atas 1 di bawah pada mobile; 3 kolom megah & proporsional di desktop) -->
+                <div class="mt-6 sm:mt-10 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-5 lg:gap-6 max-w-md sm:max-w-2xl lg:max-w-3xl mx-auto">
+                    <!-- Stat 1: Rating -->
+                    <div class="bg-white rounded-2xl lg:rounded-3xl p-4 sm:p-5 lg:p-6 border border-neutral-200 shadow-soft hover:border-emerald-300 hover:shadow-card-hover transition-all duration-300 text-center flex flex-col items-center justify-center group">
+                        <div class="flex items-center justify-center gap-1.5 sm:gap-2 mb-1 lg:mb-1.5">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-amber-500 fill-amber-400 drop-shadow-xs" viewBox="0 0 24 24">
+                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                            </svg>
+                            <span class="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight">4.9/5</span>
+                        </div>
+                        <span class="text-xs sm:text-sm lg:text-base text-slate-600 font-semibold">Rating Rata-Rata</span>
                     </div>
-                    <div class="py-2.5 xs:py-0 xs:px-2">
-                        <span class="font-display font-black text-xl sm:text-2xl text-emerald-700">100%</span>
-                        <span class="text-[11px] text-slate-500 block font-medium mt-0.5">Guide Lokal Bersertifikat</span>
+
+                    <!-- Stat 2: Guide -->
+                    <div class="bg-white rounded-2xl lg:rounded-3xl p-4 sm:p-5 lg:p-6 border border-neutral-200 shadow-soft hover:border-emerald-300 hover:shadow-card-hover transition-all duration-300 text-center flex flex-col items-center justify-center group">
+                        <div class="flex items-center justify-center gap-1.5 sm:gap-2 mb-1 lg:mb-1.5">
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                                <i data-lucide="shield-check" class="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-emerald-600"></i>
+                            </div>
+                            <span class="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-emerald-700 tracking-tight">100%</span>
+                        </div>
+                        <span class="text-xs sm:text-sm lg:text-base text-slate-600 font-semibold">Guide Berlisensi HPI</span>
                     </div>
-                    <div class="pt-2.5 xs:pt-0 xs:px-2">
-                        <span class="font-display font-black text-xl sm:text-2xl text-slate-900">{{ $testimonials->count() }}+</span>
-                        <span class="text-[11px] text-slate-500 block font-medium mt-0.5">Ulasan Terverifikasi</span>
+
+                    <!-- Stat 3: Ulasan Terverifikasi (Col Span 2 di mobile agar 2 di atas, 1 di bawah) -->
+                    <div class="col-span-2 sm:col-span-1 bg-white rounded-2xl lg:rounded-3xl p-4 sm:p-5 lg:p-6 border border-neutral-200 shadow-soft hover:border-emerald-300 hover:shadow-card-hover transition-all duration-300 text-center flex flex-col items-center justify-center group">
+                        <div class="flex items-center justify-center gap-1.5 sm:gap-2 mb-1 lg:mb-1.5">
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                                <i data-lucide="message-square-quote" class="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-emerald-600"></i>
+                            </div>
+                            <span class="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight">{{ $testimonials->count() }}+</span>
+                        </div>
+                        <span class="text-xs sm:text-sm lg:text-base text-slate-600 font-semibold">Ulasan Terverifikasi</span>
                     </div>
                 </div>
 

@@ -31,10 +31,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', function () {
     $allPackages = Package::with('category')->where('status', 'PUBLISHED')->latest()->get();
-    // Display only 3 packages on homepage grid
-    $packages = Package::with('category')->where('status', 'PUBLISHED')->where('featured', true)->take(3)->get();
-    if ($packages->count() < 3) {
-        $packages = Package::with('category')->where('status', 'PUBLISHED')->latest()->take(3)->get();
+    // Display 4 packages on homepage grid (2 rows × 2 columns)
+    $packages = Package::with('category')->where('status', 'PUBLISHED')->where('featured', true)->take(4)->get();
+    if ($packages->count() < 4) {
+        $packages = Package::with('category')->where('status', 'PUBLISHED')->latest()->take(4)->get();
     }
     $totalPackagesCount = $allPackages->count();
     $featuredPackages = Package::where('status', 'PUBLISHED')->where('featured', true)->get();

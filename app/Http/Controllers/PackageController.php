@@ -99,15 +99,15 @@ class PackageController extends Controller
             ->where('status', 'PUBLISHED')
             ->where('id', '!=', $package->id)
             ->where('category_id', $package->category_id)
-            ->take(3)
+            ->take(4)
             ->get();
 
-        if ($relatedPackages->count() < 3) {
+        if ($relatedPackages->count() < 4) {
             $morePackages = Package::with('category')
                 ->where('status', 'PUBLISHED')
                 ->where('id', '!=', $package->id)
                 ->whereNotIn('id', $relatedPackages->pluck('id'))
-                ->take(3 - $relatedPackages->count())
+                ->take(4 - $relatedPackages->count())
                 ->get();
             $relatedPackages = $relatedPackages->merge($morePackages);
         }

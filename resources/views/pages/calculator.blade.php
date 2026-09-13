@@ -112,10 +112,7 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 pb-20">
         <!-- PAGE HEADER -->
         <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-            <div class="inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest text-emerald-700 mb-2 sm:mb-3">
-                <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
-                <span>Simulasi Anggaran & Estimasi Biaya Transparan</span>
-            </div>
+
             <h1 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-5xl text-slate-900 tracking-tight">
                 Simulasi & Estimasi Biaya Liburan
             </h1>
@@ -124,7 +121,7 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <!-- LEFT COLUMN: FORM PARAMETERS (7 COLS) -->
             <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-neutral-200 space-y-6">
                 <!-- Header Box -->
@@ -266,69 +263,57 @@
                         </span>
                     </div>
 
-                    <div class="space-y-3">
+                    <div class="space-y-2">
                         <!-- Addon 1: Drone 4K -->
-                        <label class="group flex items-start justify-between p-4 rounded-2xl bg-canvas border border-neutral-200 hover:border-emerald-300 has-checked:border-emerald-600 has-checked:bg-emerald-50/40 has-checked:shadow-2xs cursor-pointer transition-all duration-200">
-                            <div class="flex items-start gap-3.5 min-w-0">
-                                <div class="pt-0.5">
-                                    <input type="checkbox" id="addon-drone" data-cost="350000" data-type="flat" class="calc-addon rounded-lg text-emerald-700 focus:ring-emerald-700 w-4.5 h-4.5 border-neutral-300 cursor-pointer">
-                                </div>
-                                <div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition">
-                                            Dokumentasi Video Drone 4K Sinematik
-                                        </span>
-                                    </div>
-                                    <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
-                                        Pengambilan video udara profesional di tebing Green Canyon atau garis pantai Pangandaran.
+                        <label class="group flex items-center justify-between py-2.5 px-3 sm:py-3 sm:px-4 rounded-xl sm:rounded-2xl bg-canvas border border-neutral-200 hover:border-emerald-300 has-checked:border-emerald-600 has-checked:bg-emerald-50/40 has-checked:shadow-2xs cursor-pointer transition-all duration-200">
+                            <div class="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1 mr-2">
+                                <input type="checkbox" id="addon-drone" data-cost="350000" data-type="flat" class="calc-addon rounded-md text-emerald-700 focus:ring-emerald-700 w-4 h-4 border-neutral-300 cursor-pointer shrink-0">
+                                <div class="min-w-0 flex-1">
+                                    <span class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition block truncate">
+                                        Dokumentasi Video Drone 4K Sinematik
+                                    </span>
+                                    <p class="text-[11px] text-slate-500 leading-tight truncate">
+                                        Video udara profesional tebing Green Canyon & pantai Pangandaran.
                                     </p>
                                 </div>
                             </div>
-                            <span class="text-xs font-bold text-emerald-700 shrink-0 ml-3 whitespace-nowrap bg-white px-2.5 py-1 rounded-lg border border-neutral-200">
+                            <span class="text-[11px] sm:text-xs font-bold text-emerald-700 shrink-0 whitespace-nowrap bg-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg border border-neutral-200 shadow-2xs">
                                 +Rp 350.000 / trip
                             </span>
                         </label>
 
                         <!-- Addon 2: Gala Dinner Seafood -->
-                        <label class="group flex items-start justify-between p-4 rounded-2xl bg-canvas border border-neutral-200 hover:border-emerald-300 has-checked:border-emerald-600 has-checked:bg-emerald-50/40 has-checked:shadow-2xs cursor-pointer transition-all duration-200">
-                            <div class="flex items-start gap-3.5 min-w-0">
-                                <div class="pt-0.5">
-                                    <input type="checkbox" id="addon-seafood" data-cost="85000" data-type="per_pax" class="calc-addon rounded-lg text-emerald-700 focus:ring-emerald-700 w-4.5 h-4.5 border-neutral-300 cursor-pointer">
-                                </div>
-                                <div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition">
-                                            Gala Dinner Seafood Bakar Pesisir
-                                        </span>
-                                    </div>
-                                    <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
-                                        Menu olahan laut segar: kepiting, udang, cumi saus padang, dan ikan bakar bumbu rempah.
+                        <label class="group flex items-center justify-between py-2.5 px-3 sm:py-3 sm:px-4 rounded-xl sm:rounded-2xl bg-canvas border border-neutral-200 hover:border-emerald-300 has-checked:border-emerald-600 has-checked:bg-emerald-50/40 has-checked:shadow-2xs cursor-pointer transition-all duration-200">
+                            <div class="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1 mr-2">
+                                <input type="checkbox" id="addon-seafood" data-cost="85000" data-type="per_pax" class="calc-addon rounded-md text-emerald-700 focus:ring-emerald-700 w-4 h-4 border-neutral-300 cursor-pointer shrink-0">
+                                <div class="min-w-0 flex-1">
+                                    <span class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition block truncate">
+                                        Gala Dinner Seafood Bakar Pesisir
+                                    </span>
+                                    <p class="text-[11px] text-slate-500 leading-tight truncate">
+                                        Menu olahan laut segar: kepiting, udang, cumi & ikan bakar rempah.
                                     </p>
                                 </div>
                             </div>
-                            <span class="text-xs font-bold text-emerald-700 shrink-0 ml-3 whitespace-nowrap bg-white px-2.5 py-1 rounded-lg border border-neutral-200">
+                            <span class="text-[11px] sm:text-xs font-bold text-emerald-700 shrink-0 whitespace-nowrap bg-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg border border-neutral-200 shadow-2xs">
                                 +Rp 85.000 / pax
                             </span>
                         </label>
 
                         <!-- Addon 3: Antar-Jemput Transport -->
-                        <label class="group flex items-start justify-between p-4 rounded-2xl bg-canvas border border-neutral-200 hover:border-emerald-300 has-checked:border-emerald-600 has-checked:bg-emerald-50/40 has-checked:shadow-2xs cursor-pointer transition-all duration-200">
-                            <div class="flex items-start gap-3.5 min-w-0">
-                                <div class="pt-0.5">
-                                    <input type="checkbox" id="addon-transport" data-cost="150000" data-type="per_pax" class="calc-addon rounded-lg text-emerald-700 focus:ring-emerald-700 w-4.5 h-4.5 border-neutral-300 cursor-pointer">
-                                </div>
-                                <div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition">
-                                            Antar-Jemput Stasiun / Bandara Banjar
-                                        </span>
-                                    </div>
-                                    <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
-                                        Armada private ber-AC (Hiace / Elf / Avanza) dengan driver lokal berpengalaman.
+                        <label class="group flex items-center justify-between py-2.5 px-3 sm:py-3 sm:px-4 rounded-xl sm:rounded-2xl bg-canvas border border-neutral-200 hover:border-emerald-300 has-checked:border-emerald-600 has-checked:bg-emerald-50/40 has-checked:shadow-2xs cursor-pointer transition-all duration-200">
+                            <div class="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1 mr-2">
+                                <input type="checkbox" id="addon-transport" data-cost="150000" data-type="per_pax" class="calc-addon rounded-md text-emerald-700 focus:ring-emerald-700 w-4 h-4 border-neutral-300 cursor-pointer shrink-0">
+                                <div class="min-w-0 flex-1">
+                                    <span class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition block truncate">
+                                        Antar-Jemput Stasiun / Bandara Banjar
+                                    </span>
+                                    <p class="text-[11px] text-slate-500 leading-tight truncate">
+                                        Armada private AC (Hiace/Elf/Avanza) dengan driver lokal berpengalaman.
                                     </p>
                                 </div>
                             </div>
-                            <span class="text-xs font-bold text-emerald-700 shrink-0 ml-3 whitespace-nowrap bg-white px-2.5 py-1 rounded-lg border border-neutral-200">
+                            <span class="text-[11px] sm:text-xs font-bold text-emerald-700 shrink-0 whitespace-nowrap bg-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg border border-neutral-200 shadow-2xs">
                                 +Rp 150.000 / pax
                             </span>
                         </label>
@@ -353,7 +338,8 @@
             </div>
 
             <!-- RIGHT COLUMN: STICKY LIVE INVOICE / VOUCHER SUMMARY (5 COLS) -->
-            <div class="lg:col-span-5 self-start sticky top-24 space-y-6">
+            <div class="lg:col-span-5">
+                <div class="sticky top-24 space-y-6">
                 <!-- Voucher Receipt Card -->
                 <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-neutral-200 relative overflow-hidden">
                     <!-- Voucher Header -->
@@ -460,6 +446,7 @@
                         </li>
                     </ul>
                 </div>
+                </div>
             </div>
         </div>
 
@@ -477,95 +464,154 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-                <!-- Tier 1 -->
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full">
-                                Small Group
-                            </span>
-                            <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center group-hover:bg-emerald-50 group-hover:text-emerald-700 transition">
-                                <i data-lucide="users" class="w-5 h-5"></i>
-                            </div>
-                        </div>
-                        <h3 class="font-display font-bold text-lg text-slate-900 mb-1">Trip 1 - 4 Orang</h3>
-                        <p class="text-xs font-bold text-slate-500 mb-3">Tarif Normal Standar Private</p>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Pilihan ideal bagi pasangan, backpacker, atau keluarga inti. Trip private tanpa digabung dengan peserta luar lainnya.
-                        </p>
+            <!-- Mobile Swipe Hint -->
+            <div class="md:hidden flex items-center text-[11px] font-bold text-slate-500 mb-2 px-1">
+                <span class="flex items-center gap-1.5 text-emerald-700">
+                    <i data-lucide="award" class="w-3.5 h-3.5 text-emerald-700"></i>
+                    <span>Leaderboard Kapasitas Peserta</span>
+                </span>
+            </div>
+
+            <style>
+                #tier-podium-track {
+                    -ms-overflow-style: none !important;
+                    scrollbar-width: none !important;
+                }
+                #tier-podium-track::-webkit-scrollbar {
+                    display: none !important;
+                    width: 0 !important;
+                    height: 0 !important;
+                }
+            </style>
+
+            <!-- LEADERBOARD 1-2-3 PODIUM: 3 Berjajar, #1 Favorit Keluarga di Tengah di-Highlight, Kiri & Kanan Sedikit Buram -->
+            <div id="tier-podium-track" class="flex md:grid md:grid-cols-3 gap-3.5 sm:gap-6 items-end justify-start md:justify-center overflow-x-auto snap-x snap-mandatory pt-4 pb-6 px-2 -mx-4 sm:mx-0 sm:px-0 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+
+                <!-- PODIUM 2: KIRI (Tier 1: Small Group 1 - 4 Orang) -->
+                <div id="tier-card-1" class="w-[78vw] sm:w-80 md:w-auto shrink-0 snap-center flex flex-col justify-between bg-white rounded-3xl overflow-hidden border border-neutral-200 shadow-soft transition-all duration-300 md:scale-95 md:opacity-85 hover:opacity-100 hover:scale-100 md:filter md:blur-[0.3px] hover:blur-none group relative z-10">
+                    {{-- Leaderboard Ribbon --}}
+                    <div class="bg-slate-700 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider py-1.5 px-3 text-center flex items-center justify-center gap-1.5 shadow-xs">
+                        <span class="w-4 h-4 rounded-full bg-slate-600 text-white text-[9px] flex items-center justify-center font-black">2</span>
+                        <span>#2 STANDAR PRIVATE</span>
                     </div>
-                    <div class="pt-4 border-t border-neutral-100 text-xs text-slate-700 space-y-1.5">
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                            <span>Private river guide berlisensi</span>
+
+                    <div class="p-5 sm:p-6 flex flex-col justify-between flex-1">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full">
+                                    Small Group
+                                </span>
+                                <div class="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center group-hover:bg-emerald-50 group-hover:text-emerald-700 transition">
+                                    <i data-lucide="users" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <h3 class="font-display font-bold text-base sm:text-lg text-slate-900 mb-1">Trip 1 - 4 Orang</h3>
+                            <p class="text-xs font-bold text-slate-500 mb-2.5">Tarif Normal Standar Private</p>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Pilihan ideal bagi pasangan, backpacker, atau keluarga inti. Trip private tanpa digabung dengan peserta luar lainnya.
+                            </p>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                            <span>Asuransi jiwa pariwisata resmi</span>
+                        <div>
+                            <div class="pt-3 border-t border-neutral-100 text-xs text-slate-700 space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                                    <span>Private river guide berlisensi</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                                    <span>Asuransi jiwa pariwisata resmi</span>
+                                </div>
+                            </div>
+                            <button type="button" onclick="selectTierPax(4)" class="w-full mt-4 py-2 px-3 rounded-xl bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 text-slate-700 font-bold text-xs transition flex items-center justify-center gap-1.5 cursor-pointer">
+                                <span>Pilih 4 Orang</span>
+                                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tier 2 -->
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border-2 border-emerald-500/80 shadow-soft hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between relative group">
-                    <div class="absolute -top-3 left-6">
-                        <span class="px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-700 text-white shadow-2xs">
-                            Favorit Keluarga
-                        </span>
+                <!-- PODIUM 1: TENGAH (Tier 2: Trip 5 - 9 Orang, Favorit Keluarga - PALING LAKU & BEST VALUE) -->
+                <div id="tier-card-2" class="w-[84vw] sm:w-85 md:w-auto shrink-0 snap-center flex flex-col justify-between bg-white rounded-3xl overflow-hidden border-2 border-emerald-500 ring-4 ring-emerald-500/20 shadow-2xl transition-all duration-300 md:scale-105 z-20 opacity-100 group relative">
+                    {{-- Leaderboard Ribbon --}}
+                    <div class="bg-emerald-700 text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider py-2 px-3 text-center flex items-center justify-center gap-1.5 shadow-md">
+                        <i data-lucide="award" class="w-4 h-4 text-white shrink-0"></i>
+                        <span>#1 PALING LAKU & BEST VALUE</span>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between mb-4 pt-1">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-                                Group Saving
-                            </span>
-                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
-                                <i data-lucide="sparkles" class="w-5 h-5"></i>
+
+                    <div class="p-5 sm:p-6 flex flex-col justify-between flex-1 bg-white">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                                    Favorit Keluarga • Hemat 10%
+                                </span>
+                                <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                </div>
                             </div>
+                            <h3 class="font-display font-extrabold text-base sm:text-lg text-slate-900 mb-1">Trip 5 - 9 Orang</h3>
+                            <p class="text-xs font-extrabold text-emerald-700 mb-2.5">Diskon Otomatis 10%</p>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Cocok untuk rombongan keluarga besar, sahabat, atau rekan kerja. Otomatis memangkas 10% dari total tagihan paket dasar.
+                            </p>
                         </div>
-                        <h3 class="font-display font-bold text-lg text-slate-900 mb-1">Trip 5 - 9 Orang</h3>
-                        <p class="text-xs font-bold text-emerald-700 mb-3">Diskon Otomatis 10%</p>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Cocok untuk rombongan keluarga besar, sahabat, atau rekan kerja. Otomatis memangkas 10% dari total tagihan paket dasar.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-neutral-100 text-xs text-slate-700 space-y-1.5">
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                            <span>Hemat hingga ratusan ribu rupiah</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                            <span>Pemandu khusus rombongan keluarga</span>
+                        <div>
+                            <div class="pt-3 border-t border-neutral-100 text-xs text-slate-700 space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                                    <span class="font-semibold text-emerald-900">Hemat hingga ratusan ribu rupiah</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                                    <span>Pemandu khusus rombongan keluarga</span>
+                                </div>
+                            </div>
+                            <button type="button" onclick="selectTierPax(6)" class="w-full mt-4 py-2.5 px-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition flex items-center justify-center gap-1.5 shadow-md cursor-pointer">
+                                <span>Pilih 6 Orang (Hemat 10%)</span>
+                                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tier 3 -->
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-900 bg-emerald-100/70 px-2.5 py-1 rounded-full">
-                                Corporate & Gathering
-                            </span>
-                            <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center group-hover:bg-emerald-50 group-hover:text-emerald-700 transition">
-                                <i data-lucide="building-2" class="w-5 h-5"></i>
-                            </div>
-                        </div>
-                        <h3 class="font-display font-bold text-lg text-slate-900 mb-1">Trip 10+ Orang</h3>
-                        <p class="text-xs font-bold text-emerald-700 mb-3">Diskon Maksimal 15%</p>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Solusi gathering instansi, perusahaan, sekolah, atau komunitas. Potongan 15% plus fasilitas penunjang gathering lengkap.
-                        </p>
+                <!-- PODIUM 3: KANAN (Tier 3: Trip 10+ Orang, Corporate & Gathering) -->
+                <div id="tier-card-3" class="w-[78vw] sm:w-80 md:w-auto shrink-0 snap-center flex flex-col justify-between bg-white rounded-3xl overflow-hidden border border-neutral-200 shadow-soft transition-all duration-300 md:scale-95 md:opacity-85 hover:opacity-100 hover:scale-100 md:filter md:blur-[0.3px] hover:blur-none group relative z-10">
+                    {{-- Leaderboard Ribbon --}}
+                    <div class="bg-slate-700 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider py-1.5 px-3 text-center flex items-center justify-center gap-1.5 shadow-xs">
+                        <span class="w-4 h-4 rounded-full bg-slate-600 text-white text-[9px] flex items-center justify-center font-black">3</span>
+                        <span>#3 CORPORATE & GATHERING</span>
                     </div>
-                    <div class="pt-4 border-t border-neutral-100 text-xs text-slate-700 space-y-1.5">
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                            <span>Gratis spanduk / banner tour gathering</span>
+
+                    <div class="p-5 sm:p-6 flex flex-col justify-between flex-1">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-900 bg-emerald-100/70 px-2.5 py-1 rounded-full">
+                                    Diskon Maksimal 15%
+                                </span>
+                                <div class="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center group-hover:bg-emerald-50 group-hover:text-emerald-700 transition">
+                                    <i data-lucide="building-2" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <h3 class="font-display font-bold text-base sm:text-lg text-slate-900 mb-1">Trip 10+ Orang</h3>
+                            <p class="text-xs font-bold text-emerald-700 mb-2.5">Diskon Maksimal 15%</p>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Solusi gathering instansi, perusahaan, sekolah, atau komunitas. Potongan 15% plus fasilitas penunjang gathering lengkap.
+                            </p>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                            <span>Faktur resmi CV & proposal penawaran</span>
+                        <div>
+                            <div class="pt-3 border-t border-neutral-100 text-xs text-slate-700 space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                                    <span>Gratis spanduk / banner gathering</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                                    <span>Faktur resmi CV & proposal penawaran</span>
+                                </div>
+                            </div>
+                            <button type="button" onclick="selectTierPax(12)" class="w-full mt-4 py-2 px-3 rounded-xl bg-slate-900 hover:bg-emerald-700 text-white font-bold text-xs transition flex items-center justify-center gap-1.5 cursor-pointer">
+                                <span>Pilih 12 Orang (Hemat 15%)</span>
+                                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -866,7 +912,30 @@
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
+
+            // Script Auto-Center Tier Podium #1 (Favorit Keluarga) di Mobile
+            const tierTrack = document.getElementById('tier-podium-track');
+            const tierCenterCard = document.getElementById('tier-card-2');
+            if (tierTrack && tierCenterCard && window.innerWidth < 768) {
+                setTimeout(() => {
+                    const scrollPos = tierCenterCard.offsetLeft - (tierTrack.clientWidth - tierCenterCard.clientWidth) / 2;
+                    tierTrack.scrollTo({ left: scrollPos, behavior: 'smooth' });
+                }, 300);
+            }
         });
+
+        // Quick function to apply tier pax to calculator & scroll smoothly
+        function selectTierPax(pax) {
+            const inputPax = document.getElementById('calc-page-pax');
+            if (inputPax) {
+                inputPax.value = pax;
+                inputPax.dispatchEvent(new Event('input', { bubbles: true }));
+                const targetEl = document.getElementById('calc-page-pax') || document.getElementById('calculator-form-section');
+                if (targetEl) {
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
     </script>
 </body>
 </html>

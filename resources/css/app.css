@@ -58,7 +58,7 @@
     html {
         width: 100%;
         max-width: 100%;
-        overflow-x: hidden;
+        overflow-x: clip;
         -webkit-text-size-adjust: 100%;
     }
     body {
@@ -66,8 +66,7 @@
         color: #334155;
         width: 100%;
         max-width: 100%;
-        overflow-x: hidden;
-        position: relative;
+        overflow-x: clip;
     }
     img, video {
         max-width: 100%;

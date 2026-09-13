@@ -504,20 +504,15 @@
             </div>
         </div>
 
-        <!-- Dynamic Package Grid from Database (Swipe Slider di HP, Grid 3 Kolom di Laptop) -->
-        <div class="sm:hidden flex items-center justify-end gap-1.5 text-xs text-slate-500 mb-3 font-semibold px-1">
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-emerald-700 animate-pulse"></i>
-            <span>Geser untuk lihat paket lainnya</span>
-        </div>
-
-        <div class="flex sm:grid overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none gap-4 sm:gap-6 lg:gap-8 pb-4 sm:pb-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+        <!-- Dynamic Package Grid from Database (4 Layout dalam 2 Baris: 2 Kolom Sebaris) -->
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-6 lg:gap-8">
             @forelse($packages as $loopIndex => $pkg)
-                <div class="package-card flex-none w-[85vw] xs:w-[80vw] sm:w-auto snap-center flex flex-col bg-surface-soft rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group reveal-fade-up {{ $loopIndex % 3 === 1 ? 'delay-100' : ($loopIndex % 3 === 2 ? 'delay-200' : '') }}" data-category="{{ $pkg->category->slug ?? 'all' }}">
+                <div class="package-card flex flex-col bg-surface-soft rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group reveal-fade-up {{ $loopIndex % 2 === 1 ? 'delay-100' : '' }}" data-category="{{ $pkg->category->slug ?? 'all' }}">
                     <!-- Card Image Area with Multi-Image Auto-Slider & Lightbox Click -->
                     @php
                         $galleryImages = $pkg->gallery_images;
                     @endphp
-                    <div class="package-card-slider relative h-56 sm:h-60 lg:h-64 overflow-hidden bg-slate-950 cursor-pointer group/slider select-none"
+                    <div class="package-card-slider relative h-36 xs:h-44 sm:h-56 lg:h-64 overflow-hidden bg-slate-950 cursor-pointer group/slider select-none"
                          data-package-name="{{ $pkg->name }}"
                          data-package-location="{{ $pkg->location ?? 'Pangandaran' }}"
                          data-package-duration="{{ $pkg->duration ?? '-' }}"
@@ -540,67 +535,87 @@
                         <!-- Subtle Gradient Overlay -->
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/75 via-transparent to-slate-950/30 pointer-events-none"></div>
 
-                        <!-- Click to View Gallery Hover Badge (Top Right) -->
-                        <div class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                            <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-900/85 backdrop-blur-md text-emerald-300 border border-white/20 shadow-md flex items-center gap-1.5">
-                                <i data-lucide="camera" class="w-3.5 h-3.5 text-emerald-400"></i>
-                                <span>{{ count($galleryImages) }} Foto (Buka)</span>
-                            </span>
+                        <!-- Top Badges -->
+                        <div class="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-10 flex items-center gap-1">
+                            @if($pkg->featured)
+                                <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-amber-500 text-slate-950 shadow-xs flex items-center gap-1">
+                                    <i data-lucide="star" class="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-slate-950"></i>
+                                    <span>Rekomendasi</span>
+                                </span>
+                            @else
+                                <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-emerald-700 text-white shadow-xs">
+                                    {{ $pkg->category->name ?? 'Wisata' }}
+                                </span>
+                            @endif
                         </div>
+
+                        <!-- Duration Badge (Bottom Right) -->
+                        @if($pkg->duration)
+                            <div class="absolute bottom-2 right-2 sm:bottom-3.5 sm:right-3.5 z-10">
+                                <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-xl text-[9px] xs:text-[10px] sm:text-xs font-bold bg-slate-900/85 backdrop-blur-xs text-white flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-emerald-400"></i>
+                                    <span>{{ $pkg->duration }}</span>
+                                </span>
+                            </div>
+                        @endif
 
                         <!-- Slide Dots (Bottom Left) -->
                         @if(count($galleryImages) > 1)
-                            <div class="card-slider-dots absolute bottom-3 left-4 z-10 flex items-center gap-1 pointer-events-none">
+                            <div class="card-slider-dots absolute bottom-2 left-2 sm:bottom-3.5 sm:left-3.5 z-10 flex items-center gap-1 pointer-events-none">
                                 @foreach($galleryImages as $idx => $img)
-                                    <span class="card-dot h-1.5 rounded-full {{ $idx === 0 ? 'bg-emerald-400 w-3.5' : 'bg-white/50 w-1.5' }} transition-all duration-300"></span>
+                                    <span class="card-dot h-1 sm:h-1.5 rounded-full {{ $idx === 0 ? 'bg-emerald-400 w-2.5 sm:w-3.5' : 'bg-white/50 w-1 sm:w-1.5' }} transition-all duration-300"></span>
                                 @endforeach
                             </div>
                         @endif
                     </div>
 
-                    <div class="p-6 flex-1 flex flex-col justify-between">
+                    <!-- Card Content -->
+                    <div class="p-3 xs:p-4 sm:p-6 flex-1 flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-1.5 text-xs font-semibold text-emerald-700 mb-1">
-                                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
-                                <span>{{ $pkg->location ?? 'Pangandaran' }}</span>
+                            <div class="flex items-center gap-1 text-[10px] xs:text-[11px] sm:text-xs font-semibold text-emerald-700 mb-1 truncate">
+                                <i data-lucide="map-pin" class="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0"></i>
+                                <span class="truncate">{{ $pkg->location ?? 'Pangandaran' }}</span>
                             </div>
-                            <h3 class="font-display font-bold text-xl text-slate-900 group-hover:text-emerald-700 transition">
+                            <h3 class="font-display font-bold text-xs xs:text-sm sm:text-lg lg:text-xl text-slate-900 group-hover:text-emerald-700 transition leading-snug line-clamp-2">
                                 <a href="{{ route('packages.show', $pkg->slug) }}">
                                     {{ $pkg->name }}
                                 </a>
                             </h3>
-                            <p class="text-xs text-slate-500 mt-2 line-clamp-2">
+                            <p class="text-[10px] xs:text-[11px] sm:text-xs text-slate-500 mt-1 sm:mt-2 line-clamp-2 leading-relaxed">
                                 {{ $pkg->short_description ?? 'Petualangan eksotis bersama Puja Tour & Travel Pangandaran.' }}
                             </p>
 
                             <!-- Facilities Badge -->
                             @if(is_array($pkg->inclusions) && count($pkg->inclusions) > 0)
-                                <div class="flex flex-wrap gap-1.5 mt-4">
-                                    @foreach(array_slice($pkg->inclusions, 0, 3) as $inc)
-                                        <span class="text-[11px] bg-neutral-100 text-slate-700 px-2 py-0.5 rounded-md flex items-center gap-1">
-                                            <i data-lucide="check" class="w-3 h-3 text-emerald-700"></i>
-                                            <span>{{ $inc }}</span>
+                                <div class="flex flex-wrap gap-1 sm:gap-1.5 mt-2 sm:mt-4">
+                                    @foreach(array_slice($pkg->inclusions, 0, 3) as $iIdx => $inc)
+                                        <span class="text-[9px] xs:text-[10px] sm:text-[11px] bg-neutral-100 text-slate-700 px-1.5 py-0.5 rounded-md {{ $iIdx >= 2 ? 'hidden sm:inline-flex' : 'inline-flex' }} items-center gap-1">
+                                            <i data-lucide="check" class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-700 shrink-0"></i>
+                                            <span class="truncate max-w-21.25 xs:max-w-none">{{ $inc }}</span>
                                         </span>
                                     @endforeach
                                 </div>
                             @endif
                         </div>
 
-                        <div class="pt-5 mt-5 border-t border-neutral-200 flex items-center justify-between">
+                        <div class="pt-2.5 sm:pt-5 mt-2.5 sm:mt-5 border-t border-neutral-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
                             <div>
-                                <span class="text-[11px] text-slate-400 block font-medium">Mulai dari</span>
-                                <span class="font-display font-bold text-xl text-emerald-700">{{ $pkg->formatted_price }}</span>
-                                <span class="text-xs text-slate-400">/ {{ $pkg->price_unit }}</span>
+                                <span class="text-[9px] xs:text-[10px] sm:text-[11px] text-slate-400 block font-medium leading-none mb-0.5">Mulai dari</span>
+                                <div class="flex items-baseline gap-1">
+                                    <span class="font-display font-bold text-xs xs:text-sm sm:text-xl text-emerald-700 leading-tight">{{ $pkg->formatted_price }}</span>
+                                    <span class="text-[9px] xs:text-[10px] sm:text-xs text-slate-400">/ {{ $pkg->price_unit }}</span>
+                                </div>
                             </div>
-                            <a href="{{ route('packages.show', $pkg->slug) }}" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-emerald-700 text-white font-semibold text-xs transition flex items-center gap-2 shadow-sm">
-                                <span>Baca Selengkapnya</span>
-                                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            <a href="{{ route('packages.show', $pkg->slug) }}" class="w-full sm:w-auto px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl bg-slate-900 hover:bg-emerald-700 text-white font-semibold text-[10px] xs:text-xs transition flex items-center justify-center gap-1 shadow-xs">
+                                <span class="sm:hidden">Detail</span>
+                                <span class="hidden sm:inline">Baca Selengkapnya</span>
+                                <i data-lucide="arrow-right" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             @empty
-                <div class="col-span-3 text-center py-16 text-slate-400">
+                <div class="col-span-2 text-center py-16 text-slate-400">
                     <p class="text-base font-bold text-slate-600">Belum ada paket wisata aktif.</p>
                     <p class="text-xs mt-1">Silakan tambahkan paket melalui dashboard Admin CMS.</p>
                 </div>
@@ -608,12 +623,13 @@
         </div>
 
         <!-- CTA ke Halaman Lengkap Semua Paket -->
-        <div class="mt-10 sm:mt-12 text-center px-2">
-            <a href="{{ route('packages.index') }}" class="inline-flex items-center justify-center gap-2 sm:gap-3 px-4 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl bg-surface-soft hover:bg-white text-slate-900 font-bold text-xs sm:text-sm border border-neutral-200 hover:border-emerald-700 shadow-soft hover:shadow-card-hover transition-all duration-300 group max-w-full">
-                <span class="whitespace-nowrap">Jelajahi Semua Paket Wisata ({{ $totalPackagesCount ?? 8 }} Pilihan<span class="hidden sm:inline"> Lengkap</span>)</span>
+        <div class="mt-8 sm:mt-12 text-center px-2">
+            <a href="{{ route('packages.index') }}" class="inline-flex items-center justify-center gap-2 sm:gap-3 px-5 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl bg-surface-soft hover:bg-white text-slate-900 font-bold text-xs sm:text-sm border border-neutral-200 hover:border-emerald-700 shadow-soft hover:shadow-card-hover transition-all duration-300 group max-w-full">
+                <span>Jelajahi Semua Paket Wisata ({{ $totalPackagesCount ?? 8 }} Pilihan Lengkap)</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-700 group-hover:translate-x-1.5 transition-transform shrink-0"></i>
             </a>
         </div>
+
     </section>
 
     <!-- 6. DESTINASI IKONIK & PENGALAMAN (Solid Slate 900) -->

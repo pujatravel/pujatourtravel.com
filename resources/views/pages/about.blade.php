@@ -11,7 +11,6 @@
 
     <link rel="canonical" href="{{ url('/tentang-kami') }}">
 
-    <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour & Travel Pangandaran">
     <meta property="og:type" content="website">
@@ -22,13 +21,11 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
-    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tentang Kami — Profil Resmi Biro Wisata Puja Tour Pangandaran">
     <meta name="twitter:description" content="Biro wisata resmi berbadan hukum CV di Pangandaran. Pemandu berlisensi HPI, standar keselamatan teruji, dan pengalaman 15.000+ wisatawan puas.">
     <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
 
-    <!-- Structured Data (JSON-LD): TravelAgency -->
     <script type="application/ld+json">
     {!! json_encode([
         '@context' => 'https://schema.org',
@@ -131,7 +128,7 @@
     </div>
 
     <!-- 1. CINEMATIC HERO SECTION -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-12">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 pb-6 sm:pb-12">
         <div class="relative rounded-3xl overflow-hidden bg-slate-950 text-white shadow-xl border border-slate-800/80">
             <!-- Background Image with Modern Cinematic Gradient Mask -->
             <div class="absolute inset-0">
@@ -140,40 +137,35 @@
             </div>
 
             <!-- Content Grid: Left Text & Right Floating Trust Card -->
-            <div class="relative z-10 p-7 sm:p-12 lg:p-16 grid lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-7 space-y-6">
-                    <!-- Trust Pill Badge -->
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 backdrop-blur-md border border-white/20 text-emerald-300">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span>Biro Perjalanan Wisata Resmi Pangandaran • Berizin CV</span>
-                    </div>
+            <div class="relative z-10 p-5 sm:p-12 lg:p-16 grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+                <div class="lg:col-span-7 space-y-3 sm:space-y-6">
 
-                    <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.15]">
-                        Mengenal Jati Diri & Semangat Pelayanan <span class="text-emerald-400">Puja Tour</span>
+                    <h1 class="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.15]">
+                        Mengenal Jati Diri &amp; Semangat Pelayanan <span class="text-emerald-400">Puja Tour</span>
                     </h1>
 
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
+                    <p class="text-slate-300 text-xs sm:text-base leading-relaxed max-w-2xl font-normal line-clamp-3 sm:line-clamp-none">
                         Lahir dari inisiatif putra daerah asli Pangandaran. Kami mendedikasikan diri untuk menghadirkan pengalaman liburan bahari dan petualangan sungai yang berkesan, transparan tanpa biaya tersembunyi, serta berstandar keselamatan K3 internasional.
                     </p>
 
                     <!-- CTA Buttons -->
-                    <div class="flex flex-wrap items-center gap-3.5 pt-2">
+                    <div class="flex flex-wrap items-center gap-2.5 sm:gap-3.5 pt-1 sm:pt-2">
                         <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" 
                            target="_blank" 
-                           class="px-6 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5">
+                           class="px-5 py-2.5 sm:px-6 sm:py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5">
                             <i data-lucide="message-circle" class="w-4 h-4"></i>
                             <span>Konsultasi Liburan Gratis</span>
                         </a>
                         <a href="{{ route('packages.index') }}" 
-                           class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 backdrop-blur-md transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5">
+                           class="px-5 py-2.5 sm:px-6 sm:py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 backdrop-blur-md transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5">
                             <span>Jelajahi Paket Wisata</span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Right Feature Badge Card (Glassmorphic) -->
-                <div class="lg:col-span-5">
+                <!-- Right Feature Badge Card (Glassmorphic) — hidden on mobile -->
+                <div class="hidden lg:block lg:col-span-5">
                     <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-6 sm:p-7 text-white space-y-4 shadow-2xl">
                         <div class="flex items-center gap-3 pb-3 border-b border-white/15">
                             <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400 shrink-0">
@@ -213,51 +205,51 @@
 
     <!-- 2. KEY STATS SECTION (Unified Floating Metric Dock) -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-soft border border-neutral-200/90 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-0 lg:divide-x divide-neutral-200/80">
+        <div class="bg-white rounded-3xl p-4 sm:p-8 shadow-soft border border-neutral-200/90 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-0 lg:divide-x divide-neutral-200/80">
             <!-- Stat 1 -->
-            <div class="flex items-start gap-4 lg:px-6 first:pl-0 group">
-                <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 group-hover:bg-emerald-700 group-hover:text-white transition-all">
-                    <i data-lucide="calendar" class="w-5 h-5"></i>
+            <div class="flex items-start gap-2.5 sm:gap-4 lg:px-6 first:pl-0 group">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 group-hover:bg-emerald-700 group-hover:text-white transition-all">
+                    <i data-lucide="calendar" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </div>
                 <div>
-                    <span class="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight block leading-none">10+</span>
-                    <span class="text-xs sm:text-sm font-bold text-slate-800 mt-2 block">Tahun Pengalaman</span>
+                    <span class="font-display font-black text-2xl sm:text-4xl text-slate-900 tracking-tight block leading-none">10+</span>
+                    <span class="text-xs sm:text-sm font-bold text-slate-800 mt-1.5 sm:mt-2 block">Tahun Pengalaman</span>
                     <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Mengarungi alam & sungai Pangandaran sejak 2014</p>
                 </div>
             </div>
 
             <!-- Stat 2 -->
-            <div class="flex items-start gap-4 lg:px-6 group">
-                <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 group-hover:bg-emerald-700 group-hover:text-white transition-all">
-                    <i data-lucide="users" class="w-5 h-5"></i>
+            <div class="flex items-start gap-2.5 sm:gap-4 lg:px-6 group">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 group-hover:bg-emerald-700 group-hover:text-white transition-all">
+                    <i data-lucide="users" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </div>
                 <div>
-                    <span class="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight block leading-none">15.000+</span>
-                    <span class="text-xs sm:text-sm font-bold text-slate-800 mt-2 block">Wisatawan Puas</span>
+                    <span class="font-display font-black text-2xl sm:text-4xl text-slate-900 tracking-tight block leading-none">15.000+</span>
+                    <span class="text-xs sm:text-sm font-bold text-slate-800 mt-1.5 sm:mt-2 block">Wisatawan Puas</span>
                     <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Keluarga, rombongan sekolah, dan korporat</p>
                 </div>
             </div>
 
             <!-- Stat 3 -->
-            <div class="flex items-start gap-4 lg:px-6 group">
-                <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 group-hover:bg-emerald-700 group-hover:text-white transition-all">
-                    <i data-lucide="award" class="w-5 h-5"></i>
+            <div class="flex items-start gap-2.5 sm:gap-4 lg:px-6 group">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 group-hover:bg-emerald-700 group-hover:text-white transition-all">
+                    <i data-lucide="award" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </div>
                 <div>
-                    <span class="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight block leading-none">100%</span>
-                    <span class="text-xs sm:text-sm font-bold text-slate-800 mt-2 block">Lisensi Resmi HPI</span>
+                    <span class="font-display font-black text-2xl sm:text-4xl text-slate-900 tracking-tight block leading-none">100%</span>
+                    <span class="text-xs sm:text-sm font-bold text-slate-800 mt-1.5 sm:mt-2 block">Lisensi Resmi HPI</span>
                     <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Pemandu lokal bersertifikat rescue nasional</p>
                 </div>
             </div>
 
             <!-- Stat 4 -->
-            <div class="flex items-start gap-4 lg:px-6 last:pr-0 group">
-                <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200/80 text-amber-600 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 group-hover:bg-amber-600 group-hover:text-white transition-all">
-                    <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-500 group-hover:text-white group-hover:fill-white transition-colors"></i>
+            <div class="flex items-start gap-2.5 sm:gap-4 lg:px-6 last:pr-0 group">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-50 border border-amber-100 text-amber-600 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 group-hover:bg-amber-600 group-hover:text-white transition-all">
+                    <i data-lucide="star" class="w-4 h-4 sm:w-5 sm:h-5 fill-amber-400 text-amber-500 group-hover:text-white group-hover:fill-white transition-colors"></i>
                 </div>
                 <div>
-                    <span class="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight block leading-none">4.9<span class="text-base text-slate-400 font-bold"> / 5.0</span></span>
-                    <span class="text-xs sm:text-sm font-bold text-slate-800 mt-2 block">Tingkat Kepuasan</span>
+                    <span class="font-display font-black text-2xl sm:text-4xl text-slate-900 tracking-tight block leading-none">4.9<span class="text-xs sm:text-base text-slate-400 font-bold"> / 5.0</span></span>
+                    <span class="text-xs sm:text-sm font-bold text-slate-800 mt-1.5 sm:mt-2 block">Tingkat Kepuasan</span>
                     <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">1.200+ ulasan nyata Google Maps & testimoni</p>
                 </div>
             </div>
@@ -287,8 +279,8 @@
                     Namun di masa lalu, wisatawan sering menghadapi kebingungan: harga yang tidak seragam, kelayakan alat keselamatan yang dipertanyakan, hingga minimnya transparansi fasilitas. Dari sanalah lahir tekad untuk mendirikan <strong>{{ $companyName }}</strong> — sebuah biro wisata resmi yang mengintegrasikan keramahan khas Sunda dengan standar keamanan pariwisata modern.
                 </p>
 
-                <!-- Core Values Highlight Grid -->
-                <div class="grid grid-cols-1 xs:grid-cols-3 gap-2.5 sm:gap-3 pt-2">
+                <!-- Core Values Highlight Grid: 2 atas, 1 full bawah -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3 pt-2">
                     <div class="p-4 rounded-2xl bg-surface-soft border border-neutral-200/90 shadow-2xs text-center group hover:border-emerald-300 transition-all">
                         <span class="font-display font-black text-xl text-emerald-700 block">100%</span>
                         <span class="text-xs font-bold text-slate-800 block mt-0.5">Warga Lokal</span>
@@ -297,9 +289,10 @@
                     <div class="p-4 rounded-2xl bg-surface-soft border border-neutral-200/90 shadow-2xs text-center group hover:border-emerald-300 transition-all">
                         <span class="font-display font-black text-xl text-emerald-700 block">Resmi CV</span>
                         <span class="text-xs font-bold text-slate-800 block mt-0.5">Berbadan Hukum</span>
-                        <span class="text-[10px] text-slate-500 block mt-0.5">NIB & Kemenkumham</span>
+                        <span class="text-[10px] text-slate-500 block mt-0.5">NIB &amp; Kemenkumham</span>
                     </div>
-                    <div class="p-4 rounded-2xl bg-surface-soft border border-neutral-200/90 shadow-2xs text-center group hover:border-emerald-300 transition-all">
+                    {{-- Card ke-3: full width di mobile (col-span-2), normal di sm+ --}}
+                    <div class="col-span-2 sm:col-span-1 p-4 rounded-2xl bg-surface-soft border border-neutral-200/90 shadow-2xs text-center group hover:border-emerald-300 transition-all">
                         <span class="font-display font-black text-xl text-emerald-700 block">K3 SNI</span>
                         <span class="text-xs font-bold text-slate-800 block mt-0.5">Standar Safety</span>
                         <span class="text-[10px] text-slate-500 block mt-0.5">Asuransi pariwisata</span>
@@ -312,7 +305,7 @@
                 <!-- Photo 1: Green Canyon -->
                 <div class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
                     <img src="{{ asset('images/greencanyon.jpg') }}" alt="Body Rafting Green Canyon" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
+                    <div class="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
                         <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-emerald-400">Arung Jeram & Rafting</span>
                         <h4 class="font-display font-bold text-xs sm:text-sm text-white">Green Canyon Sanctuary</h4>
                     </div>
@@ -321,7 +314,7 @@
                 <!-- Photo 2: Pasir Putih -->
                 <div class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
                     <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Snorkeling Pasir Putih" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
+                    <div class="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
                         <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-emerald-400">Wisata Bahari & Karang</span>
                         <h4 class="font-display font-bold text-xs sm:text-sm text-white">Pasir Putih & Kapal Karam</h4>
                     </div>
@@ -330,7 +323,7 @@
                 <!-- Photo 3: Cagar Alam -->
                 <div class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
                     <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Cagar Alam Pananjung" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
+                    <div class="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
                         <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-emerald-400">Wisata Konservasi Hutan</span>
                         <h4 class="font-display font-bold text-xs sm:text-sm text-white">Cagar Alam Pananjung</h4>
                     </div>
@@ -339,7 +332,7 @@
                 <!-- Photo 4: Sunset Batu Karas -->
                 <div class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
                     <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Sunset Pantai Batu Karas" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
+                    <div class="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
                         <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-emerald-400">Pantai Selancar & Senja</span>
                         <h4 class="font-display font-bold text-xs sm:text-sm text-white">Sunset Batu Karas</h4>
                     </div>
@@ -366,10 +359,33 @@
 
             <!-- Horizontal Journey Track with Connected Progress Line -->
             <div class="relative">
-                <!-- Visual Connection Line on Desktop -->
+                <!-- Visual Connection Line on Desktop (horizontal) -->
                 <div class="hidden lg:block absolute top-11 left-12 right-12 h-1 bg-linear-to-r from-emerald-600 via-emerald-500 to-teal-400 z-0 rounded-full"></div>
 
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6 relative z-10">
+                <!-- Mobile Flow Lines: Authentic Chronological Journey 01 (2014) -> 02 (2018) -> 03 (2022) -> 04 (NOW) -->
+                <svg class="lg:hidden absolute inset-0 w-full h-full pointer-events-none z-20 overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 1. Step 01 -> 02 (Top Row Horizontal Connector) -->
+                    <line x1="46" y1="7.5" x2="52.5" y2="7.5"
+                          stroke="#059669" stroke-width="1.2" stroke-dasharray="2,1.2" stroke-linecap="round"/>
+                    <polygon points="51.8,6.3 54,7.5 51.8,8.7" fill="#059669"/>
+
+                    <!-- 2. Step 02 -> 03 (Row Transition: Bottom of 02 -> Row Gap -> Top of 03) -->
+                    <path d="M 75,47.5 L 75,49.2 Q 75,50 73.5,50 L 26.5,50 Q 25,50 25,50.8 L 25,52.2"
+                          fill="none"
+                          stroke="#059669"
+                          stroke-width="1.2"
+                          stroke-dasharray="2,1.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                    <polygon points="23.6,51.2 25,53.2 26.4,51.2" fill="#059669"/>
+
+                    <!-- 3. Step 03 -> 04 (Bottom Row Horizontal Connector) -->
+                    <line x1="46" y1="60" x2="52.5" y2="60"
+                          stroke="#059669" stroke-width="1.2" stroke-dasharray="2,1.2" stroke-linecap="round"/>
+                    <polygon points="51.8,58.8 54,60 51.8,61.2" fill="#059669"/>
+                </svg>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-5 sm:gap-6 relative z-10">
                     <!-- Milestone 1: 2014 -->
                     <div class="relative bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group overflow-hidden">
                         <div class="relative z-10">
@@ -452,7 +468,7 @@
                     </div>
 
                     <!-- Milestone 4: Kini (FEATURED HIGHLIGHT CARD) -->
-                    <div class="relative bg-gradient-to-b from-emerald-50/80 via-white to-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 border-2 border-emerald-500 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between group overflow-hidden">
+                    <div class="relative bg-linear-to-b from-emerald-50/80 via-white to-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 border-2 border-emerald-500 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between group overflow-hidden">
                         <!-- Big Watermark Year -->
                         <span class="font-display font-black text-4xl sm:text-6xl text-emerald-100 select-none absolute top-1 right-2 pointer-events-none">
                             NOW
@@ -489,158 +505,96 @@
     </section>
 
     <!-- 4. EMPAT PILAR KEUNGGULAN (Clean Unified Emerald Theme - Sesuai Tema Beranda) -->
-    <section class="py-16 bg-[#f4f6f1] border-y border-neutral-200/90 relative overflow-hidden">
+    <!-- 4. EMPAT PILAR KEUNGGULAN (Clean Unified Emerald Theme) -->
+    <section class="py-14 sm:py-16 bg-[#f4f6f1] border-y border-neutral-200/90 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
+            <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
                 <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 block mb-2">
                     Standar Kualitas Layanan
                 </span>
                 <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight">
                     Mengapa Wisatawan Memilih Puja Tour?
                 </h2>
-                <p class="text-slate-600 text-sm sm:text-base mt-2 leading-relaxed">
+                <p class="text-slate-500 text-xs sm:text-sm mt-1.5 leading-relaxed">
                     Kombinasi integritas layanan, standar keselamatan teruji, dan keramahan asli masyarakat pesisir Pangandaran.
                 </p>
             </div>
 
-            <!-- 2-Column Grid on Mobile, 3-Column Bento Grid on Desktop -->
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-6 items-stretch">
-                <!-- Bento Tile 1 (Pilar Utama - Spans 1 col on mobile, 2 cols on lg): Pemandu HPI -->
-                <div class="col-span-1 lg:col-span-2 bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-9 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+            <!-- Clean 4-Pillar Grid: 2 cols on mobile (sebaris 2-2), 4 on desktop -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 xs:gap-3.5 sm:gap-5">
+                <!-- Pilar 1: Pemandu HPI -->
+                <div class="bg-white rounded-2xl p-3.5 sm:p-6 border border-neutral-200/80 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3 sm:mb-6">
-                            <div class="inline-flex items-center gap-1 sm:gap-2 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-[9px] sm:text-xs font-bold uppercase tracking-wider">
-                                <i data-lucide="award" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600"></i>
-                                <span>Pilar Keunggulan</span>
-                            </div>
-                            <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
-                                <i data-lucide="compass" class="w-4 h-4 sm:w-6 sm:h-6"></i>
-                            </div>
+                        <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center shrink-0 shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all mb-2.5 sm:mb-4">
+                            <i data-lucide="compass" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                         </div>
-
-                        <h3 class="font-display font-extrabold text-xs sm:text-2xl text-slate-900 group-hover:text-emerald-700 transition tracking-tight mb-1 sm:mb-3">
-                            Pemandu Lokal Berlisensi Resmi HPI
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-base group-hover:text-emerald-700 transition leading-snug">
+                            Pemandu Berlisensi HPI
                         </h3>
-                        <p class="text-slate-600 text-[10px] sm:text-sm leading-snug sm:leading-relaxed max-w-xl">
-                            Seluruh tim river guide dan pemandu bahari adalah warga asli Pangandaran yang bersertifikasi resmi HPI (Himpunan Pramuwisata Indonesia).
+                        <p class="text-slate-500 text-[10px] sm:text-sm mt-1 leading-snug sm:leading-relaxed">
+                            River guide & pemandu warga lokal bersertifikat HPI resmi serta terlatih water rescue SNI.
                         </p>
                     </div>
-
-                    <div class="pt-3 mt-3 sm:pt-6 sm:mt-6 border-t border-neutral-100 flex flex-wrap items-center gap-1.5 sm:gap-3 text-[9px] sm:text-xs">
-                        <span class="inline-flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-semibold text-[9px] sm:text-[11px]">
-                            <i data-lucide="shield-check" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600"></i>
-                            Sertifikat Resmi HPI
-                        </span>
-                        <span class="inline-flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-semibold text-[9px] sm:text-[11px]">
-                            <i data-lucide="waves" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600"></i>
-                            Water Rescue SNI
-                        </span>
+                    <div class="mt-2.5 pt-2 sm:pt-3 border-t border-neutral-100 flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] font-semibold text-emerald-700">
+                        <i data-lucide="shield-check" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600 shrink-0"></i>
+                        <span class="truncate">Sertifikasi Resmi HPI</span>
                     </div>
                 </div>
 
-                <!-- Bento Tile 2 (Standar K3 - Spans 1 col): Peralatan K3 -->
-                <div class="col-span-1 lg:col-span-1 bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
+                <!-- Pilar 2: Peralatan K3 -->
+                <div class="bg-white rounded-2xl p-3.5 sm:p-6 border border-neutral-200/80 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3 sm:mb-5">
-                            <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
-                                <i data-lucide="life-buoy" class="w-4 h-4 sm:w-6 sm:h-6"></i>
-                            </div>
-                            <span class="text-[8px] sm:text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full">
-                                Standar K3
-                            </span>
+                        <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center shrink-0 shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all mb-2.5 sm:mb-4">
+                            <i data-lucide="life-buoy" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                         </div>
-
-                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-lg mb-1 sm:mb-2 group-hover:text-emerald-700 transition">
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-base group-hover:text-emerald-700 transition leading-snug">
                             Peralatan K3 & Asuransi
                         </h3>
-                        <p class="text-[10px] sm:text-xs text-slate-600 leading-snug sm:leading-relaxed mb-2 sm:mb-4">
-                            Peralatan standar SNI/CE terawat: life jacket apung tinggi, helm, dry bag, & asuransi.
+                        <p class="text-slate-500 text-[10px] sm:text-sm mt-1 leading-snug sm:leading-relaxed">
+                            Life jacket SNI terawat, helm khusus sungai, dry bag, dan perlindungan asuransi keselamatan.
                         </p>
-
-                        <!-- Checklist -->
-                        <ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-xs text-slate-700">
-                            <li class="flex items-center gap-1.5">
-                                <i data-lucide="check-circle" class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 shrink-0"></i>
-                                <span>Life Jacket SNI</span>
-                            </li>
-                            <li class="flex items-center gap-1.5">
-                                <i data-lucide="check-circle" class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 shrink-0"></i>
-                                <span>Helm & Dry Bag</span>
-                            </li>
-                            <li class="flex items-center gap-1.5">
-                                <i data-lucide="check-circle" class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 shrink-0"></i>
-                                <span>Asuransi Jiwa Sah</span>
-                            </li>
-                        </ul>
                     </div>
-
-                    <div class="pt-2.5 mt-3 sm:pt-4 sm:mt-6 border-t border-neutral-100 text-[9px] sm:text-[11px] font-bold text-emerald-700 flex items-center gap-1">
-                        <i data-lucide="shield" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600"></i>
-                        <span>Zero Compromise Safety</span>
+                    <div class="mt-2.5 pt-2 sm:pt-3 border-t border-neutral-100 flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] font-semibold text-emerald-700">
+                        <i data-lucide="check-circle" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600 shrink-0"></i>
+                        <span class="truncate">Zero Compromise Safety</span>
                     </div>
                 </div>
 
-                <!-- Bento Tile 3 (Transparansi Biaya - Spans 1 col): Harga Jujur -->
-                <div class="col-span-1 lg:col-span-1 bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
+                <!-- Pilar 3: Harga Jujur -->
+                <div class="bg-white rounded-2xl p-3.5 sm:p-6 border border-neutral-200/80 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3 sm:mb-5">
-                            <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
-                                <i data-lucide="receipt-text" class="w-4 h-4 sm:w-6 sm:h-6"></i>
-                            </div>
-                            <span class="text-[8px] sm:text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full">
-                                Transparansi Tarif
-                            </span>
+                        <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center shrink-0 shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all mb-2.5 sm:mb-4">
+                            <i data-lucide="receipt-text" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                         </div>
-
-                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-lg mb-1 sm:mb-2 group-hover:text-emerald-700 transition">
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-base group-hover:text-emerald-700 transition leading-snug">
                             Harga Jujur All-Inclusive
                         </h3>
-                        <p class="text-[10px] sm:text-xs text-slate-600 leading-snug sm:leading-relaxed mb-2 sm:mb-4">
-                            Tiket retribusi, perahu, pemandu HPI, hingga konsumsi tercakup tanpa pungli tersembunyi.
+                        <p class="text-slate-500 text-[10px] sm:text-sm mt-1 leading-snug sm:leading-relaxed">
+                            Tarif pasti mencakup tiket, perahu & retribusi tanpa pungutan liar tersembunyi di tempat.
                         </p>
-
-                        <div class="p-2 sm:p-3.5 rounded-xl sm:rounded-2xl bg-emerald-50/80 border border-emerald-200/70 text-emerald-900 text-[10px] sm:text-xs">
-                            <span class="font-bold block mb-0.5 sm:mb-1">Jaminan All-Inclusive:</span>
-                            <p class="text-[9px] sm:text-[11px] text-emerald-800 leading-snug sm:leading-relaxed">Apa yang tertulis di invoice resmi adalah jumlah final.</p>
-                        </div>
                     </div>
-
-                    <div class="pt-2.5 mt-3 sm:pt-4 sm:mt-6 border-t border-neutral-100 text-[9px] sm:text-[11px] font-bold text-emerald-700 flex items-center gap-1">
-                        <i data-lucide="check-circle-2" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600"></i>
-                        <span>Bebas Pungli Tersembunyi</span>
+                    <div class="mt-2.5 pt-2 sm:pt-3 border-t border-neutral-100 flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] font-semibold text-emerald-700">
+                        <i data-lucide="check-circle" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600 shrink-0"></i>
+                        <span class="truncate">Tanpa Biaya Siluman</span>
                     </div>
                 </div>
 
-                <!-- Bento Tile 4 (Kelestarian & Warga - Spans 1 col on mobile, 2 cols on lg): Ekowisata -->
-                <div class="col-span-1 lg:col-span-2 bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-9 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                <!-- Pilar 4: Ekowisata & Warga Lokal -->
+                <div class="bg-white rounded-2xl p-3.5 sm:p-6 border border-neutral-200/80 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3 sm:mb-5">
-                            <div class="inline-flex items-center gap-1 sm:gap-2 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-[9px] sm:text-xs font-bold uppercase tracking-wider">
-                                <i data-lucide="leaf" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600"></i>
-                                <span>Ekowisata Lokal</span>
-                            </div>
-                            <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
-                                <i data-lucide="heart-handshake" class="w-4 h-4 sm:w-6 sm:h-6"></i>
-                            </div>
+                        <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center shrink-0 shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all mb-2.5 sm:mb-4">
+                            <i data-lucide="leaf" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                         </div>
-
-                        <h3 class="font-display font-extrabold text-xs sm:text-2xl text-slate-900 group-hover:text-emerald-700 transition tracking-tight mb-1 sm:mb-2">
-                            Kelestarian Alam & Warga Lokal
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-base group-hover:text-emerald-700 transition leading-snug">
+                            Kelestarian & Warga Lokal
                         </h3>
-                        <p class="text-slate-600 text-[10px] sm:text-sm leading-snug sm:leading-relaxed max-w-xl">
-                            Aturan zero-littering & larangan perusakan stalaktit. Memberdayakan nelayan tradisional perahu & warung kuliner rumahan.
+                        <p class="text-slate-500 text-[10px] sm:text-sm mt-1 leading-snug sm:leading-relaxed">
+                            Komitmen pelestarian alam sungai serta pemberdayaan nelayan dan pelaku kuliner Pangandaran.
                         </p>
                     </div>
-
-                    <div class="pt-3 mt-3 sm:pt-6 sm:mt-6 border-t border-neutral-100 flex flex-wrap items-center gap-1.5 sm:gap-3 text-[9px] sm:text-xs">
-                        <span class="inline-flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-semibold text-[9px] sm:text-[11px]">
-                            <i data-lucide="sparkles" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600"></i>
-                            Zero Plastic River
-                        </span>
-                        <span class="inline-flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-semibold text-[9px] sm:text-[11px]">
-                            <i data-lucide="users-round" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600"></i>
-                            Mitra Nelayan & Kuliner
-                        </span>
+                    <div class="mt-2.5 pt-2 sm:pt-3 border-t border-neutral-100 flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] font-semibold text-emerald-700">
+                        <i data-lucide="check-circle" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600 shrink-0"></i>
+                        <span class="truncate">Ekowisata Berkelanjutan</span>
                     </div>
                 </div>
             </div>
@@ -648,118 +602,110 @@
     </section>
 
     <!-- 5. LEGALITAS, SERTIFIKASI & TRANSPARANSI USAHA (Official Credential Vault) -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         <div class="bg-white rounded-3xl p-5 sm:p-10 lg:p-12 shadow-soft border border-neutral-200/90 relative overflow-hidden">
             <!-- Header -->
-            <div class="flex flex-col lg:flex-row lg:items-center justify-between pb-8 border-b border-neutral-200 gap-6">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between pb-6 sm:pb-8 border-b border-neutral-200 gap-4 sm:gap-6">
                 <div>
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold uppercase tracking-wider mb-2">
                         <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-700"></i>
-                        <span>Pusat Transparansi Hukum & Audit</span>
+                        <span>Transparansi & Legalitas Hukum</span>
                     </div>
                     <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight">
-                        Legalitas Resmi & Keabsahan Perusahaan
+                        Legalitas Resmi Perusahaan
                     </h2>
-                    <p class="text-slate-600 text-xs sm:text-sm mt-1.5 max-w-xl leading-relaxed">
-                        Kami menjamin keamanan mutlak setiap transaksi finansial, kepastian hukum SPK dinas, dan kredibilitas perseroan resmi.
+                    <p class="text-slate-600 text-xs sm:text-sm mt-1 max-w-xl leading-relaxed">
+                        Jaminan keamanan transaksi finansial, kepastian hukum SPK dinas, dan kredibilitas perseroan resmi.
                     </p>
                 </div>
 
                 <div class="shrink-0">
-                    <div class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-emerald-50 border border-emerald-200/80 text-emerald-900 text-xs font-extrabold shadow-2xs">
-                        <i data-lucide="badge-check" class="w-5 h-5 text-emerald-700"></i>
-                        <span>Badan Hukum Sah Terdaftar Pemerintah</span>
+                    <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-900 text-xs font-bold shadow-2xs">
+                        <i data-lucide="badge-check" class="w-4 h-4 text-emerald-700"></i>
+                        <span>Badan Hukum Sah Terdaftar</span>
                     </div>
                 </div>
             </div>
 
-            <!-- 4 Official Verifiable Credential Badges (2 per row on mobile) -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5 pt-8">
-                <!-- Credential 1: Badan Usaha CV -->
-                <div class="p-5 sm:p-6 rounded-2xl bg-slate-50/80 border border-neutral-200/90 flex flex-col justify-between hover:bg-white hover:border-emerald-300 hover:shadow-card-hover transition-all duration-300 group">
+            <!-- 4 Verifiable Credential Cards: 2 cols on mobile (sebaris 2-2), 4 on desktop -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 xs:gap-3.5 sm:gap-5 pt-6 sm:pt-8">
+                <!-- Credential 1 -->
+                <div class="p-3.5 sm:p-5 rounded-2xl bg-slate-50/80 border border-neutral-200/90 flex flex-col justify-between hover:bg-white hover:border-emerald-300 hover:shadow-card-hover transition-all duration-300 group">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-white border border-neutral-200 text-emerald-700 flex items-center justify-center shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all">
-                                <i data-lucide="file-badge" class="w-5 h-5"></i>
+                        <div class="flex items-center justify-between gap-1 mb-2.5">
+                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-neutral-200 text-emerald-700 flex items-center justify-center shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all shrink-0">
+                                <i data-lucide="file-badge" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             </div>
-                            <span class="text-[10px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full uppercase">Kemenkumham</span>
+                            <span class="text-[8px] sm:text-[9px] font-bold text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded-full uppercase shrink-0">Kemenkumham</span>
                         </div>
-                        <h4 class="font-display font-bold text-sm sm:text-base text-slate-900 mb-1.5">Badan Usaha Resmi CV</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            Terdaftar sah di Kementerian Hukum dan HAM Republik Indonesia dengan akta pendirian notaris resmi.
+                        <h4 class="font-display font-bold text-xs sm:text-sm text-slate-900 mb-1 leading-snug">Badan Usaha Resmi CV</h4>
+                        <p class="text-[10px] sm:text-xs text-slate-500 leading-snug sm:leading-relaxed line-clamp-3">
+                            Terdaftar sah di Kemenkumham RI dengan akta notaris pendirian resmi perusahaan.
                         </p>
                     </div>
-                    <div class="pt-3.5 mt-4 border-t border-neutral-200/60 flex items-center justify-between text-[11px] font-medium text-slate-500">
-                        <span>Status Perizinan:</span>
-                        <span class="font-bold text-emerald-700 flex items-center gap-1">
-                            <i data-lucide="check" class="w-3 h-3"></i> Terverifikasi
-                        </span>
+                    <div class="mt-2.5 sm:mt-3 pt-2 sm:pt-2.5 border-t border-neutral-200/60 flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-emerald-700">
+                        <i data-lucide="check" class="w-3 h-3 text-emerald-600 shrink-0"></i>
+                        <span class="truncate">Terverifikasi Sah</span>
                     </div>
                 </div>
 
-                <!-- Credential 2: NIB & Izin Pariwisata -->
-                <div class="p-5 sm:p-6 rounded-2xl bg-slate-50/80 border border-neutral-200/90 flex flex-col justify-between hover:bg-white hover:border-emerald-300 hover:shadow-card-hover transition-all duration-300 group">
+                <!-- Credential 2 -->
+                <div class="p-3.5 sm:p-5 rounded-2xl bg-slate-50/80 border border-neutral-200/90 flex flex-col justify-between hover:bg-white hover:border-emerald-300 hover:shadow-card-hover transition-all duration-300 group">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-white border border-neutral-200 text-emerald-700 flex items-center justify-center shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all">
-                                <i data-lucide="badge-percent" class="w-5 h-5"></i>
+                        <div class="flex items-center justify-between gap-1 mb-2.5">
+                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-neutral-200 text-emerald-700 flex items-center justify-center shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all shrink-0">
+                                <i data-lucide="badge-percent" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             </div>
-                            <span class="text-[10px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full uppercase">KBLI 79120</span>
+                            <span class="text-[8px] sm:text-[9px] font-bold text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded-full uppercase shrink-0">KBLI 79120</span>
                         </div>
-                        <h4 class="font-display font-bold text-sm sm:text-base text-slate-900 mb-1.5">NIB & Izin Pariwisata</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            Memiliki Nomor Induk Berusaha (NIB) dengan Klasifikasi Baku Lapangan Usaha Biro Perjalanan Wisata.
+                        <h4 class="font-display font-bold text-xs sm:text-sm text-slate-900 mb-1 leading-snug">NIB & Izin Pariwisata</h4>
+                        <p class="text-[10px] sm:text-xs text-slate-500 leading-snug sm:leading-relaxed line-clamp-3">
+                            Nomor Induk Berusaha resmi Klasifikasi Aktivitas Biro Perjalanan Wisata OSS.
                         </p>
                     </div>
-                    <div class="pt-3.5 mt-4 border-t border-neutral-200/60 flex items-center justify-between text-[11px] font-medium text-slate-500">
-                        <span>Sistem OSS:</span>
-                        <span class="font-bold text-emerald-700 flex items-center gap-1">
-                            <i data-lucide="check" class="w-3 h-3"></i> Sah Beroperasi
-                        </span>
+                    <div class="mt-2.5 sm:mt-3 pt-2 sm:pt-2.5 border-t border-neutral-200/60 flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-emerald-700">
+                        <i data-lucide="check" class="w-3 h-3 text-emerald-600 shrink-0"></i>
+                        <span class="truncate">Sah Beroperasi</span>
                     </div>
                 </div>
 
-                <!-- Credential 3: Sertifikasi HPI Jabar -->
-                <div class="p-5 sm:p-6 rounded-2xl bg-slate-50/80 border border-neutral-200/90 flex flex-col justify-between hover:bg-white hover:border-emerald-300 hover:shadow-card-hover transition-all duration-300 group">
+                <!-- Credential 3 -->
+                <div class="p-3.5 sm:p-5 rounded-2xl bg-slate-50/80 border border-neutral-200/90 flex flex-col justify-between hover:bg-white hover:border-emerald-300 hover:shadow-card-hover transition-all duration-300 group">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-white border border-neutral-200 text-emerald-700 flex items-center justify-center shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all">
-                                <i data-lucide="user-check" class="w-5 h-5"></i>
+                        <div class="flex items-center justify-between gap-1 mb-2.5">
+                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-neutral-200 text-emerald-700 flex items-center justify-center shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all shrink-0">
+                                <i data-lucide="user-check" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             </div>
-                            <span class="text-[10px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full uppercase">HPI DPC</span>
+                            <span class="text-[8px] sm:text-[9px] font-bold text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded-full uppercase shrink-0">HPI DPC</span>
                         </div>
-                        <h4 class="font-display font-bold text-sm sm:text-base text-slate-900 mb-1.5">Sertifikasi HPI Jabar</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            Seluruh pemandu bernaung resmi di bawah Himpunan Pramuwisata Indonesia DPC Pangandaran / Jawa Barat.
+                        <h4 class="font-display font-bold text-xs sm:text-sm text-slate-900 mb-1 leading-snug">Sertifikasi HPI Jabar</h4>
+                        <p class="text-[10px] sm:text-xs text-slate-500 leading-snug sm:leading-relaxed line-clamp-3">
+                            Pemandu bernaung di bawah HPI DPC Pangandaran / Jawa Barat berstandar kompetensi.
                         </p>
                     </div>
-                    <div class="pt-3.5 mt-4 border-t border-neutral-200/60 flex items-center justify-between text-[11px] font-medium text-slate-500">
-                        <span>Pemandu Resmi:</span>
-                        <span class="font-bold text-emerald-700 flex items-center gap-1">
-                            <i data-lucide="check" class="w-3 h-3"></i> Bersertifikat
-                        </span>
+                    <div class="mt-2.5 sm:mt-3 pt-2 sm:pt-2.5 border-t border-neutral-200/60 flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-emerald-700">
+                        <i data-lucide="check" class="w-3 h-3 text-emerald-600 shrink-0"></i>
+                        <span class="truncate">Pemandu Resmi</span>
                     </div>
                 </div>
 
-                <!-- Credential 4: Rekening Bank Resmi -->
-                <div class="p-5 sm:p-6 rounded-2xl bg-slate-50/80 border border-neutral-200/90 flex flex-col justify-between hover:bg-white hover:border-emerald-300 hover:shadow-card-hover transition-all duration-300 group">
+                <!-- Credential 4 -->
+                <div class="p-3.5 sm:p-5 rounded-2xl bg-slate-50/80 border border-neutral-200/90 flex flex-col justify-between hover:bg-white hover:border-emerald-300 hover:shadow-card-hover transition-all duration-300 group">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-white border border-neutral-200 text-emerald-700 flex items-center justify-center shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all">
-                                <i data-lucide="landmark" class="w-5 h-5"></i>
+                        <div class="flex items-center justify-between gap-1 mb-2.5">
+                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-neutral-200 text-emerald-700 flex items-center justify-center shadow-2xs group-hover:bg-emerald-700 group-hover:text-white transition-all shrink-0">
+                                <i data-lucide="landmark" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             </div>
-                            <span class="text-[10px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full uppercase">Anti Fraud</span>
+                            <span class="text-[8px] sm:text-[9px] font-bold text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded-full uppercase shrink-0">Anti Fraud</span>
                         </div>
-                        <h4 class="font-display font-bold text-sm sm:text-base text-slate-900 mb-1.5">Rekening Bank Resmi CV</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            Transaksi transfer pembayaran hanya sah melalui rekening perusahaan atas nama CV resmi, bebas risiko rekening pribadi.
+                        <h4 class="font-display font-bold text-xs sm:text-sm text-slate-900 mb-1 leading-snug">Rekening Bank Resmi CV</h4>
+                        <p class="text-[10px] sm:text-xs text-slate-500 leading-snug sm:leading-relaxed line-clamp-3">
+                            Transaksi transfer pembayaran via rekening CV resmi, bukan rekening pribadi.
                         </p>
                     </div>
-                    <div class="pt-3.5 mt-4 border-t border-neutral-200/60 flex items-center justify-between text-[11px] font-medium text-slate-500">
-                        <span>Keamanan Dana:</span>
-                        <span class="font-bold text-emerald-700 flex items-center gap-1">
-                            <i data-lucide="check" class="w-3 h-3"></i> Rekening Sah
-                        </span>
+                    <div class="mt-2.5 sm:mt-3 pt-2 sm:pt-2.5 border-t border-neutral-200/60 flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-emerald-700">
+                        <i data-lucide="check" class="w-3 h-3 text-emerald-600 shrink-0"></i>
+                        <span class="truncate">Rekening Perusahaan</span>
                     </div>
                 </div>
             </div>

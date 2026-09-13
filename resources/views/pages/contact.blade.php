@@ -204,43 +204,44 @@
                     </div>
                 </div>
 
-                <!-- Bottom Section: Trust Notice + Actions + Legalitas -->
+                <!-- Bottom Section: Trust Notice + Actions -->
                 <div class="mt-6 pt-5 border-t border-neutral-100 space-y-4">
                     <!-- Quick Trust Notice -->
-                    <div class="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200/80 flex items-center gap-3">
+                    <div class="h-16 p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200/80 flex items-center gap-3">
                         <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
                             <i data-lucide="sparkles" class="w-4 h-4"></i>
                         </div>
-                        <div>
-                            <h4 class="text-xs font-bold text-emerald-950">Konsultasi Rute Bebas Biaya</h4>
-                            <p class="text-[11px] text-emerald-800 leading-snug">Dapatkan estimasi biaya & custom rundown gratis dari tour planner kami.</p>
+                        <div class="min-w-0 flex-1">
+                            <h4 class="text-xs font-bold text-emerald-950 leading-tight">Konsultasi Rute Bebas Biaya</h4>
+                            <p class="text-[11px] text-emerald-800 leading-tight mt-0.5">Dapatkan estimasi biaya & custom rundown gratis dari tour planner kami.</p>
                         </div>
                     </div>
 
                     <!-- Clean Action Buttons -->
-                    <div class="flex flex-row gap-2.5">
-                        <a href="https://maps.google.com/?q={{ urlencode($officeAddr) }}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs text-center transition shadow-xs flex items-center justify-center gap-1.5">
+                    <div class="flex flex-row gap-2.5 h-12">
+                        <a href="https://maps.google.com/?q={{ urlencode($officeAddr) }}" target="_blank" rel="noopener noreferrer" class="flex-1 h-full rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs text-center transition shadow-xs flex items-center justify-center gap-1.5">
                             <i data-lucide="map-pin" class="w-4 h-4 shrink-0"></i>
                             <span>Buka Maps</span>
                         </a>
-                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs text-center transition flex items-center justify-center gap-1.5">
+                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" rel="noopener noreferrer" class="flex-1 h-full rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs text-center transition flex items-center justify-center gap-1.5">
                             <i data-lucide="message-circle" class="w-4 h-4 shrink-0"></i>
                             <span>Chat WhatsApp</span>
                         </a>
                     </div>
-
                 </div>
             </div>
 
             <!-- Interactive Direct Message to WA Form (Simetris 50% Lebar & Sama Tinggi) -->
             <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-soft border border-neutral-200 flex flex-col justify-between h-full">
-                <div>
-                    <div class="pb-4 sm:pb-5 border-b border-neutral-200 mb-5 sm:mb-6">
-                        <h2 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Kirim Pesan & Permintaan Khusus</h2>
-                        <p class="text-xs text-slate-500 mt-1">Isi formulir di bawah ini untuk terhubung langsung ke WhatsApp Customer Support kami.</p>
-                    </div>
+                <!-- Header -->
+                <div class="pb-4 sm:pb-5 border-b border-neutral-200 mb-5 sm:mb-6">
+                    <h2 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Kirim Pesan & Permintaan Khusus</h2>
+                    <p class="text-xs text-slate-500 mt-1">Isi formulir di bawah ini untuk terhubung langsung ke WhatsApp Customer Support kami.</p>
+                </div>
 
-                    <form id="contact-form" class="space-y-4">
+                <form id="contact-form" class="flex-1 flex flex-col justify-between">
+                    <!-- Form Fields (Top) -->
+                    <div class="space-y-3.5">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Nama Lengkap *</label>
@@ -273,21 +274,30 @@
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Pesan atau Pertanyaan Anda *</label>
-                            <textarea id="msg-content" rows="4" required placeholder="Tuliskan detail rencana liburan, kebutuhan khusus, atau pertanyaan Anda..." class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition"></textarea>
+                            <textarea id="msg-content" rows="3" required placeholder="Tuliskan detail rencana liburan, kebutuhan khusus, atau pertanyaan Anda..." class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition resize-none"></textarea>
                         </div>
+                    </div>
 
+                    <!-- Bottom Section: Notice + Button (Aligned with Left Card) -->
+                    <div class="mt-6 pt-5 border-t border-neutral-200 space-y-4">
                         <!-- Auto-composed Notification Notice -->
-                        <div class="flex items-center gap-2.5 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs">
-                            <i data-lucide="sparkles" class="w-4 h-4 text-emerald-700 shrink-0"></i>
-                            <span>Pesan Anda akan otomatis terformat rapi dan langsung terketik di WhatsApp Admin, tinggal Anda kirim!</span>
+                        <div class="h-16 p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200/80 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <h4 class="text-xs font-bold text-emerald-950 leading-tight">Format WhatsApp Otomatis</h4>
+                                <p class="text-[11px] text-emerald-800 leading-tight mt-0.5">Pesan Anda akan otomatis terformat rapi dan langsung terketik di WhatsApp Admin.</p>
+                            </div>
                         </div>
 
-                        <button type="submit" class="w-full py-3.5 sm:py-4 min-h-12 rounded-xl sm:rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+                        <!-- Submit Button -->
+                        <button type="submit" class="w-full h-12 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-xs transition flex items-center justify-center gap-2 cursor-pointer">
                             <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             <span>Kirim Pesan Otomatis ke WhatsApp CS</span>
                         </button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
 

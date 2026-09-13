@@ -23,9 +23,12 @@
     <meta property="og:title" content="Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran">
     <meta property="og:description" content="Nikmati liburan seru di Pangandaran bersama Puja Tour & Travel. Tersedia paket wisata Pangandaran, Green Canyon, snorkeling, pantai, dan berbagai pilihan perjalanan menarik lainnya.">
     <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
+    <meta property="og:image:secure_url" content="{{ asset('images/og_image.jpg') }}">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Puja Tour & Travel Pangandaran — Paket Wisata Green Canyon & Pantai">
+    <link rel="image_src" href="{{ asset('images/og_image.jpg') }}">
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">

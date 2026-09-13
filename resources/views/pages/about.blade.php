@@ -163,7 +163,7 @@
 
     <!-- Mobile Drawer -->
     <div id="drawer-overlay" class="fixed inset-0 bg-slate-900/60 z-50 hidden opacity-0 transition-opacity duration-300"></div>
-    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-6">
+    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 invisible pointer-events-none">
         <div>
             <div class="flex items-center justify-between pb-6 border-b border-neutral-200">
                 <div class="flex items-center gap-3">
@@ -599,7 +599,7 @@
             <!-- Asymmetrical 3-Column Bento Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
                 <!-- Bento Tile 1 (HERO PILLAR - Spans 2 cols): Pemandu HPI -->
-                <div class="lg:col-span-2 bg-linear-to-br from-slate-900 via-slate-950 to-emerald-950 text-white p-7 sm:p-9 rounded-3xl border border-slate-800 shadow-xl relative overflow-hidden flex flex-col justify-between group">
+                <div class="lg:col-span-2 bg-slate-950 bg-gradient-to-br from-slate-900 via-slate-950 to-emerald-950 text-white p-7 sm:p-9 rounded-3xl border border-slate-800 shadow-xl relative overflow-hidden flex flex-col justify-between group">
                     <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-emerald-600/10 rounded-full blur-2xl pointer-events-none"></div>
 
                     <div class="relative z-10">
@@ -638,7 +638,7 @@
                 </div>
 
                 <!-- Bento Tile 2 (Safety - Amber Accent - 1 col): Standar K3 -->
-                <div class="lg:col-span-1 bg-linear-to-b from-amber-50/50 via-white to-white p-7 rounded-3xl border border-amber-200/90 shadow-soft hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+                <div class="lg:col-span-1 bg-white bg-gradient-to-b from-amber-50/50 via-white to-white p-7 rounded-3xl border border-amber-200/90 shadow-soft hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
                             <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
@@ -680,7 +680,7 @@
                 </div>
 
                 <!-- Bento Tile 3 (Financial Clarity - Blue Accent - 1 col): Harga Jujur -->
-                <div class="lg:col-span-1 bg-linear-to-b from-blue-50/50 via-white to-white p-7 rounded-3xl border border-blue-200/90 shadow-soft hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+                <div class="lg:col-span-1 bg-white bg-gradient-to-b from-blue-50/50 via-white to-white p-7 rounded-3xl border border-blue-200/90 shadow-soft hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
                             <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
@@ -711,7 +711,7 @@
                 </div>
 
                 <!-- Bento Tile 4 (Nature & Community - Emerald Banner - Spans 2 cols): Ekowisata -->
-                <div class="lg:col-span-2 bg-linear-to-br from-emerald-800 via-emerald-900 to-teal-950 text-white p-7 sm:p-9 rounded-3xl border border-emerald-700 shadow-lg relative overflow-hidden flex flex-col justify-between group">
+                <div class="lg:col-span-2 bg-emerald-950 bg-gradient-to-br from-emerald-800 via-emerald-900 to-teal-950 text-white p-7 sm:p-9 rounded-3xl border border-emerald-700 shadow-lg relative overflow-hidden flex flex-col justify-between group">
                     <div class="relative z-10">
                         <div class="flex items-center justify-between mb-5">
                             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-bold uppercase tracking-wider">

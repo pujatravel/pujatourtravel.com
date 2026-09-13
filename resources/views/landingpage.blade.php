@@ -200,7 +200,7 @@
 
     <!-- Mobile Drawer & Backdrop -->
     <div id="drawer-overlay" class="fixed inset-0 bg-slate-900/60 z-50 hidden opacity-0 transition-opacity duration-300"></div>
-    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-6">
+    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 invisible pointer-events-none">
         <div>
             <div class="flex items-center justify-between pb-6 border-b border-neutral-200">
                 <div class="flex items-center gap-3">
@@ -307,7 +307,7 @@
             @endforeach
 
             <!-- Deep Scrim Overlay -->
-            <div class="absolute inset-0 bg-linear-to-b from-slate-950/90 via-slate-950/75 to-slate-950/90 z-1"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/75 to-slate-950/90 z-1"></div>
         </div>
 
         <!-- Floating Destination Badge - desktop only -->
@@ -614,7 +614,7 @@
                         </div>
 
                         <!-- Subtle Gradient Overlay -->
-                        <div class="absolute inset-0 bg-linear-to-t from-slate-950/75 via-transparent to-slate-950/30 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-slate-950/30 pointer-events-none"></div>
 
                         <!-- Click to View Gallery Hover Badge (Top Right) -->
                         <div class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
@@ -962,8 +962,8 @@
         <!-- Marquee Showcase Container with Edge Fade Masks -->
         <div class="relative w-full overflow-hidden select-none py-2" id="testimonial-marquee-wrapper">
             <!-- Left & Right Gradient Fade Masks -->
-            <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-linear-to-r from-[#f4f6f1] to-transparent z-10"></div>
-            <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-linear-to-l from-[#f4f6f1] to-transparent z-10"></div>
+            <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-r from-[#f4f6f1] to-transparent z-10"></div>
+            <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-l from-[#f4f6f1] to-transparent z-10"></div>
 
             <!-- SVG Gold Star Gradient Definition -->
             <svg class="sr-only" aria-hidden="true" width="0" height="0">
@@ -1317,33 +1317,33 @@
     <!-- 15. GALLERY LIGHTBOX MODAL WITH FULL SLIDER CAROUSEL -->
     <div id="lightbox-modal" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 select-none" role="dialog" aria-modal="true" aria-label="Galeri Foto Wisata">
         <!-- Top Controls Bar -->
-        <div class="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 z-30 flex items-center justify-between pointer-events-none">
+        <div class="absolute top-3 left-3 right-3 sm:top-6 sm:left-6 sm:right-6 z-30 flex items-center justify-between gap-2 pointer-events-none">
             <!-- Left Info Badges -->
-            <div class="flex items-center gap-2 sm:gap-3 pointer-events-auto">
-                <div class="px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-white/20 backdrop-blur-md flex items-center gap-2 shadow-lg">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span id="lightbox-title" class="text-xs sm:text-sm font-bold text-white max-w-35 sm:max-w-md truncate">Galeri Foto</span>
+            <div class="flex items-center gap-1.5 sm:gap-3 pointer-events-auto min-w-0 shrink">
+                <div class="px-2.5 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/90 border border-white/20 backdrop-blur-md flex items-center gap-1.5 sm:gap-2 shadow-lg min-w-0">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                    <span id="lightbox-title" class="text-xs sm:text-sm font-bold text-white max-w-[90px] xs:max-w-[140px] sm:max-w-xs md:max-w-md truncate">Galeri Foto</span>
                 </div>
-                <span id="lightbox-counter" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 text-emerald-300 border border-white/15 shadow-sm">
+                <span id="lightbox-counter" class="text-[11px] sm:text-xs font-semibold px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full bg-white/10 text-emerald-300 border border-white/15 shadow-sm shrink-0 whitespace-nowrap">
                     Foto 1 / 1
                 </span>
             </div>
 
             <!-- Right Controls (Autoplay Toggle, Fit Mode, Fullscreen & Close) -->
-            <div class="flex items-center gap-2 pointer-events-auto">
-                <button id="lightbox-autoplay-btn" type="button" aria-label="Jeda Slide Otomatis" title="Jeda / Lanjut Putar Otomatis (Spasi)" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 text-xs font-medium text-white/90 cursor-pointer transition shadow-lg">
-                    <i data-lucide="pause" class="w-3.5 h-3.5 text-emerald-400" id="lightbox-play-icon"></i>
+            <div class="flex items-center gap-1.5 sm:gap-2 pointer-events-auto shrink-0">
+                <button id="lightbox-autoplay-btn" type="button" aria-label="Jeda Slide Otomatis" title="Jeda / Lanjut Putar Otomatis (Spasi)" class="hidden sm:inline-flex items-center gap-1.5 p-2 sm:px-3.5 sm:py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 text-xs font-medium text-white/90 cursor-pointer transition shadow-lg">
+                    <i data-lucide="pause" class="w-4 h-4 sm:w-3.5 sm:h-3.5 text-emerald-400" id="lightbox-play-icon"></i>
                     <span id="lightbox-autoplay-label" class="hidden md:inline">Auto-Slide Aktif</span>
                 </button>
-                <button id="lightbox-fit-btn" type="button" aria-label="Mode Tampilan" title="Ganti Mode Tampilan (Penuh / Proporsional) (M)" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 text-xs font-medium text-white/90 cursor-pointer transition shadow-lg">
-                    <i data-lucide="maximize" class="w-3.5 h-3.5 text-emerald-400" id="lightbox-fit-icon"></i>
-                    <span id="lightbox-fit-label">Mode Penuh</span>
+                <button id="lightbox-fit-btn" type="button" aria-label="Mode Tampilan" title="Ganti Mode Tampilan (Penuh / Proporsional) (M)" class="inline-flex items-center gap-1.5 p-2 sm:px-3.5 sm:py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 text-xs font-medium text-white/90 cursor-pointer transition shadow-lg">
+                    <i data-lucide="maximize" class="w-4 h-4 sm:w-3.5 sm:h-3.5 text-emerald-400" id="lightbox-fit-icon"></i>
+                    <span id="lightbox-fit-label" class="hidden sm:inline">Mode Penuh</span>
                 </button>
-                <button id="lightbox-fullscreen-btn" type="button" aria-label="Layar Penuh" title="Layar Penuh (F)" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 text-xs font-medium text-white/90 cursor-pointer transition shadow-lg">
-                    <i data-lucide="expand" class="w-3.5 h-3.5 text-emerald-400" id="lightbox-fullscreen-icon"></i>
-                    <span id="lightbox-fullscreen-label" class="hidden md:inline">Layar Penuh</span>
+                <button id="lightbox-fullscreen-btn" type="button" aria-label="Layar Penuh" title="Layar Penuh (F)" class="hidden md:inline-flex items-center gap-1.5 p-2 sm:px-3.5 sm:py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 text-xs font-medium text-white/90 cursor-pointer transition shadow-lg">
+                    <i data-lucide="expand" class="w-4 h-4 sm:w-3.5 sm:h-3.5 text-emerald-400" id="lightbox-fullscreen-icon"></i>
+                    <span id="lightbox-fullscreen-label" class="hidden lg:inline">Layar Penuh</span>
                 </button>
-                <button id="lightbox-close" aria-label="Tutup Galeri" title="Tutup (Esc)" class="text-white/80 hover:text-white p-2 sm:p-2.5 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 transition cursor-pointer shadow-lg">
+                <button id="lightbox-close" aria-label="Tutup Galeri" title="Tutup (Esc)" class="text-white/80 hover:text-white p-2 sm:p-2.5 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-white/20 transition cursor-pointer shadow-lg shrink-0">
                     <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                 </button>
             </div>

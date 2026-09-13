@@ -79,7 +79,7 @@
         </nav>
 
         <!-- Mobile Hamburger Button -->
-        <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-neutral-100 transition">
+        <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2.5 min-w-11 min-h-11 rounded-xl text-slate-700 hover:bg-neutral-100 transition flex items-center justify-center cursor-pointer">
             <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
     </div>
@@ -87,19 +87,11 @@
 
 <!-- GLOBAL MOBILE DRAWER & BACKDROP -->
 <div id="drawer-overlay" class="fixed inset-0 bg-slate-900/60 z-50 hidden opacity-0 transition-opacity duration-300"></div>
-<div id="mobile-drawer" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 invisible pointer-events-none">
+<div id="mobile-drawer" class="fixed top-0 right-0 h-full w-[85%] sm:w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-5 sm:p-6 overflow-y-auto invisible pointer-events-none">
     <div>
-        <div class="flex items-center justify-between pb-6 border-b border-neutral-200">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 shrink-0 flex items-center justify-center">
-                    <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja" class="w-full h-full object-contain">
-                </div>
-                <div>
-                    <span class="font-display font-extrabold text-base text-slate-900">PUJA TOUR</span>
-                    <span class="text-[10px] text-slate-500 block uppercase font-bold">Pangandaran</span>
-                </div>
-            </div>
-            <button id="close-menu-btn" class="close-drawer-btn p-2 rounded-xl text-slate-500 hover:bg-neutral-100 transition" aria-label="Tutup Menu">
+        <div class="flex items-center justify-between pb-4 border-b border-neutral-200">
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Menu</span>
+            <button id="close-menu-btn" class="close-drawer-btn p-2 rounded-xl text-slate-500 hover:bg-neutral-100 hover:text-slate-800 transition min-w-11 min-h-11 flex items-center justify-center cursor-pointer" aria-label="Tutup Menu">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
         </div>
@@ -107,11 +99,8 @@
         <nav class="py-5 space-y-1 text-sm font-medium text-slate-700">
             @foreach($navLinks as $item)
                 <a href="{{ $item['url'] }}" 
-                   class="drawer-link flex items-center justify-between px-3.5 py-2.5 rounded-xl transition {{ $item['active'] ? 'bg-emerald-50 text-emerald-700 font-bold' : 'hover:bg-neutral-100' }}">
+                   class="drawer-link block px-3.5 py-2.5 rounded-xl transition {{ $item['active'] ? 'bg-emerald-50 text-emerald-700 font-bold' : 'hover:bg-neutral-100' }}">
                     <span>{{ $item['name'] }}</span>
-                    @if($item['active'])
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-                    @endif
                 </a>
             @endforeach
         </nav>

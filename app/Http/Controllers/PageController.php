@@ -158,4 +158,62 @@ class PageController extends Controller
 
         return view('pages.refund-policy', compact('settings'));
     }
+
+    /**
+     * Display the Developer Team (Tim Pengembang) page.
+     */
+    public function developers(): View
+    {
+        $settings = Setting::all()->pluck('value', 'key');
+
+        $developers = [
+            [
+                'name' => 'Muhammad Fikri Haikal',
+                'role' => 'Full-Stack Developer & Server Engineer',
+                'tagline' => 'Lead Developer & Server Deployment Specialist',
+                'division' => 'PPLG • Pengembangan Sistem & Server Management',
+                'bio' => 'Bertanggung jawab merancang arsitektur sistem secara menyeluruh (full-stack), integrasi backend Laravel 11, manajemen basis data MySQL, konfigurasi web server (Apache/Nginx), deployment aplikasi ke server produksi, pengelolaan domain & SSL, optimasi performa server, serta keamanan infrastruktur sistem.',
+                'github_username' => 'fikrihaikal17',
+                'github_url' => 'https://github.com/fikrihaikal17',
+                'avatar_url' => 'https://github.com/fikrihaikal17.png',
+                'instagram_handle' => '@fikrii_haikalll17',
+                'instagram_url' => 'https://www.instagram.com/fikrii_haikalll17/',
+                'email' => 'fikrihaikal170308@gmail.com',
+                'skills' => ['Laravel 11', 'PHP 8.2+', 'MySQL', 'Apache/Nginx', 'Server Deployment', 'Linux Admin', 'SSL & Domain', 'SEO Optimization'],
+                'color' => 'emerald',
+            ],
+            [
+                'name' => 'Galuh Surya Putra',
+                'role' => 'Frontend Developer & UI Specialist',
+                'tagline' => 'Interface Design & Interactive Layout',
+                'division' => 'PPLG • Pengembangan Antarmuka Web',
+                'bio' => 'Berfokus pada implementasi desain antarmuka pengguna yang elegan, kenyamanan navigasi lintas perangkat mobile dan desktop, integrasi visual interaktif, micro-interaction responsif, serta penyempurnaan komponen tampilan landing page.',
+                'github_username' => 'Ptragaluhhh28',
+                'github_url' => 'https://github.com/Ptragaluhhh28',
+                'avatar_url' => 'https://github.com/Ptragaluhhh28.png',
+                'instagram_handle' => '@_luhptraa28',
+                'instagram_url' => 'https://www.instagram.com/_luhptraa28?stkn=MXU1Z3B6dDkwOG9rcQ==',
+                'email' => 'putragaluh2812@gmail.com',
+                'skills' => ['Tailwind CSS', 'Responsive Layout', 'Blade Templates', 'Web Accessibility', 'Component Styling', 'Mobile First'],
+                'color' => 'teal',
+            ],
+            [
+                'name' => 'Nabil Cahyadi',
+                'role' => 'Backend Engineer & Database Architect',
+                'tagline' => 'Data Management & Logic Specialist',
+                'division' => 'PPLG • Pengolahan Basis Data & API',
+                'bio' => 'Berfokus pada pengelolaan dan normalisasi skema basis data relasional, pengoptimalan query SQL, sistem manajemen paket dan ulasan wisatawan, serta penanganan validasi formulir dan pengujian alur data aplikasi.',
+                'github_username' => 'NabilCahyadi',
+                'github_url' => 'https://github.com/NabilCahyadi',
+                'avatar_url' => 'https://github.com/NabilCahyadi.png',
+                'instagram_handle' => '@nbilc_',
+                'instagram_url' => 'https://www.instagram.com/nbilc_?stkn=NW16dmgzMGUxZDd6',
+                'email' => 'nabilcahyadi155@gmail.com',
+                'skills' => ['Laravel Eloquent', 'MySQL Schema', 'Database Migration', 'Backend Logic', 'Input Validation', 'Security'],
+                'color' => 'sky',
+            ],
+        ];
+
+        return view('pages.developers', compact('settings', 'developers'));
+    }
 }

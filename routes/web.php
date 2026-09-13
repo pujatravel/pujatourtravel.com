@@ -69,6 +69,8 @@ Route::get('/kontak', [PageController::class, 'contact'])->name('contact');
 Route::get('/kebijakan-privasi', [PageController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/syarat-ketentuan', [PageController::class, 'termsConditions'])->name('terms-conditions');
 Route::get('/kebijakan-pengembalian', [PageController::class, 'refundPolicy'])->name('refund-policy');
+Route::get('/tim-pengembang', [PageController::class, 'developers'])->name('developers');
+Route::get('/developers', [PageController::class, 'developers'])->name('developers-alt');
 
 Route::get('/sitemap.xml', function () {
     $packages = Package::where('status', 'PUBLISHED')->latest()->get();
@@ -85,6 +87,7 @@ Route::get('/sitemap.xml', function () {
         ['loc' => route('privacy-policy'), 'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
         ['loc' => route('terms-conditions'), 'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
         ['loc' => route('refund-policy'), 'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
+        ['loc' => route('developers'), 'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
     ];
 
     foreach ($packages as $pkg) {
@@ -114,6 +117,10 @@ Route::get('/sitemap.xml', function () {
         'Content-Type' => 'application/xml; charset=utf-8',
     ]);
 })->name('sitemap');
+
+Route::get('/sitemap', function () {
+    return redirect()->route('sitemap', [], 301);
+});
 
 // Heartbeat & Pelacakan Pengunjung Realtime (Zero PII, Aman Privasi)
 Route::post('/visitor-ping', function (Request $request) {

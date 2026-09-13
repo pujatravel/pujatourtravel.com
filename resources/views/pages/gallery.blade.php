@@ -122,25 +122,25 @@
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">
                 Dokumentasi Lapangan
             </span>
-            <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mt-3 tracking-tight">
+            <h1 class="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-slate-900 mt-2.5 sm:mt-3 tracking-tight">
                 Galeri Petualangan Pangandaran
             </h1>
-            <p class="text-slate-600 text-sm sm:text-base mt-2">
+            <p class="text-slate-600 text-xs sm:text-sm md:text-base mt-2">
                 Setiap momen petualangan Anda bersama pemandu kami diabadikan dengan hasil foto jernih & video berkesan. Klik foto untuk melihat tampilan penuh.
             </p>
 
             <!-- Social Channel Buttons -->
-            <div class="flex items-center justify-center gap-3 mt-6">
-                <a href="{{ $igUrl }}" target="_blank" class="px-4 py-2 rounded-xl bg-white border border-neutral-200 text-slate-700 hover:text-pink-600 hover:border-pink-300 text-xs font-semibold transition flex items-center gap-2 shadow-xs">
-                    <svg class="w-4 h-4 text-pink-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mt-6">
+                <a href="{{ $igUrl }}" target="_blank" class="px-3.5 py-2 sm:px-4 sm:py-2 rounded-xl bg-white border border-neutral-200 text-slate-700 hover:text-pink-600 hover:border-pink-300 text-xs font-semibold transition flex items-center gap-2 shadow-xs">
+                    <svg class="w-4 h-4 text-pink-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                         <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
                     </svg>
                     <span>Instagram @puja_tourtravel</span>
                 </a>
-                <a href="{{ $tiktokUrl }}" target="_blank" class="px-4 py-2 rounded-xl bg-white border border-neutral-200 text-slate-700 hover:text-slate-900 hover:border-slate-400 text-xs font-semibold transition flex items-center gap-2 shadow-xs">
-                    <svg class="w-4 h-4 text-slate-900" fill="currentColor" viewBox="0 0 24 24">
+                <a href="{{ $tiktokUrl }}" target="_blank" class="px-3.5 py-2 sm:px-4 sm:py-2 rounded-xl bg-white border border-neutral-200 text-slate-700 hover:text-slate-900 hover:border-slate-400 text-xs font-semibold transition flex items-center gap-2 shadow-xs">
+                    <svg class="w-4 h-4 text-slate-900 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.89-4.49V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-.9-.07z"/>
                     </svg>
                     <span>TikTok Resmi</span>
@@ -149,13 +149,13 @@
         </div>
 
         <!-- Dynamic Photo Bento Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
             @forelse($galleries as $gal)
-                <div class="gallery-item group relative h-72 rounded-3xl overflow-hidden cursor-pointer shadow-soft border border-neutral-200 bg-slate-900"
+                <div class="gallery-item group relative h-64 sm:h-72 rounded-3xl overflow-hidden cursor-pointer shadow-soft border border-neutral-200 bg-slate-900"
                      data-img="{{ $gal->image_url }}"
                      data-caption="{{ $gal->caption ?? $gal->title }}">
                     <img src="{{ $gal->image_url }}" alt="{{ $gal->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition"></div>
+                    <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition"></div>
                     
                     <div class="absolute top-3 left-3">
                         <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-900/80 backdrop-blur-md text-emerald-400 border border-white/10">
@@ -183,76 +183,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 shrink-0">
-                            <img src="{{ asset('images/puja_logo.png') }}" alt="Logo" class="w-full h-full object-contain">
-                        </div>
-                        <span class="font-display font-extrabold text-xl text-white">
-                            PUJA<span class="text-emerald-400 ml-1">TOUR</span>
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Penyedia paket wisata resmi Pangandaran, body rafting Green Canyon, snorkeling Pasir Putih, dan gathering perusahaan terpercaya.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Navigasi</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        @if(!request()->routeIs('home'))
-                            <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
-                        @endif
-                        @if(!request()->routeIs('packages.index'))
-                            <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Paket Wisata</a></li>
-                        @endif
-                        @if(!request()->routeIs('about'))
-                            <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang Kami</a></li>
-                        @endif
-                        @if(!request()->routeIs('calculator'))
-                            <li><a href="{{ route('calculator') }}" class="hover:text-white transition">Estimasi Biaya</a></li>
-                        @endif
-                        @if(!request()->routeIs('gallery'))
-                            <li><a href="{{ route('gallery') }}" class="hover:text-white transition">Galeri Foto</a></li>
-                        @endif
-                        @if(!request()->routeIs('testimonial'))
-                            <li><a href="{{ route('testimonial') }}" class="hover:text-white transition">Ulasan Wisatawan</a></li>
-                        @endif
-                        @if(!request()->routeIs('faq'))
-                            <li><a href="{{ route('faq') }}" class="hover:text-white transition">Pertanyaan Umum (FAQ)</a></li>
-                        @endif
-                        @if(!request()->routeIs('contact'))
-                            <li><a href="{{ route('contact') }}" class="hover:text-white transition">Kontak & Lokasi</a></li>
-                        @endif
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Kantor Operasional</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">{{ $officeAddr }}</p>
-                    <p class="text-xs text-emerald-400 font-bold mt-2">Hotline: {{ $phoneNum }}</p>
-                    <p class="text-xs text-slate-400 mt-1">Email: {{ $emailAddr }}</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Legalitas Resmi</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Berbadan hukum resmi CV dengan izin pariwisata terdaftar dan pemandu bersertifikasi kepemanduan HPI Jawa Barat.
-                    </p>
-                </div>
-            </div>
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                <p>© {{ date('Y') }} {{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}. All rights reserved.</p>
-                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
-                    <span>•</span>
-                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
-                    <span>•</span>
-                    <a href="{{ route('refund-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Pengembalian</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <!-- LIGHTBOX MODAL WITH FULL SLIDER CAROUSEL -->
     <div id="lightbox-modal" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 select-none" role="dialog" aria-modal="true" aria-label="Galeri Foto Wisata">
@@ -262,7 +193,7 @@
             <div class="flex items-center gap-1.5 sm:gap-3 pointer-events-auto min-w-0 shrink">
                 <div class="px-2.5 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/90 border border-white/20 backdrop-blur-md flex items-center gap-1.5 sm:gap-2 shadow-lg min-w-0">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
-                    <span id="lightbox-title" class="text-xs sm:text-sm font-bold text-white max-w-[90px] xs:max-w-[140px] sm:max-w-xs md:max-w-md truncate">Dokumentasi Wisatawan</span>
+                    <span id="lightbox-title" class="text-xs sm:text-sm font-bold text-white max-w-22.5 xs:max-w-35 sm:max-w-xs md:max-w-md truncate">Dokumentasi Wisatawan</span>
                 </div>
                 <span id="lightbox-counter" class="text-[11px] sm:text-xs font-semibold px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full bg-white/10 text-emerald-300 border border-white/15 shadow-sm shrink-0 whitespace-nowrap">
                     Foto 1 / 1

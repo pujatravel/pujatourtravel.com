@@ -125,35 +125,35 @@
     <main class="py-12 sm:py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- PAGE HEADER -->
-            <div class="text-center max-w-3xl mx-auto mb-12">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
                 <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 block mb-2">
                     Bukti Sosial & Kepuasan Pelanggan
                 </span>
-                <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+                <h1 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight">
                     Pengalaman Nyata Bersama Puja Tour
                 </h1>
-                <p class="text-sm sm:text-base text-slate-600 mt-3 leading-relaxed">
+                <p class="text-xs sm:text-sm md:text-base text-slate-600 mt-2.5 sm:mt-3 leading-relaxed">
                     Lebih dari ribuan wisatawan keluarga, rombongan kantor, dan komunitas telah mempercayakan liburan Pangandaran mereka bersama kami.
                 </p>
 
                 <!-- STATS BAR -->
-                <div class="mt-8 grid grid-cols-3 gap-4 max-w-lg mx-auto bg-surface-soft p-4 rounded-2xl border border-neutral-200 shadow-sm">
-                    <div>
-                        <span class="font-display font-black text-2xl text-slate-900">4.9/5</span>
-                        <span class="text-[11px] text-slate-500 block font-medium">Rating Rata-Rata</span>
+                <div class="mt-6 sm:mt-8 grid grid-cols-1 xs:grid-cols-3 gap-3 xs:gap-0 divide-y xs:divide-y-0 xs:divide-x divide-neutral-200 max-w-lg mx-auto bg-surface-soft p-4 rounded-2xl border border-neutral-200 shadow-xs">
+                    <div class="pb-2.5 xs:pb-0 xs:px-2">
+                        <span class="font-display font-black text-xl sm:text-2xl text-slate-900">4.9/5</span>
+                        <span class="text-[11px] text-slate-500 block font-medium mt-0.5">Rating Rata-Rata</span>
                     </div>
-                    <div class="border-x border-neutral-200">
-                        <span class="font-display font-black text-2xl text-emerald-700">100%</span>
-                        <span class="text-[11px] text-slate-500 block font-medium">Guide Lokal Bersertifikat</span>
+                    <div class="py-2.5 xs:py-0 xs:px-2">
+                        <span class="font-display font-black text-xl sm:text-2xl text-emerald-700">100%</span>
+                        <span class="text-[11px] text-slate-500 block font-medium mt-0.5">Guide Lokal Bersertifikat</span>
                     </div>
-                    <div>
-                        <span class="font-display font-black text-2xl text-slate-900">{{ $testimonials->count() }}+</span>
-                        <span class="text-[11px] text-slate-500 block font-medium">Ulasan Terverifikasi</span>
+                    <div class="pt-2.5 xs:pt-0 xs:px-2">
+                        <span class="font-display font-black text-xl sm:text-2xl text-slate-900">{{ $testimonials->count() }}+</span>
+                        <span class="text-[11px] text-slate-500 block font-medium mt-0.5">Ulasan Terverifikasi</span>
                     </div>
                 </div>
 
-                <div class="mt-8 flex justify-center">
-                    <button type="button" id="btn-open-review-modal" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md transition cursor-pointer">
+                <div class="mt-6 sm:mt-8 flex justify-center">
+                    <button type="button" id="btn-open-review-modal" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 min-h-11 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-xs hover:shadow-md transition cursor-pointer">
                         <i data-lucide="edit-3" class="w-4 h-4"></i>
                         <span>Tulis Ulasan & Bagikan Pengalaman</span>
                     </button>
@@ -181,79 +181,167 @@
                 </defs>
             </svg>
 
-            <!-- TESTIMONIALS GRID -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @forelse($testimonials as $t)
-                    <div class="bg-surface-soft rounded-3xl p-6 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-md transition">
-                        <div>
-                            <!-- Header: Bintang Emas di Tengah & Badge Terverifikasi -->
-                            <div class="flex flex-col items-center justify-center text-center mb-4">
-                                <div class="flex items-center justify-center gap-1.5 mb-2">
-                                    @php $r = (int)($t->rating ?? 5); @endphp
-                                    @for($i = 1; $i <= 5; $i++)
-                                        @if($i <= $r)
-                                            <svg class="w-5 h-5 drop-shadow-[0_2px_4px_rgba(245,158,11,0.35)] transition-transform duration-200 hover:scale-115" viewBox="0 0 24 24" fill="url(#goldStarGradTesti)" stroke="#d97706" stroke-width="0.5">
-                                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                                            </svg>
-                                        @else
-                                            <svg class="w-5 h-5 text-slate-200" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                                            </svg>
-                                        @endif
-                                    @endfor
-                                </div>
-                                <span class="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-2xs">
-                                    <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                                    <span>Ulasan Terverifikasi</span>
-                                </span>
-                            </div>
+            @if($testimonials->count() > 0)
+                <!-- Sub-Header: Informasi Ulasan Asli & Petunjuk Klik Detail -->
+                <div class="flex flex-col xs:flex-row xs:items-end justify-between gap-3 mb-6 sm:mb-8">
+                    <div>
+                        <span class="text-[10px] xs:text-xs font-bold text-slate-400 uppercase tracking-widest block">Ulasan Wisatawan Asli</span>
+                        <h2 class="text-base sm:text-xl font-display font-extrabold text-slate-900 mt-0.5">Semua Cerita Pengalaman Tamu</h2>
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 text-[11px] text-emerald-700 font-semibold bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200/80 self-start xs:self-auto shadow-2xs">
+                        <i data-lucide="mouse-pointer-click" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                        <span>Ketuk ulasan untuk membaca cerita lengkap</span>
+                    </div>
+                </div>
 
-                            <!-- Review Text -->
-                            <p class="text-slate-700 text-xs sm:text-sm leading-relaxed italic mb-6 text-center">
-                                "{{ $t->review_text }}"
-                            </p>
-                        </div>
+                <!-- TAMPILAN BERGESER: Auto-Scrolling Marquee di Desktop + Interactive Carousel di Mobile -->
+                <div id="testi-slider-view" class="w-full">
+                    <!-- Marquee Showcase Container with Edge Fade Masks -->
+                    <div class="relative w-full overflow-hidden select-none py-2 testimonial-marquee-wrapper" id="testi-page-wrapper">
+                        <!-- Left & Right Gradient Fade Masks -->
+                        <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-linear-to-r from-[#f4f6f1] to-transparent z-10"></div>
+                        <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-linear-to-l from-[#f4f6f1] to-transparent z-10"></div>
 
-                        <div class="pt-4 border-t border-neutral-200 flex items-center gap-3">
-                            @if($t->avatar_url)
-                                <img src="{{ $t->avatar_url }}" alt="{{ $t->customer_name }}" class="w-10 h-10 rounded-full object-cover shrink-0">
-                            @else
-                                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">
-                                    {{ substr($t->customer_name, 0, 2) }}
-                                </div>
-                            @endif
-                            <div class="flex-1 min-w-0">
-                                <h4 class="font-display font-bold text-xs sm:text-sm text-slate-900 truncate">{{ $t->customer_name }}</h4>
-                                <span class="text-[11px] text-slate-400 block truncate">
-                                    {{ $t->customer_city ?? 'Wisatawan' }} • {{ $t->package_name ?? 'Paket Wisata' }}
-                                </span>
-                            </div>
+                        <!-- The Marquee Track (Smooth Walking Animation, Pauses on Hover) -->
+                        <div id="testi-page-track" class="testimonial-marquee-track flex gap-6 px-4">
+                            @php
+                                $loopCount = $testimonials->count() < 4 ? 4 : 2;
+                            @endphp
+                            @for($repeat = 0; $repeat < $loopCount; $repeat++)
+                                @foreach($testimonials as $tIndex => $t)
+                                    <div class="testimonial-card group w-77.5 sm:w-95 shrink-0 bg-surface-soft rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                                         data-name="{{ $t->customer_name }}"
+                                         data-city="{{ $t->customer_city ?? 'Wisatawan' }}"
+                                         data-package="{{ $t->package_name ?? 'Paket Wisata Pangandaran' }}"
+                                         data-rating="{{ (int)($t->rating ?? 5) }}"
+                                         data-review="{{ $t->review_text }}"
+                                         data-date="{{ $t->trip_date ? $t->trip_date->translatedFormat('d F Y') : ($t->created_at ? $t->created_at->translatedFormat('d F Y') : '') }}"
+                                         data-avatar="{{ $t->avatar_url ?? '' }}"
+                                         data-initials="{{ substr($t->customer_name, 0, 2) }}"
+                                         title="Klik untuk membaca ulasan lengkap {{ $t->customer_name }}">
+                                        <div>
+                                            <!-- Header: Bintang Emas di Tengah & Badge Terverifikasi -->
+                                            <div class="flex flex-col items-center justify-center text-center mb-4">
+                                                <div class="flex items-center justify-center gap-1.5 mb-2">
+                                                    @php $r = (int)($t->rating ?? 5); @endphp
+                                                    @for($i = 1; $i <= 5; $i++)
+                                                        @if($i <= $r)
+                                                            <svg class="w-5 h-5 drop-shadow-[0_2px_4px_rgba(245,158,11,0.35)] transition-transform duration-200 group-hover:scale-110" viewBox="0 0 24 24" fill="url(#goldStarGradTesti)" stroke="#d97706" stroke-width="0.5">
+                                                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                                            </svg>
+                                                        @else
+                                                            <svg class="w-5 h-5 text-slate-200" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                                            </svg>
+                                                        @endif
+                                                    @endfor
+                                                </div>
+                                                <span class="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-2xs">
+                                                    <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                                                    <span>Ulasan Terverifikasi</span>
+                                                </span>
+                                            </div>
+
+                                            <p class="text-slate-700 text-xs sm:text-sm italic leading-relaxed line-clamp-4 text-center">
+                                                "{{ $t->review_text }}"
+                                            </p>
+
+                                            <!-- Indikator Interaktif Baca Selengkapnya -->
+                                            <div class="mt-3 flex items-center justify-center">
+                                                <span class="text-[11px] font-bold text-emerald-700 group-hover:text-emerald-800 inline-flex items-center gap-1 bg-emerald-50/80 group-hover:bg-emerald-100 px-2.5 py-1 rounded-full border border-emerald-200/70 transition">
+                                                    <span>Baca Selengkapnya</span>
+                                                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-center gap-3.5 pt-5 mt-5 border-t border-neutral-200">
+                                            @if($t->avatar_url)
+                                                <img src="{{ $t->avatar_url }}" alt="{{ $t->customer_name }}" class="w-11 h-11 rounded-full object-cover shrink-0 shadow-inner">
+                                            @else
+                                                <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 font-bold font-display text-base flex items-center justify-center shrink-0 shadow-inner">
+                                                    {{ substr($t->customer_name, 0, 2) }}
+                                                </div>
+                                            @endif
+                                            <div class="min-w-0">
+                                                <h4 class="font-display font-bold text-slate-900 text-sm truncate group-hover:text-emerald-800 transition">{{ $t->customer_name }}</h4>
+                                                <span class="text-xs text-slate-400 block truncate">
+                                                    {{ $t->customer_city ?? 'Wisatawan' }} • {{ $t->package_name ?? 'Paket Wisata' }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endfor
                         </div>
                     </div>
-                @empty
-                    <div class="col-span-full py-12 text-center text-slate-400">
-                        <i data-lucide="message-square" class="w-10 h-10 mx-auto text-slate-300 mb-3"></i>
-                        <p class="text-sm">Belum ada ulasan yang dipublikasikan saat ini.</p>
-                    </div>
-                @endforelse
-            </div>
 
-            <!-- BOTTOM CTA BANNER (Section 3.6 / 03-sitemap-and-pages.md) -->
-            <div class="mt-16 rounded-3xl bg-slate-900 bg-gradient-to-r from-emerald-800 to-slate-900 text-white p-8 sm:p-12 text-center shadow-lg relative overflow-hidden">
-                <div class="relative z-10 max-w-2xl mx-auto space-y-4">
-                    <h2 class="font-display font-extrabold text-2xl sm:text-3xl">
+                    <!-- Mobile Only: Navigasi Lanjut Ulasan Slider (Hanya Tampil di Layar Ponsel) -->
+                    <div class="sm:hidden flex flex-col items-center gap-3.5 mt-6 px-4">
+                        <!-- Indikator Titik Aktif (Active Slide Tracker) -->
+                        @if($testimonials->count() > 1)
+                            <div id="testi-page-dots-mobile" class="flex items-center gap-1.5 py-1">
+                                @foreach($testimonials as $idx => $t)
+                                    <button type="button" class="testi-page-dot h-2 rounded-full transition-all duration-300 {{ $idx === 0 ? 'w-6 bg-emerald-700' : 'w-2 bg-neutral-300' }}" data-index="{{ $idx }}" aria-label="Lihat ulasan {{ $idx + 1 }}"></button>
+                                @endforeach
+                            </div>
+                        @endif
+
+                        <!-- Tombol Navigasi: Sebelumnya & Lanjut ke Ulasan Berikutnya -->
+                        <div class="flex items-center gap-2.5 w-full max-w-sm justify-center">
+                            <!-- Tombol Sebelumnya -->
+                            <button type="button" id="btn-prev-testi-page" aria-label="Ulasan Sebelumnya" class="w-11 h-11 rounded-2xl bg-surface-soft hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-xs transition cursor-pointer shrink-0">
+                                <i data-lucide="chevron-left" class="w-5 h-5 text-slate-600"></i>
+                            </button>
+
+                            <!-- Tombol Utama: Lanjut ke Ulasan Berikutnya -->
+                            <button type="button" id="btn-next-testi-page" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-emerald-700 hover:bg-emerald-800 active:scale-[0.98] text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-700/20 transition cursor-pointer">
+                                <span>Lanjut ke Ulasan Berikutnya</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 text-emerald-200"></i>
+                            </button>
+                        </div>
+
+                        <!-- Petunjuk Ramah & Enak Dibaca -->
+                        <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                            <span>Ketuk ulasan untuk membaca versi lengkap</span>
+                        </p>
+                    </div>
+                </div>
+            @else
+                <div class="py-12 text-center text-slate-400">
+                    <i data-lucide="message-square" class="w-10 h-10 mx-auto text-slate-300 mb-3"></i>
+                    <p class="text-sm">Belum ada ulasan yang dipublikasikan saat ini.</p>
+                </div>
+            @endif
+
+            <!-- GRAND CTA SECTION (Sesuai Desain Konsisten Website) -->
+            <div class="mt-14 sm:mt-18 lg:mt-20 rounded-2xl sm:rounded-3xl bg-slate-950 text-white p-6 sm:p-10 lg:p-14 relative overflow-hidden shadow-xl border border-slate-800 text-center">
+                <!-- Decorative Glow Background -->
+                <div class="absolute -top-24 -left-24 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-2xl mx-auto space-y-4 sm:space-y-5">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30 shadow-2xs">
+                        <i data-lucide="compass" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <h2 class="font-display font-extrabold text-xl sm:text-2xl lg:text-4xl text-white tracking-tight">
                         Siap Membuat Cerita Liburan Anda Sendiri?
                     </h2>
-                    <p class="text-xs sm:text-sm text-emerald-100/90 leading-relaxed">
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl mx-auto">
                         Konsultasikan destinasi impian Anda bersama tim profesional Puja Tour & Travel. Pemandu lokal ramah, asuransi lengkap, dan kepuasan terjamin.
                     </p>
-                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <a href="{{ route('calculator') }}" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-white text-emerald-900 font-bold text-xs hover:bg-neutral-100 transition shadow">
-                            Hitung Estimasi Biaya
-                        </a>
-                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Puja%20Tour,%20saya%20tertarik%20dengan%20paket%20wisata%20Pangandaran" target="_blank" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-500 transition shadow flex items-center justify-center gap-2">
+                    <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-3.5">
+                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" 
+                           target="_blank" 
+                           class="w-full sm:w-auto px-6 py-3 min-h-11 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-0.5">
                             <i data-lucide="message-circle" class="w-4 h-4"></i>
-                            <span>Chat WhatsApp Langsung</span>
+                            <span>Chat WhatsApp Tim Reservasi</span>
+                        </a>
+                        <a href="{{ route('calculator') }}" 
+                           class="w-full sm:w-auto px-6 py-3 min-h-11 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-0.5">
+                            <i data-lucide="calculator" class="w-4 h-4"></i>
+                            <span>Hitung Estimasi Biaya</span>
                         </a>
                     </div>
                 </div>
@@ -262,76 +350,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white pt-14 pb-8 border-t border-slate-800 text-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-slate-800">
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2">
-                        <div class="w-10 h-10 shrink-0">
-                            <img src="{{ asset('images/puja_logo.png') }}" alt="Logo" class="w-full h-full object-contain">
-                        </div>
-                        <span class="font-display font-extrabold text-xl text-white">
-                            PUJA<span class="text-emerald-400 ml-1">TOUR</span>
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Penyedia paket wisata resmi Pangandaran, body rafting Green Canyon, snorkeling Pasir Putih, dan gathering perusahaan terpercaya.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Navigasi</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        @if(!request()->routeIs('home'))
-                            <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
-                        @endif
-                        @if(!request()->routeIs('packages.index'))
-                            <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Paket Wisata</a></li>
-                        @endif
-                        @if(!request()->routeIs('about'))
-                            <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang Kami</a></li>
-                        @endif
-                        @if(!request()->routeIs('calculator'))
-                            <li><a href="{{ route('calculator') }}" class="hover:text-white transition">Estimasi Biaya</a></li>
-                        @endif
-                        @if(!request()->routeIs('gallery'))
-                            <li><a href="{{ route('gallery') }}" class="hover:text-white transition">Galeri Foto</a></li>
-                        @endif
-                        @if(!request()->routeIs('testimonial'))
-                            <li><a href="{{ route('testimonial') }}" class="hover:text-white transition">Ulasan Wisatawan</a></li>
-                        @endif
-                        @if(!request()->routeIs('faq'))
-                            <li><a href="{{ route('faq') }}" class="hover:text-white transition">Pertanyaan Umum (FAQ)</a></li>
-                        @endif
-                        @if(!request()->routeIs('contact'))
-                            <li><a href="{{ route('contact') }}" class="hover:text-white transition">Kontak & Lokasi</a></li>
-                        @endif
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Kantor Operasional</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">{{ $officeAddr }}</p>
-                    <p class="text-xs text-emerald-400 font-bold mt-2">Hotline: {{ $phoneNum }}</p>
-                    <p class="text-xs text-slate-400 mt-1">Email: {{ $emailAddr }}</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Legalitas Resmi</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Berbadan hukum resmi CV dengan izin pariwisata terdaftar dan pemandu bersertifikasi kepemanduan HPI Jawa Barat.
-                    </p>
-                </div>
-            </div>
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                <p>© {{ date('Y') }} {{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}. All rights reserved.</p>
-                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
-                    <span>•</span>
-                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
-                    <span>•</span>
-                    <a href="{{ route('refund-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Pengembalian</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <!-- PERSISTENT FLOATING WHATSAPP BUTTON -->
     <div class="fixed bottom-6 right-6 z-50">
@@ -347,13 +366,13 @@
         <div id="review-modal-backdrop" class="fixed inset-0 bg-slate-950/65 backdrop-blur-xs transition-opacity duration-300 opacity-0 cursor-pointer"></div>
 
         <!-- Modal Box -->
-        <div id="review-modal-box" class="relative bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-neutral-200 z-10 transition-all duration-300 scale-95 opacity-0 max-h-[90vh] overflow-y-auto">
+        <div id="review-modal-box" class="relative bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-8 shadow-2xl border border-neutral-200 z-10 transition-all duration-300 scale-95 opacity-0 max-h-[90vh] overflow-y-auto">
             <div class="flex items-start justify-between pb-4 border-b border-neutral-200">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">Form Ulasan Tamu</span>
-                    <h3 class="font-display font-extrabold text-xl text-slate-900 mt-1">Bagikan Pengalaman Liburan Anda</h3>
+                    <h3 class="font-display font-extrabold text-lg sm:text-xl text-slate-900 mt-1">Bagikan Pengalaman Liburan Anda</h3>
                 </div>
-                <button type="button" id="btn-close-review-modal" aria-label="Tutup Modal" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-neutral-100 transition cursor-pointer">
+                <button type="button" id="btn-close-review-modal" aria-label="Tutup Modal" class="p-2 min-w-10 min-h-10 flex items-center justify-center rounded-xl text-slate-400 hover:text-slate-700 hover:bg-neutral-100 transition cursor-pointer">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
@@ -366,17 +385,17 @@
                 @csrf
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Nama Lengkap / Panggilan *</label>
-                    <input type="text" name="customer_name" required placeholder="Contoh: Rian & Annisa / Budi Santoso" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition">
+                    <input type="text" name="customer_name" required placeholder="Contoh: Rian & Annisa / Budi Santoso" class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs sm:text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition">
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Kota Asal / Domisili</label>
-                        <input type="text" name="customer_city" placeholder="Contoh: Bandung / Jakarta" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition">
+                        <input type="text" name="customer_city" placeholder="Contoh: Bandung / Jakarta" class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs sm:text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Paket yang Diikuti</label>
-                        <select name="package_name" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition">
+                        <select name="package_name" class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs sm:text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition">
                             <option value="">-- Pilih Paket (Opsional) --</option>
                             @if(isset($packages))
                                 @foreach($packages as $p)
@@ -394,13 +413,13 @@
                 <!-- Interactive Star Rating -->
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Rating Kepuasan *</label>
-                    <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-neutral-200">
-                        <div class="flex items-center gap-1 text-2xl text-slate-300" id="star-rating-group">
-                            <button type="button" data-rating="1" class="star-btn cursor-pointer text-amber-400">★</button>
-                            <button type="button" data-rating="2" class="star-btn cursor-pointer text-amber-400">★</button>
-                            <button type="button" data-rating="3" class="star-btn cursor-pointer text-amber-400">★</button>
-                            <button type="button" data-rating="4" class="star-btn cursor-pointer text-amber-400">★</button>
-                            <button type="button" data-rating="5" class="star-btn cursor-pointer text-amber-400">★</button>
+                    <div class="flex flex-col xs:flex-row xs:items-center gap-2.5 xs:gap-3 p-3 rounded-xl bg-slate-50 border border-neutral-200">
+                        <div class="flex items-center gap-1.5 text-2xl text-slate-300" id="star-rating-group">
+                            <button type="button" data-rating="1" class="star-btn cursor-pointer text-amber-400 p-1">★</button>
+                            <button type="button" data-rating="2" class="star-btn cursor-pointer text-amber-400 p-1">★</button>
+                            <button type="button" data-rating="3" class="star-btn cursor-pointer text-amber-400 p-1">★</button>
+                            <button type="button" data-rating="4" class="star-btn cursor-pointer text-amber-400 p-1">★</button>
+                            <button type="button" data-rating="5" class="star-btn cursor-pointer text-amber-400 p-1">★</button>
                         </div>
                         <span id="star-rating-label" class="text-xs font-bold text-slate-800">5 Bintang (Sangat Puas)</span>
                     </div>
@@ -409,22 +428,22 @@
 
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Ulasan Pengalaman Wisata *</label>
-                    <textarea name="review_text" rows="3" required placeholder="Ceritakan bagaimana keseruan trip, keramahan pemandu, atau keamanan fasilitas bersama Puja Tour..." class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition"></textarea>
+                    <textarea name="review_text" rows="3" required placeholder="Ceritakan bagaimana keseruan trip, keramahan pemandu, atau keamanan fasilitas bersama Puja Tour..." class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-slate-50 text-slate-900 text-xs sm:text-sm focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition"></textarea>
                 </div>
 
                 <!-- Moderation Notice -->
-                <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2.5">
+                <div class="p-3 sm:p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2.5">
                     <i data-lucide="shield-check" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
                     <p class="leading-relaxed">
                         Ulasan Anda akan diteruskan ke <strong>panel admin Puja Tour</strong> untuk diverifikasi (ACC) sebelum ditampilkan di website agar terhindar dari spam.
                     </p>
                 </div>
 
-                <div class="pt-2 flex items-center justify-end gap-3">
-                    <button type="button" id="btn-cancel-review" class="px-5 py-2.5 rounded-xl border border-neutral-200 text-slate-600 hover:bg-neutral-100 font-semibold text-xs transition cursor-pointer">
+                <div class="pt-2 flex flex-col-reverse xs:flex-row items-stretch xs:items-center justify-end gap-2.5 sm:gap-3">
+                    <button type="button" id="btn-cancel-review" class="w-full xs:w-auto px-5 py-2.5 min-h-11 rounded-xl border border-neutral-200 text-slate-600 hover:bg-neutral-100 font-semibold text-xs transition cursor-pointer flex items-center justify-center">
                         Batal
                     </button>
-                    <button type="submit" id="btn-submit-review" class="px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition flex items-center gap-2 cursor-pointer">
+                    <button type="submit" id="btn-submit-review" class="w-full xs:w-auto px-6 py-2.5 min-h-11 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition flex items-center justify-center gap-2 cursor-pointer">
                         <span id="btn-submit-text">Kirim Ulasan</span>
                         <i data-lucide="send" class="w-3.5 h-3.5" id="btn-submit-icon"></i>
                     </button>
@@ -445,6 +464,70 @@
                         Selesai
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DETAIL ULASAN TAMU (Pop-up Baca Ulasan Lengkap) -->
+    <div id="testi-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-testi-customer-name">
+        <!-- Backdrop Gelap Halus -->
+        <div id="testi-detail-backdrop" class="fixed inset-0 bg-slate-950/75 backdrop-blur-xs transition-opacity duration-300 opacity-0"></div>
+
+        <!-- Box Konten Modal Pop-up -->
+        <div id="testi-detail-box" class="relative bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-neutral-100 transform transition-all duration-300 scale-95 opacity-0 my-auto z-10">
+            <!-- Tombol Tutup Silang (X) -->
+            <button type="button" id="btn-close-testi-detail" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 text-slate-500 hover:text-slate-900 flex items-center justify-center transition cursor-pointer" aria-label="Tutup ulasan">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Header Modal: Bintang Rating & Badge Terverifikasi -->
+            <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 pr-10">
+                <div id="modal-testi-stars" class="flex items-center gap-1">
+                    <!-- Dinamis di-generate JS -->
+                </div>
+                <span class="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-2xs">
+                    <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Ulasan Terverifikasi</span>
+                </span>
+            </div>
+
+            <!-- Teks Lengkap Ulasan (Full Text) -->
+            <div class="mt-5 relative">
+                <div class="absolute -top-3 -left-2 text-emerald-100 pointer-events-none select-none">
+                    <svg class="w-12 h-12 fill-current opacity-70" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                </div>
+                <div class="relative z-10 max-h-72 overflow-y-auto pr-2 custom-scrollbar">
+                    <p id="modal-testi-review-text" class="text-slate-800 text-sm sm:text-base leading-relaxed italic whitespace-pre-line">
+                        <!-- Teks ulasan lengkap diisi oleh JS -->
+                    </p>
+                </div>
+            </div>
+
+            <!-- Identitas Tamu & Detail Trip -->
+            <div class="mt-6 pt-5 border-t border-neutral-200 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5 min-w-0">
+                    <div id="modal-testi-avatar-wrapper" class="w-12 h-12 rounded-full overflow-hidden shrink-0 shadow-inner flex items-center justify-center">
+                        <!-- Avatar / Inisial diisi oleh JS -->
+                    </div>
+                    <div class="min-w-0">
+                        <h4 id="modal-testi-customer-name" class="font-display font-bold text-slate-900 text-base truncate"></h4>
+                        <span id="modal-testi-meta" class="text-xs text-slate-500 block truncate font-medium"></span>
+                        <span id="modal-testi-date" class="text-[11px] text-emerald-700 font-semibold block mt-0.5"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Actions Footer -->
+            <div class="mt-6 pt-4 border-t border-neutral-100 flex flex-col xs:flex-row items-stretch xs:items-center justify-end gap-2.5">
+                <button type="button" id="btn-dismiss-testi-detail" class="px-5 py-2.5 min-h-11 rounded-xl border border-neutral-200 hover:bg-neutral-100 text-slate-700 font-bold text-xs transition cursor-pointer">
+                    Tutup
+                </button>
+                <a id="btn-modal-testi-whatsapp" href="#" target="_blank" class="px-5 py-2.5 min-h-11 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition inline-flex items-center justify-center gap-2 cursor-pointer">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span>Tanya Paket Ini</span>
+                </a>
             </div>
         </div>
     </div>
@@ -601,6 +684,259 @@
                     });
                 });
             }
+
+            // --- Testimonial Detail Pop-up Modal (Baca Ulasan Lengkap) ---
+            const detailModal = document.getElementById('testi-detail-modal');
+            const detailBackdrop = document.getElementById('testi-detail-backdrop');
+            const detailBox = document.getElementById('testi-detail-box');
+            const btnCloseDetail = document.getElementById('btn-close-testi-detail');
+            const btnDismissDetail = document.getElementById('btn-dismiss-testi-detail');
+            const modalReviewText = document.getElementById('modal-testi-review-text');
+            const modalCustomerName = document.getElementById('modal-testi-customer-name');
+            const modalMeta = document.getElementById('modal-testi-meta');
+            const modalDate = document.getElementById('modal-testi-date');
+            const modalStars = document.getElementById('modal-testi-stars');
+            const modalAvatarWrapper = document.getElementById('modal-testi-avatar-wrapper');
+            const modalWhatsappBtn = document.getElementById('btn-modal-testi-whatsapp');
+            const companyWaNum = "{{ $waNum }}";
+
+            function openTestimonialDetail(card) {
+                if (!detailModal || !card) return;
+
+                const name = card.getAttribute('data-name') || 'Wisatawan';
+                const city = card.getAttribute('data-city') || 'Wisatawan';
+                const pkg = card.getAttribute('data-package') || 'Paket Wisata Pangandaran';
+                const rating = parseInt(card.getAttribute('data-rating') || '5', 10);
+                const review = card.getAttribute('data-review') || '';
+                const date = card.getAttribute('data-date') || '';
+                const avatar = card.getAttribute('data-avatar') || '';
+                const initials = card.getAttribute('data-initials') || name.substring(0, 2);
+
+                if (modalReviewText) modalReviewText.textContent = `"${review}"`;
+                if (modalCustomerName) modalCustomerName.textContent = name;
+                if (modalMeta) modalMeta.textContent = `${city} • ${pkg}`;
+                if (modalDate) modalDate.textContent = date ? `Trip: ${date}` : '';
+
+                // Generate Stars SVG
+                if (modalStars) {
+                    let starHtml = '';
+                    for (let i = 1; i <= 5; i++) {
+                        if (i <= rating) {
+                            starHtml += `
+                                <svg class="w-5 h-5 drop-shadow-[0_2px_4px_rgba(245,158,11,0.35)]" viewBox="0 0 24 24" fill="url(#goldStarGradTesti)" stroke="#d97706" stroke-width="0.5">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            `;
+                        } else {
+                            starHtml += `
+                                <svg class="w-5 h-5 text-slate-200" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            `;
+                        }
+                    }
+                    modalStars.innerHTML = starHtml;
+                }
+
+                // Avatar / Initials
+                if (modalAvatarWrapper) {
+                    if (avatar) {
+                        modalAvatarWrapper.innerHTML = `<img src="${avatar}" alt="${name}" class="w-full h-full object-cover">`;
+                    } else {
+                        modalAvatarWrapper.innerHTML = `
+                            <div class="w-full h-full bg-emerald-100 text-emerald-800 font-bold font-display text-base flex items-center justify-center">
+                                ${initials}
+                            </div>
+                        `;
+                    }
+                }
+
+                // WhatsApp Inquiry Link
+                if (modalWhatsappBtn) {
+                    const waText = `Halo Admin Puja Tour & Travel, saya membaca ulasan pengalaman dari ${name} mengenai ${pkg}. Saya tertarik dan ingin tanya info paket tersebut.`;
+                    modalWhatsappBtn.href = `https://wa.me/${companyWaNum}?text=${encodeURIComponent(waText)}`;
+                }
+
+                // Show modal with animation
+                detailModal.classList.remove('hidden');
+                detailModal.classList.add('flex');
+                setTimeout(() => {
+                    if (detailBackdrop) detailBackdrop.classList.remove('opacity-0');
+                    if (detailBox) {
+                        detailBox.classList.remove('scale-95', 'opacity-0');
+                        detailBox.classList.add('scale-100', 'opacity-100');
+                    }
+                }, 20);
+
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+
+            function closeTestimonialDetail() {
+                if (!detailModal) return;
+                if (detailBackdrop) detailBackdrop.classList.add('opacity-0');
+                if (detailBox) {
+                    detailBox.classList.remove('scale-100', 'opacity-100');
+                    detailBox.classList.add('scale-95', 'opacity-0');
+                }
+                setTimeout(() => {
+                    detailModal.classList.remove('flex');
+                    detailModal.classList.add('hidden');
+                }, 300);
+            }
+
+            if (btnCloseDetail) btnCloseDetail.addEventListener('click', closeTestimonialDetail);
+            if (btnDismissDetail) btnDismissDetail.addEventListener('click', closeTestimonialDetail);
+            if (detailBackdrop) detailBackdrop.addEventListener('click', closeTestimonialDetail);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && detailModal && !detailModal.classList.contains('hidden')) {
+                    closeTestimonialDetail();
+                }
+            });
+
+            // Card click listener with pointer movement threshold to distinguish click vs drag/swipe
+            const allTestiCards = document.querySelectorAll('.testimonial-card');
+            allTestiCards.forEach((card) => {
+                let startX = 0;
+                let startY = 0;
+                let isDragging = false;
+
+                card.addEventListener('pointerdown', (e) => {
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    isDragging = false;
+                });
+
+                card.addEventListener('pointermove', (e) => {
+                    if (Math.abs(e.clientX - startX) > 10 || Math.abs(e.clientY - startY) > 10) {
+                        isDragging = true;
+                    }
+                });
+
+                card.addEventListener('click', (e) => {
+                    if (isDragging) return;
+                    openTestimonialDetail(card);
+                });
+            });
+
+            // --- Mobile Testimonial Slider Interactive Logic (Testimonial Page) ---
+            var testiPageWrapper = document.getElementById('testi-page-wrapper');
+            var btnNextTestiPage = document.getElementById('btn-next-testi-page');
+            var btnPrevTestiPage = document.getElementById('btn-prev-testi-page');
+            var testiPageDots = document.querySelectorAll('#testi-page-dots-mobile .testi-page-dot');
+            var totalTestiPage = {{ $testimonials->count() }};
+            var testiPageAutoSlideTimer = null;
+
+            function getTestiPageCardStep() {
+                if (!testiPageWrapper) return 334;
+                var firstCard = testiPageWrapper.querySelector('.testimonial-card');
+                var secondCard = firstCard ? firstCard.nextElementSibling : null;
+                if (firstCard && secondCard) {
+                    return secondCard.offsetLeft - firstCard.offsetLeft;
+                }
+                return firstCard ? firstCard.offsetWidth + 24 : 334;
+            }
+
+            function slideNextTestiPage() {
+                if (!testiPageWrapper) return;
+                var step = getTestiPageCardStep();
+                var maxScroll = testiPageWrapper.scrollWidth - testiPageWrapper.clientWidth;
+                if (testiPageWrapper.scrollLeft >= maxScroll - 20) {
+                    testiPageWrapper.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    testiPageWrapper.scrollBy({ left: step, behavior: 'smooth' });
+                }
+                resetTestiPageAutoSlide();
+            }
+
+            function slidePrevTestiPage() {
+                if (!testiPageWrapper) return;
+                var step = getTestiPageCardStep();
+                if (testiPageWrapper.scrollLeft <= 15) {
+                    var maxScroll = testiPageWrapper.scrollWidth - testiPageWrapper.clientWidth;
+                    testiPageWrapper.scrollTo({ left: maxScroll, behavior: 'smooth' });
+                } else {
+                    testiPageWrapper.scrollBy({ left: -step, behavior: 'smooth' });
+                }
+                resetTestiPageAutoSlide();
+            }
+
+            function updateTestiPageDots() {
+                if (!testiPageWrapper || totalTestiPage <= 0 || !testiPageDots.length) return;
+                var step = getTestiPageCardStep();
+                var currentIdx = Math.round(testiPageWrapper.scrollLeft / step) % totalTestiPage;
+                testiPageDots.forEach(function(dot, idx) {
+                    if (idx === currentIdx) {
+                        dot.classList.remove('w-2', 'bg-neutral-300');
+                        dot.classList.add('w-6', 'bg-emerald-700');
+                    } else {
+                        dot.classList.remove('w-6', 'bg-emerald-700');
+                        dot.classList.add('w-2', 'bg-neutral-300');
+                    }
+                });
+            }
+
+            function startTestiPageAutoSlide() {
+                if (window.innerWidth >= 640 || !testiPageWrapper) return;
+                stopTestiPageAutoSlide();
+                testiPageAutoSlideTimer = setInterval(function() {
+                    slideNextTestiPage();
+                }, 6000);
+            }
+
+            function stopTestiPageAutoSlide() {
+                if (testiPageAutoSlideTimer) {
+                    clearInterval(testiPageAutoSlideTimer);
+                    testiPageAutoSlideTimer = null;
+                }
+            }
+
+            function resetTestiPageAutoSlide() {
+                stopTestiPageAutoSlide();
+                startTestiPageAutoSlide();
+            }
+
+            if (btnNextTestiPage) {
+                btnNextTestiPage.addEventListener('click', slideNextTestiPage);
+            }
+            if (btnPrevTestiPage) {
+                btnPrevTestiPage.addEventListener('click', slidePrevTestiPage);
+            }
+
+            if (testiPageDots.length) {
+                testiPageDots.forEach(function(dot) {
+                    dot.addEventListener('click', function() {
+                        var targetIdx = parseInt(this.getAttribute('data-index'), 10);
+                        var step = getTestiPageCardStep();
+                        if (testiPageWrapper) {
+                            testiPageWrapper.scrollTo({ left: targetIdx * step, behavior: 'smooth' });
+                        }
+                        resetTestiPageAutoSlide();
+                    });
+                });
+            }
+
+            if (testiPageWrapper) {
+                var scrollTimeout = null;
+                testiPageWrapper.addEventListener('scroll', function() {
+                    if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
+                    scrollTimeout = requestAnimationFrame(updateTestiPageDots);
+                }, { passive: true });
+
+                testiPageWrapper.addEventListener('touchstart', stopTestiPageAutoSlide, { passive: true });
+                testiPageWrapper.addEventListener('touchend', function() {
+                    setTimeout(startTestiPageAutoSlide, 3000);
+                }, { passive: true });
+            }
+
+            startTestiPageAutoSlide();
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 640) {
+                    stopTestiPageAutoSlide();
+                } else {
+                    startTestiPageAutoSlide();
+                }
+            });
         });
     </script>
 </body>

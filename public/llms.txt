@@ -1,0 +1,31 @@
+# Puja Tour & Travel Pangandaran
+
+> Puja Tour & Travel (CV Puja Tour) adalah biro perjalanan wisata resmi dan berlisensi yang beroperasi di Pangandaran, Jawa Barat. Spesialis penyedia paket wisata Green Canyon, body rafting Citumang & Green Canyon, snorkeling Pasir Putih, pantai Pangandaran, serta open trip, family & corporate gathering.
+
+## Ringkasan Entitas Bisnis (Business Entity)
+- **Nama Bisnis**: Puja Tour & Travel Pangandaran
+- **Nama Alternatif**: Puja Tour Travel, Puja Tour Pangandaran
+- **Badan Hukum Resmi**: CV Puja Tour (Berizin Kemenkumham & NIB OSS)
+- **Kategori Usaha**: Biro Perjalanan Wisata / Tour & Travel Agency
+- **Wilayah Operasi**: Kabupaten Pangandaran, Jawa Barat, Indonesia
+- **Pemandu Wisata**: Pemandu lokal asli bersertifikat resmi HPI (Himpunan Pramuwisata Indonesia)
+- **Situs Web Resmi**: https://pujatourtravel.com
+- **Diferensiasi Entitas**: Berbasis spesifik untuk wisata alam dan bahari di Pangandaran, Jawa Barat (bukan agen travel umroh/haji di Palembang dan bukan rental mobil di Bali).
+
+## Layanan & Paket Wisata Unggulan
+- **Body Rafting Green Canyon (Full Track & Half Track)**: Petualangan susur ngarai sungai Green Canyon (Cukang Taneuh) dengan perlengkapan standar SNI/CE, asuransi, dan pemandu HPI.
+- **Body Rafting Citumang**: Susur sungai air jernih alami, lompat tebing, dan terapi ikan di Citumang Pangandaran.
+- **Snorkeling Pasir Putih & Cagar Alam**: Wisata terumbu karang, shipwreck Viking, dan jelajah fauna hutan Cagar Alam Pananjung Pangandaran.
+- **Paket Wisata All-Inclusive**: Layanan lengkap transportasi ber-AC, penginapan hotel pesisir, makan seafood bakar pesisir, retribusi, dan dokumentasi drone 4K.
+- **Simulasi Biaya Otomatis**: Kalkulator interaktif estimasi biaya liburan transparan dengan diskon rombongan hingga 15% di https://pujatourtravel.com/estimasi-biaya.
+
+## Direktori Halaman Utama
+- Beranda: https://pujatourtravel.com
+- Katalog Paket Wisata: https://pujatourtravel.com/paket
+- Estimasi Biaya Liburan: https://pujatourtravel.com/estimasi-biaya
+- Tentang Kami & Legalitas: https://pujatourtravel.com/tentang-kami
+- Galeri & Dokumentasi Trip: https://pujatourtravel.com/galeri
+- Testimonial & Review Pelanggan: https://pujatourtravel.com/testimonial
+- Pusat Bantuan & FAQ: https://pujatourtravel.com/faq
+- Kontak Resmi: https://pujatourtravel.com/kontak
+- Peta Situs (Sitemap XML): https://pujatourtravel.com/sitemap.xml

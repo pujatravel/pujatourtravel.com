@@ -213,7 +213,7 @@
 
     <!-- 2. KEY STATS SECTION (Unified Floating Metric Dock) -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-neutral-200/90 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x divide-neutral-200/80">
+        <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-soft border border-neutral-200/90 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-0 lg:divide-x divide-neutral-200/80">
             <!-- Stat 1 -->
             <div class="flex items-start gap-4 lg:px-6 first:pl-0 group">
                 <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 group-hover:bg-emerald-700 group-hover:text-white transition-all">
@@ -288,7 +288,7 @@
                 </p>
 
                 <!-- Core Values Highlight Grid -->
-                <div class="grid grid-cols-3 gap-3 pt-2">
+                <div class="grid grid-cols-1 xs:grid-cols-3 gap-2.5 sm:gap-3 pt-2">
                     <div class="p-4 rounded-2xl bg-surface-soft border border-neutral-200/90 shadow-2xs text-center group hover:border-emerald-300 transition-all">
                         <span class="font-display font-black text-xl text-emerald-700 block">100%</span>
                         <span class="text-xs font-bold text-slate-800 block mt-0.5">Warga Lokal</span>
@@ -308,7 +308,7 @@
             </div>
 
             <!-- Right: Visual Bento Gallery (2x2 Balanced Photo Grid) -->
-            <div class="lg:col-span-6 grid grid-cols-2 gap-4 items-center">
+            <div class="lg:col-span-6 grid grid-cols-1 xs:grid-cols-2 gap-4 items-center">
                 <div class="space-y-4">
                     <div class="relative group rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
                         <img src="{{ asset('images/greencanyon.jpg') }}" alt="Body Rafting Green Canyon" class="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500">
@@ -369,7 +369,7 @@
                 <!-- Visual Connection Line on Desktop -->
                 <div class="hidden lg:block absolute top-11 left-12 right-12 h-1 bg-linear-to-r from-emerald-600 via-emerald-500 to-teal-400 z-0 rounded-full"></div>
 
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 relative z-10">
                     <!-- Milestone 1: 2014 -->
                     <div class="relative bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group overflow-hidden">
                         <div class="relative z-10">
@@ -503,52 +503,47 @@
                 </p>
             </div>
 
-            <!-- 4 Unified Theme Cards (Maks 3 Warna: Putih, Emerald, Slate) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-                <!-- Card 1: Pemandu Lokal Berlisensi HPI -->
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
+            <!-- Asymmetrical 3-Column Bento Grid (Maks 3 Warna: Putih, Emerald, Slate) -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+                <!-- Bento Tile 1 (Pilar Utama - Spans 2 cols): Pemandu HPI -->
+                <div class="lg:col-span-2 bg-white rounded-3xl p-7 sm:p-9 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
                     <div>
-                        <div class="flex items-center justify-between mb-5">
-                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-bold uppercase tracking-wider">
+                                <i data-lucide="award" class="w-3.5 h-3.5 text-emerald-600"></i>
+                                <span>Pilar Keunggulan Utama</span>
+                            </div>
+                            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
                                 <i data-lucide="compass" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-full">
-                                Pemandu HPI
-                            </span>
                         </div>
 
-                        <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2 group-hover:text-emerald-700 transition">
-                            Pemandu Lokal Berlisensi HPI
+                        <h3 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 group-hover:text-emerald-700 transition tracking-tight mb-3">
+                            Pemandu Lokal Berlisensi Resmi HPI Jawa Barat
                         </h3>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Seluruh pemandu kami adalah warga lokal asli Pangandaran yang bersertifikasi resmi HPI (Himpunan Pramuwisata Indonesia) dan teruji navigasi arus air.
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-xl">
+                            Bukan sekadar pemandu jalan. Seluruh tim river guide dan pemandu bahari kami adalah warga asli Pangandaran yang bersertifikasi resmi HPI (Himpunan Pramuwisata Indonesia). Menguasai navigasi arus Green Canyon, terlatih teknik penyelamatan air (water rescue), dan melayani dengan senyum keramahan Sunda.
                         </p>
-
-                        <!-- Checklist -->
-                        <ul class="space-y-2 text-xs text-slate-700">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Sertifikat Resmi HPI DPC Jabar</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Water Rescue Standard SNI</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Ramah, Santun & Berpengalaman</span>
-                            </li>
-                        </ul>
                     </div>
 
-                    <div class="pt-4 mt-6 border-t border-neutral-100 text-[11px] font-bold text-emerald-700 flex items-center gap-1.5">
-                        <i data-lucide="award" class="w-3.5 h-3.5 text-emerald-600"></i>
-                        <span>Sertifikasi Resmi HPI Jabar</span>
+                    <div class="pt-6 mt-6 border-t border-neutral-100 flex flex-wrap items-center gap-3 text-xs">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-semibold text-[11px]">
+                            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                            Sertifikat Resmi HPI DPC Jabar
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-semibold text-[11px]">
+                            <i data-lucide="waves" class="w-3.5 h-3.5 text-emerald-600"></i>
+                            Water Rescue Standard SNI
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-semibold text-[11px]">
+                            <i data-lucide="smile" class="w-3.5 h-3.5 text-emerald-600"></i>
+                            Ramah & Informatif
+                        </span>
                     </div>
                 </div>
 
-                <!-- Card 2: Standar K3 & Asuransi Resmi -->
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
+                <!-- Bento Tile 2 (Standar K3 - Spans 1 col): Peralatan K3 -->
+                <div class="lg:col-span-1 bg-white rounded-3xl p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
                             <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
@@ -563,7 +558,7 @@
                             Peralatan K3 & Asuransi Resmi
                         </h3>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Peralatan standar SNI/CE terawat: life jacket berdaya apung tinggi, helm sungai, dry bag, dilengkapi proteksi asuransi jiwa pariwisata resmi.
+                            Peralatan standar SNI/CE terawat: life jacket berdaya apung tinggi, helm sungai, dan dry bag, dilengkapi proteksi asuransi jiwa pariwisata resmi.
                         </p>
 
                         <!-- Checklist -->
@@ -584,20 +579,20 @@
                     </div>
 
                     <div class="pt-4 mt-6 border-t border-neutral-100 text-[11px] font-bold text-emerald-700 flex items-center gap-1.5">
-                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                        <i data-lucide="shield" class="w-3.5 h-3.5 text-emerald-600"></i>
                         <span>Zero Compromise Safety</span>
                     </div>
                 </div>
 
-                <!-- Card 3: Harga Jujur Tanpa Biaya Siluman -->
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
+                <!-- Bento Tile 3 (Transparansi Biaya - Spans 1 col): Harga Jujur -->
+                <div class="lg:col-span-1 bg-white rounded-3xl p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
                             <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
                                 <i data-lucide="receipt-text" class="w-6 h-6"></i>
                             </div>
                             <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-full">
-                                Harga Jujur
+                                Transparansi Tarif
                             </span>
                         </div>
 
@@ -605,112 +600,55 @@
                             Harga Jujur Tanpa Biaya Siluman
                         </h3>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Seluruh rincian fasilitas tertulis transparan. Tiket retribusi, sewa perahu nelayan, pemandu, dan makan siang sudah tercakup tanpa pungli di lokasi.
+                            Seluruh rincian tiket retribusi, sewa perahu nelayan, pemandu HPI, hingga konsumsi sudah tercakup tanpa ada pungli tersembunyi di lokasi trip.
                         </p>
 
-                        <!-- Checklist -->
-                        <ul class="space-y-2 text-xs text-slate-700">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Rincian All-Inclusive Sesuai Invoice</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Tiket Retribusi & Perahu Tercakup</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Bebas Pungli & Biaya Tersembunyi</span>
-                            </li>
-                        </ul>
+                        <div class="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200/70 text-emerald-900 text-xs">
+                            <span class="font-bold block mb-1">Jaminan All-Inclusive:</span>
+                            <p class="text-[11px] text-emerald-800 leading-relaxed">Apa yang tertulis di invoice resmi adalah jumlah final yang Anda bayarkan.</p>
+                        </div>
                     </div>
 
                     <div class="pt-4 mt-6 border-t border-neutral-100 text-[11px] font-bold text-emerald-700 flex items-center gap-1.5">
                         <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i>
-                        <span>All-Inclusive Transparan</span>
+                        <span>Bebas Pungli & Biaya Tersembunyi</span>
                     </div>
                 </div>
 
-                <!-- Card 4: Ekowisata & Kearifan Budaya -->
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
+                <!-- Bento Tile 4 (Kelestarian & Warga - Spans 2 cols): Ekowisata -->
+                <div class="lg:col-span-2 bg-white rounded-3xl p-7 sm:p-9 border border-neutral-200 shadow-soft hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
-                                <i data-lucide="leaf" class="w-6 h-6"></i>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-bold uppercase tracking-wider">
+                                <i data-lucide="leaf" class="w-3.5 h-3.5 text-emerald-600"></i>
+                                <span>Ekowisata Berkelanjutan</span>
                             </div>
-                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-full">
-                                Ekowisata
-                            </span>
+                            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
+                                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                            </div>
                         </div>
 
-                        <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2 group-hover:text-emerald-700 transition">
-                            Ekowisata & Kearifan Budaya
+                        <h3 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 group-hover:text-emerald-700 transition tracking-tight mb-2">
+                            Kelestarian Alam & Pemberdayaan Warga Lokal
                         </h3>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Menghargai alam dengan aturan zero-littering dan larangan perusakan ekosistem sungai. Kami memberdayakan nelayan dan masyarakat kuliner lokal.
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-xl">
+                            Kami menerapkan aturan zero-littering dan larangan perusakan ekosistem stalaktit di sungai Green Canyon. Setiap perjalanan bersama Puja Tour secara langsung memberdayakan nelayan tradisional perahu, warung kuliner rumahan, dan konservasi penyu Pangandaran.
                         </p>
-
-                        <!-- Checklist -->
-                        <ul class="space-y-2 text-xs text-slate-700">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Zero Plastic River Trail di Green Canyon</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Edukasi Pelestarian Penyu Pesisir</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Pemberdayaan Nelayan Tradisional</span>
-                            </li>
-                        </ul>
                     </div>
 
-                    <div class="pt-4 mt-6 border-t border-neutral-100 text-[11px] font-bold text-emerald-700 flex items-center gap-1.5">
-                        <i data-lucide="heart-handshake" class="w-3.5 h-3.5 text-emerald-600"></i>
-                        <span>Pemberdayaan Warga Pesisir</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-                        <div class="flex items-center justify-between mb-5">
-                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
-                                <i data-lucide="leaf" class="w-6 h-6"></i>
-                            </div>
-                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-full">
-                                Ekowisata
-                            </span>
-                        </div>
-
-                        <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2 group-hover:text-emerald-700 transition">
-                            Ekowisata & Kearifan Budaya
-                        </h3>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Menghargai alam dengan aturan zero-littering dan larangan perusakan ekosistem sungai. Kami memberdayakan nelayan dan masyarakat kuliner lokal.
-                        </p>
-
-                        <!-- Checklist -->
-                        <ul class="space-y-2 text-xs text-slate-700">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Zero Plastic River Trail di Green Canyon</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Edukasi Pelestarian Penyu Pesisir</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>Pemberdayaan Nelayan Tradisional</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="pt-4 mt-6 border-t border-neutral-100 text-[11px] font-bold text-emerald-700 flex items-center gap-1.5">
-                        <i data-lucide="heart-handshake" class="w-3.5 h-3.5 text-emerald-600"></i>
-                        <span>Pemberdayaan Warga Pesisir</span>
+                    <div class="pt-6 mt-6 border-t border-neutral-100 flex flex-wrap items-center gap-3 text-xs">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-semibold text-[11px]">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-600"></i>
+                            Zero Plastic River Trail
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-semibold text-[11px]">
+                            <i data-lucide="users-round" class="w-3.5 h-3.5 text-emerald-600"></i>
+                            Mitra Nelayan & Kuliner Tradisional
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-semibold text-[11px]">
+                            <i data-lucide="heart" class="w-3.5 h-3.5 text-emerald-600"></i>
+                            Pemberdayaan Warga Pesisir
+                        </span>
                     </div>
                 </div>
             </div>
@@ -836,74 +774,130 @@
         </div>
     </section>
 
-    <!-- 6. TESTIMONI WISATAWAN ASLI -->
+    <!-- 6. TESTIMONI WISATAWAN ASLI (Auto-Scrolling Marquee & Interactive Slider) -->
     @if($testimonials->count() > 0)
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-16">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 block mb-2">
-                    Ulasan & Pengalaman Nyata
-                </span>
-                <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 tracking-tight">
-                    Apa Kata Wisatawan Tentang Puja Tour?
-                </h2>
-                <p class="text-slate-600 text-xs sm:text-sm mt-1.5 leading-relaxed">
-                    Kejujuran ulasan dari para tamu yang telah mempercayakan momen liburan mereka kepada kami.
-                </p>
+        <section class="py-16 lg:py-24 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 block mb-2">
+                            Ulasan & Pengalaman Nyata
+                        </span>
+                        <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight">
+                            Apa Kata Wisatawan Tentang Puja Tour?
+                        </h2>
+                        <p class="text-slate-600 text-xs sm:text-sm mt-1.5 leading-relaxed max-w-xl">
+                            Kejujuran ulasan dari para tamu yang telah mempercayakan momen liburan mereka di Pangandaran bersama tim kami.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <a href="{{ route('testimonial') }}" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-soft hover:bg-neutral-100 text-slate-700 font-semibold text-xs sm:text-sm border border-neutral-200 transition shadow-2xs">
+                            <span>Lihat Semua Ulasan ({{ $testimonials->count() }})</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <!-- SVG Gold Star Gradient Definition -->
-            <svg class="sr-only" aria-hidden="true" width="0" height="0">
-                <defs>
-                    <linearGradient id="goldStarGradAbout" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#FDE047" />
-                        <stop offset="45%" stop-color="#F59E0B" />
-                        <stop offset="100%" stop-color="#D97706" />
-                    </linearGradient>
-                </defs>
-            </svg>
+            <!-- Marquee Showcase Container with Edge Fade Masks -->
+            <div class="relative w-full overflow-hidden select-none py-2 testimonial-marquee-wrapper" id="about-testi-wrapper">
+                <!-- Left & Right Gradient Fade Masks -->
+                <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-linear-to-r from-[#f4f6f1] to-transparent z-10"></div>
+                <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-linear-to-l from-[#f4f6f1] to-transparent z-10"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @foreach($testimonials as $t)
-                    <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300">
-                        <div>
-                            <!-- Header: Bintang Emas di Tengah & Badge Terverifikasi -->
-                            <div class="flex flex-col items-center justify-center text-center mb-4">
-                                <div class="flex items-center justify-center gap-1.5 mb-2">
-                                    @php $r = (int)($t->rating ?? 5); @endphp
-                                    @for($i = 1; $i <= 5; $i++)
-                                        @if($i <= $r)
-                                            <svg class="w-5 h-5 drop-shadow-[0_2px_4px_rgba(245,158,11,0.35)] transition-transform duration-200 hover:scale-115" viewBox="0 0 24 24" fill="url(#goldStarGradAbout)" stroke="#d97706" stroke-width="0.5">
-                                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                                            </svg>
-                                        @else
-                                            <svg class="w-5 h-5 text-slate-200" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                                            </svg>
-                                        @endif
-                                    @endfor
+                <!-- SVG Gold Star Gradient Definition -->
+                <svg class="sr-only" aria-hidden="true" width="0" height="0">
+                    <defs>
+                        <linearGradient id="goldStarGradAbout" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#FDE047" />
+                            <stop offset="45%" stop-color="#F59E0B" />
+                            <stop offset="100%" stop-color="#D97706" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <!-- The Marquee Track (Smooth Walking Animation, Pauses on Hover) -->
+                <div id="about-testi-track" class="testimonial-marquee-track flex gap-6 px-4">
+                    @php
+                        // Memastikan setidaknya 6-8 kartu untuk infinite loop halus tanpa jeda visual
+                        $loopCount = $testimonials->count() < 4 ? 4 : 2;
+                    @endphp
+                    @for($repeat = 0; $repeat < $loopCount; $repeat++)
+                        @foreach($testimonials as $tIndex => $t)
+                            <div class="testimonial-card w-77.5 sm:w-95 shrink-0 bg-white rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300">
+                                <div>
+                                    <!-- Header: Bintang Emas di Tengah & Badge Terverifikasi -->
+                                    <div class="flex flex-col items-center justify-center text-center mb-4">
+                                        <div class="flex items-center justify-center gap-1.5 mb-2">
+                                            @php $r = (int)($t->rating ?? 5); @endphp
+                                            @for($i = 1; $i <= 5; $i++)
+                                                @if($i <= $r)
+                                                    <svg class="w-5 h-5 drop-shadow-[0_2px_4px_rgba(245,158,11,0.35)] transition-transform duration-200 hover:scale-115" viewBox="0 0 24 24" fill="url(#goldStarGradAbout)" stroke="#d97706" stroke-width="0.5">
+                                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                                    </svg>
+                                                @else
+                                                    <svg class="w-5 h-5 text-slate-200" viewBox="0 0 24 24" fill="currentColor">
+                                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                                    </svg>
+                                                @endif
+                                            @endfor
+                                        </div>
+                                        <span class="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-2xs">
+                                            <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                                            <span>Wisatawan Terverifikasi</span>
+                                        </span>
+                                    </div>
+
+                                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic text-center line-clamp-4">
+                                        "{{ $t->review_text }}"
+                                    </p>
                                 </div>
-                                <span class="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-2xs">
-                                    <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                                    <span>Wisatawan Terverifikasi</span>
-                                </span>
-                            </div>
 
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed italic text-center">
-                                "{{ $t->review_text }}"
-                            </p>
-                        </div>
+                                <div class="pt-5 mt-5 border-t border-neutral-100 flex items-center gap-3.5">
+                                    <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-sm shrink-0 shadow-inner font-display">
+                                        {{ substr($t->customer_name, 0, 2) }}
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h4 class="font-bold font-display text-sm text-slate-900 truncate">{{ $t->customer_name }}</h4>
+                                        <span class="text-xs text-slate-400 block truncate">{{ $t->customer_city ?? 'Wisatawan' }} • {{ $t->package_name ?? 'Paket Pangandaran' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endfor
+                </div>
+            </div>
 
-                        <div class="pt-5 mt-5 border-t border-neutral-100 flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-sm">
-                                {{ substr($t->customer_name, 0, 1) }}
-                            </div>
-                            <div class="min-w-0">
-                                <h4 class="font-bold text-xs text-slate-900 truncate">{{ $t->customer_name }}</h4>
-                                <span class="text-[11px] text-slate-400 block truncate">{{ $t->customer_city ?? 'Wisatawan' }} &bull; {{ $t->package_name }}</span>
-                            </div>
-                        </div>
+            <!-- Mobile Only: Navigasi Lanjut Ulasan Slider (Hanya Tampil di Layar Ponsel) -->
+            <div class="sm:hidden flex flex-col items-center gap-3.5 mt-6 px-4">
+                <!-- Indikator Titik Aktif (Active Slide Tracker) -->
+                @if($testimonials->count() > 1)
+                    <div id="about-testi-dots-mobile" class="flex items-center gap-1.5 py-1">
+                        @foreach($testimonials as $idx => $t)
+                            <button type="button" class="about-testi-dot h-2 rounded-full transition-all duration-300 {{ $idx === 0 ? 'w-6 bg-emerald-700' : 'w-2 bg-neutral-300' }}" data-index="{{ $idx }}" aria-label="Lihat ulasan {{ $idx + 1 }}"></button>
+                        @endforeach
                     </div>
-                @endforeach
+                @endif
+
+                <!-- Tombol Navigasi: Sebelumnya & Lanjut ke Ulasan Berikutnya -->
+                <div class="flex items-center gap-2.5 w-full max-w-sm justify-center">
+                    <!-- Tombol Sebelumnya -->
+                    <button type="button" id="btn-prev-testi-about" aria-label="Ulasan Sebelumnya" class="w-11 h-11 rounded-2xl bg-white hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-xs transition cursor-pointer shrink-0">
+                        <i data-lucide="chevron-left" class="w-5 h-5 text-slate-600"></i>
+                    </button>
+
+                    <!-- Tombol Utama: Lanjut ke Ulasan Berikutnya -->
+                    <button type="button" id="btn-next-testi-about" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-emerald-700 hover:bg-emerald-800 active:scale-[0.98] text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-700/20 transition cursor-pointer">
+                        <span>Lanjut ke Ulasan Berikutnya</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-emerald-200"></i>
+                    </button>
+                </div>
+
+                <!-- Petunjuk Ramah & Enak Dibaca -->
+                <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Ketuk tombol atau usap layar untuk membaca ulasan lainnya</span>
+                </p>
             </div>
         </section>
     @endif
@@ -943,113 +937,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer data-nav-color="dark" class="bg-slate-950 text-slate-400 text-xs py-14 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
-                <!-- Col 1: Brand Info -->
-                <div class="lg:col-span-2 space-y-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-14 h-14 shrink-0 flex items-center justify-center">
-                            <img src="{{ asset('images/puja_logo.png') }}" alt="Puja Tour Travel" class="w-full h-full object-contain">
-                        </div>
-                        <div>
-                            <span class="font-display font-extrabold text-xl text-white block">{{ $companyName }}</span>
-                            <span class="text-[10px] text-emerald-400 tracking-widest uppercase font-bold">Pangandaran Destination Specialist</span>
-                        </div>
-                    </div>
-                    <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
-                        Mitra terpercaya liburan dan petualangan di Pangandaran. Berbadan hukum resmi CV dengan pemandu lokal bersertifikat HPI dan standar keselamatan teruji.
-                    </p>
-                    <div class="flex items-center gap-2.5 pt-2 text-slate-300">
-                        <a href="{{ $igUrl }}" target="_blank" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-                            </svg>
-                        </a>
-                        <a href="{{ $tiktokUrl }}" target="_blank" aria-label="TikTok" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.89-4.49V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-.9-.07z"/>
-                            </svg>
-                        </a>
-                        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Col 2: Navigation Links -->
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Navigasi Utama</h4>
-                    <ul class="space-y-2.5 text-xs text-slate-400">
-                        @if(!request()->routeIs('home'))
-                            <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
-                        @endif
-                        @if(!request()->routeIs('packages.index'))
-                            <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Paket Wisata</a></li>
-                        @endif
-                        @if(!request()->routeIs('about'))
-                            <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang Kami</a></li>
-                        @endif
-                        @if(!request()->routeIs('calculator'))
-                            <li><a href="{{ route('calculator') }}" class="hover:text-white transition">Estimasi Biaya</a></li>
-                        @endif
-                        @if(!request()->routeIs('gallery'))
-                            <li><a href="{{ route('gallery') }}" class="hover:text-white transition">Galeri Wisata</a></li>
-                        @endif
-                        @if(!request()->routeIs('testimonial'))
-                            <li><a href="{{ route('testimonial') }}" class="hover:text-white transition">Ulasan Wisatawan</a></li>
-                        @endif
-                        @if(!request()->routeIs('faq'))
-                            <li><a href="{{ route('faq') }}" class="hover:text-white transition">Pertanyaan Umum (FAQ)</a></li>
-                        @endif
-                        @if(!request()->routeIs('contact'))
-                            <li><a href="{{ route('contact') }}" class="hover:text-white transition">Kontak & Lokasi</a></li>
-                        @endif
-                    </ul>
-                </div>
-
-                <!-- Col 3: Destinasi Populer -->
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Destinasi Populer</h4>
-                    <ul class="space-y-2.5 text-xs text-slate-400">
-                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Body Rafting Green Canyon</a></li>
-                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">River Tubing Santirah</a></li>
-                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Body Rafting Citumang</a></li>
-                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Snorkeling Pasir Putih</a></li>
-                        <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Jelajah Gua Cagar Alam</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 4: Kantor Operasional -->
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Kantor Operasional</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">{{ $officeAddr }}</p>
-                    <p class="text-xs text-emerald-400 font-bold mt-2">Hotline: {{ $phoneNum }}</p>
-                    <p class="text-xs text-slate-400 mt-1">Email: {{ $emailAddr }}</p>
-                    <div class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-emerald-400">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                        <span>Buka Setiap Hari (06.00 - 21.00)</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Copyright & Legal Links -->
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                <p>© {{ date('Y') }} {{ $companyName }}. All rights reserved.</p>
-                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
-                    <span>•</span>
-                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
-                    <span>•</span>
-                    <a href="{{ route('refund-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Pengembalian</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20info%20paket%20wisata" 
@@ -1062,6 +950,125 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof lucide !== 'undefined') lucide.createIcons();
+
+            // --- Mobile Testimonial Slider Interactive Logic (About Page) ---
+            var aboutWrapper = document.getElementById('about-testi-wrapper');
+            var btnNextAbout = document.getElementById('btn-next-testi-about');
+            var btnPrevAbout = document.getElementById('btn-prev-testi-about');
+            var aboutDots = document.querySelectorAll('#about-testi-dots-mobile .about-testi-dot');
+            var totalAboutTesti = {{ $testimonials->count() }};
+            var aboutAutoSlideTimer = null;
+
+            function getAboutCardStep() {
+                if (!aboutWrapper) return 334;
+                var firstCard = aboutWrapper.querySelector('.testimonial-card');
+                var secondCard = firstCard ? firstCard.nextElementSibling : null;
+                if (firstCard && secondCard) {
+                    return secondCard.offsetLeft - firstCard.offsetLeft;
+                }
+                return firstCard ? firstCard.offsetWidth + 24 : 334;
+            }
+
+            function slideNextAbout() {
+                if (!aboutWrapper) return;
+                var step = getAboutCardStep();
+                var maxScroll = aboutWrapper.scrollWidth - aboutWrapper.clientWidth;
+                if (aboutWrapper.scrollLeft >= maxScroll - 20) {
+                    aboutWrapper.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    aboutWrapper.scrollBy({ left: step, behavior: 'smooth' });
+                }
+                resetAboutAutoSlide();
+            }
+
+            function slidePrevAbout() {
+                if (!aboutWrapper) return;
+                var step = getAboutCardStep();
+                if (aboutWrapper.scrollLeft <= 15) {
+                    var maxScroll = aboutWrapper.scrollWidth - aboutWrapper.clientWidth;
+                    aboutWrapper.scrollTo({ left: maxScroll, behavior: 'smooth' });
+                } else {
+                    aboutWrapper.scrollBy({ left: -step, behavior: 'smooth' });
+                }
+                resetAboutAutoSlide();
+            }
+
+            function updateAboutDots() {
+                if (!aboutWrapper || totalAboutTesti <= 0 || !aboutDots.length) return;
+                var step = getAboutCardStep();
+                var currentIdx = Math.round(aboutWrapper.scrollLeft / step) % totalAboutTesti;
+                aboutDots.forEach(function(dot, idx) {
+                    if (idx === currentIdx) {
+                        dot.classList.remove('w-2', 'bg-neutral-300');
+                        dot.classList.add('w-6', 'bg-emerald-700');
+                    } else {
+                        dot.classList.remove('w-6', 'bg-emerald-700');
+                        dot.classList.add('w-2', 'bg-neutral-300');
+                    }
+                });
+            }
+
+            function startAboutAutoSlide() {
+                if (window.innerWidth >= 640 || !aboutWrapper) return;
+                stopAboutAutoSlide();
+                aboutAutoSlideTimer = setInterval(function() {
+                    slideNextAbout();
+                }, 6000);
+            }
+
+            function stopAboutAutoSlide() {
+                if (aboutAutoSlideTimer) {
+                    clearInterval(aboutAutoSlideTimer);
+                    aboutAutoSlideTimer = null;
+                }
+            }
+
+            function resetAboutAutoSlide() {
+                stopAboutAutoSlide();
+                startAboutAutoSlide();
+            }
+
+            if (btnNextAbout) {
+                btnNextAbout.addEventListener('click', slideNextAbout);
+            }
+            if (btnPrevAbout) {
+                btnPrevAbout.addEventListener('click', slidePrevAbout);
+            }
+
+            if (aboutDots.length) {
+                aboutDots.forEach(function(dot) {
+                    dot.addEventListener('click', function() {
+                        var targetIdx = parseInt(this.getAttribute('data-index'), 10);
+                        var step = getAboutCardStep();
+                        if (aboutWrapper) {
+                            aboutWrapper.scrollTo({ left: targetIdx * step, behavior: 'smooth' });
+                        }
+                        resetAboutAutoSlide();
+                    });
+                });
+            }
+
+            if (aboutWrapper) {
+                var scrollTimeout = null;
+                aboutWrapper.addEventListener('scroll', function() {
+                    if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
+                    scrollTimeout = requestAnimationFrame(updateAboutDots);
+                }, { passive: true });
+
+                aboutWrapper.addEventListener('touchstart', stopAboutAutoSlide, { passive: true });
+                aboutWrapper.addEventListener('touchend', function() {
+                    setTimeout(startAboutAutoSlide, 3000);
+                }, { passive: true });
+            }
+
+            startAboutAutoSlide();
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 640) {
+                    stopAboutAutoSlide();
+                } else {
+                    startAboutAutoSlide();
+                }
+            });
         });
     </script>
 </body>

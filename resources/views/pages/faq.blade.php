@@ -118,60 +118,60 @@
     </div>
 
     <!-- MAIN FAQ CONTAINER -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
-        <div class="text-center mb-12">
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-16 sm:pb-20">
+        <div class="text-center mb-8 sm:mb-12">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">
                 Pusat Bantuan
             </span>
-            <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mt-3 tracking-tight">
+            <h1 class="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-slate-900 mt-2.5 sm:mt-3 tracking-tight">
                 Pertanyaan yang Sering Diajukan
             </h1>
-            <p class="text-slate-600 text-sm sm:text-base mt-2">
+            <p class="text-slate-600 text-xs sm:text-sm md:text-base mt-2 max-w-2xl mx-auto">
                 Temukan jawaban lengkap seputar keamanan rafting, persiapan trip, fasilitas, dan ketentuan pemesanan di Puja Tour & Travel.
             </p>
         </div>
 
         <!-- FAQ Accordion List -->
-        <div class="space-y-4">
+        <div class="space-y-3 sm:space-y-4">
             @forelse($faqs as $fIndex => $faq)
                 <div class="faq-item bg-surface-soft rounded-2xl border border-neutral-200 overflow-hidden shadow-xs hover:border-emerald-300 transition-all duration-300">
-                    <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-display font-bold text-slate-900 text-base hover:text-emerald-700 transition cursor-pointer">
-                        <span>{{ $faq->question }}</span>
-                        <div class="faq-icon w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 transition-transform duration-300">
+                    <button type="button" class="faq-toggle w-full px-4 sm:px-6 py-3.5 sm:py-5 text-left flex items-center justify-between gap-3 sm:gap-4 font-display font-bold text-slate-900 text-sm sm:text-base hover:text-emerald-700 transition cursor-pointer min-h-12">
+                        <span class="leading-snug">{{ $faq->question }}</span>
+                        <div class="faq-icon w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 transition-transform duration-300">
                             <i data-lucide="chevron-down" class="w-4 h-4"></i>
                         </div>
                     </button>
                     <div class="faq-collapse">
                         <div class="faq-collapse-inner">
-                            <div class="faq-collapse-content px-6 pb-6 pt-1 text-slate-600 text-sm leading-relaxed border-t border-neutral-200/60 bg-white/50">
+                            <div class="faq-collapse-content px-4 sm:px-6 pb-5 sm:pb-6 pt-1 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-neutral-200/60 bg-white/50">
                                 {!! nl2br(e($faq->answer)) !!}
                             </div>
                         </div>
                     </div>
                 </div>
             @empty
-                <div class="p-8 text-center bg-surface-soft rounded-2xl text-slate-500">
+                <div class="p-8 text-center bg-surface-soft rounded-2xl text-slate-500 text-xs sm:text-sm">
                     Belum ada data pertanyaan.
                 </div>
             @endforelse
         </div>
 
         <!-- Masih Punya Pertanyaan Lain? -->
-        <div class="mt-14 p-8 sm:p-10 rounded-3xl bg-slate-900 text-white text-center shadow-lg relative overflow-hidden">
-            <div class="relative z-10 max-w-xl mx-auto space-y-4">
-                <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
-                    <i data-lucide="help-circle" class="w-6 h-6"></i>
+        <div class="mt-12 sm:mt-14 p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-slate-900 text-white text-center shadow-lg relative overflow-hidden">
+            <div class="relative z-10 max-w-xl mx-auto space-y-3.5 sm:space-y-4">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                    <i data-lucide="help-circle" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                 </div>
-                <h3 class="font-display font-bold text-2xl text-white">Punya Pertanyaan Khusus Lainnya?</h3>
-                <p class="text-xs sm:text-sm text-slate-300">
+                <h3 class="font-display font-bold text-xl sm:text-2xl text-white">Punya Pertanyaan Khusus Lainnya?</h3>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                     Tim customer support kami siap melayani pertanyaan seputar rute custom, menu gathering, atau kebutuhan khusus keluarga Anda 24 jam sehari.
                 </p>
-                <div class="pt-2 flex flex-wrap justify-center gap-4">
-                    <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="px-6 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center gap-2">
+                <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
+                    <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="w-full sm:w-auto px-6 py-3 min-h-11 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
                         <i data-lucide="message-circle" class="w-4 h-4"></i>
                         <span>Chat WhatsApp Tim CS</span>
                     </a>
-                    <a href="{{ route('contact') }}" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 transition flex items-center gap-2">
+                    <a href="{{ route('contact') }}" class="w-full sm:w-auto px-6 py-3 min-h-11 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 transition flex items-center justify-center gap-2">
                         <i data-lucide="phone" class="w-4 h-4"></i>
                         <span>Lihat Kontak & Lokasi</span>
                     </a>
@@ -181,76 +181,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 shrink-0">
-                            <img src="{{ asset('images/puja_logo.png') }}" alt="Logo" class="w-full h-full object-contain">
-                        </div>
-                        <span class="font-display font-extrabold text-xl text-white">
-                            PUJA<span class="text-emerald-400 ml-1">TOUR</span>
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Penyedia paket wisata resmi Pangandaran, body rafting Green Canyon, snorkeling Pasir Putih, dan gathering perusahaan terpercaya.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Navigasi</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        @if(!request()->routeIs('home'))
-                            <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
-                        @endif
-                        @if(!request()->routeIs('packages.index'))
-                            <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Paket Wisata</a></li>
-                        @endif
-                        @if(!request()->routeIs('about'))
-                            <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang Kami</a></li>
-                        @endif
-                        @if(!request()->routeIs('calculator'))
-                            <li><a href="{{ route('calculator') }}" class="hover:text-white transition">Estimasi Biaya</a></li>
-                        @endif
-                        @if(!request()->routeIs('gallery'))
-                            <li><a href="{{ route('gallery') }}" class="hover:text-white transition">Galeri Foto</a></li>
-                        @endif
-                        @if(!request()->routeIs('testimonial'))
-                            <li><a href="{{ route('testimonial') }}" class="hover:text-white transition">Ulasan Wisatawan</a></li>
-                        @endif
-                        @if(!request()->routeIs('faq'))
-                            <li><a href="{{ route('faq') }}" class="hover:text-white transition">Pertanyaan Umum (FAQ)</a></li>
-                        @endif
-                        @if(!request()->routeIs('contact'))
-                            <li><a href="{{ route('contact') }}" class="hover:text-white transition">Kontak & Lokasi</a></li>
-                        @endif
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Kantor Operasional</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">{{ $officeAddr }}</p>
-                    <p class="text-xs text-emerald-400 font-bold mt-2">Hotline: {{ $phoneNum }}</p>
-                    <p class="text-xs text-slate-400 mt-1">Email: {{ $emailAddr }}</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Legalitas Resmi</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Berbadan hukum resmi CV dengan izin pariwisata terdaftar dan pemandu bersertifikasi kepemanduan HPI Jawa Barat.
-                    </p>
-                </div>
-            </div>
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                <p>© {{ date('Y') }} {{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}. All rights reserved.</p>
-                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
-                    <span>•</span>
-                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
-                    <span>•</span>
-                    <a href="{{ route('refund-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Pengembalian</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20mau%20tanya" 

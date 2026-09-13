@@ -125,43 +125,43 @@
     </div>
 
     <!-- MAIN CONTACT CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
-        <div class="text-center max-w-3xl mx-auto mb-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-16 sm:pb-20">
+        <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">
                 Layanan Pelanggan
             </span>
-            <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mt-3 tracking-tight">
+            <h1 class="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-slate-900 mt-2.5 sm:mt-3 tracking-tight">
                 Hubungi Kami & Kunjungi Kantor
             </h1>
-            <p class="text-slate-600 text-sm sm:text-base mt-2">
+            <p class="text-slate-600 text-xs sm:text-sm md:text-base mt-2 max-w-2xl mx-auto">
                 Siap merencanakan liburan impian? Hubungi tim reservasi kami untuk konsultasi rute, penjemputan, atau kunjungi kantor operasional kami di Pantai Barat Pangandaran.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
             <!-- Contact Cards & Info (5 cols) -->
-            <div class="lg:col-span-5 space-y-6">
+            <div class="lg:col-span-5 space-y-4 sm:space-y-6">
                 <!-- 1. Alamat Kantor Card -->
-                <div class="bg-surface-soft rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex items-start gap-4">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                        <i data-lucide="map-pin" class="w-6 h-6"></i>
+                <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-soft border border-neutral-200 flex items-start gap-3.5 sm:gap-4">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                        <i data-lucide="map-pin" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
                     <div>
-                        <h3 class="font-display font-bold text-base text-slate-900">Kantor Operasional</h3>
+                        <h3 class="font-display font-bold text-sm sm:text-base text-slate-900">Kantor Operasional</h3>
                         <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">{{ $officeAddr }}</p>
                         <span class="inline-block mt-2 text-[11px] font-bold text-emerald-700">Strategis &bull; Akses Dekat Pantai Barat</span>
                     </div>
                 </div>
 
                 <!-- 2. WhatsApp Hotline Card -->
-                <div class="bg-surface-soft rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex items-start gap-4">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                        <i data-lucide="phone-call" class="w-6 h-6"></i>
+                <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-soft border border-neutral-200 flex items-start gap-3.5 sm:gap-4">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                        <i data-lucide="phone-call" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
-                    <div class="flex-1">
-                        <h3 class="font-display font-bold text-base text-slate-900">Hotline & WhatsApp</h3>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="font-display font-bold text-sm sm:text-base text-slate-900">Hotline & WhatsApp</h3>
                         <p class="text-xs text-slate-500 mt-0.5">Respons cepat dalam hitungan menit</p>
-                        <a href="https://wa.me/{{ $waNum }}" target="_blank" class="text-base sm:text-lg font-display font-extrabold text-emerald-700 hover:text-emerald-800 transition block mt-1">
+                        <a href="https://wa.me/{{ $waNum }}" target="_blank" class="text-base sm:text-lg font-display font-extrabold text-emerald-700 hover:text-emerald-800 transition block mt-1 truncate">
                             {{ $phoneNum }}
                         </a>
                         <span class="text-[11px] text-slate-400 block mt-0.5">{{ $opHours }}</span>
@@ -169,21 +169,21 @@
                 </div>
 
                 <!-- 3. Email & Penawaran Kedinasan -->
-                <div class="bg-surface-soft rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex items-start gap-4">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                        <i data-lucide="mail" class="w-6 h-6"></i>
+                <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-soft border border-neutral-200 flex items-start gap-3.5 sm:gap-4">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                        <i data-lucide="mail" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
-                    <div>
-                        <h3 class="font-display font-bold text-base text-slate-900">Surat & Proposal Gathering</h3>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="font-display font-bold text-sm sm:text-base text-slate-900">Surat & Proposal Gathering</h3>
                         <p class="text-xs text-slate-500 mt-0.5">Permintaan penawaran resmi, SPK, dan faktur</p>
-                        <a href="mailto:{{ $emailAddr }}" class="text-sm font-semibold text-slate-800 hover:text-emerald-700 transition block mt-1">
+                        <a href="mailto:{{ $emailAddr }}" class="text-xs sm:text-sm font-semibold text-slate-800 hover:text-emerald-700 transition block mt-1 truncate">
                             {{ $emailAddr }}
                         </a>
                     </div>
                 </div>
 
                 <!-- 4. Legalitas Resmi CV Box -->
-                <div class="bg-slate-900 text-white rounded-3xl p-6 shadow-md space-y-2.5 text-xs">
+                <div class="bg-slate-900 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-md space-y-2.5 text-xs">
                     <div class="flex items-center gap-2 font-bold text-emerald-400">
                         <i data-lucide="badge-check" class="w-4 h-4"></i>
                         <span>Legalitas Badan Usaha Resmi:</span>
@@ -197,21 +197,21 @@
             </div>
 
             <!-- Interactive Direct Message to WA Form (7 cols) -->
-            <div class="lg:col-span-7 bg-surface-soft rounded-3xl p-6 sm:p-10 shadow-soft border border-neutral-200">
-                <div class="pb-5 border-b border-neutral-200 mb-6">
-                    <h2 class="font-display font-bold text-2xl text-slate-900">Kirim Pesan & Permintaan Khusus</h2>
+            <div class="lg:col-span-7 bg-surface-soft rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-soft border border-neutral-200">
+                <div class="pb-4 sm:pb-5 border-b border-neutral-200 mb-5 sm:mb-6">
+                    <h2 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Kirim Pesan & Permintaan Khusus</h2>
                     <p class="text-xs text-slate-500 mt-1">Isi formulir di bawah ini untuk terhubung langsung ke WhatsApp Customer Support kami.</p>
                 </div>
 
                 <form id="contact-form" class="space-y-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Nama Lengkap *</label>
-                            <input type="text" id="msg-name" required placeholder="Contoh: Hendra Wijaya" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
+                            <input type="text" id="msg-name" required placeholder="Contoh: Hendra Wijaya" class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Jenis Permintaan *</label>
-                            <select id="msg-topic" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
+                            <select id="msg-topic" class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
                                 <option value="Konsultasi Paket Wisata">Konsultasi Paket Wisata</option>
                                 <option value="Corporate / Family Gathering">Corporate / Family Gathering (Rombongan)</option>
                                 <option value="Body Rafting Green Canyon">Body Rafting Green Canyon</option>
@@ -223,20 +223,20 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Estimasi Jumlah Tamu</label>
-                            <input type="text" id="msg-pax" placeholder="Contoh: 10 Orang / Fleksibel" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" for="msg-pax">Estimasi Jumlah Tamu (Orang)</label>
+                            <input type="number" id="msg-pax" min="1" max="1000" step="1" inputmode="numeric" placeholder="Contoh: 10" class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Rencana Tanggal (Opsional)</label>
-                            <input type="date" id="msg-date" min="{{ date('Y-m-d') }}" placeholder="Pilih tanggal trip (opsional)..." class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition custom-datepicker-input">
+                            <input type="date" id="msg-date" min="{{ date('Y-m-d') }}" placeholder="Pilih tanggal trip (opsional)..." class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition custom-datepicker-input">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Pesan atau Pertanyaan Anda *</label>
-                        <textarea id="msg-content" rows="4" required placeholder="Tuliskan detail rencana liburan, kebutuhan khusus, atau pertanyaan Anda..." class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition"></textarea>
+                        <textarea id="msg-content" rows="4" required placeholder="Tuliskan detail rencana liburan, kebutuhan khusus, atau pertanyaan Anda..." class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition"></textarea>
                     </div>
 
                     <!-- Auto-composed Notification Notice -->
@@ -245,8 +245,8 @@
                         <span>Pesan Anda akan otomatis terformat rapi dan langsung terketik di WhatsApp Admin, tinggal Anda kirim!</span>
                     </div>
 
-                    <button type="submit" class="w-full py-4 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
-                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    <button type="submit" class="w-full py-3.5 sm:py-4 min-h-12 rounded-xl sm:rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                         <span>Kirim Pesan Otomatis ke WhatsApp CS</span>
                     </button>
                 </form>
@@ -254,19 +254,19 @@
         </div>
 
         <!-- Dynamic Google Maps Section -->
-        <div class="mt-12 bg-surface-soft rounded-3xl p-6 sm:p-8 shadow-soft border border-neutral-200">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div class="mt-10 sm:mt-12 bg-surface-soft rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-soft border border-neutral-200">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 sm:mb-6">
                 <div>
-                    <h2 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Peta Navigasi & Lokasi Kantor</h2>
+                    <h2 class="font-display font-bold text-lg sm:text-2xl text-slate-900">Peta Navigasi & Lokasi Kantor</h2>
                     <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Temukan kantor operasional kami di Google Maps untuk panduan rute perjalanan.</p>
                 </div>
-                <a href="{{ $settings['google_maps_url'] ?? 'https://maps.google.com/?q=-7.6974127,108.6477546' }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-bold text-xs border border-emerald-200 transition shrink-0">
+                <a href="{{ $settings['google_maps_url'] ?? 'https://maps.google.com/?q=-7.6974127,108.6477546' }}" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 min-h-11 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-bold text-xs border border-emerald-200 transition shrink-0">
                     <i data-lucide="external-link" class="w-4 h-4"></i>
                     <span>Buka di Google Maps</span>
                 </a>
             </div>
 
-            <div class="rounded-2xl overflow-hidden shadow-inner border border-neutral-200 bg-slate-100 h-80 sm:h-96 relative">
+            <div class="rounded-xl sm:rounded-2xl overflow-hidden shadow-inner border border-neutral-200 bg-slate-100 h-64 sm:h-80 md:h-96 relative">
                 <iframe 
                     title="Lokasi Kantor Puja Tour & Travel Pangandaran"
                     src="{{ $settings['google_maps_embed_url'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.739775073105!2d108.6477546!3d-7.6974127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6598c19958348b%3A0x6b45f949c256ca61!2sPantai%20Pangandaran!5e0!3m2!1sid!2sid!4v1709800000000!5m2!1sid!2sid' }}" 
@@ -283,87 +283,32 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 shrink-0">
-                            <img src="{{ asset('images/puja_logo.png') }}" alt="Logo" class="w-full h-full object-contain">
-                        </div>
-                        <span class="font-display font-extrabold text-xl text-white">
-                            PUJA<span class="text-emerald-400 ml-1">TOUR</span>
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Penyedia paket wisata resmi Pangandaran, body rafting Green Canyon, snorkeling Pasir Putih, dan gathering perusahaan terpercaya.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Navigasi</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        @if(!request()->routeIs('home'))
-                            <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
-                        @endif
-                        @if(!request()->routeIs('packages.index'))
-                            <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Paket Wisata</a></li>
-                        @endif
-                        @if(!request()->routeIs('about'))
-                            <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang Kami</a></li>
-                        @endif
-                        @if(!request()->routeIs('calculator'))
-                            <li><a href="{{ route('calculator') }}" class="hover:text-white transition">Estimasi Biaya</a></li>
-                        @endif
-                        @if(!request()->routeIs('gallery'))
-                            <li><a href="{{ route('gallery') }}" class="hover:text-white transition">Galeri Foto</a></li>
-                        @endif
-                        @if(!request()->routeIs('testimonial'))
-                            <li><a href="{{ route('testimonial') }}" class="hover:text-white transition">Ulasan Wisatawan</a></li>
-                        @endif
-                        @if(!request()->routeIs('faq'))
-                            <li><a href="{{ route('faq') }}" class="hover:text-white transition">Pertanyaan Umum (FAQ)</a></li>
-                        @endif
-                        @if(!request()->routeIs('contact'))
-                            <li><a href="{{ route('contact') }}" class="hover:text-white transition">Kontak & Lokasi</a></li>
-                        @endif
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Kantor Operasional</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">{{ $officeAddr }}</p>
-                    <p class="text-xs text-emerald-400 font-bold mt-2">Hotline: {{ $phoneNum }}</p>
-                    <p class="text-xs text-slate-400 mt-1">Email: {{ $emailAddr }}</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Legalitas Resmi</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Berbadan hukum resmi CV dengan izin pariwisata terdaftar dan pemandu bersertifikasi kepemanduan HPI Jawa Barat.
-                    </p>
-                </div>
-            </div>
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                <p>© {{ date('Y') }} {{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}. All rights reserved.</p>
-                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
-                    <span>•</span>
-                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
-                    <span>•</span>
-                    <a href="{{ route('refund-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Pengembalian</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <!-- Form WhatsApp Redirect Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const paxInput = document.getElementById('msg-pax');
+            if (paxInput) {
+                // Cegah pengetikan karakter bukan angka (e, E, +, -, .)
+                paxInput.addEventListener('keydown', (e) => {
+                    if (['e', 'E', '+', '-', '.'].includes(e.key)) {
+                        e.preventDefault();
+                    }
+                });
+                // Filter hanya angka saat paste atau input
+                paxInput.addEventListener('input', () => {
+                    paxInput.value = paxInput.value.replace(/[^0-9]/g, '');
+                });
+            }
+
             const form = document.getElementById('contact-form');
             if (form) {
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
                     const name = document.getElementById('msg-name').value.trim();
                     const topic = document.getElementById('msg-topic').value;
-                    const pax = document.getElementById('msg-pax').value.trim() || 'Fleksibel';
+                    const paxVal = document.getElementById('msg-pax').value.trim();
                     const dateInput = document.getElementById('msg-date');
                     const altDate = dateInput?.parentElement?.querySelector('.flatpickr-input[type="text"]');
                     const dateVal = altDate && altDate.value ? altDate.value : (dateInput && dateInput.value ? dateInput.value : '');
@@ -373,6 +318,17 @@
                         alert('Mohon masukkan nama lengkap Anda terlebih dahulu.');
                         document.getElementById('msg-name').focus();
                         return;
+                    }
+
+                    let paxFormatted = 'Fleksibel / Belum Ditentukan';
+                    if (paxVal) {
+                        const paxNum = parseInt(paxVal, 10);
+                        if (isNaN(paxNum) || paxNum < 1) {
+                            alert('Mohon masukkan estimasi jumlah tamu berupa angka yang valid (minimal 1 orang).');
+                            document.getElementById('msg-pax').focus();
+                            return;
+                        }
+                        paxFormatted = `${paxNum} Orang`;
                     }
 
                     if (!content || content.length < 2) {
@@ -386,7 +342,7 @@
                     text += `📋 *Detail Permintaan:*\n`;
                     text += `• *Nama Lengkap:* ${name}\n`;
                     text += `• *Jenis Permintaan:* ${topic}\n`;
-                    text += `• *Estimasi Jumlah Tamu:* ${pax}\n`;
+                    text += `• *Estimasi Jumlah Tamu:* ${paxFormatted}\n`;
                     if (dateVal) {
                         text += `• *Rencana Tanggal Trip:* ${dateVal}\n`;
                     }

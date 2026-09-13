@@ -4,9 +4,9 @@
 @section('description', 'Mohon maaf, sistem sedang mengalami kendala teknis sementara. Anda tetap dapat memesan via WhatsApp.')
 
 @section('content')
-<div class="relative bg-white rounded-3xl p-7 sm:p-12 shadow-soft border border-neutral-200 overflow-hidden text-center">
+<div class="relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 lg:p-12 shadow-soft border border-neutral-200 overflow-hidden text-center">
     <!-- Big Decorative Watermark -->
-    <span class="font-display font-black text-8xl sm:text-9xl text-slate-100 select-none absolute -top-8 left-1/2 -translate-x-1/2 pointer-events-none tracking-tighter opacity-80 z-0">
+    <span class="font-display font-black text-7xl xs:text-8xl sm:text-9xl text-slate-100 select-none absolute -top-8 left-1/2 -translate-x-1/2 pointer-events-none tracking-tighter opacity-80 z-0">
         500
     </span>
 
@@ -47,19 +47,19 @@
         </div>
 
         <!-- Action CTA Buttons -->
-        <div class="flex flex-wrap items-center justify-center gap-3 mt-7">
+        <div class="flex flex-col xs:flex-row flex-wrap items-stretch xs:items-center justify-center gap-2.5 sm:gap-3 mt-6 sm:mt-7">
             <a href="https://wa.me/{{ $waNum ?? '6281234567890' }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20mendapati%20error%20500%20di%20website%20dan%20ingin%20booking%20langsung%20via%20WA" 
                target="_blank" 
-               class="px-5 sm:px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 shadow-xs hover:-translate-y-0.5">
+               class="w-full xs:w-auto px-5 sm:px-6 py-2.5 sm:py-3 min-h-11 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-xs hover:-translate-y-0.5">
                 <i data-lucide="message-circle" class="w-4 h-4"></i>
                 <span>Chat Admin WhatsApp</span>
             </a>
             <button onclick="window.location.reload()" 
-                    class="px-5 sm:px-6 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm border border-neutral-200 shadow-2xs hover:shadow-xs transition-all duration-300 flex items-center gap-2 cursor-pointer hover:-translate-y-0.5">
+                    class="w-full xs:w-auto px-5 sm:px-6 py-2.5 sm:py-3 min-h-11 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm border border-neutral-200 shadow-2xs hover:shadow-xs transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer hover:-translate-y-0.5">
                 <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-600"></i>
                 <span>Coba Lagi</span>
             </button>
-            <a href="{{ route('home') }}" class="px-5 sm:px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 shadow-xs hover:-translate-y-0.5">
+            <a href="{{ route('home') }}" class="w-full xs:w-auto px-5 sm:px-6 py-2.5 sm:py-3 min-h-11 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-xs hover:-translate-y-0.5">
                 <i data-lucide="home" class="w-4 h-4"></i>
                 <span>Kembali ke Beranda</span>
             </a>

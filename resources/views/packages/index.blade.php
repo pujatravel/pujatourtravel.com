@@ -121,23 +121,23 @@
 
     <!-- CATALOG HEADER -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
-        <div class="bg-surface-soft rounded-3xl p-8 sm:p-12 shadow-soft border border-neutral-200 text-center relative overflow-hidden">
+        <div class="bg-surface-soft rounded-3xl p-5 sm:p-8 lg:p-12 shadow-soft border border-neutral-200 text-center relative overflow-hidden">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">
                 Katalog Lengkap
             </span>
-            <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mt-3 tracking-tight">
+            <h1 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-5xl text-slate-900 mt-2.5 sm:mt-3 tracking-tight">
                 Pilihan Paket Wisata Pangandaran
             </h1>
-            <p class="text-slate-600 text-sm sm:text-base mt-3 max-w-2xl mx-auto">
+            <p class="text-slate-600 text-xs sm:text-sm md:text-base mt-2 sm:mt-3 max-w-2xl mx-auto leading-relaxed">
                 Temukan petualangan air tawar, pantai, surfing, hingga gathering eksklusif dengan harga transparan dan pemandu bersertifikasi resmi HPI.
             </p>
 
             <!-- Search and Filter Form -->
-            <form action="{{ route('packages.index') }}" method="GET" class="mt-8 max-w-2xl mx-auto flex flex-col sm:flex-row items-center gap-3">
+            <form action="{{ route('packages.index') }}" method="GET" class="mt-6 sm:mt-8 max-w-2xl mx-auto flex flex-col sm:flex-row items-center gap-3">
                 @if(request('category'))
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
-                <div class="w-full flex-1 flex items-center gap-2 bg-white px-3 py-2 rounded-2xl border border-neutral-200 shadow-sm focus-within:ring-2 focus-within:ring-emerald-700 transition">
+                <div class="w-full flex-1 flex items-center gap-2 bg-white px-3.5 py-2.5 rounded-2xl border border-neutral-200 shadow-sm focus-within:ring-2 focus-within:ring-emerald-700 transition">
                     <i data-lucide="search" class="w-4 h-4 text-slate-400 shrink-0"></i>
                     <input type="text" name="search" maxlength="100" value="{{ $search ?? request('search') }}" placeholder="Cari Green Canyon, Snorkeling, Rafting..." class="w-full text-xs sm:text-sm text-slate-800 placeholder-slate-400 outline-none bg-transparent">
                     @if($search)
@@ -147,15 +147,15 @@
                     @endif
                 </div>
 
-                <div class="w-full sm:w-auto flex items-center gap-2">
-                    <select name="sort" onchange="this.form.submit()" class="px-3.5 py-2.5 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs font-medium focus:ring-2 focus:ring-emerald-700 outline-none transition shadow-sm">
+                <div class="w-full sm:w-auto flex flex-col xs:flex-row items-stretch xs:items-center gap-2">
+                    <select name="sort" onchange="this.form.submit()" class="px-3.5 py-2.5 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs font-medium focus:ring-2 focus:ring-emerald-700 outline-none transition shadow-sm cursor-pointer">
                         <option value="latest" {{ ($sort ?? request('sort')) === 'latest' ? 'selected' : '' }}>Terbaru</option>
                         <option value="popular" {{ ($sort ?? request('sort')) === 'popular' ? 'selected' : '' }}>Rekomendasi</option>
                         <option value="price_asc" {{ ($sort ?? request('sort')) === 'price_asc' ? 'selected' : '' }}>Harga: Rendah ke Tinggi</option>
                         <option value="price_desc" {{ ($sort ?? request('sort')) === 'price_desc' ? 'selected' : '' }}>Harga: Tinggi ke Rendah</option>
                     </select>
 
-                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition shadow-sm whitespace-nowrap">
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition shadow-sm whitespace-nowrap cursor-pointer">
                         Cari Paket
                     </button>
                 </div>
@@ -182,14 +182,14 @@
             @endif
 
             <!-- Category Filter Buttons -->
-            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-6">
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mt-6">
                 <a href="{{ route('packages.index', ['search' => $search, 'sort' => request('sort')]) }}" 
-                   class="px-4 py-2 rounded-xl text-xs font-semibold transition {{ ($categorySlug ?? 'all') === 'all' ? 'bg-emerald-700 text-white shadow-sm' : 'bg-canvas text-slate-600 hover:bg-neutral-200 border border-neutral-200' }}">
+                   class="px-3.5 py-2 rounded-xl text-xs font-semibold transition {{ ($categorySlug ?? 'all') === 'all' ? 'bg-emerald-700 text-white shadow-sm' : 'bg-canvas text-slate-600 hover:bg-neutral-200 border border-neutral-200' }}">
                     Semua ({{ \App\Models\Package::where('status', 'PUBLISHED')->count() }})
                 </a>
                 @foreach($categories as $cat)
                     <a href="{{ route('packages.index', ['category' => $cat->slug, 'search' => $search, 'sort' => request('sort')]) }}" 
-                       class="px-4 py-2 rounded-xl text-xs font-semibold transition {{ ($categorySlug ?? '') === $cat->slug ? 'bg-emerald-700 text-white shadow-sm' : 'bg-canvas text-slate-600 hover:bg-neutral-200 border border-neutral-200' }}">
+                       class="px-3.5 py-2 rounded-xl text-xs font-semibold transition {{ ($categorySlug ?? '') === $cat->slug ? 'bg-emerald-700 text-white shadow-sm' : 'bg-canvas text-slate-600 hover:bg-neutral-200 border border-neutral-200' }}">
                         {{ $cat->name }}
                     </a>
                 @endforeach
@@ -198,71 +198,74 @@
     </section>
 
     <!-- PACKAGES GRID -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <main class="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 pb-20">
         @if($packages->count() > 0)
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 xs:gap-3.5 sm:gap-6 lg:gap-8">
                 @foreach($packages as $pkg)
-                    <div class="package-card flex flex-col bg-surface-soft rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group">
-                        <div class="relative h-60 overflow-hidden bg-neutral-100">
+                    <div class="package-card flex flex-col bg-surface-soft rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group">
+                        <div class="relative h-32 xs:h-40 sm:h-60 lg:h-64 overflow-hidden bg-neutral-100">
                             <img src="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $pkg->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-4 left-4">
+                            <div class="absolute top-2 left-2 sm:top-4 sm:left-4">
                                 @if($pkg->featured)
-                                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow-sm flex items-center gap-1">
-                                        <i data-lucide="star" class="w-3 h-3 fill-slate-950"></i>
+                                    <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-amber-500 text-slate-950 shadow-xs flex items-center gap-1">
+                                        <i data-lucide="star" class="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-slate-950"></i>
                                         <span>Rekomendasi</span>
                                     </span>
                                 @else
-                                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-700 text-white shadow-sm">
+                                    <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-emerald-700 text-white shadow-xs">
                                         {{ $pkg->category->name ?? 'Wisata' }}
                                     </span>
                                 @endif
                             </div>
                             @if($pkg->duration)
-                                <div class="absolute bottom-4 right-4">
-                                    <span class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-900/90 text-white flex items-center gap-1">
-                                        <i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-400"></i>
+                                <div class="absolute bottom-2 right-2 sm:bottom-4 sm:right-4">
+                                    <span class="px-1.5 py-0.5 sm:px-3 sm:py-1 rounded-md sm:rounded-xl text-[9px] xs:text-[10px] sm:text-xs font-bold bg-slate-900/85 backdrop-blur-xs text-white flex items-center gap-1">
+                                        <i data-lucide="clock" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-emerald-400"></i>
                                         <span>{{ $pkg->duration }}</span>
                                     </span>
                                 </div>
                             @endif
                         </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="p-2.5 xs:p-3.5 sm:p-6 flex-1 flex flex-col justify-between">
                             <div>
-                                <div class="flex items-center gap-1.5 text-xs font-semibold text-emerald-700 mb-1">
-                                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
-                                    <span>{{ $pkg->location ?? 'Pangandaran' }}</span>
+                                <div class="flex items-center gap-1 text-[10px] xs:text-[11px] sm:text-xs font-semibold text-emerald-700 mb-1 truncate">
+                                    <i data-lucide="map-pin" class="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0"></i>
+                                    <span class="truncate">{{ $pkg->location ?? 'Pangandaran' }}</span>
                                 </div>
-                                <h3 class="font-display font-bold text-xl text-slate-900 group-hover:text-emerald-700 transition">
+                                <h3 class="font-display font-bold text-xs xs:text-sm sm:text-lg lg:text-xl text-slate-900 group-hover:text-emerald-700 transition leading-snug line-clamp-2">
                                     <a href="{{ route('packages.show', $pkg->slug) }}">
                                         {{ $pkg->name }}
                                     </a>
                                 </h3>
-                                <p class="text-xs text-slate-500 mt-2 line-clamp-2">
+                                <p class="text-[10px] xs:text-[11px] sm:text-xs text-slate-500 mt-1 sm:mt-2 line-clamp-2 leading-relaxed">
                                     {{ $pkg->short_description ?? 'Petualangan eksotis bersama Puja Tour & Travel Pangandaran.' }}
                                 </p>
 
                                 <!-- Facilities Badge -->
                                 @if(is_array($pkg->inclusions) && count($pkg->inclusions) > 0)
-                                    <div class="flex flex-wrap gap-1.5 mt-4">
-                                        @foreach(array_slice($pkg->inclusions, 0, 3) as $inc)
-                                            <span class="text-[11px] bg-neutral-100 text-slate-700 px-2 py-0.5 rounded-md flex items-center gap-1">
-                                                <i data-lucide="check" class="w-3 h-3 text-emerald-700"></i>
-                                                <span>{{ $inc }}</span>
+                                    <div class="flex flex-wrap gap-1 sm:gap-1.5 mt-2 sm:mt-4">
+                                        @foreach(array_slice($pkg->inclusions, 0, 3) as $iIdx => $inc)
+                                            <span class="text-[9px] xs:text-[10px] sm:text-[11px] bg-neutral-100 text-slate-700 px-1.5 py-0.5 rounded-md {{ $iIdx >= 2 ? 'hidden sm:inline-flex' : 'inline-flex' }} items-center gap-1">
+                                                <i data-lucide="check" class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-700 shrink-0"></i>
+                                                <span class="truncate max-w-21.25 xs:max-w-none">{{ $inc }}</span>
                                             </span>
                                         @endforeach
                                     </div>
                                 @endif
                             </div>
 
-                            <div class="pt-5 mt-5 border-t border-neutral-200 flex items-center justify-between">
+                            <div class="pt-2.5 sm:pt-5 mt-2.5 sm:mt-5 border-t border-neutral-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
                                 <div>
-                                    <span class="text-[11px] text-slate-400 block font-medium">Mulai dari</span>
-                                    <span class="font-display font-bold text-xl text-emerald-700">{{ $pkg->formatted_price }}</span>
-                                    <span class="text-xs text-slate-400">/ {{ $pkg->price_unit }}</span>
+                                    <span class="text-[9px] xs:text-[10px] sm:text-[11px] text-slate-400 block font-medium leading-none mb-0.5">Mulai dari</span>
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="font-display font-bold text-xs xs:text-sm sm:text-xl text-emerald-700 leading-tight">{{ $pkg->formatted_price }}</span>
+                                        <span class="text-[9px] xs:text-[10px] sm:text-xs text-slate-400">/ {{ $pkg->price_unit }}</span>
+                                    </div>
                                 </div>
-                                <a href="{{ route('packages.show', $pkg->slug) }}" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-emerald-700 text-white font-semibold text-xs transition flex items-center gap-1.5 shadow-sm">
-                                    <span>Baca Selengkapnya</span>
-                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                <a href="{{ route('packages.show', $pkg->slug) }}" class="w-full sm:w-auto px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl bg-slate-900 hover:bg-emerald-700 text-white font-semibold text-[10px] xs:text-xs transition flex items-center justify-center gap-1 shadow-xs">
+                                    <span class="sm:hidden">Detail</span>
+                                    <span class="hidden sm:inline">Baca Selengkapnya</span>
+                                    <i data-lucide="arrow-right" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i>
                                 </a>
                             </div>
                         </div>
@@ -293,76 +296,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 shrink-0">
-                            <img src="{{ asset('images/puja_logo.png') }}" alt="Puja Tour Logo" class="w-full h-full object-contain">
-                        </div>
-                        <span class="font-display font-extrabold text-xl text-white">
-                            PUJA<span class="text-emerald-400 ml-1">TOUR</span>
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Penyedia paket wisata resmi Pangandaran, body rafting Green Canyon, snorkeling Pasir Putih, dan gathering perusahaan terpercaya.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Navigasi</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        @if(!request()->routeIs('home'))
-                            <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
-                        @endif
-                        @if(!request()->routeIs('packages.index'))
-                            <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Semua Paket Wisata</a></li>
-                        @endif
-                        @if(!request()->routeIs('about'))
-                            <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang Kami</a></li>
-                        @endif
-                        @if(!request()->routeIs('calculator'))
-                            <li><a href="{{ route('calculator') }}" class="hover:text-white transition">Estimasi Biaya</a></li>
-                        @endif
-                        @if(!request()->routeIs('gallery'))
-                            <li><a href="{{ route('gallery') }}" class="hover:text-white transition">Galeri Foto</a></li>
-                        @endif
-                        @if(!request()->routeIs('testimonial'))
-                            <li><a href="{{ route('testimonial') }}" class="hover:text-white transition">Ulasan Wisatawan</a></li>
-                        @endif
-                        @if(!request()->routeIs('faq'))
-                            <li><a href="{{ route('faq') }}" class="hover:text-white transition">Pertanyaan Umum (FAQ)</a></li>
-                        @endif
-                        @if(!request()->routeIs('contact'))
-                            <li><a href="{{ route('contact') }}" class="hover:text-white transition">Kontak & Lokasi</a></li>
-                        @endif
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Kantor Operasional</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">{{ $officeAddr }}</p>
-                    <p class="text-xs text-emerald-400 font-bold mt-2">Hotline: {{ $phoneNum }}</p>
-                    <p class="text-xs text-slate-400 mt-1">Email: {{ $emailAddr }}</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Legalitas Resmi</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Berbadan hukum resmi CV dengan izin pariwisata terdaftar dan pemandu bersertifikasi kepemanduan HPI Jawa Barat.
-                    </p>
-                </div>
-            </div>
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                <p>© {{ date('Y') }} {{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}. All rights reserved.</p>
-                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
-                    <span>•</span>
-                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
-                    <span>•</span>
-                    <a href="{{ route('refund-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Pengembalian</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20katalog%20paket%20wisata%20Pangandaran" 

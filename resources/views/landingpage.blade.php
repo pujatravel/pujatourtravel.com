@@ -40,7 +40,9 @@
         '@type' => 'TravelAgency',
         '@id' => url('/') . '#travelagency',
         'name' => 'Puja Tour & Travel Pangandaran',
-        'alternateName' => ['Puja Tour Travel', 'Puja Tour Pangandaran'],
+        'legalName' => 'CV Puja Tour',
+        'alternateName' => ['Puja Tour Travel', 'Puja Tour Pangandaran', 'Puja Tour & Travel'],
+        'disambiguatingDescription' => 'Biro perjalanan wisata resmi di Pangandaran, Jawa Barat (berbeda dengan biro travel umroh di Palembang atau rental tur di Bali). Khusus penyedia paket wisata Pangandaran, body rafting Green Canyon, Citumang, dan jelajah pantai.',
         'description' => 'Biro perjalanan wisata resmi di Pangandaran. Tersedia paket wisata Green Canyon, body rafting, snorkeling, dan wisata pantai dengan pemandu lokal berlisensi HPI.',
         'url' => url('/'),
         'logo' => asset('images/puja_logo.png'),
@@ -48,6 +50,11 @@
         'telephone' => $settings['phone_number'] ?? '+6281234567890',
         'email' => $settings['email_address'] ?? 'info@pujatourtravel.com',
         'priceRange' => '$$',
+        'brand' => [
+            '@type' => 'Brand',
+            'name' => 'Puja Tour & Travel',
+            'slogan' => 'Biro Wisata Resmi & Terpercaya di Pangandaran',
+        ],
         'address' => [
             '@type' => 'PostalAddress',
             'streetAddress' => $settings['office_address'] ?? 'Jl. Pantai Barat No. 88',
@@ -71,9 +78,12 @@
             $settings['instagram_url'] ?? 'https://www.instagram.com/puja_tourtravel/',
             $settings['tiktok_url'] ?? 'https://tiktok.com/@pujatourtravel',
         ],
-        'hasMap' => 'https://maps.google.com/?q=Pangandaran',
-        'areaServed' => 'Pangandaran, Jawa Barat',
-        'knowsAbout' => ['Green Canyon', 'Body Rafting', 'Wisata Pantai Pangandaran', 'Snorkeling', 'Batu Karas'],
+        'hasMap' => 'https://maps.google.com/?q=Puja+Tour+Travel+Pangandaran',
+        'areaServed' => [
+            '@type' => 'AdministrativeArea',
+            'name' => 'Pangandaran, Jawa Barat, Indonesia',
+        ],
+        'knowsAbout' => ['Wisata Pangandaran', 'Body Rafting Green Canyon', 'Citumang', 'Snorkeling Pantai Pasir Putih', 'Batu Karas', 'Paket Tour Pangandaran'],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
     </script>
 
@@ -216,7 +226,7 @@
             @endforeach
 
             <!-- Deep Scrim Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/75 to-slate-950/90 z-1"></div>
+            <div class="absolute inset-0 bg-linear-to-b from-slate-950/90 via-slate-950/75 to-slate-950/90 z-1"></div>
         </div>
 
         <!-- Floating Destination Badge - desktop only -->
@@ -253,7 +263,7 @@
                     </div>
 
                     <!-- Main H1 Title -->
-                    <h1 class="font-display font-extrabold text-[1.75rem] sm:text-4xl lg:text-6xl text-white tracking-tight leading-tight sm:leading-[1.15] wrap-break-word">
+                    <h1 class="font-display font-extrabold text-[1.6rem] xs:text-[1.85rem] sm:text-4xl lg:text-6xl text-white tracking-tight leading-tight sm:leading-[1.15] wrap-break-word">
                         @if(!empty($heroHighlight) && str_contains($heroTitle, $heroHighlight))
                             {!! str_replace($heroHighlight, '<span class="text-emerald-400">' . e($heroHighlight) . '</span>', e($heroTitle)) !!}
                         @else
@@ -354,7 +364,7 @@
 
                 <!-- Mobile Trip Finder Widget (compact, below hero text) -->
                 <div class="lg:hidden">
-                    <div class="bg-surface-soft rounded-2xl p-4 shadow-soft border border-neutral-200 text-slate-800">
+                    <div class="bg-surface-soft rounded-2xl p-4 sm:p-5 max-w-lg mx-auto shadow-soft border border-neutral-200 text-slate-800">
                         <div class="flex items-center gap-2.5 pb-3 border-b border-neutral-200 mb-3">
                             <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
                                 <i data-lucide="compass" class="w-4 h-4"></i>
@@ -364,29 +374,29 @@
                                 <p class="text-[11px] text-slate-500">Estimasi harga instan</p>
                             </div>
                         </div>
-                        <div class="space-y-2.5">
+                        <div class="space-y-3">
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-600 mb-1 uppercase tracking-wide">Pilih Paket</label>
-                                <select class="w-full px-3 py-2.5 rounded-xl border border-neutral-200 bg-white text-slate-800 font-medium text-xs outline-none" onchange="document.getElementById('calc-package').value = this.value; document.getElementById('calc-package').dispatchEvent(new Event('change'))">
+                                <label for="mobile-calc-package" class="block text-[10px] font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Pilih Paket</label>
+                                <select id="mobile-calc-package" class="w-full h-10 px-3 rounded-xl border border-neutral-200 bg-white text-slate-800 font-medium text-xs focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 transition outline-none">
                                     @foreach($allPackages as $pkg)
                                         <option value="{{ $pkg->slug }}" data-price="{{ (int) $pkg->price }}">{{ $pkg->name }} ({{ $pkg->formatted_price }})</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
+                            <div class="grid grid-cols-2 gap-2.5">
                                 <div>
-                                    <label class="block text-[10px] font-bold text-slate-600 mb-1 uppercase tracking-wide">Peserta</label>
-                                    <input type="number" value="4" min="1" max="200" class="w-full px-3 py-2.5 rounded-xl border border-neutral-200 bg-white text-slate-800 font-bold text-xs outline-none" onchange="document.getElementById('calc-pax').value = this.value; document.getElementById('calc-pax').dispatchEvent(new Event('input'))">
+                                    <label for="mobile-calc-pax" class="block text-[10px] font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Peserta</label>
+                                    <input type="number" id="mobile-calc-pax" value="4" min="1" max="200" inputmode="numeric" pattern="[0-9]*" class="w-full h-10 px-3 rounded-xl border border-neutral-200 bg-white text-slate-800 font-bold text-xs focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 transition outline-none" onkeydown="if(['e','E','+','-','.'].includes(event.key)) event.preventDefault();">
                                 </div>
-                                <div class="flex flex-col justify-end">
-                                    <div class="px-3 py-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-center">
-                                        <span class="text-[10px] text-slate-500 block">Estimasi</span>
-                                        <span class="font-display font-extrabold text-sm text-emerald-700" id="mobile-calc-total">Rp 0</span>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Estimasi Total</label>
+                                    <div class="w-full h-10 px-3 rounded-xl border border-neutral-200 bg-white flex items-center justify-center text-center">
+                                        <span class="font-display font-extrabold text-xs sm:text-sm text-emerald-700" id="mobile-calc-total">Rp 900.000</span>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" id="btn-order-whatsapp-mobile" data-whatsapp="{{ $waNum }}" class="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition flex items-center justify-center gap-1.5">
-                                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                            <button type="button" id="btn-order-whatsapp-mobile" data-whatsapp="{{ $waNum }}" class="w-full h-11 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition flex items-center justify-center gap-2 shadow-sm active:scale-[0.98]">
+                                <i data-lucide="message-circle" class="w-4 h-4"></i>
                                 <span>Kirim & Booking via WhatsApp</span>
                             </button>
                         </div>
@@ -399,11 +409,11 @@
 
     <!-- 4. TRUST ELEMENTS / 4 PILAR KREDIBILITAS RESMI (Corporate, Formal & Terpercaya) -->
     <section class="relative -mt-8 sm:-mt-10 lg:-mt-12 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 border border-slate-200/90 shadow-xl shadow-slate-950/5">
+        <div class="bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 lg:p-8 border border-slate-200/90 shadow-xl shadow-slate-950/5">
             <!-- Top Verified Strip -->
-            <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-5 border-b border-slate-100">
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 sm:pb-5 mb-4 sm:mb-5 border-b border-slate-100">
                 <div class="flex items-center gap-2.5">
-                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-800">
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 shrink-0">
                         <i data-lucide="shield-check" class="w-4 h-4"></i>
                     </span>
                     <span class="text-xs sm:text-sm font-bold tracking-wide text-slate-900 uppercase">
@@ -415,53 +425,53 @@
                 </div>
             </div>
 
-            <!-- 4 Pillar Cards Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+            <!-- 4 Pillar Cards Grid: 2 Kolom di Mobile, 4 Kolom di Desktop -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-6">
                 <!-- Pilar 1: Legalitas Usaha -->
-                <div class="group flex items-start gap-3.5 p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300">
-                    <div class="w-11 h-11 rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
-                        <i data-lucide="building-2" class="w-5 h-5"></i>
+                <div class="group flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3.5 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300 h-full">
+                    <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-xs group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
+                        <i data-lucide="building-2" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                     </div>
                     <div class="min-w-0">
-                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700">Badan Hukum Resmi</span>
-                        <h3 class="font-display font-bold text-slate-900 text-sm mt-0.5 leading-snug">Legalitas CV Terdaftar</h3>
-                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Berizin resmi Kemenkumham & NIB OSS. Amanah untuk trip keluarga, dinas & gathering instansi.</p>
+                        <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">Badan Hukum Resmi</span>
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm mt-0.5 leading-snug">Legalitas CV Terdaftar</h3>
+                        <p class="text-[11px] sm:text-xs text-slate-600 mt-1 leading-relaxed">Berizin resmi Kemenkumham & NIB OSS. Amanah untuk trip keluarga, dinas & gathering instansi.</p>
                     </div>
                 </div>
 
                 <!-- Pilar 2: Pemandu Lisensi HPI -->
-                <div class="group flex items-start gap-3.5 p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300">
-                    <div class="w-11 h-11 rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
-                        <i data-lucide="badge-check" class="w-5 h-5"></i>
+                <div class="group flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3.5 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300 h-full">
+                    <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-xs group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
+                        <i data-lucide="badge-check" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                     </div>
                     <div class="min-w-0">
-                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700">Lisensi Resmi HPI</span>
-                        <h3 class="font-display font-bold text-slate-900 text-sm mt-0.5 leading-snug">Pemandu Bersertifikat</h3>
-                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Guide lokal asli Pangandaran dengan lisensi HPI resmi dan pelatihan keselamatan susur sungai.</p>
+                        <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">Lisensi Resmi HPI</span>
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm mt-0.5 leading-snug">Pemandu Bersertifikat</h3>
+                        <p class="text-[11px] sm:text-xs text-slate-600 mt-1 leading-relaxed">Guide lokal asli Pangandaran dengan lisensi HPI resmi dan pelatihan keselamatan susur sungai.</p>
                     </div>
                 </div>
 
                 <!-- Pilar 3: Standar Safety Teruji -->
-                <div class="group flex items-start gap-3.5 p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300">
-                    <div class="w-11 h-11 rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
-                        <i data-lucide="life-buoy" class="w-5 h-5"></i>
+                <div class="group flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3.5 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300 h-full">
+                    <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-xs group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
+                        <i data-lucide="life-buoy" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                     </div>
                     <div class="min-w-0">
-                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700">Proteksi & Asuransi</span>
-                        <h3 class="font-display font-bold text-slate-900 text-sm mt-0.5 leading-snug">Standar K3 & Keamanan</h3>
-                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Peralatan standar SNI/CE terawat (pelampung/life jacket & helm), dilengkapi asuransi keselamatan peserta.</p>
+                        <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">Proteksi & Asuransi</span>
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm mt-0.5 leading-snug">Standar K3 & Keamanan</h3>
+                        <p class="text-[11px] sm:text-xs text-slate-600 mt-1 leading-relaxed">Peralatan standar SNI/CE terawat (pelampung/life jacket & helm), dilengkapi asuransi keselamatan peserta.</p>
                     </div>
                 </div>
 
                 <!-- Pilar 4: Harga Jujur & Transparan -->
-                <div class="group flex items-start gap-3.5 p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300">
-                    <div class="w-11 h-11 rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
-                        <i data-lucide="receipt-text" class="w-5 h-5"></i>
+                <div class="group flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3.5 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/70 hover:bg-white hover:border-emerald-500 hover:shadow-md transition-all duration-300 h-full">
+                    <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-white border border-slate-200/80 text-emerald-700 flex items-center justify-center shrink-0 shadow-xs group-hover:bg-emerald-700 group-hover:text-white group-hover:border-emerald-700 transition-colors duration-300">
+                        <i data-lucide="receipt-text" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                     </div>
                     <div class="min-w-0">
-                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700">All-Inclusive & Invoice</span>
-                        <h3 class="font-display font-bold text-slate-900 text-sm mt-0.5 leading-snug">Transparansi Biaya</h3>
-                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Biaya pasti tanpa pungli di lokasi. Menerbitkan invoice & kwitansi resmi untuk reimbursement.</p>
+                        <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">All-Inclusive & Invoice</span>
+                        <h3 class="font-display font-bold text-slate-900 text-xs sm:text-sm mt-0.5 leading-snug">Transparansi Biaya</h3>
+                        <p class="text-[11px] sm:text-xs text-slate-600 mt-1 leading-relaxed">Biaya pasti tanpa pungli di lokasi. Menerbitkan invoice & kwitansi resmi untuk reimbursement.</p>
                     </div>
                 </div>
             </div>
@@ -495,14 +505,14 @@
         </div>
 
         <!-- Dynamic Package Grid from Database (Menampilkan Pilihan Unggulan) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
             @forelse($packages as $loopIndex => $pkg)
                 <div class="package-card flex flex-col bg-surface-soft rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group reveal-fade-up {{ $loopIndex % 3 === 1 ? 'delay-100' : ($loopIndex % 3 === 2 ? 'delay-200' : '') }}" data-category="{{ $pkg->category->slug ?? 'all' }}">
                     <!-- Card Image Area with Multi-Image Auto-Slider & Lightbox Click -->
                     @php
                         $galleryImages = $pkg->gallery_images;
                     @endphp
-                    <div class="package-card-slider relative h-64 overflow-hidden bg-slate-950 cursor-pointer group/slider select-none"
+                    <div class="package-card-slider relative h-56 sm:h-60 lg:h-64 overflow-hidden bg-slate-950 cursor-pointer group/slider select-none"
                          data-package-name="{{ $pkg->name }}"
                          data-package-location="{{ $pkg->location ?? 'Pangandaran' }}"
                          data-package-duration="{{ $pkg->duration ?? '-' }}"
@@ -523,7 +533,7 @@
                         </div>
 
                         <!-- Subtle Gradient Overlay -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-slate-950/30 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-linear-to-t from-slate-950/75 via-transparent to-slate-950/30 pointer-events-none"></div>
 
                         <!-- Click to View Gallery Hover Badge (Top Right) -->
                         <div class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
@@ -593,10 +603,10 @@
         </div>
 
         <!-- CTA ke Halaman Lengkap Semua Paket -->
-        <div class="mt-12 text-center">
-            <a href="{{ route('packages.index') }}" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-surface-soft hover:bg-white text-slate-900 font-bold text-sm border border-neutral-200 hover:border-emerald-700 shadow-soft hover:shadow-card-hover transition-all duration-300 group">
-                <span>Jelajahi Semua Paket Wisata ({{ $totalPackagesCount ?? 8 }} Pilihan Lengkap)</span>
-                <i data-lucide="arrow-right" class="w-4 h-4 text-emerald-700 group-hover:translate-x-1.5 transition-transform"></i>
+        <div class="mt-10 sm:mt-12 text-center px-2">
+            <a href="{{ route('packages.index') }}" class="inline-flex items-center justify-center gap-2 sm:gap-3 px-4 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl bg-surface-soft hover:bg-white text-slate-900 font-bold text-xs sm:text-sm border border-neutral-200 hover:border-emerald-700 shadow-soft hover:shadow-card-hover transition-all duration-300 group max-w-full">
+                <span class="whitespace-nowrap">Jelajahi Semua Paket Wisata ({{ $totalPackagesCount ?? 8 }} Pilihan<span class="hidden sm:inline"> Lengkap</span>)</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-700 group-hover:translate-x-1.5 transition-transform shrink-0"></i>
             </a>
         </div>
     </section>
@@ -622,41 +632,45 @@
                 </a>
             </div>
 
-            <!-- Destination Bento Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="md:col-span-2 relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up">
+            <!-- Destination Bento Grid: 2 Kolom di Mobile, 3 Kolom Bento di Desktop -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                <!-- Destinasi 1: Green Canyon -->
+                <div class="col-span-1 md:col-span-2 relative h-52 xs:h-60 sm:h-68 md:h-80 rounded-2xl sm:rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up">
                     <img src="{{ asset('images/greencanyon.jpg') }}" alt="Green Canyon Cukang Taneuh" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    <div class="absolute inset-0 bg-slate-950/60"></div>
-                    <div class="absolute bottom-6 left-6 right-6">
-                        <h3 class="font-display font-bold text-2xl text-white">Green Canyon (Cukang Taneuh)</h3>
-                        <p class="text-xs text-slate-300 mt-1 max-w-md">Air zamrud berkilau di antara tebing stalaktit purba berusia jutaan tahun dengan pemandangan alami yang menenangkan.</p>
+                    <div class="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/45 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-3 xs:p-4 sm:p-6">
+                        <h3 class="font-display font-bold text-sm xs:text-base sm:text-xl md:text-2xl text-white leading-tight">Green Canyon (Cukang Taneuh)</h3>
+                        <p class="text-[10px] xs:text-[11px] sm:text-xs text-slate-300 mt-1 line-clamp-2 sm:line-clamp-none max-w-md leading-snug sm:leading-relaxed">Air zamrud berkilau di antara tebing stalaktit purba berusia jutaan tahun dengan pemandangan alami yang menenangkan.</p>
                     </div>
                 </div>
 
-                <div class="relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-100">
+                <!-- Destinasi 2: Pantai Pasir Putih -->
+                <div class="col-span-1 relative h-52 xs:h-60 sm:h-68 md:h-80 rounded-2xl sm:rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-100">
                     <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Pasir Putih & Snorkeling" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    <div class="absolute inset-0 bg-slate-950/60"></div>
-                    <div class="absolute bottom-6 left-6 right-6">
-                        <h3 class="font-display font-bold text-xl text-white">Pantai Pasir Putih</h3>
-                        <p class="text-xs text-slate-300 mt-1">Snorkeling bersama ratusan ikan karang tropis di air laut yang jernih dan tenang.</p>
+                    <div class="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/45 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-3 xs:p-4 sm:p-6">
+                        <h3 class="font-display font-bold text-sm xs:text-base sm:text-lg md:text-xl text-white leading-tight">Pantai Pasir Putih</h3>
+                        <p class="text-[10px] xs:text-[11px] sm:text-xs text-slate-300 mt-1 line-clamp-2 sm:line-clamp-none leading-snug sm:leading-relaxed">Snorkeling bersama ratusan ikan karang tropis di air laut yang jernih dan tenang.</p>
                     </div>
                 </div>
 
-                <div class="relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-150">
+                <!-- Destinasi 3: Pantai Batu Karas -->
+                <div class="col-span-1 relative h-52 xs:h-60 sm:h-68 md:h-80 rounded-2xl sm:rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-150">
                     <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Sunset Batu Karas" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    <div class="absolute inset-0 bg-slate-950/60"></div>
-                    <div class="absolute bottom-6 left-6 right-6">
-                        <h3 class="font-display font-bold text-xl text-white">Pantai Batu Karas</h3>
-                        <p class="text-xs text-slate-300 mt-1">Titik sunset terindah di Jawa Barat dengan suasana santai dan deretan cafe kayu estetik.</p>
+                    <div class="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/45 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-3 xs:p-4 sm:p-6">
+                        <h3 class="font-display font-bold text-sm xs:text-base sm:text-lg md:text-xl text-white leading-tight">Pantai Batu Karas</h3>
+                        <p class="text-[10px] xs:text-[11px] sm:text-xs text-slate-300 mt-1 line-clamp-2 sm:line-clamp-none leading-snug sm:leading-relaxed">Titik sunset terindah di Jawa Barat dengan suasana santai dan deretan cafe kayu estetik.</p>
                     </div>
                 </div>
 
-                <div class="md:col-span-2 relative h-80 rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-200">
+                <!-- Destinasi 4: Cagar Alam Pananjung -->
+                <div class="col-span-1 md:col-span-2 relative h-52 xs:h-60 sm:h-68 md:h-80 rounded-2xl sm:rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-200">
                     <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Cagar Alam Pananjung" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    <div class="absolute inset-0 bg-slate-950/60"></div>
-                    <div class="absolute bottom-6 left-6 right-6">
-                        <h3 class="font-display font-bold text-2xl text-white">Taman Wisata Alam & Cagar Alam Pananjung</h3>
-                        <p class="text-xs text-slate-300 mt-1 max-w-md">Jelajahi keasrian hutan hujan tropis dengan kawanan rusa liar, pohon beringin raksasa, dan situs gua bersejarah.</p>
+                    <div class="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/45 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-3 xs:p-4 sm:p-6">
+                        <h3 class="font-display font-bold text-sm xs:text-base sm:text-xl md:text-2xl text-white leading-tight"><span class="hidden sm:inline">Taman Wisata Alam & </span>Cagar Alam Pananjung</h3>
+                        <p class="text-[10px] xs:text-[11px] sm:text-xs text-slate-300 mt-1 line-clamp-2 sm:line-clamp-none max-w-md leading-snug sm:leading-relaxed">Jelajahi keasrian hutan hujan tropis dengan kawanan rusa liar, pohon beringin raksasa, dan situs gua bersejarah.</p>
                     </div>
                 </div>
             </div>
@@ -664,12 +678,12 @@
     </section>
 
     <!-- 7. KEUNGGULAN & BUKTI KEPERCAYAN (Authentic Local Travel Agency) -->
-    <section id="keunggulan" class="py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-16 items-center">
-            <!-- Left Image with Clean Authentic Caption & Dynamic Slider -->
-            <div class="lg:col-span-5 relative reveal-fade-left">
+    <section id="keunggulan" class="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-12 gap-3.5 sm:gap-8 lg:gap-16 items-start lg:items-center">
+            <!-- Left Image with Clean Authentic Caption & Dynamic Slider (Foto di Kiri) -->
+            <div class="col-span-5 lg:col-span-5 relative reveal-fade-left">
                 <!-- Slider Frame Container -->
-                <div id="authentic-slider-container" class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-md border border-neutral-200 bg-neutral-900 h-70 sm:h-90 lg:h-107.5 cursor-pointer" title="Klik untuk melihat foto lebih besar">
+                <div id="authentic-slider-container" class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-md border border-neutral-200 bg-neutral-900 h-60 xs:h-72 sm:h-90 lg:h-107.5 cursor-pointer" title="Klik untuk melihat foto lebih besar">
                     <!-- Slide Items -->
                     <div id="authentic-slides" class="relative w-full h-full">
                         <!-- Slide 1: Green Canyon -->
@@ -709,75 +723,75 @@
                     </div>
 
                     <!-- Top Floating Tag Badge -->
-                    <div class="absolute top-3.5 left-3.5 z-20 pointer-events-none">
-                        <span id="authentic-slide-tag" class="px-3 py-1 rounded-full text-xs font-bold bg-slate-900/80 text-white backdrop-blur-md border border-white/20 shadow-md">
+                    <div class="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 z-20 pointer-events-none">
+                        <span id="authentic-slide-tag" class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold bg-slate-900/80 text-white backdrop-blur-md border border-white/20 shadow-md">
                             Green Canyon
                         </span>
                     </div>
 
                     <!-- Slide Navigation Arrows (Appear on hover) -->
-                    <button type="button" id="authentic-prev" aria-label="Foto Sebelumnya" class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md cursor-pointer border border-white/20">
-                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                    <button type="button" id="authentic-prev" aria-label="Foto Sebelumnya" class="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-20 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md cursor-pointer border border-white/20">
+                        <i data-lucide="chevron-left" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                     </button>
-                    <button type="button" id="authentic-next" aria-label="Foto Selanjutnya" class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md cursor-pointer border border-white/20">
-                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    <button type="button" id="authentic-next" aria-label="Foto Selanjutnya" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md cursor-pointer border border-white/20">
+                        <i data-lucide="chevron-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                     </button>
 
                     <!-- Bottom Indicator Dots -->
-                    <div id="authentic-dots" class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/15">
+                    <div id="authentic-dots" class="absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/15">
                     </div>
                 </div>
 
                 <!-- Dynamic Location Caption with Lucide Icon (NO Windows Emoji, Clean Direct Icon) -->
-                <div class="mt-3 flex items-start gap-1.5 text-left">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5"></i>
-                    <p id="authentic-location-caption" class="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed transition-all duration-300">
+                <div class="mt-2 sm:mt-3 flex items-start gap-1 sm:gap-1.5 text-left">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-700 shrink-0 mt-0.5"></i>
+                    <p id="authentic-location-caption" class="text-[10px] xs:text-[11px] sm:text-sm text-slate-600 font-medium leading-snug sm:leading-relaxed transition-all duration-300">
                         Titik awal penyusunan rute & pengawalan trip di Green Canyon, Pangandaran.
                     </p>
                 </div>
             </div>
 
-            <!-- Right Content: Evidence-Driven Hierarchy -->
-            <div class="lg:col-span-7 space-y-6 reveal-fade-right delay-100">
+            <!-- Right Content: Evidence-Driven Hierarchy (Deskripsi di Kanan) -->
+            <div class="col-span-7 lg:col-span-7 space-y-4 sm:space-y-6 reveal-fade-right delay-100">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-emerald-700 block">
                         Pengalaman Lokal Autentik
                     </span>
-                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-3 tracking-tight leading-snug">
+                    <h2 class="font-display font-extrabold text-base xs:text-lg sm:text-3xl lg:text-4xl text-slate-900 mt-1 sm:mt-3 tracking-tight leading-snug">
                         Dikelola Langsung oleh Putra Daerah Pangandaran
                     </h2>
-                    <p class="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+                    <p class="text-[11px] xs:text-xs sm:text-base text-slate-600 mt-1.5 sm:mt-3 leading-relaxed">
                         Kami menyusun rute dan mendampingi trip berdasarkan pemahaman lapangan langsung—mulai dari kondisi debit air sungai, spot terumbu karang yang aman, hingga pertolongan keselamatan di pantai.
                     </p>
                 </div>
 
                 <!-- 3 Concrete Primary Proofs (Clean Typography, No Heavy Card Clutter) -->
-                <div class="space-y-6 pt-4 border-t border-neutral-200">
-                    <div class="flex items-start gap-4 reveal-fade-up">
-                        <span class="font-display font-extrabold text-2xl text-emerald-700 leading-none pt-1">01</span>
+                <div class="space-y-3.5 sm:space-y-6 pt-3 sm:pt-4 border-t border-neutral-200">
+                    <div class="flex items-start gap-2.5 sm:gap-4 reveal-fade-up">
+                        <span class="font-display font-extrabold text-base sm:text-2xl text-emerald-700 leading-none pt-0.5 sm:pt-1">01</span>
                         <div>
-                            <h3 class="font-display font-bold text-slate-900 text-base">Tim Guide Asli Pangandaran (Berlisensi HPI)</h3>
-                            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                            <h3 class="font-display font-bold text-slate-900 text-xs sm:text-base leading-snug">Tim Guide Asli Pangandaran (Berlisensi HPI)</h3>
+                            <p class="text-[10px] xs:text-[11px] sm:text-sm text-slate-600 mt-0.5 sm:mt-1 leading-normal sm:leading-relaxed">
                                 Pemandu kami lahir dan tumbuh di Pangandaran. Memahami karakter debit air Green Canyon, titik terumbu karang aman di Pasir Putih, serta penanganan darurat di lapangan.
                             </p>
                         </div>
                     </div>
 
-                    <div class="flex items-start gap-4 reveal-fade-up delay-100">
-                        <span class="font-display font-extrabold text-2xl text-emerald-700 leading-none pt-1">02</span>
+                    <div class="flex items-start gap-2.5 sm:gap-4 reveal-fade-up delay-100">
+                        <span class="font-display font-extrabold text-base sm:text-2xl text-emerald-700 leading-none pt-0.5 sm:pt-1">02</span>
                         <div>
-                            <h3 class="font-display font-bold text-slate-900 text-base">Peralatan Standar & Asuransi Keselamatan Diri</h3>
-                            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                            <h3 class="font-display font-bold text-slate-900 text-xs sm:text-base leading-snug">Peralatan Standar & Asuransi Keselamatan Diri</h3>
+                            <p class="text-[10px] xs:text-[11px] sm:text-sm text-slate-600 mt-0.5 sm:mt-1 leading-normal sm:leading-relaxed">
                                 Setiap peserta dilengkapi pelampung (life jacket) terawat, helm sungai standar, serta asuransi keselamatan resmi di setiap paket trip tanpa biaya tambahan.
                             </p>
                         </div>
                     </div>
 
-                    <div class="flex items-start gap-4 reveal-fade-up delay-200">
-                        <span class="font-display font-extrabold text-2xl text-emerald-700 leading-none pt-1">03</span>
+                    <div class="flex items-start gap-2.5 sm:gap-4 reveal-fade-up delay-200">
+                        <span class="font-display font-extrabold text-base sm:text-2xl text-emerald-700 leading-none pt-0.5 sm:pt-1">03</span>
                         <div>
-                            <h3 class="font-display font-bold text-slate-900 text-base">Rincian Biaya Transparan (All-Inclusive)</h3>
-                            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                            <h3 class="font-display font-bold text-slate-900 text-xs sm:text-base leading-snug">Rincian Biaya Transparan (All-Inclusive)</h3>
+                            <p class="text-[10px] xs:text-[11px] sm:text-sm text-slate-600 mt-0.5 sm:mt-1 leading-normal sm:leading-relaxed">
                                 Seluruh harga paket sudah mencakup tiket masuk destinasi, sewa peralatan, instruktur, hingga retribusi lokal. Tanpa kaget biaya tersembunyi di tempat wisata.
                             </p>
                         </div>
@@ -871,8 +885,8 @@
         <!-- Marquee Showcase Container with Edge Fade Masks -->
         <div class="relative w-full overflow-hidden select-none py-2" id="testimonial-marquee-wrapper">
             <!-- Left & Right Gradient Fade Masks -->
-            <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-r from-[#f4f6f1] to-transparent z-10"></div>
-            <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-l from-[#f4f6f1] to-transparent z-10"></div>
+            <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-linear-to-r from-[#f4f6f1] to-transparent z-10"></div>
+            <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-linear-to-l from-[#f4f6f1] to-transparent z-10"></div>
 
             <!-- SVG Gold Star Gradient Definition -->
             <svg class="sr-only" aria-hidden="true" width="0" height="0">
@@ -893,7 +907,16 @@
                 @endphp
                 @for($repeat = 0; $repeat < $loopCount; $repeat++)
                     @foreach($testimonials as $tIndex => $testi)
-                        <div class="testimonial-card w-77.5 sm:w-95 shrink-0 bg-surface-soft rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300">
+                        <div class="testimonial-card group w-77.5 sm:w-95 shrink-0 bg-surface-soft rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                             data-name="{{ $testi->customer_name }}"
+                             data-city="{{ $testi->customer_city ?? 'Wisatawan' }}"
+                             data-package="{{ $testi->package_name ?? 'Paket Wisata Pangandaran' }}"
+                             data-rating="{{ (int)($testi->rating ?? 5) }}"
+                             data-review="{{ $testi->review_text }}"
+                             data-date="{{ $testi->trip_date ? $testi->trip_date->translatedFormat('d F Y') : ($testi->created_at ? $testi->created_at->translatedFormat('d F Y') : '') }}"
+                             data-avatar="{{ $testi->avatar_url ?? '' }}"
+                             data-initials="{{ substr($testi->customer_name, 0, 2) }}"
+                             title="Klik untuk membaca ulasan lengkap {{ $testi->customer_name }}">
                             <div>
                                 <!-- Header: Bintang Emas di Tengah & Badge Terverifikasi -->
                                 <div class="flex flex-col items-center justify-center text-center mb-4">
@@ -901,7 +924,7 @@
                                         @php $rating = (int)($testi->rating ?? 5); @endphp
                                         @for($i = 1; $i <= 5; $i++)
                                             @if($i <= $rating)
-                                                <svg class="w-5 h-5 drop-shadow-[0_2px_4px_rgba(245,158,11,0.35)] transition-transform duration-200 hover:scale-115" viewBox="0 0 24 24" fill="url(#goldStarGrad)" stroke="#d97706" stroke-width="0.5">
+                                                <svg class="w-5 h-5 drop-shadow-[0_2px_4px_rgba(245,158,11,0.35)] transition-transform duration-200 group-hover:scale-110" viewBox="0 0 24 24" fill="url(#goldStarGrad)" stroke="#d97706" stroke-width="0.5">
                                                     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                                                 </svg>
                                             @else
@@ -919,13 +942,25 @@
                                 <p class="text-slate-700 text-xs sm:text-sm italic leading-relaxed line-clamp-4 text-center">
                                     "{{ $testi->review_text }}"
                                 </p>
+
+                                <!-- Indikator Interaktif Baca Selengkapnya -->
+                                <div class="mt-3 flex items-center justify-center">
+                                    <span class="text-[11px] font-bold text-emerald-700 group-hover:text-emerald-800 inline-flex items-center gap-1 bg-emerald-50/80 group-hover:bg-emerald-100 px-2.5 py-1 rounded-full border border-emerald-200/70 transition">
+                                        <span>Baca Selengkapnya</span>
+                                        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                                    </span>
+                                </div>
                             </div>
                             <div class="flex items-center gap-3.5 pt-5 mt-5 border-t border-neutral-200">
-                                <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold font-display text-base shrink-0 shadow-inner">
-                                    {{ substr($testi->customer_name, 0, 2) }}
-                                </div>
+                                @if(!empty($testi->avatar_url))
+                                    <img src="{{ $testi->avatar_url }}" alt="{{ $testi->customer_name }}" class="w-11 h-11 rounded-full object-cover shrink-0 shadow-inner">
+                                @else
+                                    <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold font-display text-base shrink-0 shadow-inner">
+                                        {{ substr($testi->customer_name, 0, 2) }}
+                                    </div>
+                                @endif
                                 <div class="min-w-0">
-                                    <h4 class="font-display font-bold text-slate-900 text-sm truncate">{{ $testi->customer_name }}</h4>
+                                    <h4 class="font-display font-bold text-slate-900 text-sm truncate group-hover:text-emerald-800 transition">{{ $testi->customer_name }}</h4>
                                     <span class="text-xs text-slate-400 block truncate">{{ $testi->customer_city ?? 'Wisatawan' }} • {{ $testi->package_name ?? 'Paket Pangandaran' }}</span>
                                 </div>
                             </div>
@@ -933,6 +968,38 @@
                     @endforeach
                 @endfor
             </div>
+        </div>
+
+        <!-- Mobile Only: Navigasi Lanjut Ulasan Slider (Hanya Tampil di Layar Ponsel) -->
+        <div class="sm:hidden flex flex-col items-center gap-3.5 mt-6 px-4">
+            <!-- Indikator Titik Aktif (Active Slide Tracker) -->
+            @if($testimonials->count() > 1)
+                <div id="testi-dots-mobile" class="flex items-center gap-1.5 py-1">
+                    @foreach($testimonials as $idx => $t)
+                        <button type="button" class="testi-dot h-2 rounded-full transition-all duration-300 {{ $idx === 0 ? 'w-6 bg-emerald-700' : 'w-2 bg-neutral-300' }}" data-index="{{ $idx }}" aria-label="Lihat ulasan {{ $idx + 1 }}"></button>
+                    @endforeach
+                </div>
+            @endif
+
+            <!-- Tombol Navigasi: Sebelumnya & Lanjut ke Ulasan Berikutnya -->
+            <div class="flex items-center gap-2.5 w-full max-w-sm justify-center">
+                <!-- Tombol Sebelumnya -->
+                <button type="button" id="btn-prev-testi-mobile" aria-label="Ulasan Sebelumnya" class="w-11 h-11 rounded-2xl bg-surface-soft hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-xs transition cursor-pointer shrink-0">
+                    <i data-lucide="chevron-left" class="w-5 h-5 text-slate-600"></i>
+                </button>
+
+                <!-- Tombol Utama: Lanjut ke Ulasan Berikutnya -->
+                <button type="button" id="btn-next-testi-mobile" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-emerald-700 hover:bg-emerald-800 active:scale-[0.98] text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-700/20 transition cursor-pointer">
+                    <span>Lanjut ke Ulasan Berikutnya</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-emerald-200"></i>
+                </button>
+            </div>
+
+            <!-- Petunjuk Ramah & Enak Dibaca -->
+            <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                <span>Ketuk tombol atau usap layar untuk membaca ulasan lainnya</span>
+            </p>
         </div>
 
     </section>
@@ -952,7 +1019,7 @@
                 </p>
             </div>
 
-            <div class="bg-surface-soft rounded-3xl p-6 sm:p-10 shadow-soft text-slate-800 border border-neutral-200 reveal-scale-up delay-100">
+            <div class="bg-surface-soft rounded-3xl p-5 sm:p-8 lg:p-10 shadow-soft text-slate-800 border border-neutral-200 reveal-scale-up delay-100">
                 <form class="space-y-6">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Nama Lengkap *</label>
@@ -996,13 +1063,13 @@
         <div class="space-y-4">
             @forelse($faqs->take(5) as $fIndex => $faq)
                 <div class="faq-item bg-surface-soft rounded-2xl border border-neutral-200 overflow-hidden shadow-soft hover:border-emerald-300 transition-all duration-300 reveal-fade-up {{ $fIndex % 2 === 1 ? 'delay-100' : '' }}">
-                    <button type="button" class="faq-toggle w-full px-6 py-4.5 text-left flex items-center justify-between gap-4 font-display font-bold text-slate-900 text-base hover:text-emerald-700 transition cursor-pointer">
+                    <button type="button" class="faq-toggle w-full px-4 sm:px-6 py-4 sm:py-4.5 text-left flex items-center justify-between gap-3 sm:gap-4 font-display font-bold text-slate-900 text-sm sm:text-base hover:text-emerald-700 transition cursor-pointer">
                         <span>{{ $faq->question }}</span>
                         <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-slate-400 transition-transform duration-300 shrink-0"></i>
                     </button>
                     <div class="faq-collapse">
                         <div class="faq-collapse-inner">
-                            <div class="faq-collapse-content px-6 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-neutral-200/70 pt-3">
+                            <div class="faq-collapse-content px-4 sm:px-6 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-neutral-200/70 pt-3">
                                 {!! nl2br(e($faq->answer)) !!}
                             </div>
                         </div>
@@ -1038,187 +1105,88 @@
                 </p>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-8 items-stretch">
-                <!-- Left: Compact & Clean Contact Card (1/2 width) -->
-                <div class="bg-white rounded-3xl p-6 sm:p-8 lg:p-9 shadow-sm border border-neutral-200 flex flex-col justify-between reveal-fade-left h-full">
-                    <div class="space-y-5 text-sm">
-                        <!-- 1. Alamat -->
-                        <div>
-                            <span class="text-[11px] font-semibold text-slate-600 block uppercase tracking-wider">Alamat Kantor</span>
-                            <p class="font-medium text-slate-800 mt-1 leading-relaxed">{{ $officeAddr }}</p>
-                            <span class="text-xs text-emerald-700 font-semibold block mt-1">Dekat Pantai Barat Pangandaran</span>
+            <!-- Desktop: 2 Kolom Sejajar (50:50). Mobile: Card 2-Kolom Kompak di Atas + Map Lanskap Anti-Gepeng di Bawah -->
+            <div class="flex flex-col lg:grid lg:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 items-stretch">
+                <!-- Contact Card -->
+                <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 lg:p-9 shadow-sm border border-neutral-200 flex flex-col justify-between reveal-fade-left">
+                    <!-- Mobile: 2 Kolom Kiri-Kanan Rapi. Desktop: Stacked 1 Kolom Bersih -->
+                    <div class="grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 lg:gap-5 text-xs sm:text-sm">
+                        <!-- Kolom 1 (Kiri di Mobile): Alamat & WhatsApp -->
+                        <div class="space-y-3 sm:space-y-4 lg:space-y-5">
+                            <!-- 1. Alamat -->
+                            <div>
+                                <span class="text-[9px] xs:text-[10px] sm:text-[11px] font-bold text-slate-400 block uppercase tracking-wider">Alamat Kantor</span>
+                                <p class="font-medium text-slate-800 text-[11px] xs:text-xs sm:text-base mt-0.5 sm:mt-1 leading-snug sm:leading-relaxed">{{ $officeAddr }}</p>
+                                <span class="text-[9px] xs:text-[10px] sm:text-xs text-emerald-700 font-semibold block mt-0.5">Dekat Pantai Barat</span>
+                            </div>
+
+                            <hr class="border-neutral-100 hidden lg:block">
+
+                            <!-- 2. WhatsApp & Telepon -->
+                            <div>
+                                <span class="text-[9px] xs:text-[10px] sm:text-[11px] font-bold text-slate-400 block uppercase tracking-wider">WhatsApp & Hotline</span>
+                                <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="font-display font-bold text-xs xs:text-sm sm:text-lg text-emerald-700 hover:underline block mt-0.5 break-all">
+                                    {{ $phoneNum }}
+                                </a>
+                                <span class="text-[9px] xs:text-[10px] sm:text-xs text-slate-500 block mt-0.5">Online 24 Jam • Cepat</span>
+                            </div>
                         </div>
 
-                        <hr class="border-neutral-100">
+                        <!-- Kolom 2 (Kanan di Mobile): Jam Operasional & Email -->
+                        <div class="space-y-3 sm:space-y-4 lg:space-y-5">
+                            <!-- 3. Jam Operasional -->
+                            <div>
+                                <span class="text-[9px] xs:text-[10px] sm:text-[11px] font-bold text-slate-400 block uppercase tracking-wider">Jam Operasional</span>
+                                <p class="font-medium text-slate-800 text-[11px] xs:text-xs sm:text-base mt-0.5">{{ $opHours }}</p>
+                                <span class="text-[9px] xs:text-[10px] sm:text-xs text-slate-500 block mt-0.5">Buka setiap hari</span>
+                            </div>
 
-                        <!-- 2. WhatsApp & Telepon -->
-                        <div>
-                            <span class="text-[11px] font-semibold text-slate-600 block uppercase tracking-wider">WhatsApp & Hotline</span>
-                            <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="font-display font-bold text-lg text-emerald-700 hover:underline block mt-0.5">
-                                {{ $phoneNum }}
-                            </a>
-                            <span class="text-xs text-slate-600 block mt-0.5">Online 24 Jam • Respon Cepat</span>
-                        </div>
+                            <hr class="border-neutral-100 hidden lg:block">
 
-                        <hr class="border-neutral-100">
-
-                        <!-- 3. Jam Operasional -->
-                        <div>
-                            <span class="text-[11px] font-semibold text-slate-600 block uppercase tracking-wider">Jam Operasional</span>
-                            <p class="font-medium text-slate-800 mt-0.5">{{ $opHours }}</p>
-                            <span class="text-xs text-slate-600 block mt-0.5">Buka setiap hari termasuk akhir pekan & libur nasional</span>
-                        </div>
-
-                        <hr class="border-neutral-100">
-
-                        <!-- 4. Email -->
-                        <div>
-                            <span class="text-[11px] font-semibold text-slate-600 block uppercase tracking-wider">Email Resmi</span>
-                            <a href="mailto:{{ $emailAddr }}" class="font-medium text-slate-800 hover:text-emerald-700 transition block mt-0.5">
-                                {{ $emailAddr }}
-                            </a>
-                            <span class="text-xs text-slate-600 block mt-0.5">Untuk permintaan surat, proposal & invoice instansi</span>
+                            <!-- 4. Email -->
+                            <div>
+                                <span class="text-[9px] xs:text-[10px] sm:text-[11px] font-bold text-slate-400 block uppercase tracking-wider">Email Resmi</span>
+                                <a href="mailto:{{ $emailAddr }}" class="font-medium text-slate-800 hover:text-emerald-700 transition block mt-0.5 text-[10px] xs:text-xs sm:text-base break-all">
+                                    {{ $emailAddr }}
+                                </a>
+                                <span class="text-[9px] xs:text-[10px] sm:text-xs text-slate-500 block mt-0.5">Surat & invoice</span>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Clean Action Buttons -->
-                    <div class="pt-6 mt-6 border-t border-neutral-100 flex flex-col sm:flex-row gap-3">
-                        <a href="https://maps.google.com/?q={{ urlencode($officeAddr) }}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm text-center transition shadow-xs">
-                            Buka Google Maps
+                    <div class="pt-3.5 sm:pt-6 mt-3.5 sm:mt-6 border-t border-neutral-100 flex flex-row gap-2 sm:gap-3">
+                        <a href="https://maps.google.com/?q={{ urlencode($officeAddr) }}" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 sm:py-3 px-2 sm:px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-[10px] xs:text-xs sm:text-sm text-center transition shadow-xs flex items-center justify-center gap-1.5">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5 shrink-0"></i>
+                            <span>Buka di Google Maps</span>
                         </a>
-                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs sm:text-sm text-center transition">
-                            Chat WhatsApp
+                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 sm:py-3 px-2 sm:px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[10px] xs:text-xs sm:text-sm text-center transition flex items-center justify-center gap-1.5">
+                            <i data-lucide="message-circle" class="w-3.5 h-3.5 shrink-0"></i>
+                            <span>Chat WhatsApp</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Right: Clean Interactive Google Map (1/2 width, exact same height) -->
-                <div class="reveal-fade-right h-full flex flex-col">
-                    <div class="flex-1 w-full min-h-95 lg:min-h-0 rounded-3xl overflow-hidden shadow-sm border border-neutral-200 bg-slate-100 relative">
-                        <iframe 
-                            title="Lokasi Kantor Puja Tour Pangandaran"
-                            src="{{ $settings['google_maps_embed_url'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.739775073105!2d108.6477546!3d-7.6974127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6598c19958348b%3A0x6b45f949c256ca61!2sPantai%20Pangandaran!5e0!3m2!1sid!2sid!4v1709800000000!5m2!1sid!2sid' }}" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            class="absolute inset-0 w-full h-full">
-                        </iframe>
-                    </div>
+                <!-- Google Maps (Anti-Gepeng: 100% Lebar di Mobile dengan Rasio 16:9 Lanskap Lega, dan Kolom Kanan Penuh di Desktop) -->
+                <div class="w-full h-56 xs:h-64 sm:h-80 lg:h-auto lg:min-h-95 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm border border-neutral-200 bg-slate-100 relative reveal-fade-right">
+                    <iframe 
+                        title="Lokasi Kantor Puja Tour Pangandaran"
+                        src="{{ $settings['google_maps_embed_url'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.739775073105!2d108.6477546!3d-7.6974127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6598c19958348b%3A0x6b45f949c256ca61!2sPantai%20Pangandaran!5e0!3m2!1sid!2sid!4v1709800000000!5m2!1sid!2sid' }}" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="absolute inset-0 w-full h-full">
+                    </iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 13. GLOBAL FOOTER (Solid Slate 950) -->
-    <footer data-nav-color="dark" class="bg-slate-950 text-slate-400 text-xs py-14 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
-                <!-- Col 1: Brand Info -->
-                <div class="lg:col-span-2 space-y-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-14 h-14 shrink-0 flex items-center justify-center">
-                            <img src="{{ asset('images/puja_logo.png') }}" alt="Puja Tour Travel" class="w-full h-full object-contain">
-                        </div>
-                        <div>
-                            <span class="font-display font-extrabold text-xl text-white block">{{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}</span>
-                            <span class="text-[10px] text-emerald-400 tracking-widest uppercase font-bold">Pangandaran Destination Specialist</span>
-                        </div>
-                    </div>
-                    <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
-                        Mitra terpercaya liburan dan petualangan di Pangandaran. Berbadan hukum resmi CV dengan pemandu lokal bersertifikat HPI dan standar keselamatan teruji.
-                    </p>
-                    <div class="flex items-center gap-2.5 pt-2 text-slate-300">
-                        <a href="{{ $igUrl }}" target="_blank" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-                            </svg>
-                        </a>
-                        <a href="{{ $tiktokUrl }}" target="_blank" aria-label="TikTok" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.89-4.49V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-.9-.07z"/>
-                            </svg>
-                        </a>
-                        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                            </svg>
-                        </a>
-                        <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-emerald-700 hover:text-white transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.5l5.75 3.26-5.75 3.26z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Col 2: Navigasi Cepat -->
-                <div>
-                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Navigasi</h4>
-                    <ul class="space-y-2.5">
-                        @if(!request()->routeIs('packages.index'))
-                            <li><a href="{{ route('packages.index') }}" class="hover:text-emerald-400 transition">Paket Wisata</a></li>
-                        @endif
-                        @if(!request()->routeIs('about'))
-                            <li><a href="{{ route('about') }}" class="hover:text-emerald-400 transition">Tentang Kami</a></li>
-                        @endif
-                        @if(!request()->routeIs('calculator'))
-                            <li><a href="{{ route('calculator') }}" class="hover:text-emerald-400 transition">Estimasi Biaya</a></li>
-                        @endif
-                        @if(!request()->routeIs('gallery'))
-                            <li><a href="{{ route('gallery') }}" class="hover:text-emerald-400 transition">Galeri Foto</a></li>
-                        @endif
-                        @if(!request()->routeIs('testimonial'))
-                            <li><a href="{{ route('testimonial') }}" class="hover:text-emerald-400 transition">Ulasan Wisatawan</a></li>
-                        @endif
-                        @if(!request()->routeIs('faq'))
-                            <li><a href="{{ route('faq') }}" class="hover:text-emerald-400 transition">Tanya Jawab (FAQ)</a></li>
-                        @endif
-                        @if(!request()->routeIs('contact'))
-                            <li><a href="{{ route('contact') }}" class="hover:text-emerald-400 transition">Kontak & Lokasi</a></li>
-                        @endif
-                    </ul>
-                </div>
-
-                <!-- Col 3: Paket Populer (Dynamic) -->
-                <div>
-                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Paket Favorit</h4>
-                    <ul class="space-y-2.5">
-                        @foreach($packages->take(5) as $fp)
-                            <li><a href="{{ route('packages.show', $fp->slug) }}" class="hover:text-emerald-400 transition">{{ $fp->name }}</a></li>
-                        @endforeach
-                    </ul>
-                </div>
-
-                <!-- Col 4: Pembayaran Aman -->
-                <div>
-                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Pembayaran Aman</h4>
-                    <p class="text-[11px] text-slate-400 mb-3">Menerima transfer bank resmi CV & pembayaran digital:</p>
-                    <div class="grid grid-cols-2 gap-2 text-center text-[10px] font-bold text-slate-200">
-                        <div class="bg-slate-900 py-1.5 px-2 rounded-md border border-slate-800">BCA</div>
-                        <div class="bg-slate-900 py-1.5 px-2 rounded-md border border-slate-800">MANDIRI</div>
-                        <div class="bg-slate-900 py-1.5 px-2 rounded-md border border-slate-800">BRI</div>
-                        <div class="bg-slate-900 py-1.5 px-2 rounded-md border border-slate-800">QRIS</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                <p>© {{ date('Y') }} {{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}. Hak Cipta Dilindungi Undang-Undang.</p>
-                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
-                    <span>•</span>
-                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
-                    <span>•</span>
-                    <a href="{{ route('refund-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Pengembalian</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- 13. GLOBAL FOOTER -->
+    @include('partials.footer')
 
     <!-- 14. FLOATING WHATSAPP BUTTON (Solid Emerald) -->
     <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour%20%26%20Travel,%20saya%20ingin%20tanya%20info%20paket%20wisata%20Pangandaran" 
@@ -1240,7 +1208,7 @@
             <div class="flex items-center gap-1.5 sm:gap-3 pointer-events-auto min-w-0 shrink">
                 <div class="px-2.5 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/90 border border-white/20 backdrop-blur-md flex items-center gap-1.5 sm:gap-2 shadow-lg min-w-0">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
-                    <span id="lightbox-title" class="text-xs sm:text-sm font-bold text-white max-w-[90px] xs:max-w-[140px] sm:max-w-xs md:max-w-md truncate">Galeri Foto</span>
+                    <span id="lightbox-title" class="text-xs sm:text-sm font-bold text-white max-w-22.5 xs:max-w-35 sm:max-w-xs md:max-w-md truncate">Galeri Foto</span>
                 </div>
                 <span id="lightbox-counter" class="text-[11px] sm:text-xs font-semibold px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full bg-white/10 text-emerald-300 border border-white/15 shadow-sm shrink-0 whitespace-nowrap">
                     Foto 1 / 1
@@ -1411,6 +1379,70 @@
         </div>
     </div>
 
+    <!-- MODAL DETAIL ULASAN TAMU (Pop-up Baca Ulasan Lengkap) -->
+    <div id="testi-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-testi-customer-name">
+        <!-- Backdrop Gelap Halus -->
+        <div id="testi-detail-backdrop" class="fixed inset-0 bg-slate-950/75 backdrop-blur-xs transition-opacity duration-300 opacity-0"></div>
+
+        <!-- Box Konten Modal Pop-up -->
+        <div id="testi-detail-box" class="relative bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-neutral-100 transform transition-all duration-300 scale-95 opacity-0 my-auto z-10">
+            <!-- Tombol Tutup Silang (X) -->
+            <button type="button" id="btn-close-testi-detail" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 text-slate-500 hover:text-slate-900 flex items-center justify-center transition cursor-pointer" aria-label="Tutup ulasan">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Header Modal: Bintang Rating & Badge Terverifikasi -->
+            <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 pr-10">
+                <div id="modal-testi-stars" class="flex items-center gap-1">
+                    <!-- Dinamis di-generate JS -->
+                </div>
+                <span class="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-2xs">
+                    <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Ulasan Terverifikasi</span>
+                </span>
+            </div>
+
+            <!-- Teks Lengkap Ulasan (Full Text) -->
+            <div class="mt-5 relative">
+                <div class="absolute -top-3 -left-2 text-emerald-100 pointer-events-none select-none">
+                    <svg class="w-12 h-12 fill-current opacity-70" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                </div>
+                <div class="relative z-10 max-h-72 overflow-y-auto pr-2 custom-scrollbar">
+                    <p id="modal-testi-review-text" class="text-slate-800 text-sm sm:text-base leading-relaxed italic whitespace-pre-line">
+                        <!-- Teks ulasan lengkap diisi oleh JS -->
+                    </p>
+                </div>
+            </div>
+
+            <!-- Identitas Tamu & Detail Trip -->
+            <div class="mt-6 pt-5 border-t border-neutral-200 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5 min-w-0">
+                    <div id="modal-testi-avatar-wrapper" class="w-12 h-12 rounded-full overflow-hidden shrink-0 shadow-inner flex items-center justify-center">
+                        <!-- Avatar / Inisial diisi oleh JS -->
+                    </div>
+                    <div class="min-w-0">
+                        <h4 id="modal-testi-customer-name" class="font-display font-bold text-slate-900 text-base truncate"></h4>
+                        <span id="modal-testi-meta" class="text-xs text-slate-500 block truncate font-medium"></span>
+                        <span id="modal-testi-date" class="text-[11px] text-emerald-700 font-semibold block mt-0.5"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Actions Footer -->
+            <div class="mt-6 pt-4 border-t border-neutral-100 flex flex-col xs:flex-row items-stretch xs:items-center justify-end gap-2.5">
+                <button type="button" id="btn-dismiss-testi-detail" class="px-5 py-2.5 min-h-11 rounded-xl border border-neutral-200 hover:bg-neutral-100 text-slate-700 font-bold text-xs transition cursor-pointer">
+                    Tutup
+                </button>
+                <a id="btn-modal-testi-whatsapp" href="#" target="_blank" class="px-5 py-2.5 min-h-11 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition inline-flex items-center justify-center gap-2 cursor-pointer">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span>Tanya Paket Ini</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Review Modal Interactive Script -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -1547,6 +1579,263 @@
                     reviewForm.submit();
                 });
             });
+        }
+
+        // --- Mobile Testimonial Slider Interactive Logic ---
+        var testiWrapper = document.getElementById('testimonial-marquee-wrapper');
+        var btnNextTesti = document.getElementById('btn-next-testi-mobile');
+        var btnPrevTesti = document.getElementById('btn-prev-testi-mobile');
+        var testiDots = document.querySelectorAll('#testi-dots-mobile .testi-dot');
+        var totalUniqueTesti = {{ $testimonials->count() }};
+        var autoSlideTimer = null;
+
+        function getCardStep() {
+            if (!testiWrapper) return 334;
+            var firstCard = testiWrapper.querySelector('.testimonial-card');
+            var secondCard = firstCard ? firstCard.nextElementSibling : null;
+            if (firstCard && secondCard) {
+                return secondCard.offsetLeft - firstCard.offsetLeft;
+            }
+            return firstCard ? firstCard.offsetWidth + 24 : 334;
+        }
+
+        function slideNextTesti() {
+            if (!testiWrapper) return;
+            var step = getCardStep();
+            var maxScroll = testiWrapper.scrollWidth - testiWrapper.clientWidth;
+            if (testiWrapper.scrollLeft >= maxScroll - 20) {
+                testiWrapper.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                testiWrapper.scrollBy({ left: step, behavior: 'smooth' });
+            }
+            resetAutoSlide();
+        }
+
+        function slidePrevTesti() {
+            if (!testiWrapper) return;
+            var step = getCardStep();
+            if (testiWrapper.scrollLeft <= 15) {
+                var maxScroll = testiWrapper.scrollWidth - testiWrapper.clientWidth;
+                testiWrapper.scrollTo({ left: maxScroll, behavior: 'smooth' });
+            } else {
+                testiWrapper.scrollBy({ left: -step, behavior: 'smooth' });
+            }
+            resetAutoSlide();
+        }
+
+        function updateTestiDots() {
+            if (!testiWrapper || totalUniqueTesti <= 0 || !testiDots.length) return;
+            var step = getCardStep();
+            var currentIdx = Math.round(testiWrapper.scrollLeft / step) % totalUniqueTesti;
+            testiDots.forEach(function(dot, idx) {
+                if (idx === currentIdx) {
+                    dot.classList.remove('w-2', 'bg-neutral-300');
+                    dot.classList.add('w-6', 'bg-emerald-700');
+                } else {
+                    dot.classList.remove('w-6', 'bg-emerald-700');
+                    dot.classList.add('w-2', 'bg-neutral-300');
+                }
+            });
+        }
+
+        function startAutoSlide() {
+            if (window.innerWidth >= 640 || !testiWrapper) return;
+            stopAutoSlide();
+            autoSlideTimer = setInterval(function() {
+                slideNextTesti();
+            }, 6000);
+        }
+
+        function stopAutoSlide() {
+            if (autoSlideTimer) {
+                clearInterval(autoSlideTimer);
+                autoSlideTimer = null;
+            }
+        }
+
+        function resetAutoSlide() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        if (btnNextTesti) {
+            btnNextTesti.addEventListener('click', slideNextTesti);
+        }
+        if (btnPrevTesti) {
+            btnPrevTesti.addEventListener('click', slidePrevTesti);
+        }
+
+        if (testiDots.length) {
+            testiDots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    var targetIdx = parseInt(this.getAttribute('data-index'), 10);
+                    var step = getCardStep();
+                    if (testiWrapper) {
+                        testiWrapper.scrollTo({ left: targetIdx * step, behavior: 'smooth' });
+                    }
+                    resetAutoSlide();
+                });
+            });
+        }
+
+        if (testiWrapper) {
+            var scrollTimeout = null;
+            testiWrapper.addEventListener('scroll', function() {
+                if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
+                scrollTimeout = requestAnimationFrame(updateTestiDots);
+            }, { passive: true });
+
+            testiWrapper.addEventListener('touchstart', stopAutoSlide, { passive: true });
+            testiWrapper.addEventListener('touchend', function() {
+                setTimeout(startAutoSlide, 3000);
+            }, { passive: true });
+        }
+
+        startAutoSlide();
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 640) {
+                stopAutoSlide();
+            } else {
+                startAutoSlide();
+            }
+        });
+
+        // --- Testimonial Detail Pop-up Modal (Baca Ulasan Lengkap) ---
+        const detailModal = document.getElementById('testi-detail-modal');
+        const detailBackdrop = document.getElementById('testi-detail-backdrop');
+        const detailBox = document.getElementById('testi-detail-box');
+        const btnCloseDetail = document.getElementById('btn-close-testi-detail');
+        const btnDismissDetail = document.getElementById('btn-dismiss-testi-detail');
+        const modalReviewText = document.getElementById('modal-testi-review-text');
+        const modalCustomerName = document.getElementById('modal-testi-customer-name');
+        const modalMeta = document.getElementById('modal-testi-meta');
+        const modalDate = document.getElementById('modal-testi-date');
+        const modalStars = document.getElementById('modal-testi-stars');
+        const modalAvatarWrapper = document.getElementById('modal-testi-avatar-wrapper');
+        const modalWhatsappBtn = document.getElementById('btn-modal-testi-whatsapp');
+        const companyWaNum = "{{ $waNum }}";
+
+        function openTestimonialDetail(card) {
+            if (!detailModal || !card) return;
+
+            const name = card.getAttribute('data-name') || 'Wisatawan';
+            const city = card.getAttribute('data-city') || 'Wisatawan';
+            const pkg = card.getAttribute('data-package') || 'Paket Wisata Pangandaran';
+            const rating = parseInt(card.getAttribute('data-rating') || '5', 10);
+            const review = card.getAttribute('data-review') || '';
+            const date = card.getAttribute('data-date') || '';
+            const avatar = card.getAttribute('data-avatar') || '';
+            const initials = card.getAttribute('data-initials') || name.substring(0, 2);
+
+            if (modalReviewText) modalReviewText.textContent = `"${review}"`;
+            if (modalCustomerName) modalCustomerName.textContent = name;
+            if (modalMeta) modalMeta.textContent = `${city} • ${pkg}`;
+            if (modalDate) modalDate.textContent = date ? `Trip: ${date}` : '';
+
+            // Generate Stars SVG
+            if (modalStars) {
+                let starHtml = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= rating) {
+                        starHtml += `
+                            <svg class="w-5 h-5 drop-shadow-[0_2px_4px_rgba(245,158,11,0.35)]" viewBox="0 0 24 24" fill="url(#goldStarGrad)" stroke="#d97706" stroke-width="0.5">
+                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                            </svg>
+                        `;
+                    } else {
+                        starHtml += `
+                            <svg class="w-5 h-5 text-slate-200" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                            </svg>
+                        `;
+                    }
+                }
+                modalStars.innerHTML = starHtml;
+            }
+
+            // Avatar / Initials
+            if (modalAvatarWrapper) {
+                if (avatar) {
+                    modalAvatarWrapper.innerHTML = `<img src="${avatar}" alt="${name}" class="w-full h-full object-cover">`;
+                } else {
+                    modalAvatarWrapper.innerHTML = `
+                        <div class="w-full h-full bg-emerald-100 text-emerald-800 font-bold font-display text-base flex items-center justify-center">
+                            ${initials}
+                        </div>
+                    `;
+                }
+            }
+
+            // WhatsApp Inquiry Link
+            if (modalWhatsappBtn) {
+                const waText = `Halo Admin Puja Tour & Travel, saya membaca ulasan pengalaman dari ${name} mengenai ${pkg}. Saya tertarik dan ingin tanya info paket tersebut.`;
+                modalWhatsappBtn.href = `https://wa.me/${companyWaNum}?text=${encodeURIComponent(waText)}`;
+            }
+
+            // Show modal with animation
+            detailModal.classList.remove('hidden');
+            detailModal.classList.add('flex');
+            setTimeout(() => {
+                if (detailBackdrop) detailBackdrop.classList.remove('opacity-0');
+                if (detailBox) {
+                    detailBox.classList.remove('scale-95', 'opacity-0');
+                    detailBox.classList.add('scale-100', 'opacity-100');
+                }
+            }, 20);
+
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function closeTestimonialDetail() {
+            if (!detailModal) return;
+            if (detailBackdrop) detailBackdrop.classList.add('opacity-0');
+            if (detailBox) {
+                detailBox.classList.remove('scale-100', 'opacity-100');
+                detailBox.classList.add('scale-95', 'opacity-0');
+            }
+            setTimeout(() => {
+                detailModal.classList.remove('flex');
+                detailModal.classList.add('hidden');
+            }, 300);
+        }
+
+        if (btnCloseDetail) btnCloseDetail.addEventListener('click', closeTestimonialDetail);
+        if (btnDismissDetail) btnDismissDetail.addEventListener('click', closeTestimonialDetail);
+        if (detailBackdrop) detailBackdrop.addEventListener('click', closeTestimonialDetail);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && detailModal && !detailModal.classList.contains('hidden')) {
+                closeTestimonialDetail();
+            }
+        });
+
+        // Card click listener with pointer movement threshold to distinguish click vs drag/swipe
+        const allTestiCards = document.querySelectorAll('#testimonial-track .testimonial-card');
+        allTestiCards.forEach((card) => {
+            let startX = 0;
+            let startY = 0;
+            let isDragging = false;
+
+            card.addEventListener('pointerdown', (e) => {
+                startX = e.clientX;
+                startY = e.clientY;
+                isDragging = false;
+            });
+
+            card.addEventListener('pointermove', (e) => {
+                if (Math.abs(e.clientX - startX) > 10 || Math.abs(e.clientY - startY) > 10) {
+                    isDragging = true;
+                }
+            });
+
+            card.addEventListener('click', (e) => {
+                if (isDragging) return;
+                openTestimonialDetail(card);
+            });
+        });
+
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
         }
     });
     </script>

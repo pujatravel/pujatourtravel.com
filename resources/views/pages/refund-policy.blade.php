@@ -86,33 +86,33 @@
             </nav>
 
             <!-- Header Title -->
-            <div class="mb-12 border-b border-slate-200 pb-8">
+            <div class="mb-8 sm:mb-12 border-b border-slate-200 pb-6 sm:pb-8">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 mb-4 shadow-2xs">
-                    <i data-lucide="wallet-cards" class="w-4 h-4 text-emerald-700"></i>
-                    <span>Ketentuan Transaksi Finansial, Pembatalan & Pengembalian Dana</span>
+                    <i data-lucide="wallet-cards" class="w-4 h-4 text-emerald-700 shrink-0"></i>
+                    <span class="leading-snug">Ketentuan Transaksi Finansial, Pembatalan & Pengembalian Dana</span>
                 </div>
-                <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight">
+                <h1 class="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight">
                     Kebijakan Pengembalian Dana (Refund Policy)
                 </h1>
-                <p class="text-slate-600 text-sm sm:text-base mt-3 max-w-3xl leading-relaxed">
+                <p class="text-slate-600 text-xs sm:text-sm md:text-base mt-2.5 sm:mt-3 max-w-3xl leading-relaxed">
                     Pedoman resmi dan transparan mengenai pengembalian dana <em>(refund)</em>, ketentuan penjadwalan ulang <em>(reschedule)</em>, serta perlindungan garansi cuaca buruk di <strong>{{ $companyName }}</strong>.
                 </p>
 
                 <!-- Document Meta Bar -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-200 text-xs">
-                    <div>
+                <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-6 pt-6 border-t border-slate-200 text-xs">
+                    <div class="bg-white/60 sm:bg-transparent p-3 sm:p-0 rounded-xl sm:rounded-none border border-slate-100 sm:border-none">
                         <span class="text-slate-600 block text-[11px] font-semibold">Status Kebijakan</span>
                         <span class="font-bold text-slate-800">Resmi & Transparan</span>
                     </div>
-                    <div>
+                    <div class="bg-white/60 sm:bg-transparent p-3 sm:p-0 rounded-xl sm:rounded-none border border-slate-100 sm:border-none">
                         <span class="text-slate-600 block text-[11px] font-semibold">Terakhir Diperbarui</span>
                         <span class="font-bold text-slate-800">{{ date('d F Y') }}</span>
                     </div>
-                    <div>
+                    <div class="bg-white/60 sm:bg-transparent p-3 sm:p-0 rounded-xl sm:rounded-none border border-slate-100 sm:border-none">
                         <span class="text-slate-600 block text-[11px] font-semibold">Unit Layanan</span>
-                        <span class="font-bold text-slate-800">Divisi Keuangan & Reservasi</span>
+                        <span class="font-bold text-slate-800 truncate block">Divisi Keuangan & Reservasi</span>
                     </div>
-                    <div>
+                    <div class="bg-white/60 sm:bg-transparent p-3 sm:p-0 rounded-xl sm:rounded-none border border-slate-100 sm:border-none">
                         <span class="text-slate-600 block text-[11px] font-semibold">Estimasi Pencairan</span>
                         <span class="font-bold text-slate-800">1 – 3 Hari Kerja</span>
                     </div>
@@ -226,7 +226,7 @@
                     </div>
 
                     <!-- PASAL 1 -->
-                    <article id="pasal-1" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
+                    <article id="pasal-1" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xs border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
                         <header class="flex items-center gap-3 border-b border-slate-100 pb-4">
                             <div class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-display font-extrabold text-xs flex items-center justify-center shrink-0">
                                 01
@@ -245,7 +245,7 @@
                     </article>
 
                     <!-- PASAL 2 -->
-                    <article id="pasal-2" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
+                    <article id="pasal-2" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xs border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
                         <header class="flex items-center gap-3 border-b border-slate-100 pb-4">
                             <div class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-display font-extrabold text-xs flex items-center justify-center shrink-0">
                                 02
@@ -290,7 +290,7 @@
                     </article>
 
                     <!-- PASAL 3 -->
-                    <article id="pasal-3" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
+                    <article id="pasal-3" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xs border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
                         <header class="flex items-center gap-3 border-b border-slate-100 pb-4">
                             <div class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-display font-extrabold text-xs flex items-center justify-center shrink-0">
                                 03
@@ -323,7 +323,7 @@
                     </article>
 
                     <!-- PASAL 4 -->
-                    <article id="pasal-4" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
+                    <article id="pasal-4" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xs border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
                         <header class="flex items-center gap-3 border-b border-slate-100 pb-4">
                             <div class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-display font-extrabold text-xs flex items-center justify-center shrink-0">
                                 04
@@ -353,7 +353,7 @@
                     </article>
 
                     <!-- PASAL 5 -->
-                    <article id="pasal-5" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
+                    <article id="pasal-5" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xs border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
                         <header class="flex items-center gap-3 border-b border-slate-100 pb-4">
                             <div class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-display font-extrabold text-xs flex items-center justify-center shrink-0">
                                 05
@@ -383,7 +383,7 @@
                     </article>
 
                     <!-- PASAL 6 -->
-                    <article id="pasal-6" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
+                    <article id="pasal-6" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xs border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
                         <header class="flex items-center gap-3 border-b border-slate-100 pb-4">
                             <div class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-display font-extrabold text-xs flex items-center justify-center shrink-0">
                                 06
@@ -409,7 +409,7 @@
                     </article>
 
                     <!-- PASAL 7 -->
-                    <article id="pasal-7" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
+                    <article id="pasal-7" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xs border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
                         <header class="flex items-center gap-3 border-b border-slate-100 pb-4">
                             <div class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-display font-extrabold text-xs flex items-center justify-center shrink-0">
                                 07
@@ -431,7 +431,7 @@
                     </article>
 
                     <!-- PASAL 8 -->
-                    <article id="pasal-8" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
+                    <article id="pasal-8" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xs border border-slate-200 space-y-4 text-sm leading-relaxed text-slate-700">
                         <header class="flex items-center gap-3 border-b border-slate-100 pb-4">
                             <div class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-display font-extrabold text-xs flex items-center justify-center shrink-0">
                                 08
@@ -461,7 +461,7 @@
                     </article>
 
                     <!-- PASAL 9 -->
-                    <article id="pasal-9" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-5 text-sm leading-relaxed text-slate-700">
+                    <article id="pasal-9" class="scroll-mt-24 sm:scroll-mt-28 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xs border border-slate-200 space-y-5 text-sm leading-relaxed text-slate-700">
                         <header class="flex items-center gap-3 border-b border-slate-100 pb-4">
                             <div class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-display font-extrabold text-xs flex items-center justify-center shrink-0">
                                 09
@@ -519,76 +519,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 shrink-0">
-                            <img src="{{ asset('images/puja_logo.png') }}" alt="Puja Tour Logo" class="w-full h-full object-contain">
-                        </div>
-                        <span class="font-display font-extrabold text-xl text-white">
-                            PUJA<span class="text-emerald-400 ml-1">TOUR</span>
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Penyedia paket wisata resmi Pangandaran, body rafting Green Canyon, snorkeling Pasir Putih, dan gathering perusahaan terpercaya.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Navigasi</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        @if(!request()->routeIs('home'))
-                            <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
-                        @endif
-                        @if(!request()->routeIs('packages.index'))
-                            <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Paket Wisata</a></li>
-                        @endif
-                        @if(!request()->routeIs('about'))
-                            <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang Kami</a></li>
-                        @endif
-                        @if(!request()->routeIs('calculator'))
-                            <li><a href="{{ route('calculator') }}" class="hover:text-white transition">Estimasi Biaya</a></li>
-                        @endif
-                        @if(!request()->routeIs('gallery'))
-                            <li><a href="{{ route('gallery') }}" class="hover:text-white transition">Galeri Foto</a></li>
-                        @endif
-                        @if(!request()->routeIs('testimonial'))
-                            <li><a href="{{ route('testimonial') }}" class="hover:text-white transition">Ulasan Wisatawan</a></li>
-                        @endif
-                        @if(!request()->routeIs('faq'))
-                            <li><a href="{{ route('faq') }}" class="hover:text-white transition">Pertanyaan Umum (FAQ)</a></li>
-                        @endif
-                        @if(!request()->routeIs('contact'))
-                            <li><a href="{{ route('contact') }}" class="hover:text-white transition">Kontak & Lokasi</a></li>
-                        @endif
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Kantor Operasional</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">{{ $officeAddr }}</p>
-                    <p class="text-xs text-emerald-400 font-bold mt-2">Hotline: {{ $phoneNum }}</p>
-                    <p class="text-xs text-slate-400 mt-1">Email: {{ $emailAddr }}</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Legalitas Resmi</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Berbadan hukum resmi CV dengan izin pariwisata terdaftar dan pemandu bersertifikasi kepemanduan HPI Jawa Barat.
-                    </p>
-                </div>
-            </div>
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                <p>© {{ date('Y') }} {{ $companyName }}. All rights reserved.</p>
-                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
-                    <span>•</span>
-                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
-                    <span>•</span>
-                    <a href="{{ route('refund-policy') }}" class="text-emerald-400 font-semibold transition">Kebijakan Pengembalian</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/{{ $waNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20kebijakan%20refund" 

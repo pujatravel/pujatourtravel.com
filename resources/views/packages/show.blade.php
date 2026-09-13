@@ -146,7 +146,7 @@
                 <div class="bg-surface-soft rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
                     <div class="relative h-72 sm:h-96 md:h-112 w-full bg-slate-900 overflow-hidden">
                         <img src="{{ $package->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $package->name }}" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
+                        <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
                         
                         <!-- Badges on Image -->
                         <div class="absolute top-6 left-6 flex flex-wrap items-center gap-2">
@@ -182,11 +182,11 @@
                     </div>
 
                     <!-- Highlight Highlights Bar -->
-                    <div class="p-6 sm:p-8 border-b border-neutral-200 bg-white grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-                        <div class="p-3 rounded-2xl bg-canvas border border-neutral-200">
-                            <span class="text-[11px] text-slate-400 block font-medium">Harga Mulai</span>
-                            <span class="font-display font-extrabold text-lg sm:text-xl text-emerald-700">{{ $package->formatted_price }}</span>
-                            <span class="text-[10px] text-slate-400">/ {{ $package->price_unit }}</span>
+                    <div class="p-4 sm:p-7 border-b border-neutral-200 bg-white grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 text-center">
+                        <div class="p-2.5 sm:p-3 rounded-2xl bg-canvas border border-neutral-200">
+                            <span class="text-[10px] sm:text-[11px] text-slate-400 block font-medium">Harga Mulai</span>
+                            <span class="font-display font-extrabold text-base xs:text-lg sm:text-xl text-emerald-700 block truncate">{{ $package->formatted_price }}</span>
+                            <span class="text-[9px] sm:text-[10px] text-slate-400">/ {{ $package->price_unit }}</span>
                         </div>
                         <div class="p-3 rounded-2xl bg-canvas border border-neutral-200">
                             <span class="text-[11px] text-slate-400 block font-medium">Durasi Trip</span>
@@ -390,14 +390,14 @@
             </div>
 
             <!-- RIGHT / BOOKING SIDEBAR (4 COLS STICKY) -->
-            <div class="lg:col-span-4 sticky top-24 space-y-6">
+            <div class="lg:col-span-4 self-start sticky top-24 space-y-6">
                 
                 <!-- Main Booking Card -->
-                <div class="bg-surface-soft rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200">
+                <div class="bg-surface-soft rounded-3xl p-5 sm:p-7 shadow-soft border border-neutral-200">
                     <div class="pb-5 border-b border-neutral-200">
                         <span class="text-xs font-semibold text-slate-400 block uppercase tracking-wider">Harga Resmi Paket</span>
-                        <div class="flex items-baseline gap-2 mt-1">
-                            <span class="font-display font-extrabold text-3xl sm:text-4xl text-emerald-700">{{ $package->formatted_price }}</span>
+                        <div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2 mt-1">
+                            <span class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-emerald-700 tracking-tight">{{ $package->formatted_price }}</span>
                             <span class="text-xs font-bold text-slate-500">/ {{ $package->price_unit }}</span>
                         </div>
                         <span class="inline-block mt-2 px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-100 text-amber-900">
@@ -522,76 +522,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 shrink-0">
-                            <img src="{{ asset('images/puja_logo.png') }}" alt="Puja Tour Logo" class="w-full h-full object-contain">
-                        </div>
-                        <span class="font-display font-extrabold text-xl text-white">
-                            PUJA<span class="text-emerald-400 ml-1">TOUR</span>
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Penyedia paket wisata resmi Pangandaran, body rafting Green Canyon, snorkeling Pasir Putih, dan gathering perusahaan terpercaya.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Navigasi</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        @if(!request()->routeIs('home'))
-                            <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
-                        @endif
-                        @if(!request()->routeIs('packages.index'))
-                            <li><a href="{{ route('packages.index') }}" class="hover:text-white transition">Semua Paket Wisata</a></li>
-                        @endif
-                        @if(!request()->routeIs('about'))
-                            <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang Kami</a></li>
-                        @endif
-                        @if(!request()->routeIs('calculator'))
-                            <li><a href="{{ route('calculator') }}" class="hover:text-white transition">Estimasi Biaya</a></li>
-                        @endif
-                        @if(!request()->routeIs('gallery'))
-                            <li><a href="{{ route('gallery') }}" class="hover:text-white transition">Galeri Foto</a></li>
-                        @endif
-                        @if(!request()->routeIs('testimonial'))
-                            <li><a href="{{ route('testimonial') }}" class="hover:text-white transition">Ulasan Wisatawan</a></li>
-                        @endif
-                        @if(!request()->routeIs('faq'))
-                            <li><a href="{{ route('faq') }}" class="hover:text-white transition">Pertanyaan Umum (FAQ)</a></li>
-                        @endif
-                        @if(!request()->routeIs('contact'))
-                            <li><a href="{{ route('contact') }}" class="hover:text-white transition">Kontak & Lokasi</a></li>
-                        @endif
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Kantor Operasional</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">{{ $officeAddr }}</p>
-                    <p class="text-xs text-emerald-400 font-bold mt-2">Hotline: {{ $phoneNum }}</p>
-                    <p class="text-xs text-slate-400 mt-1">Email: {{ $emailAddr }}</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-400 mb-4">Legalitas Resmi</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Berbadan hukum resmi CV dengan izin pariwisata terdaftar dan pemandu bersertifikasi kepemanduan HPI Jawa Barat.
-                    </p>
-                </div>
-            </div>
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                <p>© {{ date('Y') }} {{ $settings['company_name'] ?? 'PUJA TOUR & TRAVEL PANGANDARAN' }}. All rights reserved.</p>
-                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-                    <a href="{{ route('privacy-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Privasi</a>
-                    <span>•</span>
-                    <a href="{{ route('terms-conditions') }}" class="hover:text-emerald-400 transition">Syarat & Ketentuan</a>
-                    <span>•</span>
-                    <a href="{{ route('refund-policy') }}" class="hover:text-emerald-400 transition">Kebijakan Pengembalian</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <!-- MOBILE STICKY BOTTOM BAR (Section 10.2 / 04-ui-ux-guidelines.md) -->
     <div class="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/80 px-4 py-3 lg:hidden shadow-lg flex items-center justify-between gap-3">

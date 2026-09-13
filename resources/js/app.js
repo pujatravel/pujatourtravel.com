@@ -306,13 +306,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const priceDisplay = document.getElementById('calc-total-display');
     const submitWhatsappBtn = document.getElementById('btn-order-whatsapp');
 
+    // Mobile widgets
+    const mobileCalcPackage = document.getElementById('mobile-calc-package');
+    const mobileCalcPax = document.getElementById('mobile-calc-pax');
+    const mobileCalcTotal = document.getElementById('mobile-calc-total');
+
     function updatePriceEstimate() {
-        if (!calcPackage || !calcPax || !priceDisplay) return;
-        const selectedOption = calcPackage.querySelector(`option[value="${calcPackage.value}"]`) || calcPackage.options[calcPackage.selectedIndex];
+        const pkgEl = calcPackage || mobileCalcPackage;
+        const paxEl = calcPax || mobileCalcPax;
+        if (!pkgEl || !paxEl) return;
+
+        const selectedOption = pkgEl.querySelector(`option[value="${pkgEl.value}"]`) || pkgEl.options[pkgEl.selectedIndex];
         const basePrice = parseInt(selectedOption?.getAttribute('data-price') || '0', 10);
         
         // Defensively clamp pax between 1 and 500
-        let paxCount = parseInt(calcPax.value || '1', 10);
+        let paxCount = parseInt(paxEl.value || '1', 10);
         if (isNaN(paxCount) || paxCount < 1) {
             paxCount = 1;
         } else if (paxCount > 500) {
@@ -324,16 +332,59 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (paxCount >= 5) discount = 0.90; // 10% discount for 5+ pax
 
         const totalPrice = Math.round(basePrice * paxCount * discount);
-        priceDisplay.textContent = 'Rp ' + (isNaN(totalPrice) ? 0 : totalPrice).toLocaleString('id-ID');
+        const formatted = 'Rp ' + (isNaN(totalPrice) ? 0 : totalPrice).toLocaleString('id-ID');
+
+        if (priceDisplay) priceDisplay.textContent = formatted;
+        if (mobileCalcTotal) mobileCalcTotal.textContent = formatted;
     }
 
-    if (calcPackage) calcPackage.addEventListener('change', updatePriceEstimate);
+    if (calcPackage) {
+        calcPackage.addEventListener('change', () => {
+            if (mobileCalcPackage && mobileCalcPackage.value !== calcPackage.value) {
+                mobileCalcPackage.value = calcPackage.value;
+            }
+            updatePriceEstimate();
+        });
+    }
+
+    if (mobileCalcPackage) {
+        mobileCalcPackage.addEventListener('change', () => {
+            if (calcPackage && calcPackage.value !== mobileCalcPackage.value) {
+                calcPackage.value = mobileCalcPackage.value;
+            }
+            updatePriceEstimate();
+        });
+    }
+
     if (calcPax) {
-        calcPax.addEventListener('input', updatePriceEstimate);
+        calcPax.addEventListener('input', () => {
+            if (mobileCalcPax && mobileCalcPax.value !== calcPax.value) {
+                mobileCalcPax.value = calcPax.value;
+            }
+            updatePriceEstimate();
+        });
         calcPax.addEventListener('blur', () => {
             let pax = parseInt(calcPax.value, 10);
             if (isNaN(pax) || pax < 1) calcPax.value = 1;
             else if (pax > 500) calcPax.value = 500;
+            if (mobileCalcPax) mobileCalcPax.value = calcPax.value;
+            updatePriceEstimate();
+        });
+    }
+
+    if (mobileCalcPax) {
+        mobileCalcPax.addEventListener('input', () => {
+            mobileCalcPax.value = mobileCalcPax.value.replace(/[^0-9]/g, '');
+            if (calcPax && calcPax.value !== mobileCalcPax.value) {
+                calcPax.value = mobileCalcPax.value;
+            }
+            updatePriceEstimate();
+        });
+        mobileCalcPax.addEventListener('blur', () => {
+            let pax = parseInt(mobileCalcPax.value, 10);
+            if (isNaN(pax) || pax < 1) mobileCalcPax.value = 1;
+            else if (pax > 500) mobileCalcPax.value = 500;
+            if (calcPax) calcPax.value = mobileCalcPax.value;
             updatePriceEstimate();
         });
     }
@@ -348,26 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (calcPackage) updatePriceEstimate();
-
-    // 4.5 Mobile Widget Sync
-    // Sync the mobile calc total display with the desktop calculator result
-    const mobileCalcTotal = document.getElementById('mobile-calc-total');
-
-    function syncMobileCalcTotal() {
-        if (mobileCalcTotal && priceDisplay) {
-            mobileCalcTotal.textContent = priceDisplay.textContent;
-        }
-    }
-
-    // Patch updatePriceEstimate to also update mobile display
-    const _origUpdatePriceEstimate = updatePriceEstimate;
-    // We already assigned updatePriceEstimate above, we just add a side-effect via event listener
-    if (calcPackage) calcPackage.addEventListener('change', syncMobileCalcTotal);
-    if (calcPax) calcPax.addEventListener('input', syncMobileCalcTotal);
-
-    // Initial sync
-    syncMobileCalcTotal();
+    updatePriceEstimate();
 
     // Mobile WhatsApp button handler (mirrors desktop)
     const submitWhatsappBtnMobile = document.getElementById('btn-order-whatsapp-mobile');

@@ -29,7 +29,7 @@
                 @forelse($galleries as $gal)
                     <div class="group relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-950 h-52 flex flex-col justify-between p-3 transition shadow-xs hover:shadow-md">
                         <img src="{{ $gal->image_url }}" alt="{{ $gal->title }}" class="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity">
-                        <div class="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/40 to-slate-950/20"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/20"></div>
 
                         <!-- Top Badges -->
                         <div class="relative z-10 flex items-center justify-between gap-2">

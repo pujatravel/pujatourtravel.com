@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openMobileMenu() {
         if (!mobileDrawer) return;
+        mobileDrawer.classList.remove('invisible', 'pointer-events-none');
         mobileDrawer.classList.remove('translate-x-full');
         drawerOverlay.classList.remove('hidden');
         setTimeout(() => drawerOverlay.classList.remove('opacity-0'), 10);
@@ -48,7 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!mobileDrawer) return;
         mobileDrawer.classList.add('translate-x-full');
         drawerOverlay.classList.add('opacity-0');
-        setTimeout(() => drawerOverlay.classList.add('hidden'), 300);
+        setTimeout(() => {
+            drawerOverlay.classList.add('hidden');
+            mobileDrawer.classList.add('invisible', 'pointer-events-none');
+        }, 300);
         document.body.style.overflow = '';
     }
 

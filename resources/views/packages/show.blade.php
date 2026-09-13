@@ -146,7 +146,7 @@
                 <div class="bg-surface-soft rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
                     <div class="relative h-72 sm:h-96 md:h-112 w-full bg-slate-900 overflow-hidden">
                         <img src="{{ $package->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $package->name }}" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
                         
                         <!-- Badges on Image -->
                         <div class="absolute top-6 left-6 flex flex-wrap items-center gap-2">

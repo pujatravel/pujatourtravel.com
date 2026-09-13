@@ -55,9 +55,16 @@
 }
 
 @layer base {
+    html {
+        max-width: 100vw;
+        overflow-x: hidden !important;
+    }
     body {
         background-color: #f4f6f1;
         color: #334155;
+        max-width: 100%;
+        overflow-x: hidden !important;
+        position: relative;
     }
 }
 
@@ -388,16 +395,18 @@ span.flatpickr-weekday {
    Strictly Zero Movement/Shift - Pure Color Cross-Fade Only
    ========================================================================== */
 /* Subpages without full-screen hero clearance for fixed navbar */
-body:has(#beranda) {
-    padding-top: 0;
-}
-body:not(:has(#beranda)) {
+body:has(#main-header):not(:has(#beranda)) {
     padding-top: 5rem;
 }
 @media (min-width: 640px) {
-    body:not(:has(#beranda)) {
+    body:has(#main-header):not(:has(#beranda)) {
         padding-top: 5.5rem;
     }
+}
+body:has(#beranda),
+body:has(#admin-sidebar),
+body:has(#admin-mobile-drawer) {
+    padding-top: 0 !important;
 }
 
 #main-header {

@@ -675,6 +675,47 @@
             </div>
         </div>
     </section>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-2xs">
+                                <i data-lucide="leaf" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-full">
+                                Ekowisata
+                            </span>
+                        </div>
+
+                        <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2 group-hover:text-emerald-700 transition">
+                            Ekowisata & Kearifan Budaya
+                        </h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Menghargai alam dengan aturan zero-littering dan larangan perusakan ekosistem sungai. Kami memberdayakan nelayan dan masyarakat kuliner lokal.
+                        </p>
+
+                        <!-- Checklist -->
+                        <ul class="space-y-2 text-xs text-slate-700">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Zero Plastic River Trail di Green Canyon</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Edukasi Pelestarian Penyu Pesisir</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>Pemberdayaan Nelayan Tradisional</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 mt-6 border-t border-neutral-100 text-[11px] font-bold text-emerald-700 flex items-center gap-1.5">
+                        <i data-lucide="heart-handshake" class="w-3.5 h-3.5 text-emerald-600"></i>
+                        <span>Pemberdayaan Warga Pesisir</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- 5. LEGALITAS, SERTIFIKASI & TRANSPARANSI USAHA (Official Credential Vault) -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

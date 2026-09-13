@@ -6,7 +6,7 @@
 @section('content')
 <div class="space-y-8">
     <!-- Top Summary Banner -->
-    <div class="bg-linear-to-r from-slate-900 via-slate-800 to-emerald-950 rounded-3xl p-6 sm:p-8 text-white shadow-md border border-slate-700/50 flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div class="bg-slate-900 bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950 rounded-3xl p-6 sm:p-8 text-white shadow-md border border-slate-700/50 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div class="space-y-2 max-w-2xl">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold">
                 <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-400"></i>
@@ -201,7 +201,7 @@
                             <!-- Slide Image Preview -->
                             <div class="relative h-44 w-full bg-slate-900 overflow-hidden">
                                 <img src="{{ asset($slide->image_url ?? $slide->image_path) }}" alt="{{ $slide->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
                                 <div class="absolute top-3 left-3">
                                     <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-900/80 text-white backdrop-blur-xs border border-white/20">
                                         #{{ $loop->iteration }} Slide

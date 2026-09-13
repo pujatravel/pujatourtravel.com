@@ -239,7 +239,7 @@
             </div>
 
             <!-- BOTTOM CTA BANNER (Section 3.6 / 03-sitemap-and-pages.md) -->
-            <div class="mt-16 rounded-3xl bg-linear-to-r from-emerald-800 to-slate-900 text-white p-8 sm:p-12 text-center shadow-lg relative overflow-hidden">
+            <div class="mt-16 rounded-3xl bg-slate-900 bg-gradient-to-r from-emerald-800 to-slate-900 text-white p-8 sm:p-12 text-center shadow-lg relative overflow-hidden">
                 <div class="relative z-10 max-w-2xl mx-auto space-y-4">
                     <h2 class="font-display font-extrabold text-2xl sm:text-3xl">
                         Siap Membuat Cerita Liburan Anda Sendiri?

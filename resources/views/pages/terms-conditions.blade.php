@@ -17,7 +17,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="Syarat & Ketentuan Layanan — Puja Tour & Travel Pangandaran">
     <meta property="og:description" content="Ketentuan pemesanan paket wisata Pangandaran, standar keselamatan petualangan, asuransi, dan kebijakan force majeure.">
-    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
 
     <!-- Structured Data (JSON-LD): BreadcrumbList -->
     <script type="application/ld+json">

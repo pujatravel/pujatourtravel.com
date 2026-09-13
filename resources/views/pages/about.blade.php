@@ -17,14 +17,14 @@
     <meta property="og:url" content="{{ url('/tentang-kami') }}">
     <meta property="og:title" content="Tentang Kami — Profil Resmi Biro Wisata Puja Tour Pangandaran">
     <meta property="og:description" content="Profil resmi Puja Tour & Travel Pangandaran. Biro wisata berbadan hukum CV, pemandu lokal berlisensi resmi HPI, standar keselamatan K3 SNI, dan terpercaya melayani 15.000+ wisatawan.">
-    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tentang Kami — Profil Resmi Biro Wisata Puja Tour Pangandaran">
     <meta name="twitter:description" content="Biro wisata resmi berbadan hukum CV di Pangandaran. Pemandu berlisensi HPI, standar keselamatan teruji, dan pengalaman 15.000+ wisatawan puas.">
-    <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('images/og_image.jpg') }}">
 
     <script type="application/ld+json">
     {!! json_encode([

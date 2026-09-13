@@ -18,7 +18,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="Ulasan & Testimonial Wisatawan — Puja Tour & Travel Pangandaran">
     <meta property="og:description" content="Cerita dan testimoni nyata dari para wisatawan yang telah menikmati liburan seru di Pangandaran bersama Puja Tour & Travel.">
-    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ulasan & Testimonial Wisatawan — Puja Tour & Travel Pangandaran">
     <meta name="twitter:description" content="Cerita dan testimoni nyata dari para wisatawan yang telah menikmati liburan seru di Pangandaran bersama Puja Tour & Travel.">
-    <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('images/og_image.jpg') }}">
 
     <!-- Structured Data (JSON-LD): TravelAgency with AggregateRating — enables Google star ratings -->
     <script type="application/ld+json">

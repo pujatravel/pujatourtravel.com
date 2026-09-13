@@ -18,7 +18,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="FAQ — Pertanyaan Seputar Wisata Pangandaran & Puja Tour">
     <meta property="og:description" content="Pertanyaan umum seputar body rafting Green Canyon, snorkeling Pasir Putih, keamanan anak & pemula.">
-    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FAQ — Pertanyaan Seputar Wisata Pangandaran & Puja Tour">
     <meta name="twitter:description" content="Pertanyaan umum seputar body rafting Green Canyon, snorkeling Pasir Putih, keamanan anak & pemula.">
-    <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('images/og_image.jpg') }}">
 
     <!-- Structured Data (JSON-LD): FAQPage — enables Google FAQ Rich Results -->
     @if($faqs->count() > 0)

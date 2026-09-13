@@ -18,7 +18,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="Kalkulator & Estimasi Biaya Wisata Pangandaran — Puja Tour & Travel">
     <meta property="og:description" content="Simulasi dan estimasi biaya paket wisata Pangandaran, body rafting Green Canyon, diskon rombongan otomatis, dan reservasi WhatsApp instan.">
-    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kalkulator & Estimasi Biaya Wisata Pangandaran — Puja Tour & Travel">
     <meta name="twitter:description" content="Simulasi dan estimasi biaya paket wisata Pangandaran, body rafting Green Canyon, diskon rombongan otomatis, dan reservasi WhatsApp instan.">
-    <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('images/og_image.jpg') }}">
 
     <!-- Structured Data (JSON-LD): BreadcrumbList -->
     <script type="application/ld+json">
@@ -484,7 +484,7 @@
             <div id="tier-podium-track" class="flex md:grid md:grid-cols-3 gap-3.5 sm:gap-6 items-end justify-start md:justify-center overflow-x-auto snap-x snap-mandatory pt-4 pb-6 px-2 -mx-4 sm:mx-0 sm:px-0 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
 
                 <!-- PODIUM 2: KIRI (Tier 1: Small Group 1 - 4 Orang) -->
-                <div id="tier-card-1" class="w-[78vw] sm:w-80 md:w-auto shrink-0 snap-center flex flex-col justify-between bg-white rounded-3xl overflow-hidden border border-neutral-200 shadow-soft transition-all duration-300 md:scale-95 md:opacity-85 hover:opacity-100 hover:scale-100 md:filter md:blur-[0.3px] hover:blur-none group relative z-10 h-[450px]">
+                <div id="tier-card-1" class="w-[78vw] sm:w-80 md:w-auto shrink-0 snap-center flex flex-col justify-between bg-white rounded-3xl overflow-hidden border border-neutral-200 shadow-soft transition-all duration-300 md:scale-95 md:opacity-85 hover:opacity-100 hover:scale-100 md:filter md:blur-[0.3px] hover:blur-none group relative z-10 h-112.5">
                     {{-- Leaderboard Ribbon --}}
                     <div class="bg-slate-700 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider py-1.5 px-3 text-center flex items-center justify-center gap-1.5 shadow-xs">
                         <span class="w-4 h-4 rounded-full bg-slate-600 text-white text-[9px] flex items-center justify-center font-black">2</span>
@@ -503,7 +503,7 @@
                             </div>
                             <h3 class="font-display font-bold text-base sm:text-lg text-slate-900 mb-1">Trip 1 - 4 Orang</h3>
                             <p class="text-xs font-bold text-slate-500 mb-2.5">Tarif Normal Standar Private</p>
-                            <p class="text-xs text-slate-600 leading-relaxed mb-4 min-h-[54px]">
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4 min-h-13.5">
                                 Pilihan ideal bagi pasangan, backpacker, atau keluarga inti. Trip private tanpa digabung dengan peserta luar lainnya.
                             </p>
                         </div>
@@ -527,7 +527,7 @@
                 </div>
 
                 <!-- PODIUM 1: TENGAH (Tier 2: Trip 5 - 9 Orang, Favorit Keluarga - PALING LAKU & BEST VALUE) -->
-                <div id="tier-card-2" class="w-[84vw] sm:w-85 md:w-auto shrink-0 snap-center flex flex-col justify-between bg-white rounded-3xl overflow-hidden border-2 border-emerald-500 ring-4 ring-emerald-500/20 shadow-2xl transition-all duration-300 md:scale-105 z-20 opacity-100 group relative h-[485px]">
+                <div id="tier-card-2" class="w-[84vw] sm:w-85 md:w-auto shrink-0 snap-center flex flex-col justify-between bg-white rounded-3xl overflow-hidden border-2 border-emerald-500 ring-4 ring-emerald-500/20 shadow-2xl transition-all duration-300 md:scale-105 z-20 opacity-100 group relative h-121.25">
                     {{-- Leaderboard Ribbon --}}
                     <div class="bg-emerald-700 text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider py-2 px-3 text-center flex items-center justify-center gap-1.5 shadow-md">
                         <i data-lucide="award" class="w-4 h-4 text-white shrink-0"></i>
@@ -546,7 +546,7 @@
                             </div>
                             <h3 class="font-display font-extrabold text-base sm:text-lg text-slate-900 mb-1">Trip 5 - 9 Orang</h3>
                             <p class="text-xs font-extrabold text-emerald-700 mb-2.5">Diskon Otomatis 10%</p>
-                            <p class="text-xs text-slate-600 leading-relaxed mb-4 min-h-[54px]">
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4 min-h-13.5">
                                 Cocok untuk rombongan keluarga besar, sahabat, atau rekan kerja. Otomatis memangkas 10% dari total tagihan paket dasar.
                             </p>
                         </div>
@@ -570,7 +570,7 @@
                 </div>
 
                 <!-- PODIUM 3: KANAN (Tier 3: Trip 10+ Orang, Corporate & Gathering) -->
-                <div id="tier-card-3" class="w-[78vw] sm:w-80 md:w-auto shrink-0 snap-center flex flex-col justify-between bg-white rounded-3xl overflow-hidden border border-neutral-200 shadow-soft transition-all duration-300 md:scale-95 md:opacity-85 hover:opacity-100 hover:scale-100 md:filter md:blur-[0.3px] hover:blur-none group relative z-10 h-[450px]">
+                <div id="tier-card-3" class="w-[78vw] sm:w-80 md:w-auto shrink-0 snap-center flex flex-col justify-between bg-white rounded-3xl overflow-hidden border border-neutral-200 shadow-soft transition-all duration-300 md:scale-95 md:opacity-85 hover:opacity-100 hover:scale-100 md:filter md:blur-[0.3px] hover:blur-none group relative z-10 h-112.5">
                     {{-- Leaderboard Ribbon --}}
                     <div class="bg-slate-700 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider py-1.5 px-3 text-center flex items-center justify-center gap-1.5 shadow-xs">
                         <span class="w-4 h-4 rounded-full bg-slate-600 text-white text-[9px] flex items-center justify-center font-black">3</span>
@@ -589,7 +589,7 @@
                             </div>
                             <h3 class="font-display font-bold text-base sm:text-lg text-slate-900 mb-1">Trip 10+ Orang</h3>
                             <p class="text-xs font-bold text-emerald-700 mb-2.5">Diskon Maksimal 15%</p>
-                            <p class="text-xs text-slate-600 leading-relaxed mb-4 min-h-[54px]">
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4 min-h-13.5">
                                 Solusi gathering instansi, perusahaan, sekolah, atau komunitas. Potongan 15% plus fasilitas penunjang gathering lengkap.
                             </p>
                         </div>

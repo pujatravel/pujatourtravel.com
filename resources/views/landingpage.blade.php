@@ -22,7 +22,7 @@
     <meta property="og:url" content="{{ url('/') }}">
     <meta property="og:title" content="Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran">
     <meta property="og:description" content="Nikmati liburan seru di Pangandaran bersama Puja Tour & Travel. Tersedia paket wisata Pangandaran, Green Canyon, snorkeling, pantai, dan berbagai pilihan perjalanan menarik lainnya.">
-    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Puja Tour & Travel Pangandaran — Paket Wisata Green Canyon & Pantai">
@@ -31,7 +31,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran">
     <meta name="twitter:description" content="Nikmati liburan seru di Pangandaran bersama Puja Tour & Travel. Tersedia paket wisata Pangandaran, Green Canyon, snorkeling, pantai, dan berbagai pilihan perjalanan menarik lainnya.">
-    <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('images/og_image.jpg') }}">
 
     <!-- Structured Data (JSON-LD): TravelAgency — homepage utama -->
     <script type="application/ld+json">

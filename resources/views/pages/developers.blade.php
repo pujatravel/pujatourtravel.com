@@ -18,7 +18,7 @@
     <meta property="og:url" content="{{ route('developers') }}">
     <meta property="og:title" content="Tim Pengembang — Di Balik Layar Puja Tour & Travel Pangandaran">
     <meta property="og:description" content="Mengenal tim pengembang di balik platform digital resmi Puja Tour & Travel Pangandaran. Dibangun oleh talenta muda PPLG dengan standar rekayasa perangkat lunak modern.">
-    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tim Pengembang — Di Balik Layar Puja Tour & Travel Pangandaran">
     <meta name="twitter:description" content="Profil pengembang sistem di balik platform digital resmi Puja Tour & Travel Pangandaran.">
-    <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('images/og_image.jpg') }}">
 
     <!-- Structured Data (JSON-LD): BreadcrumbList -->
     <script type="application/ld+json">

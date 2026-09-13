@@ -17,7 +17,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="Kebijakan Privasi — Puja Tour & Travel Pangandaran">
     <meta property="og:description" content="Kebijakan Privasi resmi Puja Tour & Travel Pangandaran mengenai perlindungan dan keamanan data wisatawan.">
-    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
 
     <!-- Structured Data (JSON-LD): BreadcrumbList -->
     <script type="application/ld+json">

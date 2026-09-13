@@ -17,7 +17,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="Kebijakan Pengembalian Dana — Puja Tour & Travel Pangandaran">
     <meta property="og:description" content="Ketentuan refund transparan, skema pembatalan, garansi cuaca force majeure, dan tata cara klaim pengembalian dana.">
-    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
 
     <!-- Structured Data (JSON-LD): BreadcrumbList -->
     <script type="application/ld+json">

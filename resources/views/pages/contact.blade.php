@@ -18,7 +18,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="Kontak & Lokasi Kantor — Puja Tour & Travel Pangandaran">
     <meta property="og:description" content="Hubungi kantor resmi Puja Tour & Travel Pangandaran. WhatsApp hotline 24 jam, alamat kantor operasional, dan petunjuk arah lokasi.">
-    <meta property="og:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kontak & Lokasi Kantor — Puja Tour & Travel Pangandaran">
     <meta name="twitter:description" content="Hubungi kantor resmi Puja Tour & Travel Pangandaran. WhatsApp hotline 24 jam, alamat kantor operasional, dan petunjuk arah lokasi.">
-    <meta name="twitter:image" content="{{ asset('images/hero_pangandaran.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('images/og_image.jpg') }}">
 
     <!-- Structured Data (JSON-LD): TravelAgency -->
     <script type="application/ld+json">

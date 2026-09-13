@@ -51,7 +51,7 @@
 @endphp
 
 <!-- GLOBAL NAVBAR HEADER -->
-<header id="main-header" class="{{ $isHome ? 'fixed top-0 left-0 right-0 z-40 w-full py-3 sm:py-3.5 is-transparent-nav' : 'sticky top-0 z-40 w-full bg-surface-soft/95 backdrop-blur-md transition-all duration-300 py-3.5 shadow-xs is-white-nav' }}">
+<header id="main-header" class="{{ $isHome ? 'fixed top-0 left-0 right-0 z-40 w-full max-w-full py-3 sm:py-3.5 is-transparent-nav' : 'sticky top-0 z-40 w-full max-w-full bg-surface-soft/95 backdrop-blur-md transition-all duration-300 py-3.5 shadow-xs is-white-nav' }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
         <!-- Brand Logo -->
         <a href="{{ route('home') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
@@ -87,7 +87,7 @@
 
 <!-- GLOBAL MOBILE DRAWER & BACKDROP -->
 <div id="drawer-overlay" class="fixed inset-0 bg-slate-900/60 z-50 hidden opacity-0 transition-opacity duration-300"></div>
-<div id="mobile-drawer" class="fixed top-0 right-0 h-full w-[85%] sm:w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-5 sm:p-6 overflow-y-auto invisible pointer-events-none">
+<div id="mobile-drawer" class="fixed top-0 right-0 h-full w-[85%] sm:w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-5 sm:p-6 overflow-y-auto hidden invisible pointer-events-none">
     <div>
         <div class="flex items-center justify-between pb-4 border-b border-neutral-200">
             <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Menu</span>

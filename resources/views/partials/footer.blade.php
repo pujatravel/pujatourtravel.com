@@ -137,7 +137,7 @@
             <div class="col-span-2 md:col-span-2 lg:col-span-1">
                 <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-2.5">Pembayaran Aman</h4>
                 <p class="text-[11px] text-slate-400 mb-3">Menerima transfer bank resmi CV & pembayaran digital:</p>
-                <div class="grid grid-cols-4 sm:grid-cols-2 lg:grid-cols-2 gap-2 text-center text-[10px] font-bold text-slate-200">
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-2 text-center text-[10px] font-bold text-slate-200">
                     <div class="bg-slate-900 py-1.5 px-2 rounded-md border border-slate-800">BCA</div>
                     <div class="bg-slate-900 py-1.5 px-2 rounded-md border border-slate-800">MANDIRI</div>
                     <div class="bg-slate-900 py-1.5 px-2 rounded-md border border-slate-800">BRI</div>

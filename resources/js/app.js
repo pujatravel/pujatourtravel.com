@@ -37,10 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openMobileMenu() {
         if (!mobileDrawer) return;
-        mobileDrawer.classList.remove('invisible', 'pointer-events-none');
-        mobileDrawer.classList.remove('translate-x-full');
-        drawerOverlay.classList.remove('hidden');
-        setTimeout(() => drawerOverlay.classList.remove('opacity-0'), 10);
+        mobileDrawer.classList.remove('hidden');
+        requestAnimationFrame(() => {
+            mobileDrawer.classList.remove('invisible', 'pointer-events-none');
+            mobileDrawer.classList.remove('translate-x-full');
+            drawerOverlay.classList.remove('hidden');
+            setTimeout(() => drawerOverlay.classList.remove('opacity-0'), 10);
+        });
         document.body.style.overflow = 'hidden';
         createIcons({ icons });
     }
@@ -51,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawerOverlay.classList.add('opacity-0');
         setTimeout(() => {
             drawerOverlay.classList.add('hidden');
-            mobileDrawer.classList.add('invisible', 'pointer-events-none');
+            mobileDrawer.classList.add('invisible', 'pointer-events-none', 'hidden');
         }, 300);
         document.body.style.overflow = '';
     }

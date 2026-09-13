@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="scroll-smooth overflow-x-hidden w-full max-w-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -157,7 +157,7 @@
 
     @include('partials.analytics')
 </head>
-<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white overflow-x-hidden">
+<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white overflow-x-hidden w-full max-w-full relative">
 
     @php
         $waNum = $settings['whatsapp_number'] ?? '6281234567890';
@@ -216,11 +216,11 @@
             }
         }
     @endphp
-    <section id="beranda" data-nav-color="dark" class="relative min-h-svh sm:min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 group pt-16 sm:pt-0">
+    <section id="beranda" data-nav-color="dark" class="relative w-full max-w-full min-h-svh sm:min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 group pt-16 sm:pt-0">
         <!-- Hero Background Auto-Slider Container -->
-        <div id="hero-slider" class="absolute inset-0 z-0 overflow-hidden select-none">
+        <div id="hero-slider" class="absolute inset-0 w-full h-full z-0 overflow-hidden select-none">
             @foreach($heroSlidesList as $index => $slide)
-                <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out {{ $index === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none' }}" data-location="{{ $slide['location'] }}">
+                <div class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out {{ $index === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none' }}" data-location="{{ $slide['location'] }}">
                     <img src="{{ $slide['image'] }}" alt="{{ $slide['title'] }}" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
                 </div>
             @endforeach

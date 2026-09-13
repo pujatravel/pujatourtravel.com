@@ -219,21 +219,45 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 @forelse($featuredPackages as $pkg)
-                    <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-canvas border border-neutral-200 hover:border-emerald-700/40 transition group">
-                        <img src="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $pkg->name }}" class="w-16 h-16 rounded-xl object-cover shrink-0">
-                        <div class="flex-1 min-w-0">
-                            <h4 class="text-xs font-bold text-slate-900 truncate group-hover:text-emerald-700 transition">{{ $pkg->name }}</h4>
-                            <span class="text-xs text-emerald-700 font-bold block mt-0.5">{{ $pkg->formatted_price }}</span>
-                            <span class="text-[10px] text-slate-400 block mt-0.5 truncate">{{ $pkg->duration }} &bull; {{ $pkg->location }}</span>
+                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-canvas border border-neutral-200/90 hover:border-emerald-700/40 hover:shadow-xs transition group">
+                        <!-- Package Thumbnail -->
+                        <div class="relative shrink-0">
+                            <img src="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $pkg->name }}" class="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl object-cover border border-neutral-200/80 shadow-2xs group-hover:scale-105 transition duration-300">
                         </div>
-                        <div class="flex flex-col gap-1 shrink-0">
+
+                        <!-- Text Details with ample spacing -->
+                        <div class="flex-1 min-w-0 pl-1 space-y-1">
+                            <h4 class="text-xs sm:text-sm font-bold text-slate-900 truncate group-hover:text-emerald-700 transition leading-snug">
+                                {{ $pkg->name }}
+                            </h4>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-xs sm:text-sm text-emerald-700 font-extrabold">{{ $pkg->formatted_price }}</span>
+                                <span class="text-[10px] text-slate-400 font-medium">/ {{ $pkg->price_unit }}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 text-[10px] text-slate-400 truncate">
+                                @if($pkg->duration)
+                                    <span class="inline-flex items-center gap-0.5">
+                                        <i data-lucide="clock" class="w-2.5 h-2.5"></i>
+                                        <span>{{ $pkg->duration }}</span>
+                                    </span>
+                                    <span>&bull;</span>
+                                @endif
+                                <span class="inline-flex items-center gap-0.5 truncate">
+                                    <i data-lucide="map-pin" class="w-2.5 h-2.5"></i>
+                                    <span>{{ $pkg->location ?? 'Pangandaran' }}</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex flex-col gap-1.5 shrink-0 pl-2 border-l border-neutral-200/60">
                             <a href="{{ route('packages.show', $pkg->slug) }}" target="_blank" class="p-1.5 rounded-lg text-slate-400 hover:text-emerald-700 hover:bg-emerald-50 transition" title="Lihat Halaman Publik">
-                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                             </a>
                             <a href="{{ route('admin.packages.edit', $pkg->id) }}" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-neutral-200 transition" title="Edit Paket">
-                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
                             </a>
                         </div>
                     </div>
@@ -251,9 +275,13 @@
             <div class="bg-surface-soft rounded-3xl p-6 shadow-soft border border-neutral-200">
                 <h3 class="font-display font-bold text-lg text-slate-900 mb-4">Aksi Cepat & Navigasi</h3>
                 <div class="space-y-2.5">
-                    <a href="{{ route('admin.packages.create') }}" class="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition flex items-center justify-between shadow-sm">
+                    <a href="{{ route('admin.invoices.create') }}" class="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition flex items-center justify-between shadow-sm">
+                        <span>+ Generate Invoice Baru</span>
+                        <i data-lucide="receipt" class="w-4 h-4"></i>
+                    </a>
+                    <a href="{{ route('admin.packages.create') }}" class="w-full py-3 px-4 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-slate-800 font-bold text-xs transition flex items-center justify-between">
                         <span>+ Tambah Paket Wisata</span>
-                        <i data-lucide="palmtree" class="w-4 h-4"></i>
+                        <i data-lucide="palmtree" class="w-4 h-4 text-slate-600"></i>
                     </a>
                     <a href="{{ route('admin.galleries.index') }}" class="w-full py-3 px-4 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-slate-800 font-bold text-xs transition flex items-center justify-between">
                         <span>+ Unggah Foto Galeri</span>
@@ -273,6 +301,82 @@
                     </a>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- 4. Recent Invoices / Transaksi Section -->
+    <div class="bg-surface-soft rounded-3xl p-6 shadow-soft border border-neutral-200">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-5 border-b border-neutral-200 mb-5">
+            <div>
+                <h3 class="font-display font-bold text-lg text-slate-900 flex items-center gap-2">
+                    <i data-lucide="receipt" class="w-5 h-5 text-emerald-700"></i>
+                    <span>Transaksi & Invoice Terbaru</span>
+                </h3>
+                <p class="text-xs text-slate-400">Daftar tagihan dan status pembayaran paket wisata</p>
+            </div>
+            <div class="flex items-center gap-2.5">
+                <a href="{{ route('admin.invoices.create') }}" class="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-xs">
+                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                    <span>Buat Invoice</span>
+                </a>
+                <a href="{{ route('admin.invoices.index') }}" class="text-xs font-bold text-slate-600 hover:text-slate-900 px-3 py-2 rounded-xl border border-neutral-200 bg-white transition flex items-center gap-1">
+                    <span>Lihat Semua</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+                <thead>
+                    <tr class="bg-canvas text-slate-500 font-bold uppercase tracking-wider border-b border-neutral-200">
+                        <th class="p-3">No. Invoice</th>
+                        <th class="p-3">Nama Pelanggan</th>
+                        <th class="p-3">Layanan / Paket</th>
+                        <th class="p-3">Total Tagihan</th>
+                        <th class="p-3">Status</th>
+                        <th class="p-3 text-right">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-neutral-200 text-slate-700">
+                    @forelse($recentInvoices as $inv)
+                        <tr class="hover:bg-canvas transition">
+                            <td class="p-3 font-mono font-bold text-slate-900">
+                                <a href="{{ route('admin.invoices.show', $inv->id) }}" class="hover:text-emerald-700">
+                                    {{ $inv->invoice_number }}
+                                </a>
+                            </td>
+                            <td class="p-3">
+                                <span class="font-bold text-slate-900 block">{{ $inv->customer_name }}</span>
+                                <span class="text-[11px] text-slate-400">{{ $inv->customer_phone }}</span>
+                            </td>
+                            <td class="p-3 text-slate-600">
+                                {{ $inv->package_name ?? ($inv->items->first()->item_name ?? 'Layanan Wisata') }} ({{ $inv->pax_count }} Pax)
+                            </td>
+                            <td class="p-3 font-bold text-slate-900">
+                                {{ $inv->formatted_total }}
+                            </td>
+                            <td class="p-3">
+                                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold border {{ $inv->status_badge_class }}">
+                                    {{ $inv->status_label }}
+                                </span>
+                            </td>
+                            <td class="p-3 text-right whitespace-nowrap">
+                                <a href="{{ route('admin.invoices.show', $inv->id) }}" class="inline-flex items-center gap-1 text-emerald-700 font-bold hover:underline">
+                                    <span>Detail</span>
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center py-8 text-slate-400">
+                                Belum ada invoice yang dibuat. Klik tombol "Buat Invoice" untuk membuat tagihan baru.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

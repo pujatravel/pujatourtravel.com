@@ -5,13 +5,17 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\InvoiceController as AdminInvoiceController;
+use App\Http\Controllers\Admin\PackageCategoryController;
 use App\Http\Controllers\Admin\PackageController as AdminPackageController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\InvoicePublicController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PageController;
 use App\Models\Faq;
 use App\Models\Gallery;
+use App\Models\Invoice;
 use App\Models\Package;
 use App\Models\PackageCategory;
 use App\Models\Setting;
@@ -71,6 +75,7 @@ Route::get('/syarat-ketentuan', [PageController::class, 'termsConditions'])->nam
 Route::get('/kebijakan-pengembalian', [PageController::class, 'refundPolicy'])->name('refund-policy');
 Route::get('/tim-pengembang', [PageController::class, 'developers'])->name('developers');
 Route::get('/developers', [PageController::class, 'developers'])->name('developers-alt');
+Route::get('/invoice/{invoice_number}', [InvoicePublicController::class, 'show'])->name('invoice.public');
 
 Route::get('/sitemap.xml', function () {
     $packages = Package::where('status', 'PUBLISHED')->latest()->get();
@@ -163,6 +168,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('packages', AdminPackageController::class);
         Route::post('packages/{package}/toggle-featured', [AdminPackageController::class, 'toggleFeatured'])->name('packages.toggle-featured');
 
+        // Invoices Management & Generator
+        Route::resource('invoices', AdminInvoiceController::class);
+        Route::get('invoices/{invoice}/print', [AdminInvoiceController::class, 'print'])->name('invoices.print');
+        Route::patch('invoices/{invoice}/update-status', [AdminInvoiceController::class, 'updateStatus'])->name('invoices.update-status');
+
         // Banner Hero Section CRUD
         Route::get('banners', [BannerController::class, 'index'])->name('banners.index');
         Route::put('banners/text', [BannerController::class, 'updateText'])->name('banners.update-text');
@@ -190,5 +200,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Settings
         Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
         Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
+
+        // Package Categories CRUD
+        Route::get('categories', [PackageCategoryController::class, 'index'])->name('categories.index');
+        Route::post('categories', [PackageCategoryController::class, 'store'])->name('categories.store');
+        Route::patch('categories/{category}', [PackageCategoryController::class, 'update'])->name('categories.update');
+        Route::delete('categories/{category}', [PackageCategoryController::class, 'destroy'])->name('categories.destroy');
+        Route::patch('categories/{category}/toggle-active', [PackageCategoryController::class, 'toggleActive'])->name('categories.toggle-active');
+        Route::post('categories/reorder', [PackageCategoryController::class, 'reorder'])->name('categories.reorder');
     });
 });

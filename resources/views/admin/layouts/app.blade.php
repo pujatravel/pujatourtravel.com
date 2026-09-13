@@ -88,6 +88,20 @@
                 </a>
 
                 <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Transaksi & Tagihan
+                </div>
+                <a href="{{ route('admin.invoices.index') }}" class="admin-mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.invoices.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="receipt" class="w-5 h-5 shrink-0"></i>
+                        <span>Invoice & Tagihan</span>
+                    </div>
+                    @php $unpaidInvoiceCount = \App\Models\Invoice::where('status', 'UNPAID')->count(); @endphp
+                    @if($unpaidInvoiceCount > 0)
+                        <span class="px-2 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">{{ $unpaidInvoiceCount }}</span>
+                    @endif
+                </a>
+
+                <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Manajemen Konten
                 </div>
                 <a href="{{ route('admin.banners.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.banners.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
@@ -116,6 +130,10 @@
                 <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Pengaturan
                 </div>
+                <a href="{{ route('admin.categories.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.categories.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                    <i data-lucide="folder-tree" class="w-5 h-5 shrink-0"></i>
+                    <span>Kategori Paket</span>
+                </a>
                 <a href="{{ route('admin.settings.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.settings.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                     <i data-lucide="settings" class="w-5 h-5 shrink-0"></i>
                     <span>Kontak & CMS</span>
@@ -173,6 +191,19 @@
                     </a>
 
                     <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                        Transaksi & Tagihan
+                    </div>
+                    <a href="{{ route('admin.invoices.index') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.invoices.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="receipt" class="w-5 h-5 shrink-0"></i>
+                            <span>Invoice & Tagihan</span>
+                        </div>
+                        @if($unpaidInvoiceCount > 0)
+                            <span class="px-2 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">{{ $unpaidInvoiceCount }}</span>
+                        @endif
+                    </a>
+
+                    <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Manajemen Konten
                     </div>
                     <a href="{{ route('admin.banners.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.banners.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
@@ -200,6 +231,10 @@
                     <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Pengaturan
                     </div>
+                    <a href="{{ route('admin.categories.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.categories.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                        <i data-lucide="folder-tree" class="w-5 h-5 shrink-0"></i>
+                        <span>Kategori Paket</span>
+                    </a>
                     <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.settings.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="settings" class="w-5 h-5 shrink-0"></i>
                         <span>Kontak & CMS</span>

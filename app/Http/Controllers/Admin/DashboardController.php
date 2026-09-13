@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
+use App\Models\Invoice;
 use App\Models\Package;
 use App\Models\Testimonial;
 use App\Services\VisitorTracker;
@@ -21,13 +22,22 @@ class DashboardController extends Controller
         $testimonialCount = Testimonial::count();
         $realtimeStats = VisitorTracker::getRealtimeStats();
 
+        $invoiceCount = Invoice::count();
+        $invoiceTotalRevenue = (float) Invoice::where('status', '!=', 'CANCELLED')->sum('paid_amount');
+        $unpaidInvoiceCount = Invoice::where('status', 'UNPAID')->count();
+        $recentInvoices = Invoice::with('items')->latest()->take(5)->get();
+
         return view('admin.dashboard', compact(
             'totalPackages',
             'publishedPackages',
             'featuredPackages',
             'galleryCount',
             'testimonialCount',
-            'realtimeStats'
+            'realtimeStats',
+            'invoiceCount',
+            'invoiceTotalRevenue',
+            'unpaidInvoiceCount',
+            'recentInvoices'
         ));
     }
 

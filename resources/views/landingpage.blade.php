@@ -504,10 +504,15 @@
             </div>
         </div>
 
-        <!-- Dynamic Package Grid from Database (Menampilkan Pilihan Unggulan) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+        <!-- Dynamic Package Grid from Database (Swipe Slider di HP, Grid 3 Kolom di Laptop) -->
+        <div class="sm:hidden flex items-center justify-end gap-1.5 text-xs text-slate-500 mb-3 font-semibold px-1">
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-emerald-700 animate-pulse"></i>
+            <span>Geser untuk lihat paket lainnya</span>
+        </div>
+
+        <div class="flex sm:grid overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none gap-4 sm:gap-6 lg:gap-8 pb-4 sm:pb-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
             @forelse($packages as $loopIndex => $pkg)
-                <div class="package-card flex flex-col bg-surface-soft rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group reveal-fade-up {{ $loopIndex % 3 === 1 ? 'delay-100' : ($loopIndex % 3 === 2 ? 'delay-200' : '') }}" data-category="{{ $pkg->category->slug ?? 'all' }}">
+                <div class="package-card flex-none w-[85vw] xs:w-[80vw] sm:w-auto snap-center flex flex-col bg-surface-soft rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group reveal-fade-up {{ $loopIndex % 3 === 1 ? 'delay-100' : ($loopIndex % 3 === 2 ? 'delay-200' : '') }}" data-category="{{ $pkg->category->slug ?? 'all' }}">
                     <!-- Card Image Area with Multi-Image Auto-Slider & Lightbox Click -->
                     @php
                         $galleryImages = $pkg->gallery_images;
@@ -679,11 +684,11 @@
 
     <!-- 7. KEUNGGULAN & BUKTI KEPERCAYAN (Authentic Local Travel Agency) -->
     <section id="keunggulan" class="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-12 gap-3.5 sm:gap-8 lg:gap-16 items-start lg:items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-16 items-start lg:items-center">
             <!-- Left Image with Clean Authentic Caption & Dynamic Slider (Foto di Kiri) -->
-            <div class="col-span-5 lg:col-span-5 relative reveal-fade-left">
+            <div class="col-span-1 lg:col-span-5 relative reveal-fade-left">
                 <!-- Slider Frame Container -->
-                <div id="authentic-slider-container" class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-md border border-neutral-200 bg-neutral-900 h-60 xs:h-72 sm:h-90 lg:h-107.5 cursor-pointer" title="Klik untuk melihat foto lebih besar">
+                <div id="authentic-slider-container" class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-md border border-neutral-200 bg-neutral-900 h-64 xs:h-72 sm:h-80 lg:h-107.5 cursor-pointer" title="Klik untuk melihat foto lebih besar">
                     <!-- Slide Items -->
                     <div id="authentic-slides" class="relative w-full h-full">
                         <!-- Slide 1: Green Canyon -->
@@ -723,75 +728,75 @@
                     </div>
 
                     <!-- Top Floating Tag Badge -->
-                    <div class="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 z-20 pointer-events-none">
-                        <span id="authentic-slide-tag" class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold bg-slate-900/80 text-white backdrop-blur-md border border-white/20 shadow-md">
+                    <div class="absolute top-3 left-3 sm:top-3.5 sm:left-3.5 z-20 pointer-events-none">
+                        <span id="authentic-slide-tag" class="px-2.5 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-bold bg-slate-900/80 text-white backdrop-blur-md border border-white/20 shadow-md">
                             Green Canyon
                         </span>
                     </div>
 
                     <!-- Slide Navigation Arrows (Appear on hover) -->
-                    <button type="button" id="authentic-prev" aria-label="Foto Sebelumnya" class="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-20 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md cursor-pointer border border-white/20">
-                        <i data-lucide="chevron-left" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+                    <button type="button" id="authentic-prev" aria-label="Foto Sebelumnya" class="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md cursor-pointer border border-white/20">
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
                     </button>
-                    <button type="button" id="authentic-next" aria-label="Foto Selanjutnya" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md cursor-pointer border border-white/20">
-                        <i data-lucide="chevron-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+                    <button type="button" id="authentic-next" aria-label="Foto Selanjutnya" class="absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md cursor-pointer border border-white/20">
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
                     </button>
 
                     <!-- Bottom Indicator Dots -->
-                    <div id="authentic-dots" class="absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/15">
+                    <div id="authentic-dots" class="absolute bottom-2.5 sm:bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/15">
                     </div>
                 </div>
 
-                <!-- Dynamic Location Caption with Lucide Icon (NO Windows Emoji, Clean Direct Icon) -->
-                <div class="mt-2 sm:mt-3 flex items-start gap-1 sm:gap-1.5 text-left">
-                    <i data-lucide="map-pin" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-700 shrink-0 mt-0.5"></i>
-                    <p id="authentic-location-caption" class="text-[10px] xs:text-[11px] sm:text-sm text-slate-600 font-medium leading-snug sm:leading-relaxed transition-all duration-300">
+                <!-- Dynamic Location Caption with Lucide Icon -->
+                <div class="mt-3 flex items-start gap-2 text-left">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5"></i>
+                    <p id="authentic-location-caption" class="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed transition-all duration-300">
                         Titik awal penyusunan rute & pengawalan trip di Green Canyon, Pangandaran.
                     </p>
                 </div>
             </div>
 
-            <!-- Right Content: Evidence-Driven Hierarchy (Deskripsi di Kanan) -->
-            <div class="col-span-7 lg:col-span-7 space-y-4 sm:space-y-6 reveal-fade-right delay-100">
+            <!-- Right Content: Evidence-Driven Hierarchy (Deskripsi di Kanan / Bawah pada Mobile) -->
+            <div class="col-span-1 lg:col-span-7 space-y-5 sm:space-y-6 reveal-fade-right delay-100">
                 <div>
-                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-emerald-700 block">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 block">
                         Pengalaman Lokal Autentik
                     </span>
-                    <h2 class="font-display font-extrabold text-base xs:text-lg sm:text-3xl lg:text-4xl text-slate-900 mt-1 sm:mt-3 tracking-tight leading-snug">
+                    <h2 class="font-display font-extrabold text-xl xs:text-2xl sm:text-3xl lg:text-4xl text-slate-900 mt-2 sm:mt-3 tracking-tight leading-snug">
                         Dikelola Langsung oleh Putra Daerah Pangandaran
                     </h2>
-                    <p class="text-[11px] xs:text-xs sm:text-base text-slate-600 mt-1.5 sm:mt-3 leading-relaxed">
+                    <p class="text-xs xs:text-sm sm:text-base text-slate-600 mt-2 sm:mt-3 leading-relaxed">
                         Kami menyusun rute dan mendampingi trip berdasarkan pemahaman lapangan langsung—mulai dari kondisi debit air sungai, spot terumbu karang yang aman, hingga pertolongan keselamatan di pantai.
                     </p>
                 </div>
 
                 <!-- 3 Concrete Primary Proofs (Clean Typography, No Heavy Card Clutter) -->
-                <div class="space-y-3.5 sm:space-y-6 pt-3 sm:pt-4 border-t border-neutral-200">
-                    <div class="flex items-start gap-2.5 sm:gap-4 reveal-fade-up">
-                        <span class="font-display font-extrabold text-base sm:text-2xl text-emerald-700 leading-none pt-0.5 sm:pt-1">01</span>
+                <div class="space-y-4 sm:space-y-6 pt-4 sm:pt-6 border-t border-neutral-200">
+                    <div class="flex items-start gap-3 sm:gap-4 reveal-fade-up">
+                        <span class="font-display font-extrabold text-lg sm:text-2xl text-emerald-700 leading-none pt-0.5">01</span>
                         <div>
-                            <h3 class="font-display font-bold text-slate-900 text-xs sm:text-base leading-snug">Tim Guide Asli Pangandaran (Berlisensi HPI)</h3>
-                            <p class="text-[10px] xs:text-[11px] sm:text-sm text-slate-600 mt-0.5 sm:mt-1 leading-normal sm:leading-relaxed">
+                            <h3 class="font-display font-bold text-slate-900 text-sm sm:text-base leading-snug">Tim Guide Asli Pangandaran (Berlisensi HPI)</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                                 Pemandu kami lahir dan tumbuh di Pangandaran. Memahami karakter debit air Green Canyon, titik terumbu karang aman di Pasir Putih, serta penanganan darurat di lapangan.
                             </p>
                         </div>
                     </div>
 
-                    <div class="flex items-start gap-2.5 sm:gap-4 reveal-fade-up delay-100">
-                        <span class="font-display font-extrabold text-base sm:text-2xl text-emerald-700 leading-none pt-0.5 sm:pt-1">02</span>
+                    <div class="flex items-start gap-3 sm:gap-4 reveal-fade-up delay-100">
+                        <span class="font-display font-extrabold text-lg sm:text-2xl text-emerald-700 leading-none pt-0.5">02</span>
                         <div>
-                            <h3 class="font-display font-bold text-slate-900 text-xs sm:text-base leading-snug">Peralatan Standar & Asuransi Keselamatan Diri</h3>
-                            <p class="text-[10px] xs:text-[11px] sm:text-sm text-slate-600 mt-0.5 sm:mt-1 leading-normal sm:leading-relaxed">
+                            <h3 class="font-display font-bold text-slate-900 text-sm sm:text-base leading-snug">Peralatan Standar & Asuransi Keselamatan Diri</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                                 Setiap peserta dilengkapi pelampung (life jacket) terawat, helm sungai standar, serta asuransi keselamatan resmi di setiap paket trip tanpa biaya tambahan.
                             </p>
                         </div>
                     </div>
 
-                    <div class="flex items-start gap-2.5 sm:gap-4 reveal-fade-up delay-200">
-                        <span class="font-display font-extrabold text-base sm:text-2xl text-emerald-700 leading-none pt-0.5 sm:pt-1">03</span>
+                    <div class="flex items-start gap-3 sm:gap-4 reveal-fade-up delay-200">
+                        <span class="font-display font-extrabold text-lg sm:text-2xl text-emerald-700 leading-none pt-0.5">03</span>
                         <div>
-                            <h3 class="font-display font-bold text-slate-900 text-xs sm:text-base leading-snug">Rincian Biaya Transparan (All-Inclusive)</h3>
-                            <p class="text-[10px] xs:text-[11px] sm:text-sm text-slate-600 mt-0.5 sm:mt-1 leading-normal sm:leading-relaxed">
+                            <h3 class="font-display font-bold text-slate-900 text-sm sm:text-base leading-snug">Rincian Biaya Transparan (All-Inclusive)</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                                 Seluruh harga paket sudah mencakup tiket masuk destinasi, sewa peralatan, instruktur, hingga retribusi lokal. Tanpa kaget biaya tersembunyi di tempat wisata.
                             </p>
                         </div>

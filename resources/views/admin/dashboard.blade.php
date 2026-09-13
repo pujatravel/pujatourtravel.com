@@ -5,65 +5,65 @@
 
 @section('content')
 <div class="space-y-8">
-    <!-- 1. KPI Metric Cards Grid (Soft Surface Cards) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <!-- 1. KPI Metric Cards Grid (Soft Surface Cards - 2 Columns on Mobile) -->
+    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
         <!-- KPI 1: Paket Wisata Aktif -->
-        <div class="bg-surface-soft rounded-3xl p-6 shadow-soft border border-neutral-200 flex items-center justify-between">
-            <div>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Paket Wisata</span>
-                <span class="font-display font-extrabold text-3xl text-slate-900">{{ $publishedPackages }}</span>
-                <span class="text-[11px] text-emerald-700 font-bold mt-1 flex items-center gap-1">
-                    <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
-                    <span>{{ $totalPackages }} Total Terdaftar</span>
+        <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 shadow-soft border border-neutral-200 flex items-center justify-between min-w-0">
+            <div class="min-w-0 flex-1 pr-1">
+                <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider block mb-0.5 sm:mb-1 truncate">Paket Wisata</span>
+                <span class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 block leading-tight">{{ $publishedPackages }}</span>
+                <span class="text-[10px] sm:text-[11px] text-emerald-700 font-bold mt-0.5 sm:mt-1 flex items-center gap-1 truncate">
+                    <i data-lucide="check-circle" class="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0"></i>
+                    <span class="truncate">{{ $totalPackages }} Total</span>
                 </span>
             </div>
-            <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
-                <i data-lucide="palmtree" class="w-7 h-7"></i>
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                <i data-lucide="palmtree" class="w-5 h-5 sm:w-7 sm:h-7"></i>
             </div>
         </div>
 
         <!-- KPI 2: Paket Unggulan -->
-        <div class="bg-surface-soft rounded-3xl p-6 shadow-soft border border-neutral-200 flex items-center justify-between">
-            <div>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Paket Unggulan</span>
-                <span class="font-display font-extrabold text-3xl text-amber-600">{{ $featuredPackages->count() }}</span>
-                <span class="text-[11px] text-slate-500 font-medium mt-1 flex items-center gap-1">
-                    <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500"></i>
-                    <span>Tampil di Beranda</span>
+        <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 shadow-soft border border-neutral-200 flex items-center justify-between min-w-0">
+            <div class="min-w-0 flex-1 pr-1">
+                <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider block mb-0.5 sm:mb-1 truncate">Paket Unggulan</span>
+                <span class="font-display font-extrabold text-2xl sm:text-3xl text-amber-600 block leading-tight">{{ $featuredPackages->count() }}</span>
+                <span class="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-0.5 sm:mt-1 flex items-center gap-1 truncate">
+                    <i data-lucide="star" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 shrink-0"></i>
+                    <span class="truncate">Di Beranda</span>
                 </span>
             </div>
-            <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center">
-                <i data-lucide="sparkles" class="w-7 h-7"></i>
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                <i data-lucide="sparkles" class="w-5 h-5 sm:w-7 sm:h-7"></i>
             </div>
         </div>
 
         <!-- KPI 3: Galeri Foto -->
-        <div class="bg-surface-soft rounded-3xl p-6 shadow-soft border border-neutral-200 flex items-center justify-between">
-            <div>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Galeri Foto</span>
-                <span class="font-display font-extrabold text-3xl text-slate-900">{{ $galleryCount }}</span>
-                <span class="text-[11px] text-slate-500 font-medium mt-1 flex items-center gap-1">
-                    <i data-lucide="image" class="w-3.5 h-3.5 text-slate-400"></i>
-                    <span>Foto Dokumentasi</span>
+        <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 shadow-soft border border-neutral-200 flex items-center justify-between min-w-0">
+            <div class="min-w-0 flex-1 pr-1">
+                <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider block mb-0.5 sm:mb-1 truncate">Galeri Foto</span>
+                <span class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 block leading-tight">{{ $galleryCount }}</span>
+                <span class="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-0.5 sm:mt-1 flex items-center gap-1 truncate">
+                    <i data-lucide="image" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-slate-400 shrink-0"></i>
+                    <span class="truncate">Dokumentasi</span>
                 </span>
             </div>
-            <div class="w-14 h-14 rounded-2xl bg-neutral-100 text-slate-700 flex items-center justify-center">
-                <i data-lucide="image" class="w-7 h-7"></i>
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-neutral-100 text-slate-700 flex items-center justify-center shrink-0">
+                <i data-lucide="image" class="w-5 h-5 sm:w-7 sm:h-7"></i>
             </div>
         </div>
 
         <!-- KPI 4: Ulasan Testimoni -->
-        <div class="bg-surface-soft rounded-3xl p-6 shadow-soft border border-neutral-200 flex items-center justify-between">
-            <div>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Testimoni Wisatawan</span>
-                <span class="font-display font-extrabold text-3xl text-slate-900">{{ $testimonialCount }}</span>
-                <span class="text-[11px] text-emerald-700 font-bold mt-1 flex items-center gap-1">
-                    <i data-lucide="message-square-quote" class="w-3.5 h-3.5"></i>
-                    <span>Ulasan Pelanggan</span>
+        <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 shadow-soft border border-neutral-200 flex items-center justify-between min-w-0">
+            <div class="min-w-0 flex-1 pr-1">
+                <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider block mb-0.5 sm:mb-1 truncate">Testimoni</span>
+                <span class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 block leading-tight">{{ $testimonialCount }}</span>
+                <span class="text-[10px] sm:text-[11px] text-emerald-700 font-bold mt-0.5 sm:mt-1 flex items-center gap-1 truncate">
+                    <i data-lucide="message-square-quote" class="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0"></i>
+                    <span class="truncate">Ulasan</span>
                 </span>
             </div>
-            <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
-                <i data-lucide="message-square-quote" class="w-7 h-7"></i>
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                <i data-lucide="message-square-quote" class="w-5 h-5 sm:w-7 sm:h-7"></i>
             </div>
         </div>
     </div>

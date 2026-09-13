@@ -25,48 +25,48 @@
             </div>
 
             <!-- Gallery Cards Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 @forelse($galleries as $gal)
-                    <div class="group relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-950 h-52 flex flex-col justify-between p-3 transition shadow-xs hover:shadow-md">
+                    <div class="group relative rounded-xl sm:rounded-2xl overflow-hidden border border-slate-200 bg-slate-950 h-36 xs:h-40 sm:h-52 flex flex-col justify-between p-2.5 sm:p-3 transition shadow-xs hover:shadow-md">
                         <img src="{{ $gal->image_url }}" alt="{{ $gal->title }}" class="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/20"></div>
 
                         <!-- Top Badges -->
-                        <div class="relative z-10 flex items-center justify-between gap-2">
-                            <span class="text-[10px] font-bold bg-emerald-700/90 backdrop-blur-xs text-white px-2.5 py-0.5 rounded-full shadow-xs">
+                        <div class="relative z-10 flex items-center justify-between gap-1.5">
+                            <span class="text-[9px] sm:text-[10px] font-bold bg-emerald-700/90 backdrop-blur-xs text-white px-2 py-0.5 rounded-full shadow-xs truncate">
                                 {{ $gal->category }}
                             </span>
                             @if($gal->is_slider)
-                                <span class="text-[10px] font-black bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full flex items-center gap-1 shadow-xs" title="Tampil di Slider Beranda Utama">
+                                <span class="text-[9px] sm:text-[10px] font-black bg-amber-400 text-slate-950 px-1.5 py-0.5 rounded-full flex items-center gap-0.5 shadow-xs shrink-0" title="Tampil di Slider Beranda Utama">
                                     <i data-lucide="star" class="w-3 h-3 fill-slate-950"></i>
-                                    <span>Slider Beranda</span>
+                                    <span class="hidden xs:inline">Slider</span>
                                 </span>
                             @endif
                         </div>
 
                         <!-- Bottom Content & Action Controls -->
                         <div class="relative z-10">
-                            <h4 class="text-xs font-bold text-white line-clamp-1 mb-1">{{ $gal->title }}</h4>
+                            <h4 class="text-xs font-bold text-white line-clamp-1 mb-0.5 sm:mb-1">{{ $gal->title }}</h4>
                             @if($gal->caption)
-                                <p class="text-[11px] text-slate-300 line-clamp-1 mb-2.5">{{ $gal->caption }}</p>
+                                <p class="text-[10px] sm:text-[11px] text-slate-300 line-clamp-1 mb-1.5 sm:mb-2.5">{{ $gal->caption }}</p>
                             @endif
 
-                            <div class="flex items-center justify-between pt-2 border-t border-white/15">
+                            <div class="flex items-center justify-between pt-1.5 sm:pt-2 border-t border-white/15 gap-1">
                                 <!-- Toggle Slider Button -->
-                                <form action="{{ route('admin.galleries.toggle-slider', $gal->id) }}" method="POST" class="inline">
+                                <form action="{{ route('admin.galleries.toggle-slider', $gal->id) }}" method="POST" class="inline min-w-0">
                                     @csrf
-                                    <button type="submit" class="px-2.5 py-1 rounded-lg text-[11px] font-bold flex items-center gap-1.5 transition {{ $gal->is_slider ? 'bg-amber-400 text-slate-950 hover:bg-amber-300' : 'bg-slate-900/80 text-amber-300 border border-white/20 hover:bg-slate-900 hover:text-amber-200' }}" title="{{ $gal->is_slider ? 'Hapus dari Slider Beranda Utama' : 'Jadikan Slider Beranda Utama' }}">
-                                        <i data-lucide="star" class="w-3.5 h-3.5 {{ $gal->is_slider ? 'fill-slate-950' : '' }}"></i>
-                                        <span>{{ $gal->is_slider ? 'Slider Aktif' : '+ Set Slider' }}</span>
+                                    <button type="submit" class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[10px] sm:text-[11px] font-bold flex items-center gap-1 transition {{ $gal->is_slider ? 'bg-amber-400 text-slate-950 hover:bg-amber-300' : 'bg-slate-900/80 text-amber-300 border border-white/20 hover:bg-slate-900 hover:text-amber-200' }}" title="{{ $gal->is_slider ? 'Hapus dari Slider Beranda Utama' : 'Jadikan Slider Beranda Utama' }}">
+                                        <i data-lucide="star" class="w-3 h-3 shrink-0 {{ $gal->is_slider ? 'fill-slate-950' : '' }}"></i>
+                                        <span class="truncate">{{ $gal->is_slider ? 'Slider' : '+ Slider' }}</span>
                                     </button>
                                 </form>
 
                                 <!-- Delete Form -->
-                                <form action="{{ route('admin.galleries.destroy', $gal->id) }}" method="POST" onsubmit="confirmDelete(event, 'Apakah Anda yakin ingin menghapus foto galeri ini?');" class="inline">
+                                <form action="{{ route('admin.galleries.destroy', $gal->id) }}" method="POST" onsubmit="confirmDelete(event, 'Apakah Anda yakin ingin menghapus foto galeri ini?');" class="inline shrink-0">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="p-1.5 rounded-lg bg-rose-600/90 text-white hover:bg-rose-700 transition shadow-xs" title="Hapus Foto">
-                                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                    <button type="submit" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-rose-600 hover:bg-rose-700 text-white flex items-center justify-center transition shadow-xs cursor-pointer" title="Hapus Foto">
+                                        <i data-lucide="trash-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                                     </button>
                                 </form>
                             </div>

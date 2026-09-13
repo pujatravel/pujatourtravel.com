@@ -32,7 +32,7 @@ class PackageController extends Controller
             $query->where('status', $request->input('status'));
         }
 
-        $packages = $query->paginate(10)->withQueryString();
+        $packages = $query->paginate(4)->withQueryString();
         $categories = PackageCategory::where('is_active', true)->get();
 
         return view('admin.packages.index', compact('packages', 'categories'));

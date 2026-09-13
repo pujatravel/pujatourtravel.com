@@ -182,55 +182,55 @@
     </div>
 
     <!-- Section 3: List of Active Hero Banner Slides -->
-    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 space-y-6">
-        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+    <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-sm border border-slate-200/80 space-y-4 sm:space-y-6">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3 sm:pb-4 gap-2">
             <div>
-                <h3 class="font-display font-bold text-lg text-slate-900">3. Daftar Gambar Slide Banner Beranda ({{ $heroSliders->count() }})</h3>
-                <p class="text-xs text-slate-500">Kelola status aktif/nonaktif dan urutan slide latar beranda.</p>
+                <h3 class="font-display font-bold text-base sm:text-lg text-slate-900">3. Daftar Gambar Slide Banner Beranda ({{ $heroSliders->count() }})</h3>
+                <p class="text-[11px] sm:text-xs text-slate-500">Kelola status aktif/nonaktif dan urutan slide latar beranda.</p>
             </div>
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">
+            <span class="px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold bg-slate-100 text-slate-700 shrink-0">
                 Total: {{ $heroSliders->count() }} Slide
             </span>
         </div>
 
         @if($heroSliders->count() > 0)
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
                 @foreach($heroSliders as $slide)
-                    <div class="rounded-2xl border border-slate-200/80 overflow-hidden bg-white shadow-2xs group flex flex-col justify-between">
+                    <div class="rounded-xl sm:rounded-2xl border border-slate-200/80 overflow-hidden bg-white shadow-2xs group flex flex-col justify-between hover:shadow-md transition duration-300">
                         <div>
                             <!-- Slide Image Preview -->
-                            <div class="relative h-44 w-full bg-slate-900 overflow-hidden">
+                            <div class="relative h-28 xs:h-32 sm:h-36 lg:h-40 w-full bg-slate-900 overflow-hidden">
                                 <img src="{{ asset($slide->image_url ?? $slide->image_path) }}" alt="{{ $slide->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-                                <div class="absolute top-3 left-3">
-                                    <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-900/80 text-white backdrop-blur-xs border border-white/20">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent"></div>
+                                <div class="absolute top-2 left-2 sm:top-2.5 sm:left-2.5">
+                                    <span class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-bold bg-slate-900/80 text-white backdrop-blur-xs border border-white/20 shadow-xs">
                                         #{{ $loop->iteration }} Slide
                                     </span>
                                 </div>
-                                <div class="absolute bottom-3 left-3 right-3 text-white">
-                                    <h4 class="font-display font-bold text-sm truncate">{{ $slide->title }}</h4>
-                                    <p class="text-[11px] text-slate-300 truncate">{{ $slide->caption ?? 'Destinasi Wisata' }}</p>
+                                <div class="absolute bottom-2 left-2 right-2 sm:bottom-2.5 sm:left-2.5 sm:right-2.5 text-white">
+                                    <h4 class="font-display font-bold text-xs sm:text-sm truncate">{{ $slide->title }}</h4>
+                                    <p class="text-[10px] sm:text-[11px] text-slate-300 truncate">{{ $slide->caption ?? 'Destinasi Wisata' }}</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card Action Controls -->
-                        <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-2">
+                        <div class="p-2 sm:p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-1.5">
                             <!-- Toggle Active Button -->
-                            <form action="{{ route('admin.banners.toggle-slider', $slide->id) }}" method="POST">
+                            <form action="{{ route('admin.banners.toggle-slider', $slide->id) }}" method="POST" class="min-w-0">
                                 @csrf
-                                <button type="submit" class="px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 {{ $slide->is_slider ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200' : 'bg-slate-200 text-slate-700 hover:bg-slate-300' }}">
-                                    <i data-lucide="{{ $slide->is_slider ? 'check-circle' : 'circle' }}" class="w-3.5 h-3.5"></i>
-                                    <span>{{ $slide->is_slider ? 'Aktif di Banner' : 'Non-aktif' }}</span>
+                                <button type="submit" class="px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-semibold transition flex items-center gap-1 sm:gap-1.5 {{ $slide->is_slider ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200' : 'bg-slate-200 text-slate-700 hover:bg-slate-300' }}">
+                                    <i data-lucide="{{ $slide->is_slider ? 'check-circle' : 'circle' }}" class="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0"></i>
+                                    <span class="truncate">{{ $slide->is_slider ? 'Aktif' : 'Non-aktif' }}</span>
                                 </button>
                             </form>
 
                             <!-- Delete Button -->
-                            <form action="{{ route('admin.banners.destroy-slider', $slide->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus slide banner ini?')">
+                            <form action="{{ route('admin.banners.destroy-slider', $slide->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus slide banner ini?')" class="shrink-0">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition" title="Hapus Slide">
-                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                <button type="submit" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition border border-transparent hover:border-rose-200 cursor-pointer" title="Hapus Slide">
+                                    <i data-lucide="trash-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                                 </button>
                             </form>
                         </div>

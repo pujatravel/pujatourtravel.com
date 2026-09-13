@@ -42,7 +42,7 @@ class InvoiceController extends Controller
             $query->whereDate('invoice_date', '<=', $request->input('date_to'));
         }
 
-        $invoices = $query->paginate(15)->withQueryString();
+        $invoices = $query->paginate(4)->withQueryString();
 
         // Summary Statistics
         $stats = [

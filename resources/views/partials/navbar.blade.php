@@ -69,7 +69,7 @@
         </a>
 
         <!-- Desktop Navigation (All 8 Items Consistently Available) -->
-        <nav class="hidden lg:flex items-center gap-4.5 xl:gap-6 font-medium text-xs xl:text-sm">
+        <nav class="hidden lg:flex items-center gap-5 xl:gap-7 font-medium text-sm">
             @foreach($navLinks as $item)
                 <a href="{{ $item['url'] }}" 
                    class="nav-link-item {{ $item['active'] ? 'active font-bold' : '' }} transition-colors duration-200">
@@ -77,16 +77,6 @@
                 </a>
             @endforeach
         </nav>
-
-        <!-- Quick Action CTA Button (Desktop XL) -->
-        <div class="hidden xl:flex items-center gap-3 shrink-0">
-            <a href="https://wa.me/{{ $navWaNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20info%20paket%20wisata" 
-               target="_blank" 
-               class="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs hover:shadow transition-all duration-200 flex items-center gap-1.5 hover:-translate-y-0.5">
-                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                <span>Tanya Admin</span>
-            </a>
-        </div>
 
         <!-- Mobile Hamburger Button -->
         <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-neutral-100 transition">

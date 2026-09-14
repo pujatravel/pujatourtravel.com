@@ -7,8 +7,10 @@ use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\Package;
 use App\Models\Setting;
+use App\Services\ActivityLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -188,7 +190,7 @@ class InvoiceController extends Controller
                 'remaining_amount' => $remainingAmount,
                 'notes' => $validated['notes'] ?? null,
                 'admin_notes' => $validated['admin_notes'] ?? null,
-                'created_by' => auth()->id(),
+                'created_by' => Auth::id(),
             ]);
 
             foreach ($itemsData as $item) {
@@ -196,6 +198,13 @@ class InvoiceController extends Controller
             }
 
             DB::commit();
+
+            ActivityLogger::log('CREATE', 'Invoice', "Menerbitkan invoice baru #{$invoice->invoice_number} untuk {$invoice->customer_name}", [
+                'id' => $invoice->id,
+                'total' => $invoice->total_amount,
+                'status' => $invoice->status,
+                'customer' => $invoice->customer_name,
+            ]);
 
             return redirect()->route('admin.invoices.show', $invoice->id)
                 ->with('success', "Invoice {$invoice->invoice_number} berhasil dibuat!");
@@ -333,6 +342,12 @@ class InvoiceController extends Controller
 
             DB::commit();
 
+            ActivityLogger::log('UPDATE', 'Invoice', "Memperbarui data invoice #{$invoice->invoice_number} ({$invoice->customer_name})", [
+                'id' => $invoice->id,
+                'total' => $invoice->total_amount,
+                'status' => $invoice->status,
+            ]);
+
             return redirect()->route('admin.invoices.show', $invoice->id)
                 ->with('success', "Invoice {$invoice->invoice_number} berhasil diperbarui!");
         } catch (\Exception $e) {
@@ -345,6 +360,8 @@ class InvoiceController extends Controller
     {
         $num = $invoice->invoice_number;
         $invoice->delete();
+
+        ActivityLogger::log('DELETE', 'Invoice', "Menghapus invoice #{$num}");
 
         return redirect()->route('admin.invoices.index')
             ->with('success', "Invoice {$num} berhasil dihapus.");
@@ -377,6 +394,13 @@ class InvoiceController extends Controller
         $remainingAmount = max(0, $invoice->total_amount - $paidAmount);
 
         $invoice->update([
+            'status' => $status,
+            'paid_amount' => $paidAmount,
+            'remaining_amount' => $remainingAmount,
+        ]);
+
+        ActivityLogger::log('UPDATE_STATUS', 'Invoice', "Mengubah status pembayaran invoice #{$invoice->invoice_number} menjadi {$status}", [
+            'id' => $invoice->id,
             'status' => $status,
             'paid_amount' => $paidAmount,
             'remaining_amount' => $remainingAmount,

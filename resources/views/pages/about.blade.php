@@ -9,12 +9,18 @@
     <meta name="description" content="Profil resmi Puja Tour & Travel Pangandaran. Biro wisata berbadan hukum CV, pemandu lokal berlisensi resmi HPI, standar keselamatan K3 SNI, dan terpercaya melayani 15.000+ wisatawan.">
     <meta name="keywords" content="profil Puja Tour Travel, tentang Puja Tour Pangandaran, biro wisata resmi Pangandaran, tour guide bersertifikat HPI, CV travel Pangandaran, body rafting Green Canyon">
 
-    <link rel="canonical" href="{{ url('/tentang-kami') }}">
+    <link rel="canonical" href="{{ route('about') }}">
+
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
 
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour & Travel Pangandaran">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url('/tentang-kami') }}">
+    <meta property="og:url" content="{{ route('about') }}">
     <meta property="og:title" content="Tentang Kami — Profil Resmi Biro Wisata Puja Tour Pangandaran">
     <meta property="og:description" content="Profil resmi Puja Tour & Travel Pangandaran. Biro wisata berbadan hukum CV, pemandu lokal berlisensi resmi HPI, standar keselamatan K3 SNI, dan terpercaya melayani 15.000+ wisatawan.">
     <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
@@ -75,7 +81,7 @@
                 '@type' => 'ListItem',
                 'position' => 2,
                 'name' => 'Tentang Kami',
-                'item' => url()->current(),
+                'item' => route('about'),
             ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
@@ -132,7 +138,7 @@
         <div class="relative rounded-3xl overflow-hidden bg-slate-950 text-white shadow-xl border border-slate-800/80">
             <!-- Background Image with Modern Cinematic Gradient Mask -->
             <div class="absolute inset-0">
-                <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Pangandaran Tourism" class="w-full h-full object-cover object-center opacity-30">
+                <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Panorama Wisata Pangandaran - Puja Tour & Travel" class="w-full h-full object-cover object-center opacity-30" fetchpriority="high" loading="eager" decoding="async">
                 <div class="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/70 to-slate-950/30"></div>
             </div>
 
@@ -304,7 +310,7 @@
             <div class="lg:col-span-6 grid grid-cols-2 gap-2.5 sm:gap-4 items-stretch">
                 <!-- Photo 1: Green Canyon -->
                 <div class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
-                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Body Rafting Green Canyon" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Petualangan Body Rafting Green Canyon Pangandaran" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
                         <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-emerald-400">Arung Jeram & Rafting</span>
                         <h4 class="font-display font-bold text-xs sm:text-sm text-white">Green Canyon Sanctuary</h4>
@@ -313,7 +319,7 @@
 
                 <!-- Photo 2: Pasir Putih -->
                 <div class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
-                    <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Snorkeling Pasir Putih" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Wisata Snorkeling Pantai Pasir Putih Pangandaran" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
                         <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-emerald-400">Wisata Bahari & Karang</span>
                         <h4 class="font-display font-bold text-xs sm:text-sm text-white">Pasir Putih & Kapal Karam</h4>
@@ -322,7 +328,7 @@
 
                 <!-- Photo 3: Cagar Alam -->
                 <div class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
-                    <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Cagar Alam Pananjung" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Eksplorasi Cagar Alam Pananjung Pangandaran" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
                         <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-emerald-400">Wisata Konservasi Hutan</span>
                         <h4 class="font-display font-bold text-xs sm:text-sm text-white">Cagar Alam Pananjung</h4>
@@ -331,7 +337,7 @@
 
                 <!-- Photo 4: Sunset Batu Karas -->
                 <div class="relative group rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
-                    <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Sunset Pantai Batu Karas" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Keindahan Sunset Pantai Batu Karas Pangandaran" class="w-full h-36 xs:h-44 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-2.5 sm:p-4 text-white">
                         <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-emerald-400">Pantai Selancar & Senja</span>
                         <h4 class="font-display font-bold text-xs sm:text-sm text-white">Sunset Batu Karas</h4>

@@ -9,13 +9,19 @@
     <meta name="description" content="Hubungi kantor resmi Puja Tour & Travel Pangandaran. WhatsApp hotline 24 jam, alamat kantor operasional, dan petunjuk arah lokasi.">
     <meta name="keywords" content="kontak Puja Tour Travel, WhatsApp Puja Tour, alamat kantor wisata Pangandaran, lokasi biro travel Pangandaran, hubungi tour guide Pangandaran">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ route('contact') }}">
+
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
 
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ route('contact') }}">
     <meta property="og:title" content="Kontak & Lokasi Kantor — Puja Tour & Travel Pangandaran">
     <meta property="og:description" content="Hubungi kantor resmi Puja Tour & Travel Pangandaran. WhatsApp hotline 24 jam, alamat kantor operasional, dan petunjuk arah lokasi.">
     <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
@@ -70,7 +76,7 @@
                 '@type' => 'ListItem',
                 'position' => 2,
                 'name' => 'Kontak',
-                'item' => url()->current(),
+                'item' => route('contact'),
             ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
@@ -140,20 +146,20 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-8 items-stretch">
             <!-- Contact Cards & Info (Simetris 50% Lebar & Sama Tinggi) -->
-            <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-soft border border-neutral-200 flex flex-col justify-between h-full">
+            <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-soft border border-neutral-200 flex flex-col justify-between h-full">
                 <div>
                     <!-- Header -->
-                    <div class="pb-4 sm:pb-5 border-b border-neutral-100 mb-5 sm:mb-6">
+                    <div class="pb-3.5 sm:pb-4 border-b border-neutral-100 mb-4 sm:mb-5">
                         <h2 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Informasi Kontak & Kantor</h2>
                         <p class="text-xs text-slate-500 mt-1">Kanal komunikasi resmi Puja Tour & Travel Pangandaran.</p>
                     </div>
 
                     <!-- Contact Details List -->
-                    <div class="space-y-3.5 text-xs">
+                    <div class="space-y-2.5 sm:space-y-3 text-xs">
                         <!-- 1. Alamat Kantor -->
-                        <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-100">
-                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                        <div class="flex items-start gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
+                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-100">
+                                <i data-lucide="map-pin" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             </div>
                             <div class="min-w-0 flex-1">
                                 <span class="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">Kantor Operasional</span>
@@ -163,9 +169,9 @@
                         </div>
 
                         <!-- 2. WhatsApp Hotline -->
-                        <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-100">
-                                <i data-lucide="phone-call" class="w-5 h-5"></i>
+                        <div class="flex items-start gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
+                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-100">
+                                <i data-lucide="phone-call" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             </div>
                             <div class="min-w-0 flex-1">
                                 <span class="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">WhatsApp & Hotline</span>
@@ -177,9 +183,9 @@
                         </div>
 
                         <!-- 3. Jam Operasional -->
-                        <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-100">
-                                <i data-lucide="clock" class="w-5 h-5"></i>
+                        <div class="flex items-start gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
+                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-100">
+                                <i data-lucide="clock" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             </div>
                             <div class="min-w-0 flex-1">
                                 <span class="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">Jam Layanan Kantor</span>
@@ -189,9 +195,9 @@
                         </div>
 
                         <!-- 4. Email & Proposal -->
-                        <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-100">
-                                <i data-lucide="mail" class="w-5 h-5"></i>
+                        <div class="flex items-start gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
+                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-100">
+                                <i data-lucide="mail" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             </div>
                             <div class="min-w-0 flex-1">
                                 <span class="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">Email & Proposal Resmi</span>
@@ -205,10 +211,10 @@
                 </div>
 
                 <!-- Bottom Section: Trust Notice + Actions -->
-                <div class="mt-6 pt-5 border-t border-neutral-100 space-y-4">
+                <div class="mt-4 sm:mt-5 pt-3.5 sm:pt-4 border-t border-neutral-100 space-y-3 sm:space-y-3.5">
                     <!-- Quick Trust Notice -->
-                    <div class="h-16 p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200/80 flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
+                    <div class="h-14 sm:h-15 p-2.5 sm:p-3 rounded-xl bg-emerald-50/80 border border-emerald-200/80 flex items-center gap-2.5 sm:gap-3">
+                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
                             <i data-lucide="sparkles" class="w-4 h-4"></i>
                         </div>
                         <div class="min-w-0 flex-1">
@@ -218,7 +224,7 @@
                     </div>
 
                     <!-- Clean Action Buttons -->
-                    <div class="flex flex-row gap-2.5 h-12">
+                    <div class="flex flex-row gap-2.5 h-11 sm:h-12">
                         <a href="https://maps.google.com/?q={{ urlencode($officeAddr) }}" target="_blank" rel="noopener noreferrer" class="flex-1 h-full rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs text-center transition shadow-xs flex items-center justify-center gap-1.5">
                             <i data-lucide="map-pin" class="w-4 h-4 shrink-0"></i>
                             <span>Buka Maps</span>
@@ -232,24 +238,24 @@
             </div>
 
             <!-- Interactive Direct Message to WA Form (Simetris 50% Lebar & Sama Tinggi) -->
-            <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-soft border border-neutral-200 flex flex-col justify-between h-full">
+            <div class="bg-surface-soft rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-soft border border-neutral-200 flex flex-col justify-between h-full">
                 <!-- Header -->
-                <div class="pb-4 sm:pb-5 border-b border-neutral-200 mb-5 sm:mb-6">
+                <div class="pb-3.5 sm:pb-4 border-b border-neutral-200 mb-4 sm:mb-5">
                     <h2 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Kirim Pesan & Permintaan Khusus</h2>
                     <p class="text-xs text-slate-500 mt-1">Isi formulir di bawah ini untuk terhubung langsung ke WhatsApp Customer Support kami.</p>
                 </div>
 
                 <form id="contact-form" class="flex-1 flex flex-col justify-between">
                     <!-- Form Fields (Top) -->
-                    <div class="space-y-3.5">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div class="space-y-2.5 sm:space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Nama Lengkap *</label>
-                                <input type="text" id="msg-name" required placeholder="Contoh: Hendra Wijaya" class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
+                                <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Nama Lengkap *</label>
+                                <input type="text" id="msg-name" required placeholder="Contoh: Hendra Wijaya" class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Jenis Permintaan *</label>
-                                <select id="msg-topic" class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
+                                <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Jenis Permintaan *</label>
+                                <select id="msg-topic" class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
                                     <option value="Konsultasi Paket Wisata">Konsultasi Paket Wisata</option>
                                     <option value="Corporate / Family Gathering">Corporate / Family Gathering (Rombongan)</option>
                                     <option value="Body Rafting Green Canyon">Body Rafting Green Canyon</option>
@@ -261,28 +267,28 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" for="msg-pax">Estimasi Jumlah Tamu (Orang)</label>
-                                <input type="number" id="msg-pax" min="1" max="1000" step="1" inputmode="numeric" placeholder="Contoh: 10" class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
+                                <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1" for="msg-pax">Estimasi Tamu (Orang)</label>
+                                <input type="number" id="msg-pax" min="1" max="1000" step="1" inputmode="numeric" placeholder="Contoh: 10" class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Rencana Tanggal (Opsional)</label>
-                                <input type="date" id="msg-date" min="{{ date('Y-m-d') }}" placeholder="Pilih tanggal trip (opsional)..." class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition custom-datepicker-input">
+                                <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Rencana Tanggal (Opsional)</label>
+                                <input type="date" id="msg-date" min="{{ date('Y-m-d') }}" placeholder="Pilih tanggal trip (opsional)..." class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition custom-datepicker-input">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Pesan atau Pertanyaan Anda *</label>
-                            <textarea id="msg-content" rows="3" required placeholder="Tuliskan detail rencana liburan, kebutuhan khusus, atau pertanyaan Anda..." class="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition resize-none"></textarea>
+                            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Pesan atau Pertanyaan Anda *</label>
+                            <textarea id="msg-content" rows="2" required placeholder="Tuliskan detail rencana liburan, kebutuhan khusus, atau pertanyaan Anda..." class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl border border-neutral-200 bg-white text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 outline-none transition resize-none"></textarea>
                         </div>
                     </div>
 
                     <!-- Bottom Section: Notice + Button (Aligned with Left Card) -->
-                    <div class="mt-6 pt-5 border-t border-neutral-200 space-y-4">
+                    <div class="mt-4 sm:mt-5 pt-3.5 sm:pt-4 border-t border-neutral-200 space-y-3 sm:space-y-3.5">
                         <!-- Auto-composed Notification Notice -->
-                        <div class="h-16 p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200/80 flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
+                        <div class="h-14 sm:h-15 p-2.5 sm:p-3 rounded-xl bg-emerald-50/80 border border-emerald-200/80 flex items-center gap-2.5 sm:gap-3">
+                            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
                                 <i data-lucide="sparkles" class="w-4 h-4"></i>
                             </div>
                             <div class="min-w-0 flex-1">
@@ -292,7 +298,7 @@
                         </div>
 
                         <!-- Submit Button -->
-                        <button type="submit" class="w-full h-12 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-xs transition flex items-center justify-center gap-2 cursor-pointer">
+                        <button type="submit" class="w-full h-11 sm:h-12 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-xs transition flex items-center justify-center gap-2 cursor-pointer">
                             <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                             <span>Kirim Pesan Otomatis ke WhatsApp CS</span>
                         </button>

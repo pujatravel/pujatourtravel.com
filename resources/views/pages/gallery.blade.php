@@ -9,13 +9,19 @@
     <meta name="description" content="Koleksi foto dan dokumentasi kegiatan body rafting Green Canyon, snorkeling Pasir Putih, pantai Batu Karas, dan keindahan alam Pangandaran.">
     <meta name="keywords" content="galeri wisata Pangandaran, foto body rafting Green Canyon, dokumentasi snorkeling Pasir Putih, foto Batu Karas, galeri Puja Tour">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ route('gallery') }}">
+
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
 
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ route('gallery') }}">
     <meta property="og:title" content="Galeri Dokumentasi Wisata Pangandaran — Puja Tour & Travel">
     <meta property="og:description" content="Koleksi foto dan dokumentasi kegiatan body rafting Green Canyon, snorkeling Pasir Putih, pantai Batu Karas, dan keindahan alam Pangandaran.">
     <meta property="og:image" content="{{ asset('images/cagar_alam.jpg') }}">
@@ -61,7 +67,7 @@
                 '@type' => 'ListItem',
                 'position' => 2,
                 'name' => 'Galeri',
-                'item' => url()->current(),
+                'item' => route('gallery'),
             ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
@@ -154,7 +160,7 @@
                 <div class="gallery-item group relative h-64 sm:h-72 rounded-3xl overflow-hidden cursor-pointer shadow-soft border border-neutral-200 bg-slate-900"
                      data-img="{{ $gal->image_url }}"
                      data-caption="{{ $gal->caption ?? $gal->title }}">
-                    <img src="{{ $gal->image_url }}" alt="{{ $gal->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <img src="{{ $gal->image_url }}" alt="{{ $gal->title }} — Galeri Wisata Puja Tour Pangandaran" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition"></div>
                     
                     <div class="absolute top-3 left-3">

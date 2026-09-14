@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
 use App\Models\Setting;
+use App\Services\ActivityLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -46,6 +47,10 @@ class BannerController extends Controller
             Setting::set($key, $value, 'hero_banner');
         }
 
+        ActivityLogger::log('UPDATE', 'Banner Hero', 'Memperbarui teks dan statistik banner hero beranda', [
+            'hero_title' => $validated['hero_title'],
+        ]);
+
         return back()->with('success', 'Teks dan statistik Banner Hero beranda berhasil diperbarui!');
     }
 
@@ -65,7 +70,7 @@ class BannerController extends Controller
         $filename = 'hero_slide_'.time().'_'.Str::slug($validated['title']).'_'.Str::random(6).'.'.$ext;
         $file->move(public_path('images/uploads'), $filename);
 
-        Gallery::create([
+        $slide = Gallery::create([
             'title' => $validated['title'],
             'category' => 'Hero Banner',
             'caption' => $validated['caption'] ?? 'Destinasi Wisata Pangandaran',
@@ -73,6 +78,11 @@ class BannerController extends Controller
             'is_slider' => true,
             'is_published' => true,
             'display_order' => Gallery::where('is_slider', true)->count() + 1,
+        ]);
+
+        ActivityLogger::log('UPLOAD', 'Banner Hero', "Mengunggah gambar slide banner hero: \"{$slide->title}\"", [
+            'id' => $slide->id,
+            'image_url' => $slide->image_url,
         ]);
 
         return back()->with('success', 'Gambar slide banner hero baru berhasil diunggah!');
@@ -89,6 +99,10 @@ class BannerController extends Controller
 
         $gallery = Gallery::findOrFail($validated['gallery_id']);
         $gallery->update(['is_slider' => true]);
+
+        ActivityLogger::log('UPDATE', 'Banner Hero', "Menambahkan foto galeri ke slide hero: \"{$gallery->title}\"", [
+            'gallery_id' => $gallery->id,
+        ]);
 
         return back()->with('success', "Foto \"{$gallery->title}\" berhasil ditambahkan ke Slider Banner Hero.");
     }
@@ -114,6 +128,8 @@ class BannerController extends Controller
     {
         $title = $gallery->title;
         $gallery->delete();
+
+        ActivityLogger::log('DELETE', 'Banner Hero', "Menghapus slide banner hero: \"{$title}\"");
 
         return back()->with('success', "Slide banner \"{$title}\" berhasil dihapus.");
     }

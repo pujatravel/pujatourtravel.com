@@ -8,13 +8,19 @@
     <title>Kebijakan Pengembalian Dana (Refund Policy) — Puja Tour & Travel Pangandaran</title>
     <meta name="description" content="Kebijakan resmi pembatalan reservasi, pengembalian dana (refund), reschedule bebas biaya, dan garansi cuaca force majeure di CV Puja Tour & Travel Pangandaran.">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ route('refund-policy') }}">
+
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
 
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ route('refund-policy') }}">
     <meta property="og:title" content="Kebijakan Pengembalian Dana — Puja Tour & Travel Pangandaran">
     <meta property="og:description" content="Ketentuan refund transparan, skema pembatalan, garansi cuaca force majeure, dan tata cara klaim pengembalian dana.">
     <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
@@ -35,7 +41,7 @@
                 '@type' => 'ListItem',
                 'position' => 2,
                 'name' => 'Kebijakan Pengembalian',
-                'item' => url()->current(),
+                'item' => route('refund-policy'),
             ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}

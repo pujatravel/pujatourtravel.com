@@ -44,7 +44,7 @@
             <div class="col-span-2 lg:col-span-2 space-y-4">
                 <div class="flex items-center gap-3">
                     <div class="w-14 h-14 shrink-0 flex items-center justify-center">
-                        <img src="{{ asset('images/puja_logo.png') }}" alt="Puja Tour Travel" class="w-full h-full object-contain">
+                        <img src="{{ asset('images/puja_logo.png') }}" alt="Logo CV Puja Tour & Travel Pangandaran" class="w-full h-full object-contain" width="56" height="56" loading="lazy" decoding="async">
                     </div>
                     <div>
                         <span class="font-display font-extrabold text-xl text-white block">{{ $footerCompanyName }}</span>

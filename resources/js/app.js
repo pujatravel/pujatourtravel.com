@@ -132,8 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        heroDots.forEach((dot, idx) => {
-            if (idx === currentHeroIndex) {
+        heroDots.forEach((dot) => {
+            const dotSlide = parseInt(dot.getAttribute('data-slide'));
+            if (dotSlide === currentHeroIndex) {
                 dot.classList.remove('w-2', 'w-2.5', 'w-6', 'w-8', 'sm:w-2.5', 'sm:w-8', 'bg-white/40');
                 dot.classList.add('w-6', 'sm:w-8', 'bg-emerald-400');
             } else {
@@ -183,10 +184,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        heroDots.forEach((dot, idx) => {
+        heroDots.forEach((dot) => {
             dot.addEventListener('click', () => {
-                setHeroSlide(idx);
-                startHeroSlider();
+                const dotSlide = parseInt(dot.getAttribute('data-slide'));
+                if (!isNaN(dotSlide)) {
+                    setHeroSlide(dotSlide);
+                    startHeroSlider();
+                }
             });
         });
 

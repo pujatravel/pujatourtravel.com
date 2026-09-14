@@ -55,68 +55,73 @@
 
             <div class="space-y-4">
                 @forelse($testimonials as $testi)
-                    <div class="p-5 rounded-2xl {{ !$testi->is_published ? 'bg-amber-50/40 border border-amber-200' : 'bg-slate-50 border border-slate-200/80' }} flex flex-col sm:flex-row items-start justify-between gap-4 transition hover:shadow-2xs">
-                        <div class="space-y-2 flex-1">
-                            <div class="flex flex-wrap items-center gap-2">
-                                <span class="font-display font-bold text-slate-900 text-sm">{{ $testi->customer_name }}</span>
-                                <span class="text-xs text-slate-400">({{ $testi->customer_city ?? 'Wisatawan' }})</span>
-                                <div class="flex items-center gap-0.5 text-amber-500">
-                                    @for($i = 0; $i < $testi->rating; $i++)
-                                        <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-500 text-amber-500"></i>
-                                    @endfor
+                    <div class="p-5 rounded-2xl {{ !$testi->is_published ? 'bg-amber-50/40 border border-amber-200' : 'bg-slate-50 border border-slate-200/80' }} flex flex-col gap-3.5 transition hover:shadow-2xs">
+                        <!-- Top Header: Customer Info (Kiri) & Tombol Aksi (Kanan) -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="font-display font-bold text-slate-900 text-sm">{{ $testi->customer_name }}</span>
+                                    <span class="text-xs text-slate-400">({{ $testi->customer_city ?? 'Wisatawan' }})</span>
+                                    <div class="flex items-center gap-0.5 text-amber-500">
+                                        @for($i = 0; $i < $testi->rating; $i++)
+                                            <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-500 text-amber-500"></i>
+                                        @endfor
+                                    </div>
+                                    @if(!$testi->is_published)
+                                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300 inline-flex items-center gap-1">
+                                            <i data-lucide="clock" class="w-3 h-3 text-amber-600"></i>
+                                            <span>Menunggu ACC</span>
+                                        </span>
+                                    @else
+                                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 inline-flex items-center gap-1">
+                                            <i data-lucide="check-circle" class="w-3 h-3 text-emerald-600"></i>
+                                            <span>Tayang di Web</span>
+                                        </span>
+                                    @endif
                                 </div>
+                                <div class="flex items-center gap-2 text-[11px] text-slate-500">
+                                    <span class="font-semibold text-emerald-700">{{ $testi->package_name ?? 'Paket Wisata Pangandaran' }}</span>
+                                    <span>•</span>
+                                    <span>{{ $testi->created_at ? $testi->created_at->format('d M Y, H:i') : '-' }}</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons (Sejajar di Kanan Atas) -->
+                            <div class="flex items-center gap-2 shrink-0 self-start sm:self-center">
                                 @if(!$testi->is_published)
-                                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300 inline-flex items-center gap-1">
-                                        <i data-lucide="clock" class="w-3 h-3 text-amber-600"></i>
-                                        <span>Menunggu ACC</span>
-                                    </span>
+                                    <form action="{{ route('admin.testimonials.toggle-publish', $testi->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="h-9 px-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition cursor-pointer" title="ACC & Publikasikan testimoni ke website">
+                                            <i data-lucide="check" class="w-4 h-4"></i>
+                                            <span>Setujui (ACC)</span>
+                                        </button>
+                                    </form>
                                 @else
-                                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 inline-flex items-center gap-1">
-                                        <i data-lucide="check-circle" class="w-3 h-3 text-emerald-600"></i>
-                                        <span>Tayang di Web</span>
-                                    </span>
+                                    <form action="{{ route('admin.testimonials.toggle-publish', $testi->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="h-9 px-3 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 font-semibold text-xs flex items-center gap-1.5 transition shadow-2xs cursor-pointer" title="Tarik dari website">
+                                            <i data-lucide="eye-off" class="w-3.5 h-3.5 text-slate-400"></i>
+                                            <span>Tarik / Sembunyikan</span>
+                                        </button>
+                                    </form>
                                 @endif
-                            </div>
-                            <div class="flex items-center gap-2 text-[11px] text-slate-500">
-                                <span class="font-semibold text-emerald-700">{{ $testi->package_name ?? 'Paket Wisata Pangandaran' }}</span>
-                                <span>•</span>
-                                <span>{{ $testi->created_at ? $testi->created_at->format('d M Y, H:i') : '-' }}</span>
-                            </div>
-                            <p class="text-xs text-slate-700 italic leading-relaxed bg-white/70 p-3 rounded-xl border border-slate-200/60">
-                                "{{ $testi->review_text }}"
-                            </p>
-                        </div>
 
-                        <!-- Action Buttons -->
-                        <div class="flex sm:flex-col items-center gap-2 shrink-0 self-end sm:self-center">
-                            @if(!$testi->is_published)
-                                <form action="{{ route('admin.testimonials.toggle-publish', $testi->id) }}" method="POST">
+                                <form action="{{ route('admin.testimonials.destroy', $testi->id) }}" method="POST" onsubmit="confirmDelete(event, 'Apakah Anda yakin ingin menghapus testimoni dari {{ addslashes($testi->customer_name) }}?');">
                                     @csrf
-                                    @method('PATCH')
-                                    <button type="submit" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition cursor-pointer" title="ACC & Publikasikan testimoni ke website">
-                                        <i data-lucide="check" class="w-4 h-4"></i>
-                                        <span>Setujui (ACC)</span>
+                                    @method('DELETE')
+                                    <button type="submit" class="w-9 h-9 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-rose-600 hover:border-rose-200 text-xs font-bold transition shadow-2xs flex items-center justify-center cursor-pointer" title="Hapus Testimoni">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
                                     </button>
                                 </form>
-                            @else
-                                <form action="{{ route('admin.testimonials.toggle-publish', $testi->id) }}" method="POST">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button type="submit" class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 font-semibold text-xs flex items-center gap-1 transition shadow-2xs cursor-pointer" title="Tarik dari website">
-                                        <i data-lucide="eye-off" class="w-3.5 h-3.5 text-slate-400"></i>
-                                        <span>Tarik / Sembunyikan</span>
-                                    </button>
-                                </form>
-                            @endif
-
-                            <form action="{{ route('admin.testimonials.destroy', $testi->id) }}" method="POST" onsubmit="confirmDelete(event, 'Apakah Anda yakin ingin menghapus testimoni dari {{ addslashes($testi->customer_name) }}?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-rose-600 hover:border-rose-200 text-xs font-bold transition shadow-2xs cursor-pointer" title="Hapus Testimoni">
-                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                </button>
-                            </form>
+                            </div>
                         </div>
+
+                        <!-- Message Box (Simetris Penuh Sama Rata Kiri Kanan) -->
+                        <p class="text-xs text-slate-700 italic leading-relaxed bg-white/80 p-3.5 rounded-xl border border-slate-200/60 w-full">
+                            "{{ $testi->review_text }}"
+                        </p>
                     </div>
                 @empty
                     <div class="text-center py-12 text-slate-400">

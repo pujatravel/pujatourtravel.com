@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Unit;
+use App\Services\ActivityLogger;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -50,6 +51,8 @@ class UnitController extends Controller
 
         Unit::create($validated);
 
+        ActivityLogger::log('CREATE', 'Satuan Paket', "Menambahkan satuan paket baru: \"{$validated['name']}\"");
+
         return redirect()->route('admin.units.index')
             ->with('success', 'Satuan "' . $validated['name'] . '" berhasil ditambahkan.');
     }
@@ -82,6 +85,8 @@ class UnitController extends Controller
 
         $unit->update($validated);
 
+        ActivityLogger::log('UPDATE', 'Satuan Paket', "Memperbarui satuan paket: \"{$unit->name}\"");
+
         return redirect()->route('admin.units.index')
             ->with('success', 'Satuan "' . $unit->name . '" berhasil diperbarui.');
     }
@@ -100,6 +105,8 @@ class UnitController extends Controller
 
         $name = $unit->name;
         $unit->delete();
+
+        ActivityLogger::log('DELETE', 'Satuan Paket', "Menghapus satuan paket: \"{$name}\"");
 
         return redirect()->route('admin.units.index')
             ->with('success', 'Satuan "' . $name . '" berhasil dihapus.');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Models\Testimonial;
+use App\Services\ActivityLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -46,6 +47,18 @@ class TestimonialController extends Controller
             'is_published' => !$testimonial->is_published,
         ]);
 
+        $action = $testimonial->is_published ? 'APPROVE' : 'UPDATE';
+        $desc = $testimonial->is_published
+            ? "Menyetujui (ACC) testimoni dari \"{$testimonial->customer_name}\""
+            : "Membatalkan publikasi testimoni dari \"{$testimonial->customer_name}\"";
+
+        ActivityLogger::log($action, 'Testimoni', $desc, [
+            'id' => $testimonial->id,
+            'customer_name' => $testimonial->customer_name,
+            'rating' => $testimonial->rating,
+            'is_published' => $testimonial->is_published,
+        ]);
+
         $msg = $testimonial->is_published
             ? "Testimoni dari \"{$testimonial->customer_name}\" berhasil disetujui (ACC) dan kini tampil di website!"
             : "Testimoni dari \"{$testimonial->customer_name}\" telah ditarik / disembunyikan dari website.";
@@ -65,7 +78,7 @@ class TestimonialController extends Controller
             'is_published' => ['nullable', 'boolean'],
         ]);
 
-        Testimonial::create([
+        $testi = Testimonial::create([
             'customer_name' => $validated['customer_name'],
             'customer_city' => $validated['customer_city'],
             'package_name' => $validated['package_name'],
@@ -76,6 +89,12 @@ class TestimonialController extends Controller
             'trip_date' => now()->format('Y-m-d'),
         ]);
 
+        ActivityLogger::log('CREATE', 'Testimoni', "Menambahkan testimoni baru dari \"{$validated['customer_name']}\"", [
+            'id' => $testi->id,
+            'rating' => $validated['rating'],
+            'package' => $validated['package_name'],
+        ]);
+
         return back()->with('success', 'Ulasan testimonial berhasil ditambahkan!');
     }
 
@@ -83,6 +102,11 @@ class TestimonialController extends Controller
     {
         $name = $testimonial->customer_name;
         $testimonial->delete();
+
+        ActivityLogger::log('DELETE', 'Testimoni', "Menghapus ulasan testimoni dari \"{$name}\"", [
+            'id' => $testimonial->id,
+            'customer_name' => $name,
+        ]);
 
         return back()->with('success', "Ulasan testimonial dari {$name} berhasil dihapus.");
     }

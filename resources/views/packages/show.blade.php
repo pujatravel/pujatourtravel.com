@@ -9,46 +9,75 @@
     <meta name="description" content="{{ $package->seo_description ?? ($package->short_description ?? 'Paket wisata terbaik di Pangandaran bersama pemandu lokal berlisensi.') }}">
     <meta name="keywords" content="{{ $package->name }}, paket wisata Pangandaran, {{ $package->location ?? 'Pangandaran' }}, Puja Tour Travel, {{ $package->category->name ?? 'wisata alam' }}">
     
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ route('packages.show', $package->slug) }}">
     
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="{{ $package->location ?? 'Pangandaran' }}">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
+
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="product">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ route('packages.show', $package->slug) }}">
     <meta property="og:title" content="{{ $package->name }} — Puja Tour & Travel">
-    <meta property="og:description" content="{{ $package->short_description }}">
+    <meta property="og:description" content="{{ $package->short_description ?? ($package->seo_description ?? 'Paket wisata terbaik di Pangandaran bersama pemandu lokal berlisensi HPI.') }}">
     <meta property="og:image" content="{{ asset($package->image_url ?? 'images/greencanyon.jpg') }}">
+    <meta property="og:image:secure_url" content="{{ asset($package->image_url ?? 'images/greencanyon.jpg') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $package->name }} — Puja Tour & Travel">
-    <meta name="twitter:description" content="{{ $package->short_description }}">
+    <meta name="twitter:description" content="{{ $package->short_description ?? ($package->seo_description ?? 'Paket wisata terbaik di Pangandaran bersama pemandu lokal berlisensi HPI.') }}">
     <meta name="twitter:image" content="{{ asset($package->image_url ?? 'images/greencanyon.jpg') }}">
 
     <!-- Structured Data (JSON-LD): TouristTrip & BreadcrumbList -->
+    @php
+        $tripSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'TouristTrip',
+            'name' => $package->name,
+            'description' => $package->short_description ?? ($package->description ?? $package->name),
+            'image' => asset($package->image_url ?? 'images/greencanyon.jpg'),
+            'touristType' => 'Semua Usia',
+            'offers' => [
+                '@type' => 'Offer',
+                'price' => (int) $package->price,
+                'priceCurrency' => 'IDR',
+                'availability' => 'https://schema.org/InStock',
+                'validFrom' => now()->startOfYear()->toDateString(),
+                'priceValidUntil' => now()->addYear()->endOfYear()->toDateString(),
+                'url' => route('packages.show', $package->slug),
+            ],
+            'provider' => [
+                '@type' => 'TravelAgency',
+                'name' => 'Puja Tour & Travel Pangandaran',
+                'url' => url('/'),
+                'telephone' => $settings['phone_number'] ?? '+6281234567890',
+            ],
+        ];
+
+        if (!empty($package->itinerary) && is_array($package->itinerary)) {
+            $tripSchema['itinerary'] = [
+                '@type' => 'ItemList',
+                'numberOfItems' => count($package->itinerary),
+                'itemListElement' => array_values(array_map(function ($step, $idx) {
+                    return [
+                        '@type' => 'ListItem',
+                        'position' => $idx + 1,
+                        'name' => $step['activity'] ?? ('Aktivitas ' . ($idx + 1)),
+                        'description' => $step['desc'] ?? '',
+                    ];
+                }, $package->itinerary, array_keys($package->itinerary))),
+            ];
+        }
+    @endphp
     <script type="application/ld+json">
-    {!! json_encode([
-        '@context' => 'https://schema.org',
-        '@type' => 'TouristTrip',
-        'name' => $package->name,
-        'description' => $package->short_description ?? $package->name,
-        'touristType' => 'Semua Usia',
-        'offers' => [
-            '@type' => 'Offer',
-            'price' => (int) $package->price,
-            'priceCurrency' => 'IDR',
-            'availability' => 'https://schema.org/InStock',
-            'url' => url()->current(),
-        ],
-        'provider' => [
-            '@type' => 'TravelAgency',
-            'name' => 'Puja Tour Travel',
-            'url' => url('/'),
-        ],
-    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    {!! json_encode($tripSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
     <script type="application/ld+json">
     {!! json_encode([
@@ -71,7 +100,7 @@
                 '@type' => 'ListItem',
                 'position' => 3,
                 'name' => $package->name,
-                'item' => url()->current(),
+                'item' => route('packages.show', $package->slug),
             ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
@@ -144,37 +173,14 @@
                 <!-- Package Hero & Image Banner -->
                 <div class="bg-surface-soft rounded-3xl overflow-hidden shadow-soft border border-neutral-200">
                     <div class="relative h-72 sm:h-96 md:h-112 w-full bg-slate-900 overflow-hidden">
-                        <img src="{{ $package->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $package->name }}" class="w-full h-full object-cover">
+                        <img src="{{ $package->image_url ?? asset('images/greencanyon.jpg') }}" alt="Paket Wisata {{ $package->name }} Pangandaran" class="w-full h-full object-cover" fetchpriority="high" loading="eager" decoding="async">
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
                         
-                        <!-- Badges on Image -->
-                        <div class="absolute top-6 left-6 flex flex-wrap items-center gap-2">
-                            @if($package->featured)
-                                <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow-md flex items-center gap-1.5">
-                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-slate-950"></i>
-                                    <span>Paket Rekomendasi</span>
-                                </span>
-                            @endif
-                            <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-700 text-white shadow-md">
-                                {{ $package->category->name ?? 'Wisata Alam' }}
-                            </span>
-                        </div>
 
-                        <!-- Title & Meta over bottom of image -->
+
+                        <!-- Title over bottom of image -->
                         <div class="absolute bottom-6 left-6 right-6 text-white">
-                            <div class="flex flex-wrap items-center gap-4 text-xs font-medium text-slate-200 mb-2">
-                                <span class="flex items-center gap-1.5 bg-slate-900/70 backdrop-blur-sm px-3 py-1 rounded-xl">
-                                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i>
-                                    <span>{{ $package->location ?? 'Pangandaran, Jawa Barat' }}</span>
-                                </span>
-                                @if($package->duration)
-                                    <span class="flex items-center gap-1.5 bg-slate-900/70 backdrop-blur-sm px-3 py-1 rounded-xl">
-                                        <i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-400"></i>
-                                        <span>Durasi: {{ $package->duration }}</span>
-                                    </span>
-                                @endif
-                            </div>
-                            <h1 class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-white tracking-tight leading-tight">
+                            <h1 class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-white tracking-tight leading-tight drop-shadow-md">
                                 {{ $package->name }}
                             </h1>
                         </div>
@@ -182,10 +188,9 @@
 
                     <!-- Highlight Highlights Bar -->
                     <div class="p-4 sm:p-7 border-b border-neutral-200 bg-white grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 text-center">
-                        <div class="p-2.5 sm:p-3 rounded-2xl bg-canvas border border-neutral-200">
-                            <span class="text-[10px] sm:text-[11px] text-slate-400 block font-medium">Harga Mulai</span>
-                            <span class="font-display font-extrabold text-base xs:text-lg sm:text-xl text-emerald-700 block truncate">{{ $package->formatted_price }}</span>
-                            <span class="text-[9px] sm:text-[10px] text-slate-400">/ {{ $package->price_unit }}</span>
+                        <div class="p-3 rounded-2xl bg-canvas border border-neutral-200">
+                            <span class="text-[11px] text-slate-400 block font-medium">Lokasi</span>
+                            <span class="font-display font-bold text-sm sm:text-base text-slate-800 mt-1 block truncate" title="{{ $package->location ?? 'Pangandaran' }}">{{ $package->location ?? 'Pangandaran' }}</span>
                         </div>
                         <div class="p-3 rounded-2xl bg-canvas border border-neutral-200">
                             <span class="text-[11px] text-slate-400 block font-medium">Durasi Trip</span>
@@ -204,14 +209,9 @@
 
                 <!-- 1. Deskripsi Lengkap -->
                 <div class="bg-surface-soft rounded-3xl p-6 sm:p-8 shadow-soft border border-neutral-200">
-                    <div class="flex items-center gap-3 pb-4 mb-6 border-b border-neutral-200">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                            <i data-lucide="file-text" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <h2 class="font-display font-bold text-xl text-slate-900">Deskripsi & Rincian Pengalaman</h2>
-                            <p class="text-xs text-slate-500">Mengenal lebih dalam petualangan yang akan Anda dapatkan</p>
-                        </div>
+                    <div class="pb-4 mb-6 border-b border-neutral-200">
+                        <h2 class="font-display font-bold text-xl text-slate-900">Deskripsi & Rincian Pengalaman</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Mengenal lebih dalam petualangan yang akan Anda dapatkan</p>
                     </div>
 
                     @if($package->short_description)
@@ -486,18 +486,20 @@
                             {{-- Gambar --}}
                             <div class="relative h-32 xs:h-40 sm:h-52 overflow-hidden bg-neutral-100">
                                 <img src="{{ $rel->image_url ?? asset('images/greencanyon.jpg') }}"
-                                     alt="{{ $rel->name }}"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                     alt="Paket Wisata {{ $rel->name }} Pangandaran"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                                     loading="lazy"
+                                     decoding="async">
 
                                 {{-- Badge Featured / Category --}}
-                                <div class="absolute top-2 left-2 sm:top-3 sm:left-3 z-10">
+                                <div class="absolute top-2 left-2 right-2 sm:top-3 sm:left-3 sm:right-auto z-10 flex items-center gap-1 overflow-hidden">
                                     @if($rel->featured)
-                                        <span class="px-2 py-0.5 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-amber-500 text-slate-950 shadow-xs flex items-center gap-1">
-                                            <i data-lucide="star" class="w-2.5 h-2.5 fill-slate-950"></i>
+                                        <span class="px-2 py-0.5 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-amber-500 text-slate-950 shadow-xs flex items-center gap-1 shrink-0">
+                                            <i data-lucide="star" class="w-2.5 h-2.5 fill-slate-950 shrink-0"></i>
                                             <span>Rekomendasi</span>
                                         </span>
                                     @else
-                                        <span class="px-2 py-0.5 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-emerald-700 text-white shadow-xs">
+                                        <span class="px-2 py-0.5 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-emerald-700 text-white shadow-xs truncate max-w-full block">
                                             {{ $rel->category->name ?? 'Wisata' }}
                                         </span>
                                     @endif
@@ -530,9 +532,9 @@
 
                                     {{-- Inclusions --}}
                                     @if(is_array($rel->inclusions) && count($rel->inclusions) > 0)
-                                        <div class="flex flex-wrap gap-1 sm:gap-1.5 mt-2 sm:mt-3">
+                                        <div class="flex flex-wrap gap-1 sm:gap-1.5 mt-2 sm:mt-3 overflow-hidden">
                                             @foreach(array_slice($rel->inclusions, 0, 3) as $iIdx => $inc)
-                                                <span class="text-[9px] xs:text-[10px] sm:text-[11px] bg-neutral-100 text-slate-700 px-1.5 py-0.5 rounded-md {{ $iIdx >= 2 ? 'hidden sm:inline-flex' : 'inline-flex' }} items-center gap-1">
+                                                <span class="text-[9px] xs:text-[10px] sm:text-[11px] bg-neutral-100 text-slate-700 px-1.5 py-0.5 rounded-md {{ $iIdx >= 2 ? 'hidden sm:inline-flex' : 'inline-flex' }} items-center gap-1 max-w-full">
                                                     <i data-lucide="check" class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-700 shrink-0"></i>
                                                     <span class="truncate">{{ $inc }}</span>
                                                 </span>
@@ -586,13 +588,6 @@
         </div>
     </div>
 
-    <!-- Floating WhatsApp Button (With Safe Padding on Mobile) -->
-    <a href="https://wa.me/{{ $waNum }}?text={{ $bookingWaText }}" 
-       target="_blank" 
-       aria-label="Hubungi WhatsApp Puja Tour"
-       class="fixed bottom-20 lg:bottom-6 right-6 z-40 bg-emerald-700 hover:bg-emerald-800 text-white p-3.5 sm:p-4 rounded-full shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center group">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
-    </a>
-
+    {{-- Floating WhatsApp button disembunyikan agar tidak double dengan bottom bar & sidebar --}}
 </body>
 </html>

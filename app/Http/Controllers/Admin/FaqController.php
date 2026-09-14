@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
+use App\Services\ActivityLogger;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -51,6 +52,8 @@ class FaqController extends Controller
 
             $this->normalizeOrders();
         });
+
+        ActivityLogger::log('CREATE', 'Tanya Jawab (FAQ)', "Menambahkan pertanyaan FAQ baru: \"{$validated['question']}\"");
 
         return back()->with('success', 'Pertanyaan FAQ baru berhasil ditambahkan!');
     }
@@ -100,11 +103,14 @@ class FaqController extends Controller
             $this->normalizeOrders();
         });
 
+        ActivityLogger::log('UPDATE', 'Tanya Jawab (FAQ)', "Memperbarui pertanyaan FAQ: \"{$faq->question}\"");
+
         return back()->with('success', 'Pertanyaan FAQ berhasil diperbarui!');
     }
 
     public function destroy(Faq $faq): RedirectResponse
     {
+        $q = $faq->question;
         DB::transaction(function () use ($faq): void {
             $deletedOrder = (int) $faq->display_order;
             $faq->delete();
@@ -113,6 +119,8 @@ class FaqController extends Controller
             Faq::where('display_order', '>', $deletedOrder)->decrement('display_order');
             $this->normalizeOrders();
         });
+
+        ActivityLogger::log('DELETE', 'Tanya Jawab (FAQ)', "Menghapus pertanyaan FAQ: \"{$q}\"");
 
         return back()->with('success', 'Pertanyaan FAQ berhasil dihapus.');
     }

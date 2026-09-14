@@ -7,12 +7,10 @@
     <div class="space-y-6 max-w-6xl mx-auto pb-12">
 
         <!-- Top Header -->
-        <div
-            class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-soft p-6 rounded-3xl border border-neutral-200 shadow-soft">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-soft p-6 rounded-3xl border border-neutral-200 shadow-soft">
             <div class="space-y-1">
-                <h2 class="font-display font-extrabold text-xl text-slate-900 flex items-center gap-2.5">
-                    <i data-lucide="pen-tool" class="w-6 h-6 text-emerald-700"></i>
-                    <span>Tanda Tangan Digital & Otorisasi Invoice</span>
+                <h2 class="font-display font-extrabold text-xl text-slate-900">
+                    Tanda Tangan Digital & Otorisasi Invoice
                 </h2>
                 <p class="text-xs text-slate-500">Buat coretan tanda tangan langsung menggunakan mouse / touchpad / layar
                     sentuh, atau unggah berkas gambar tanda tangan & stempel</p>
@@ -41,7 +39,7 @@
 
                     <!-- Salam / Header Tanda Tangan -->
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                        <label for="input-sig-header" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                             Teks Salam / Pembuka <span class="text-rose-500">*</span>
                         </label>
                         <input type="text" name="signature_header" id="input-sig-header"
@@ -55,7 +53,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <!-- Nama Penandatangan / Perusahaan -->
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                            <label for="input-sig-name" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                                 Nama Penandatangan <span class="text-rose-500">*</span>
                             </label>
                             <input type="text" name="signature_name" id="input-sig-name"
@@ -68,7 +66,7 @@
 
                         <!-- Jabatan / Bagian / Departemen -->
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                            <label for="input-sig-pos" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                                 Jabatan / Divisi <span class="text-rose-500">*</span>
                             </label>
                             <input type="text" name="signature_position" id="input-sig-pos"
@@ -82,7 +80,7 @@
 
                     <!-- Kota Penerbitan (Opsional) -->
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                        <label for="input-sig-city" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                             Kota Penerbitan (Opsional)
                         </label>
                         <input type="text" name="signature_city" id="input-sig-city"
@@ -94,9 +92,9 @@
                     <!-- Mode Input Tanda Tangan (Pad Coretan vs Unggah File) -->
                     <div class="pt-4 border-t border-neutral-200 space-y-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-800 uppercase">
+                            <span class="block text-xs font-bold text-slate-800 uppercase">
                                 Bentuk Tanda Tangan
-                            </label>
+                            </span>
                             <span class="text-[11px] text-slate-400">Goreskan tanda tangan langsung menggunakan mouse /
                                 touchpad / layar sentuh</span>
                         </div>
@@ -120,7 +118,7 @@
                                     </div>
                                 </div>
 
-                                <label
+                                <label for="checkbox-remove-img"
                                     class="inline-flex items-center gap-1.5 text-xs text-rose-600 font-bold hover:text-rose-700 cursor-pointer bg-rose-50 px-3 py-1.5 rounded-xl border border-rose-200 transition">
                                     <input type="checkbox" name="remove_signature_image" value="1" id="checkbox-remove-img"
                                         class="rounded border-rose-300 text-rose-600 focus:ring-rose-500">
@@ -155,7 +153,7 @@
                             <div
                                 class="relative w-full rounded-2xl border-2 border-dashed border-emerald-300/80 bg-white overflow-hidden shadow-inner cursor-crosshair">
                                 <canvas id="signature-canvas" width="600" height="220"
-                                    class="w-full h-[200px] touch-none block"></canvas>
+                                    class="w-full h-50 touch-none block"></canvas>
                                 <div id="canvas-hint"
                                     class="absolute inset-0 flex items-center justify-center pointer-events-none text-slate-300 text-xs italic">
                                     Klik & tarik kursor mouse atau sentuh layar di sini untuk tanda tangan
@@ -199,7 +197,7 @@
                     <!-- Document Signature Simulator Card -->
                     <div
                         class="bg-white p-6 rounded-2xl border border-neutral-200 shadow-sm flex items-center justify-center">
-                        <div class="w-[180px] text-center" style="width: 180px;">
+                        <div class="w-45 text-center" style="width: 180px;">
                             <!-- Header / Salam -->
                             <span id="preview-header" style="font-size: 11px; color: #64748b; display: block; margin-bottom: 2px;">
                                 {{ $settings['signature_header'] ?? 'Hormat Kami,' }}

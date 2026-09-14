@@ -9,13 +9,19 @@
     <meta name="description" content="Simulasi dan estimasi biaya paket wisata Pangandaran, body rafting Green Canyon, diskon rombongan otomatis, dan reservasi WhatsApp instan.">
     <meta name="keywords" content="harga paket wisata Pangandaran, estimasi biaya body rafting Green Canyon, kalkulator wisata, biaya snorkeling Pasir Putih, harga tour Pangandaran">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ route('calculator') }}">
+
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
 
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ route('calculator') }}">
     <meta property="og:title" content="Kalkulator & Estimasi Biaya Wisata Pangandaran — Puja Tour & Travel">
     <meta property="og:description" content="Simulasi dan estimasi biaya paket wisata Pangandaran, body rafting Green Canyon, diskon rombongan otomatis, dan reservasi WhatsApp instan.">
     <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
@@ -44,7 +50,7 @@
                 '@type' => 'ListItem',
                 'position' => 2,
                 'name' => 'Estimasi Biaya',
-                'item' => url()->current(),
+                'item' => route('calculator'),
             ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
@@ -162,7 +168,7 @@
                     <!-- LIVE PACKAGE PREVIEW CARD (Dinamis dari Paket Terpilih) -->
                     <div id="selected-pkg-preview" class="mt-3.5 p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col xs:flex-row xs:items-center justify-between gap-3 sm:gap-4 transition-all duration-300">
                         <div class="flex items-center gap-3 min-w-0">
-                            <img id="preview-pkg-img" src="{{ asset('images/greencanyon.jpg') }}" alt="Preview" class="w-14 h-14 rounded-xl object-cover shrink-0 border border-slate-200 shadow-2xs">
+                            <img id="preview-pkg-img" src="{{ asset('images/greencanyon.jpg') }}" alt="Preview Paket Wisata Pangandaran" class="w-14 h-14 rounded-xl object-cover shrink-0 border border-slate-200 shadow-2xs" width="56" height="56" loading="lazy" decoding="async">
                             <div class="min-w-0">
                                 <div class="flex items-center gap-1.5 mb-1">
                                     <span id="preview-pkg-badge" class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-800">

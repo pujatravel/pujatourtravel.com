@@ -9,13 +9,19 @@
     <meta name="description" content="Cerita dan testimoni nyata dari para wisatawan yang telah menikmati liburan seru di Pangandaran bersama Puja Tour & Travel.">
     <meta name="keywords" content="testimoni Puja Tour, ulasan wisata Pangandaran, review body rafting Green Canyon, pengalaman wisatawan Pangandaran, rating tour guide">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ route('testimonial') }}">
+
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
 
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ route('testimonial') }}">
     <meta property="og:title" content="Ulasan & Testimonial Wisatawan — Puja Tour & Travel Pangandaran">
     <meta property="og:description" content="Cerita dan testimoni nyata dari para wisatawan yang telah menikmati liburan seru di Pangandaran bersama Puja Tour & Travel.">
     <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
@@ -78,7 +84,7 @@
                 '@type' => 'ListItem',
                 'position' => 2,
                 'name' => 'Testimonial',
-                'item' => url()->current(),
+                'item' => route('testimonial'),
             ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
@@ -277,7 +283,7 @@
 
                                         <div class="flex items-center gap-3.5 pt-5 mt-5 border-t border-neutral-200">
                                             @if($t->avatar_url)
-                                                <img src="{{ $t->avatar_url }}" alt="{{ $t->customer_name }}" class="w-11 h-11 rounded-full object-cover shrink-0 shadow-inner">
+                                                <img src="{{ $t->avatar_url }}" alt="Ulasan Wisatawan {{ $t->customer_name }}" class="w-11 h-11 rounded-full object-cover shrink-0 shadow-inner" loading="lazy" decoding="async">
                                             @else
                                                 <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 font-bold font-display text-base flex items-center justify-center shrink-0 shadow-inner">
                                                     {{ substr($t->customer_name, 0, 2) }}

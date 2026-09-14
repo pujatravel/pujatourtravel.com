@@ -11,6 +11,12 @@
 
     <link rel="canonical" href="{{ route('developers') }}">
 
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
+
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour & Travel Pangandaran">
@@ -44,7 +50,7 @@
                 '@type' => 'ListItem',
                 'position' => 2,
                 'name' => 'Tim Pengembang',
-                'item' => url()->current(),
+                'item' => route('developers'),
             ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
@@ -176,6 +182,9 @@
                                  alt="Foto Profil {{ $dev['name'] }}"
                                  class="w-full h-full object-cover object-top rounded-xl bg-slate-100"
                                  loading="lazy"
+                                 decoding="async"
+                                 width="80"
+                                 height="80"
                                  onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ urlencode($dev['name']) }}&background=047857&color=ffffff&size=256&bold=true';">
                             <!-- GitHub Badge -->
                             <div class="absolute -bottom-1.5 -right-1.5 bg-slate-900 p-1.25 rounded-full border-2 border-white shadow-md" title="GitHub Profile Avatar">

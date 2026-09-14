@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PackageCategory;
+use App\Services\ActivityLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -49,6 +50,10 @@ class PackageCategoryController extends Controller
 
         PackageCategory::create($validated);
 
+        ActivityLogger::log('CREATE', 'Kategori Paket', "Menambahkan kategori paket baru: \"{$validated['name']}\"", [
+            'slug' => $validated['slug'],
+        ]);
+
         return redirect()->route('admin.categories.index')
             ->with('success', 'Kategori "' . $validated['name'] . '" berhasil ditambahkan.');
     }
@@ -81,6 +86,8 @@ class PackageCategoryController extends Controller
 
         $category->update($validated);
 
+        ActivityLogger::log('UPDATE', 'Kategori Paket', "Memperbarui kategori paket: \"{$category->name}\"");
+
         return redirect()->route('admin.categories.index')
             ->with('success', 'Kategori "' . $category->name . '" berhasil diperbarui.');
     }
@@ -99,6 +106,8 @@ class PackageCategoryController extends Controller
 
         $name = $category->name;
         $category->delete();
+
+        ActivityLogger::log('DELETE', 'Kategori Paket', "Menghapus kategori paket: \"{$name}\"");
 
         return redirect()->route('admin.categories.index')
             ->with('success', 'Kategori "' . $name . '" berhasil dihapus.');

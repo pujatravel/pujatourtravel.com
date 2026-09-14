@@ -8,13 +8,19 @@
     <title>Kebijakan Privasi — Puja Tour & Travel Pangandaran</title>
     <meta name="description" content="Kebijakan Privasi resmi Puja Tour & Travel Pangandaran. Pelajari bagaimana kami mengumpulkan, menggunakan, dan melindungi data pribadi Anda saat menggunakan layanan kami.">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ route('privacy-policy') }}">
+
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
 
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ route('privacy-policy') }}">
     <meta property="og:title" content="Kebijakan Privasi — Puja Tour & Travel Pangandaran">
     <meta property="og:description" content="Kebijakan Privasi resmi Puja Tour & Travel Pangandaran mengenai perlindungan dan keamanan data wisatawan.">
     <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
@@ -35,7 +41,7 @@
                 '@type' => 'ListItem',
                 'position' => 2,
                 'name' => 'Kebijakan Privasi',
-                'item' => url()->current(),
+                'item' => route('privacy-policy'),
             ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}

@@ -3,9 +3,17 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin/*
 Disallow: /api/admin/
+Disallow: /invoice/
+Disallow: /invoice/*
 Disallow: /storage/media/private/
+Disallow: /visitor-ping
+Disallow: /log-browser-error
+Disallow: /signature/verify
 
-# AI Crawlers & LLMs
+# AI & Search Crawlers
+User-agent: Googlebot
+Allow: /
+
 User-agent: Google-Extended
 Allow: /
 
@@ -22,5 +30,3 @@ User-agent: ClaudeBot
 Allow: /
 
 Sitemap: https://pujatourtravel.com/sitemap.xml
-# LLM Context: https://pujatourtravel.com/llms.txt
-

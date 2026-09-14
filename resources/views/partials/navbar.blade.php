@@ -56,14 +56,14 @@
         <!-- Brand Logo -->
         <a href="{{ route('home') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
             <div class="w-9 h-9 sm:w-11 sm:h-11 shrink-0 flex items-center justify-center">
-                <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Puja Tour & Travel" class="w-full h-full object-contain drop-shadow-xs">
+                <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Resmi Puja Tour & Travel Pangandaran" class="w-full h-full object-contain drop-shadow-xs" width="44" height="44" fetchpriority="high" decoding="async">
             </div>
             <div class="flex flex-col">
                 <span class="nav-brand-title font-display font-extrabold text-base sm:text-lg lg:text-xl leading-tight tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors duration-300">
                     PUJA<span class="nav-brand-accent text-emerald-600 transition-colors duration-300 ml-1">TOUR</span>
                 </span>
-                <span class="nav-brand-subtitle text-[9px] sm:text-[10px] tracking-widest font-bold text-slate-500 uppercase transition-colors duration-300 hidden sm:block">
-                    & Travel Pangandaran
+                <span class="nav-brand-subtitle text-[8px] sm:text-[9px] lg:text-[10px] tracking-wider font-bold text-emerald-600 uppercase transition-colors duration-300 block">
+                    Pangandaran Destination Specialist
                 </span>
             </div>
         </a>
@@ -87,7 +87,7 @@
 
 <!-- GLOBAL MOBILE DRAWER & BACKDROP -->
 <div id="drawer-overlay" class="fixed inset-0 bg-slate-900/60 z-50 hidden opacity-0 transition-opacity duration-300"></div>
-<div id="mobile-drawer" class="fixed top-0 right-0 h-full w-[85%] sm:w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-5 sm:p-6 overflow-y-auto hidden invisible pointer-events-none">
+<div id="mobile-drawer" class="fixed top-0 right-0 h-full w-[85%] sm:w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-5 sm:p-6 overflow-y-auto invisible pointer-events-none">
     <div>
         <div class="flex items-center justify-between pb-4 border-b border-neutral-200">
             <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Menu</span>

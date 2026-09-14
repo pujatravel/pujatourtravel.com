@@ -440,6 +440,10 @@ body:has(#admin-mobile-drawer) {
     transition: color 0.25s ease, background-color 0.25s ease !important;
 }
 
+#main-header .nav-brand-subtitle {
+    color: #059669;
+}
+
 /* 1. STATE: NON-WHITE / DARK BACKGROUND BEHIND NAVBAR -> 100% TRANSPARENT */
 #main-header.is-transparent-nav {
     background-color: transparent !important;
@@ -454,7 +458,7 @@ body:has(#admin-mobile-drawer) {
     color: #34d399 !important; /* text-emerald-400 */
 }
 #main-header.is-transparent-nav .nav-brand-subtitle {
-    color: rgba(255, 255, 255, 0.75) !important;
+    color: #34d399 !important; /* text-emerald-400 */
 }
 #main-header.is-transparent-nav .nav-link-item {
     color: rgba(255, 255, 255, 0.9) !important;
@@ -487,8 +491,9 @@ body:has(#admin-mobile-drawer) {
 #main-header.is-white-nav .nav-brand-accent {
     color: #047857 !important; /* text-emerald-700 */
 }
-#main-header.is-white-nav .nav-brand-subtitle {
-    color: #64748b !important; /* text-slate-500 */
+#main-header.is-white-nav .nav-brand-subtitle,
+#main-header:not(.is-transparent-nav) .nav-brand-subtitle {
+    color: #059669 !important; /* text-emerald-600 */
 }
 #main-header.is-white-nav .nav-link-item {
     color: #334155 !important; /* text-slate-700 */

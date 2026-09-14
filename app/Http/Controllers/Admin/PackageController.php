@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Models\PackageCategory;
 use App\Models\Unit;
+use App\Services\ActivityLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -106,7 +107,7 @@ class PackageController extends Controller
         $unit = ! empty($validated['unit_id']) ? Unit::find($validated['unit_id']) : null;
         $priceUnit = $unit ? $unit->name : 'pax';
 
-        Package::create([
+        $pkg = Package::create([
             'category_id' => $validated['category_id'],
             'unit_id' => $validated['unit_id'] ?? null,
             'name' => $validated['name'],
@@ -125,8 +126,19 @@ class PackageController extends Controller
             'itinerary' => $itinerary,
         ]);
 
+        ActivityLogger::log('CREATE', 'Paket Wisata', "Menambahkan paket wisata baru: \"{$pkg->name}\"", [
+            'id' => $pkg->id,
+            'price' => $pkg->price,
+            'status' => $pkg->status,
+        ]);
+
         return redirect()->route('admin.packages.index')
             ->with('success', 'Paket wisata "'.$validated['name'].'" berhasil ditambahkan!');
+    }
+
+    public function show(Package $package): RedirectResponse
+    {
+        return redirect()->route('admin.packages.edit', $package);
     }
 
     public function edit(Package $package): View
@@ -203,6 +215,12 @@ class PackageController extends Controller
             'itinerary' => $itinerary,
         ]);
 
+        ActivityLogger::log('UPDATE', 'Paket Wisata', "Memperbarui paket wisata: \"{$package->name}\"", [
+            'id' => $package->id,
+            'price' => $package->price,
+            'status' => $package->status,
+        ]);
+
         return redirect()->route('admin.packages.index')
             ->with('success', 'Paket wisata "'.$package->name.'" berhasil diperbarui!');
     }
@@ -212,6 +230,8 @@ class PackageController extends Controller
         $name = $package->name;
         $package->delete();
 
+        ActivityLogger::log('DELETE', 'Paket Wisata', "Menghapus paket wisata: \"{$name}\"");
+
         return redirect()->route('admin.packages.index')
             ->with('success', 'Paket wisata "'.$name.'" berhasil dihapus.');
     }
@@ -220,6 +240,8 @@ class PackageController extends Controller
     {
         $package->featured = ! $package->featured;
         $package->save();
+
+        ActivityLogger::log('UPDATE', 'Paket Wisata', "Mengubah status unggulan paket: \"{$package->name}\" (" . ($package->featured ? 'Unggulan' : 'Biasa') . ")");
 
         $statusText = $package->featured ? 'ditandai sebagai unggulan' : 'dihapus dari unggulan';
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -81,33 +82,123 @@ Route::get('/invoice/{invoice_number}', [InvoicePublicController::class, 'show']
 
 Route::get('/sitemap.xml', function () {
     $packages = Package::where('status', 'PUBLISHED')->latest()->get();
+    $latestPkgDate = $packages->max('updated_at') ?: now();
+
+    // Timestamp statis berdasarkan file view aktual agar stabil di crawler Google
+    $getViewDate = function ($viewRelPath) use ($latestPkgDate) {
+        $fullPath = resource_path('views/' . $viewRelPath);
+        return file_exists($fullPath) ? date('c', filemtime($fullPath)) : $latestPkgDate->toAtomString();
+    };
 
     $urls = [
-        ['loc' => route('home'), 'priority' => '1.0', 'changefreq' => 'daily', 'lastmod' => now()->toAtomString()],
-        ['loc' => route('packages.index'), 'priority' => '0.9', 'changefreq' => 'daily', 'lastmod' => now()->toAtomString()],
-        ['loc' => route('about'), 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
-        ['loc' => route('calculator'), 'priority' => '0.8', 'changefreq' => 'weekly', 'lastmod' => now()->toAtomString()],
-        ['loc' => route('gallery'), 'priority' => '0.8', 'changefreq' => 'weekly', 'lastmod' => now()->toAtomString()],
-        ['loc' => route('testimonial'), 'priority' => '0.8', 'changefreq' => 'weekly', 'lastmod' => now()->toAtomString()],
-        ['loc' => route('faq'), 'priority' => '0.7', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
-        ['loc' => route('contact'), 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
-        ['loc' => route('privacy-policy'), 'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
-        ['loc' => route('terms-conditions'), 'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
-        ['loc' => route('refund-policy'), 'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
-        ['loc' => route('developers'), 'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => now()->toAtomString()],
+        [
+            'loc' => route('home'),
+            'priority' => '1.0',
+            'changefreq' => 'daily',
+            'lastmod' => $latestPkgDate->toAtomString(),
+            'images' => [
+                ['loc' => asset('images/hero_pangandaran.jpg'), 'title' => 'Wisata Pangandaran - Puja Tour & Travel', 'caption' => 'Pesona Bahari dan Wisata Pantai Pangandaran'],
+                ['loc' => asset('images/greencanyon.jpg'), 'title' => 'Green Canyon Pangandaran', 'caption' => 'Petualangan Body Rafting Green Canyon Cukang Taneuh'],
+                ['loc' => asset('images/pasir_putih.jpg'), 'title' => 'Pantai Pasir Putih Pangandaran', 'caption' => 'Snorkeling dan Terumbu Karang Pasir Putih'],
+            ],
+        ],
+        [
+            'loc' => route('packages.index'),
+            'priority' => '0.9',
+            'changefreq' => 'daily',
+            'lastmod' => $latestPkgDate->toAtomString(),
+            'images' => [
+                ['loc' => asset('images/greencanyon.jpg'), 'title' => 'Katalog Paket Wisata Pangandaran', 'caption' => 'Pilihan Paket Wisata Terbaik di Pangandaran'],
+            ],
+        ],
+        [
+            'loc' => route('about'),
+            'priority' => '0.8',
+            'changefreq' => 'monthly',
+            'lastmod' => $getViewDate('pages/about.blade.php'),
+            'images' => [
+                ['loc' => asset('images/puja_logo.png'), 'title' => 'CV Puja Tour & Travel Pangandaran', 'caption' => 'Biro Perjalanan Wisata Resmi Pangandaran'],
+            ],
+        ],
+        [
+            'loc' => route('calculator'),
+            'priority' => '0.8',
+            'changefreq' => 'weekly',
+            'lastmod' => $getViewDate('pages/calculator.blade.php'),
+        ],
+        [
+            'loc' => route('gallery'),
+            'priority' => '0.8',
+            'changefreq' => 'weekly',
+            'lastmod' => $getViewDate('pages/gallery.blade.php'),
+            'images' => [
+                ['loc' => asset('images/cagar_alam.jpg'), 'title' => 'Dokumentasi Galeri Wisata Pangandaran', 'caption' => 'Koleksi Foto Petualangan Pangandaran'],
+            ],
+        ],
+        [
+            'loc' => route('testimonial'),
+            'priority' => '0.8',
+            'changefreq' => 'weekly',
+            'lastmod' => $getViewDate('pages/testimonial.blade.php'),
+        ],
+        [
+            'loc' => route('faq'),
+            'priority' => '0.7',
+            'changefreq' => 'monthly',
+            'lastmod' => $getViewDate('pages/faq.blade.php'),
+        ],
+        [
+            'loc' => route('contact'),
+            'priority' => '0.8',
+            'changefreq' => 'monthly',
+            'lastmod' => $getViewDate('pages/contact.blade.php'),
+        ],
+        [
+            'loc' => route('privacy-policy'),
+            'priority' => '0.5',
+            'changefreq' => 'monthly',
+            'lastmod' => $getViewDate('pages/privacy-policy.blade.php'),
+        ],
+        [
+            'loc' => route('terms-conditions'),
+            'priority' => '0.5',
+            'changefreq' => 'monthly',
+            'lastmod' => $getViewDate('pages/terms-conditions.blade.php'),
+        ],
+        [
+            'loc' => route('refund-policy'),
+            'priority' => '0.5',
+            'changefreq' => 'monthly',
+            'lastmod' => $getViewDate('pages/refund-policy.blade.php'),
+        ],
+        [
+            'loc' => route('developers'),
+            'priority' => '0.5',
+            'changefreq' => 'monthly',
+            'lastmod' => $getViewDate('pages/developers.blade.php'),
+        ],
     ];
 
     foreach ($packages as $pkg) {
+        $pkgImages = [];
+        $imgUrl = $pkg->image_url ? asset($pkg->image_url) : asset('images/greencanyon.jpg');
+        $pkgImages[] = [
+            'loc' => $imgUrl,
+            'title' => 'Paket Wisata ' . $pkg->name,
+            'caption' => $pkg->short_description ?: ('Paket wisata ' . $pkg->name . ' Pangandaran bersama Puja Tour'),
+        ];
+
         $urls[] = [
             'loc' => route('packages.show', $pkg->slug),
             'priority' => '0.9',
             'changefreq' => 'weekly',
-            'lastmod' => $pkg->updated_at ? $pkg->updated_at->toAtomString() : now()->toAtomString(),
+            'lastmod' => $pkg->updated_at ? $pkg->updated_at->toAtomString() : $latestPkgDate->toAtomString(),
+            'images' => $pkgImages,
         ];
     }
 
     $xml = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
-    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'.PHP_EOL;
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">'.PHP_EOL;
 
     foreach ($urls as $item) {
         $xml .= '  <url>'.PHP_EOL;
@@ -115,6 +206,19 @@ Route::get('/sitemap.xml', function () {
         $xml .= '    <lastmod>'.$item['lastmod'].'</lastmod>'.PHP_EOL;
         $xml .= '    <changefreq>'.$item['changefreq'].'</changefreq>'.PHP_EOL;
         $xml .= '    <priority>'.$item['priority'].'</priority>'.PHP_EOL;
+        if (!empty($item['images'])) {
+            foreach ($item['images'] as $img) {
+                $xml .= '    <image:image>'.PHP_EOL;
+                $xml .= '      <image:loc>'.htmlspecialchars($img['loc'], ENT_XML1, 'UTF-8').'</image:loc>'.PHP_EOL;
+                if (!empty($img['title'])) {
+                    $xml .= '      <image:title>'.htmlspecialchars($img['title'], ENT_XML1, 'UTF-8').'</image:title>'.PHP_EOL;
+                }
+                if (!empty($img['caption'])) {
+                    $xml .= '      <image:caption>'.htmlspecialchars($img['caption'], ENT_XML1, 'UTF-8').'</image:caption>'.PHP_EOL;
+                }
+                $xml .= '    </image:image>'.PHP_EOL;
+            }
+        }
         $xml .= '  </url>'.PHP_EOL;
     }
 
@@ -195,8 +299,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::patch('testimonials/{testimonial}/toggle-publish', [TestimonialController::class, 'togglePublish'])->name('testimonials.toggle-publish');
         Route::delete('testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
 
-        // FAQs
-        Route::resource('faqs', FaqController::class);
+        // FAQs (Inline Modal CRUD & Reorder)
+        Route::resource('faqs', FaqController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::post('faqs/reorder', [FaqController::class, 'reorder'])->name('faqs.reorder');
 
         // Settings
@@ -222,5 +326,30 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('units/{unit}', [UnitController::class, 'destroy'])->name('units.destroy');
         Route::patch('units/{unit}/toggle-active', [UnitController::class, 'toggleActive'])->name('units.toggle-active');
         Route::post('units/reorder', [UnitController::class, 'reorder'])->name('units.reorder');
+
+        // Activity & Security Audit Logs
+        Route::get('logs', [ActivityLogController::class, 'index'])->name('logs.index');
+        Route::post('logs/lock', [ActivityLogController::class, 'lock'])->name('logs.lock');
+        Route::delete('logs/clear', [ActivityLogController::class, 'clear'])->name('logs.clear');
+        Route::delete('logs/{log}', [ActivityLogController::class, 'destroy'])->name('logs.destroy');
     });
 });
+
+// Fallback Route for public storage files (ensures signatures & uploads always serve seamlessly on local & production)
+Route::get('/storage/{path}', function (string $path) {
+    $filePath = storage_path('app/public/' . $path);
+    if (!file_exists($filePath) || !is_readable($filePath)) {
+        if (str_starts_with($path, 'signatures/')) {
+            $activeSig = \App\Models\Setting::get('signature_image');
+            if ($activeSig) {
+                $activePath = storage_path('app/public/' . $activeSig);
+                if (file_exists($activePath) && is_readable($activePath)) {
+                    return response()->file($activePath);
+                }
+            }
+        }
+        abort(404);
+    }
+    return response()->file($filePath);
+})->where('path', '.*')->name('storage.file');
+

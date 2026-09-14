@@ -30,6 +30,31 @@
 </head>
 <body class="bg-slate-900 min-h-screen flex items-center justify-center p-4 relative overflow-hidden selection:bg-emerald-600 selection:text-white">
 
+    @if(session('success') || session('status'))
+        <!-- Floating Top Toast Notification -->
+        <div id="logout-toast" 
+             role="alert"
+             class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-md transition-all duration-500 ease-out transform -translate-y-8 opacity-0 pointer-events-auto">
+            <div class="bg-white/95 backdrop-blur-md rounded-2xl p-3.5 sm:p-4 shadow-2xl border border-emerald-200/80 flex items-center gap-3.5 ring-1 ring-black/5">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center shrink-0 shadow-xs">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h4 class="text-xs font-bold text-slate-900 leading-tight">Berhasil Keluar</h4>
+                    <p class="text-[11px] sm:text-xs text-slate-600 mt-0.5 leading-snug">
+                        {{ session('success') ?? session('status') }}
+                    </p>
+                </div>
+                <button type="button" 
+                        id="close-logout-toast" 
+                        class="w-7 h-7 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition shrink-0 cursor-pointer" 
+                        aria-label="Tutup notifikasi">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    @endif
+
     <!-- Background Pattern -->
     <div class="absolute inset-0 z-0 opacity-15">
         <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Pangandaran Ocean" class="w-full h-full object-cover">
@@ -54,12 +79,6 @@
             @if($errors->any())
                 <div class="mb-5 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium">
                     {{ $errors->first() }}
-                </div>
-            @endif
-
-            @if(session('success'))
-                <div class="mb-5 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-medium">
-                    {{ session('success') }}
                 </div>
             @endif
 
@@ -96,5 +115,35 @@
         </div>
     </div>
 
+    @if(session('success') || session('status'))
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toast = document.getElementById('logout-toast');
+            if (toast) {
+                // Trigger smooth slide-down entrance
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        toast.classList.remove('-translate-y-8', 'opacity-0');
+                        toast.classList.add('translate-y-0', 'opacity-100');
+                    }, 80);
+                });
+
+                const dismiss = () => {
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                    toast.classList.add('-translate-y-8', 'opacity-0');
+                    setTimeout(() => toast.remove(), 500);
+                };
+
+                const closeBtn = document.getElementById('close-logout-toast');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', dismiss);
+                }
+
+                // Auto dismiss after 4.5 seconds
+                setTimeout(dismiss, 4500);
+            }
+        });
+    </script>
+    @endif
 </body>
 </html>

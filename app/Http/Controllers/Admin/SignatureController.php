@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Services\ActivityLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -74,6 +75,11 @@ class SignatureController extends Controller
         Setting::set('signature_name', $validated['signature_name'] ?? 'Puja Tour & Travel');
         Setting::set('signature_position', $validated['signature_position'] ?? 'Finance & Reservation');
         Setting::set('signature_city', $validated['signature_city'] ?? 'Pangandaran');
+
+        ActivityLogger::log('UPDATE', 'Tanda Tangan', 'Memperbarui pengaturan tanda tangan digital dan otorisasi invoice', [
+            'signer_name' => $validated['signature_name'] ?? 'Puja Tour & Travel',
+            'position' => $validated['signature_position'] ?? 'Finance & Reservation',
+        ]);
 
         return back()->with('success', 'Pengaturan tanda tangan invoice berhasil disimpan!');
     }

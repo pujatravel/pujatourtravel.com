@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\ActivityLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,11 @@ class AuthController extends Controller
             Auth::login($user, $remember);
             $request->session()->regenerate();
 
+            ActivityLogger::log('LOGIN', 'Autentikasi', "Admin {$user->name} ({$user->username}) berhasil masuk ke dashboard", [
+                'role' => $user->role,
+                'email' => $user->email,
+            ], $user);
+
             return redirect()->intended(route('admin.dashboard'))
                 ->with('success', 'Selamat datang kembali, '.$user->name.'!');
         }
@@ -67,6 +73,11 @@ class AuthController extends Controller
 
     public function logout(Request $request): RedirectResponse
     {
+        $user = Auth::user();
+        if ($user) {
+            ActivityLogger::log('LOGOUT', 'Autentikasi', "Admin {$user->name} keluar dari sesi", null, $user);
+        }
+
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Services\ActivityLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -57,6 +58,10 @@ class SettingController extends Controller
         foreach ($validated as $key => $value) {
             Setting::set($key, $value);
         }
+
+        ActivityLogger::log('UPDATE', 'Pengaturan', 'Memperbarui konfigurasi kontak, identitas CMS, dan profil website', [
+            'updated_keys_count' => count($validated),
+        ]);
 
         return back()->with('success', 'Pengaturan sistem, kontak & peta lokasi berhasil diperbarui!');
     }

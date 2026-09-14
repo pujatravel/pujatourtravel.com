@@ -51,7 +51,7 @@
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="hidden" name="is_active" value="0">
                             <input type="checkbox" name="is_active" value="1" class="sr-only peer" checked>
-                            <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:bg-emerald-600 transition-all after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
+                            <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:bg-emerald-600 transition-all after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
                         </label>
                         <span class="text-sm font-medium text-slate-700">Status Aktif (Tersedia untuk Paket Wisata)</span>
                     </div>
@@ -107,7 +107,7 @@
                         <tr>
                             <th class="px-4 py-3 text-left w-8"></th>
                             <th class="px-4 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wide">Nama Satuan</th>
-                            <th class="px-4 py-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wide w-28">Paket Terkait</th>
+                            <th class="px-4 py-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wide whitespace-nowrap min-w-32">Paket Terkait</th>
                             <th class="px-4 py-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wide w-24">Status</th>
                             <th class="px-4 py-3 text-right text-xs font-bold text-slate-500 uppercase tracking-wide w-36">Aksi</th>
                         </tr>
@@ -163,12 +163,12 @@
                             </td>
 
                             {{-- Package Count --}}
-                            <td class="px-4 py-4 text-center">
+                            <td class="px-4 py-4 text-center whitespace-nowrap">
                                 <a href="{{ route('admin.packages.index') }}"
-                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold
+                                    class="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap shrink-0
                                     {{ $unit->packages_count > 0 ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100' : 'bg-slate-100 text-slate-400' }} transition">
-                                    <i data-lucide="package" class="w-3 h-3"></i>
-                                    {{ $unit->packages_count }} paket
+                                    <i data-lucide="package" class="w-3.5 h-3.5 shrink-0"></i>
+                                    <span class="whitespace-nowrap">{{ $unit->packages_count }} paket</span>
                                 </a>
                             </td>
 

@@ -9,13 +9,19 @@
     <meta name="description" content="Pilihan paket wisata Pangandaran terlengkap: Body Rafting Green Canyon, Snorkeling Pasir Putih, River Tubing Santirah, dan Gathering Corporate.">
     <meta name="keywords" content="paket wisata Pangandaran, body rafting Green Canyon, snorkeling Pasir Putih, river tubing Santirah, tour Pangandaran murah, harga wisata Pangandaran">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ route('packages.index') }}">
+
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
 
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ route('packages.index') }}">
     <meta property="og:title" content="Katalog Paket Wisata Pangandaran Terlengkap — Puja Tour & Travel">
     <meta property="og:description" content="Pilihan paket wisata Pangandaran terlengkap: Body Rafting Green Canyon, Snorkeling Pasir Putih, River Tubing Santirah, dan Gathering Corporate.">
     <meta property="og:image" content="{{ asset('images/greencanyon.jpg') }}">
@@ -181,15 +187,15 @@
                 </div>
             @endif
 
-            <!-- Category Filter Buttons -->
-            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mt-6">
+            <!-- Category Filter Buttons (2 Kolom Sebaris di Mobile) -->
+            <div class="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:justify-center gap-2 sm:gap-2.5 max-w-lg sm:max-w-none mx-auto mt-6">
                 <a href="{{ route('packages.index', ['search' => $search, 'sort' => request('sort')]) }}" 
-                   class="px-3.5 py-2 rounded-xl text-xs font-semibold transition {{ ($categorySlug ?? 'all') === 'all' ? 'bg-emerald-700 text-white shadow-sm' : 'bg-canvas text-slate-600 hover:bg-neutral-200 border border-neutral-200' }}">
+                   class="w-full sm:w-auto min-h-11 sm:min-h-0 px-3 sm:px-3.5 py-2 rounded-xl text-xs font-semibold transition flex items-center justify-center text-center leading-tight {{ ($categorySlug ?? 'all') === 'all' ? 'bg-emerald-700 text-white shadow-sm' : 'bg-canvas text-slate-600 hover:bg-neutral-200 border border-neutral-200' }}">
                     Semua ({{ \App\Models\Package::where('status', 'PUBLISHED')->count() }})
                 </a>
                 @foreach($categories as $cat)
                     <a href="{{ route('packages.index', ['category' => $cat->slug, 'search' => $search, 'sort' => request('sort')]) }}" 
-                       class="px-3.5 py-2 rounded-xl text-xs font-semibold transition {{ ($categorySlug ?? '') === $cat->slug ? 'bg-emerald-700 text-white shadow-sm' : 'bg-canvas text-slate-600 hover:bg-neutral-200 border border-neutral-200' }}">
+                       class="{{ $loop->last && $loop->count % 2 === 0 ? 'col-span-2 sm:col-span-1' : '' }} w-full sm:w-auto min-h-11 sm:min-h-0 px-3 sm:px-3.5 py-2 rounded-xl text-xs font-semibold transition flex items-center justify-center text-center leading-tight {{ ($categorySlug ?? '') === $cat->slug ? 'bg-emerald-700 text-white shadow-sm' : 'bg-canvas text-slate-600 hover:bg-neutral-200 border border-neutral-200' }}">
                         {{ $cat->name }}
                     </a>
                 @endforeach
@@ -204,15 +210,15 @@
                 @foreach($packages as $pkg)
                     <div class="package-card flex flex-col bg-surface-soft rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft hover:shadow-card-hover transition-all duration-300 border border-neutral-200 group">
                         <div class="relative h-32 xs:h-40 sm:h-60 lg:h-64 overflow-hidden bg-neutral-100">
-                            <img src="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}" alt="{{ $pkg->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-2 left-2 sm:top-4 sm:left-4">
+                            <img src="{{ $pkg->image_url ?? asset('images/greencanyon.jpg') }}" alt="Paket Wisata {{ $pkg->name }} di Pangandaran" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+                            <div class="absolute top-2 left-2 right-2 sm:top-4 sm:left-4 sm:right-auto z-10 flex items-center gap-1 overflow-hidden">
                                 @if($pkg->featured)
-                                    <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-amber-500 text-slate-950 shadow-xs flex items-center gap-1">
-                                        <i data-lucide="star" class="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-slate-950"></i>
+                                    <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-amber-500 text-slate-950 shadow-xs flex items-center gap-1 shrink-0">
+                                        <i data-lucide="star" class="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-slate-950 shrink-0"></i>
                                         <span>Rekomendasi</span>
                                     </span>
                                 @else
-                                    <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-emerald-700 text-white shadow-xs">
+                                    <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-emerald-700 text-white shadow-xs truncate max-w-full block">
                                         {{ $pkg->category->name ?? 'Wisata' }}
                                     </span>
                                 @endif
@@ -243,11 +249,11 @@
 
                                 <!-- Facilities Badge -->
                                 @if(is_array($pkg->inclusions) && count($pkg->inclusions) > 0)
-                                    <div class="flex flex-wrap gap-1 sm:gap-1.5 mt-2 sm:mt-4">
+                                    <div class="flex flex-wrap gap-1 sm:gap-1.5 mt-2 sm:mt-4 overflow-hidden">
                                         @foreach(array_slice($pkg->inclusions, 0, 3) as $iIdx => $inc)
-                                            <span class="text-[9px] xs:text-[10px] sm:text-[11px] bg-neutral-100 text-slate-700 px-1.5 py-0.5 rounded-md {{ $iIdx >= 2 ? 'hidden sm:inline-flex' : 'inline-flex' }} items-center gap-1">
+                                            <span class="text-[9px] xs:text-[10px] sm:text-[11px] bg-neutral-100 text-slate-700 px-1.5 py-0.5 rounded-md {{ $iIdx >= 2 ? 'hidden sm:inline-flex' : 'inline-flex' }} items-center gap-1 max-w-full">
                                                 <i data-lucide="check" class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-700 shrink-0"></i>
-                                                <span class="truncate max-w-21.25 xs:max-w-none">{{ $inc }}</span>
+                                                <span class="truncate">{{ $inc }}</span>
                                             </span>
                                         @endforeach
                                     </div>

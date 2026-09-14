@@ -9,8 +9,14 @@
 
     {{-- SEO: Title sesuai foto 2 — singkat, natural, kaya keyword --}}
     <title>Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran</title>
-    <meta name="description" content="Nikmati liburan seru di Pangandaran bersama Puja Tour & Travel. Tersedia paket wisata Pangandaran, Green Canyon, snorkeling, pantai, dan berbagai pilihan perjalanan menarik lainnya.">
+    <meta name="description" content="Paket wisata Pangandaran resmi dari CV Puja Tour. Nikmati petualangan Green Canyon, body rafting, snorkeling, dan pantai bersama pemandu berlisensi HPI.">
     <meta name="keywords" content="Puja Tour Travel, wisata Pangandaran, paket wisata Pangandaran, Green Canyon, body rafting, snorkeling Pasir Putih, tour guide Pangandaran, liburan Pangandaran">
+
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
 
     {{-- Canonical: homepage eksplisit, bukan current() agar tidak ada variasi URL --}}
     <link rel="canonical" href="{{ url('/') }}">
@@ -19,22 +25,22 @@
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour & Travel Pangandaran">
     <meta property="og:title" content="Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran">
-    <meta property="og:description" content="Nikmati ragam wisata di Pangandaran bersama Puja Tour & Travel.">
-    <meta property="og:image" content="https://pujatourtravel.com/images/og-image.jpg">
-    <meta property="og:image:secure_url" content="https://pujatourtravel.com/images/og-image.jpg">
+    <meta property="og:description" content="Paket wisata Pangandaran resmi dari CV Puja Tour. Nikmati petualangan Green Canyon, body rafting, snorkeling, dan pantai bersama pemandu berlisensi HPI.">
+    <meta property="og:image" content="{{ asset('images/og-image.jpg') }}">
+    <meta property="og:image:secure_url" content="{{ asset('images/og-image.jpg') }}">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Puja Tour & Travel Pangandaran — Paket Wisata Green Canyon & Pantai">
-    <meta property="og:url" content="https://pujatourtravel.com/">
+    <meta property="og:url" content="{{ url('/') }}">
     <meta property="og:type" content="website">
-    <link rel="image_src" href="https://pujatourtravel.com/images/og-image.jpg">
+    <link rel="image_src" href="{{ asset('images/og-image.jpg') }}">
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran">
-    <meta name="twitter:description" content="Nikmati ragam wisata di Pangandaran bersama Puja Tour & Travel.">
-    <meta name="twitter:image" content="https://pujatourtravel.com/images/og-image.jpg">
+    <meta name="twitter:description" content="Paket wisata Pangandaran resmi dari CV Puja Tour. Nikmati petualangan Green Canyon, body rafting, snorkeling, dan pantai bersama pemandu berlisensi HPI.">
+    <meta name="twitter:image" content="{{ asset('images/og-image.jpg') }}">
 
     <!-- Structured Data (JSON-LD): TravelAgency — homepage utama -->
     <script type="application/ld+json">
@@ -224,7 +230,10 @@
         <div id="hero-slider" class="absolute inset-0 w-full h-full z-0 overflow-hidden select-none">
             @foreach($heroSlidesList as $index => $slide)
                 <div class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out {{ $index === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none' }}" data-location="{{ $slide['location'] }}">
-                    <img src="{{ $slide['image'] }}" alt="{{ $slide['title'] }}" class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out">
+                    <img src="{{ $slide['image'] }}" 
+                         alt="{{ $slide['title'] }} — Pesona Wisata Pangandaran Puja Tour" 
+                         class="w-full h-full object-cover object-center scale-105 transition-transform duration-7000 ease-out"
+                         {{ $index === 0 ? 'fetchpriority="high" loading="eager"' : 'loading="lazy" decoding="async"' }}>
                 </div>
             @endforeach
 
@@ -246,8 +255,8 @@
             <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
         </button>
 
-        <!-- Slide Indicators -->
-        <div id="hero-dots" class="absolute bottom-8 sm:bottom-16 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/15 shadow-md">
+        <!-- Slide Indicators (Desktop) -->
+        <div id="hero-dots" class="hidden lg:flex absolute bottom-8 sm:bottom-16 left-1/2 -translate-x-1/2 z-20 items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/15 shadow-md">
             @foreach($heroSlidesList as $index => $slide)
                 <button type="button" class="hero-dot {{ $index === 0 ? 'w-6 sm:w-8 bg-emerald-400' : 'w-2 sm:w-2.5 bg-white/40' }} h-1.5 sm:h-2 rounded-full hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="{{ $index }}" aria-label="Slide {{ $index + 1 }}"></button>
             @endforeach
@@ -291,13 +300,13 @@
                         <span class="text-emerald-300 font-semibold">{{ $stat2Lbl }}</span>
                     </div>
 
-                    <!-- CTA Buttons -->
-                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3">
-                        <a href="#paket" class="px-6 py-3 sm:px-8 sm:py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm shadow-sm transition flex items-center justify-center">
+                    <!-- CTA Buttons (Side-by-side 2 kolom di mobile) -->
+                    <div class="grid grid-cols-2 gap-2.5 sm:flex sm:flex-row items-stretch sm:items-center justify-center lg:justify-start sm:gap-3">
+                        <a href="#paket" class="w-full sm:w-auto min-h-11 px-2.5 sm:px-8 py-2.5 sm:py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center justify-center text-center leading-tight">
                             Jelajahi Paket Wisata
                         </a>
-                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl bg-slate-900/80 border border-white/20 hover:bg-slate-900 text-white font-semibold text-sm transition flex items-center justify-center gap-2">
-                            <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
+                        <a href="https://wa.me/{{ $waNum }}?text=Halo%20Puja%20Tour,%20saya%20ingin%20konsultasi%20trip%20ke%20Pangandaran" target="_blank" class="w-full sm:w-auto min-h-11 px-2.5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl bg-slate-900/80 border border-white/20 hover:bg-slate-900 text-white font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 sm:gap-2 text-center leading-tight">
+                            <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i>
                             <span>Konsultasi WhatsApp</span>
                         </a>
                     </div>
@@ -308,6 +317,15 @@
                             <i data-lucide="compass" class="w-3.5 h-3.5 text-emerald-400"></i>
                             <span>Atau isi formulir reservasi lengkap ↓</span>
                         </a>
+                    </div>
+
+                    <!-- Mobile Slide Indicators (di view utama mobile) -->
+                    <div class="flex lg:hidden items-center justify-center pt-2 pb-1">
+                        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/15 shadow-md">
+                            @foreach($heroSlidesList as $index => $slide)
+                                <button type="button" class="hero-dot {{ $index === 0 ? 'w-6 bg-emerald-400' : 'w-2 bg-white/40' }} h-1.5 rounded-full hover:bg-white/70 transition-all duration-300 cursor-pointer" data-slide="{{ $index }}" aria-label="Slide {{ $index + 1 }}"></button>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 
@@ -494,13 +512,13 @@
                 Pilih paket perjalanan impian Anda, mulai dari petualangan body rafting Green Canyon hingga paket eksklusif keluarga & corporate gathering.
             </p>
 
-            <!-- Category Filter Links -->
-            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-8">
-                <a href="{{ route('packages.index') }}" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-emerald-700 text-white shadow-sm">
+            <!-- Category Filter Links (2 Kolom Sebaris di Mobile) -->
+            <div class="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:justify-center gap-2 sm:gap-3 max-w-lg sm:max-w-none mx-auto mt-6 sm:mt-8">
+                <a href="{{ route('packages.index') }}" class="w-full sm:w-auto min-h-11 sm:min-h-0 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-emerald-700 text-white shadow-sm flex items-center justify-center text-center leading-tight">
                     Katalog Lengkap ({{ $totalPackagesCount ?? 8 }})
                 </a>
                 @foreach($categories as $cat)
-                    <a href="{{ route('packages.index', ['category' => $cat->slug]) }}" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-surface-soft text-slate-600 hover:bg-[#ecefe9] border border-neutral-200">
+                    <a href="{{ route('packages.index', ['category' => $cat->slug]) }}" class="{{ $loop->last && $loop->count % 2 === 0 ? 'col-span-2 sm:col-span-1' : '' }} w-full sm:w-auto min-h-11 sm:min-h-0 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-surface-soft text-slate-600 hover:bg-[#ecefe9] border border-neutral-200 flex items-center justify-center text-center leading-tight">
                         {{ $cat->name }}
                     </a>
                 @endforeach
@@ -531,7 +549,8 @@
                                      alt="{{ $pkg->name }} - Foto {{ $idx + 1 }}"
                                      class="card-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-105 {{ $idx === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none' }}"
                                      data-slide-index="{{ $idx }}"
-                                     loading="lazy">
+                                     loading="lazy"
+                                     decoding="async">
                             @endforeach
                         </div>
 
@@ -539,14 +558,14 @@
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/75 via-transparent to-slate-950/30 pointer-events-none"></div>
 
                         <!-- Top Badges -->
-                        <div class="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-10 flex items-center gap-1">
+                        <div class="absolute top-2 left-2 right-2 sm:top-3.5 sm:left-3.5 sm:right-auto z-10 flex items-center gap-1 overflow-hidden">
                             @if($pkg->featured)
-                                <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-amber-500 text-slate-950 shadow-xs flex items-center gap-1">
-                                    <i data-lucide="star" class="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-slate-950"></i>
+                                <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-amber-500 text-slate-950 shadow-xs flex items-center gap-1 shrink-0">
+                                    <i data-lucide="star" class="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-slate-950 shrink-0"></i>
                                     <span>Rekomendasi</span>
                                 </span>
                             @else
-                                <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-emerald-700 text-white shadow-xs">
+                                <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold bg-emerald-700 text-white shadow-xs truncate max-w-full block">
                                     {{ $pkg->category->name ?? 'Wisata' }}
                                 </span>
                             @endif
@@ -590,11 +609,11 @@
 
                             <!-- Facilities Badge -->
                             @if(is_array($pkg->inclusions) && count($pkg->inclusions) > 0)
-                                <div class="flex flex-wrap gap-1 sm:gap-1.5 mt-2 sm:mt-4">
+                                <div class="flex flex-wrap gap-1 sm:gap-1.5 mt-2 sm:mt-4 overflow-hidden">
                                     @foreach(array_slice($pkg->inclusions, 0, 3) as $iIdx => $inc)
-                                        <span class="text-[9px] xs:text-[10px] sm:text-[11px] bg-neutral-100 text-slate-700 px-1.5 py-0.5 rounded-md {{ $iIdx >= 2 ? 'hidden sm:inline-flex' : 'inline-flex' }} items-center gap-1">
+                                        <span class="text-[9px] xs:text-[10px] sm:text-[11px] bg-neutral-100 text-slate-700 px-1.5 py-0.5 rounded-md {{ $iIdx >= 2 ? 'hidden sm:inline-flex' : 'inline-flex' }} items-center gap-1 max-w-full">
                                             <i data-lucide="check" class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-700 shrink-0"></i>
-                                            <span class="truncate max-w-21.25 xs:max-w-none">{{ $inc }}</span>
+                                            <span class="truncate">{{ $inc }}</span>
                                         </span>
                                     @endforeach
                                 </div>
@@ -660,7 +679,7 @@
             <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
                 <!-- Destinasi 1: Green Canyon -->
                 <div class="col-span-1 md:col-span-2 relative h-52 xs:h-60 sm:h-68 md:h-80 rounded-2xl sm:rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up">
-                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Green Canyon Cukang Taneuh" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <img src="{{ asset('images/greencanyon.jpg') }}" alt="Green Canyon Cukang Taneuh Pangandaran" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/45 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-3 xs:p-4 sm:p-6">
                         <h3 class="font-display font-bold text-sm xs:text-base sm:text-xl md:text-2xl text-white leading-tight">Green Canyon (Cukang Taneuh)</h3>
@@ -670,7 +689,7 @@
 
                 <!-- Destinasi 2: Pantai Pasir Putih -->
                 <div class="col-span-1 relative h-52 xs:h-60 sm:h-68 md:h-80 rounded-2xl sm:rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-100">
-                    <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Pasir Putih & Snorkeling" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Pantai Pasir Putih dan Snorkeling Pangandaran" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/45 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-3 xs:p-4 sm:p-6">
                         <h3 class="font-display font-bold text-sm xs:text-base sm:text-lg md:text-xl text-white leading-tight">Pantai Pasir Putih</h3>
@@ -680,7 +699,7 @@
 
                 <!-- Destinasi 3: Pantai Batu Karas -->
                 <div class="col-span-1 relative h-52 xs:h-60 sm:h-68 md:h-80 rounded-2xl sm:rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-150">
-                    <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Sunset Batu Karas" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Panorama Sunset Pantai Batu Karas Pangandaran" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/45 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-3 xs:p-4 sm:p-6">
                         <h3 class="font-display font-bold text-sm xs:text-base sm:text-lg md:text-xl text-white leading-tight">Pantai Batu Karas</h3>
@@ -690,7 +709,7 @@
 
                 <!-- Destinasi 4: Cagar Alam Pananjung -->
                 <div class="col-span-1 md:col-span-2 relative h-52 xs:h-60 sm:h-68 md:h-80 rounded-2xl sm:rounded-3xl overflow-hidden group shadow-md bg-slate-800 reveal-fade-up delay-200">
-                    <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Cagar Alam Pananjung" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Taman Wisata Alam dan Cagar Alam Pananjung Pangandaran" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/45 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-3 xs:p-4 sm:p-6">
                         <h3 class="font-display font-bold text-sm xs:text-base sm:text-xl md:text-2xl text-white leading-tight"><span class="hidden sm:inline">Taman Wisata Alam & </span>Cagar Alam Pananjung</h3>
@@ -714,35 +733,35 @@
                         <div class="authentic-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10"
                              data-location="Titik awal penyusunan rute & pengawalan trip di Green Canyon, Pangandaran."
                              data-tag="Green Canyon">
-                            <img src="{{ asset('images/greencanyon.jpg') }}" alt="Pemandu Lokal Puja Tour di Green Canyon" class="w-full h-full object-cover">
+                            <img src="{{ asset('images/greencanyon.jpg') }}" alt="Pemandu Lokal Puja Tour di Green Canyon" class="w-full h-full object-cover" loading="lazy" decoding="async">
                         </div>
 
                         <!-- Slide 2: Pasir Putih & Snorkeling -->
                         <div class="authentic-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0"
                              data-location="Spot snorkeling & penyeberangan perahu di Pantai Pasir Putih, Pangandaran."
                              data-tag="Pasir Putih">
-                            <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Spot Snorkeling & Perahu Wisata Pasir Putih" class="w-full h-full object-cover">
+                            <img src="{{ asset('images/pasir_putih.jpg') }}" alt="Spot Snorkeling & Perahu Wisata Pasir Putih" class="w-full h-full object-cover" loading="lazy" decoding="async">
                         </div>
 
                         <!-- Slide 3: Cagar Alam Pananjung -->
                         <div class="authentic-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0"
                              data-location="Rute susur rimba cagar alam & jalur konservasi fauna Pananjung, Pangandaran."
                              data-tag="Cagar Alam">
-                            <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Eksplorasi Rimba & Cagar Alam Pangandaran" class="w-full h-full object-cover">
+                            <img src="{{ asset('images/cagar_alam.jpg') }}" alt="Eksplorasi Rimba & Cagar Alam Pangandaran" class="w-full h-full object-cover" loading="lazy" decoding="async">
                         </div>
 
                         <!-- Slide 4: Sunset Batu Karas -->
                         <div class="authentic-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0"
                              data-location="Area santai sunset & pengawalan watersport di Pantai Batu Karas, Pangandaran."
                              data-tag="Batu Karas">
-                            <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Sunset & Wisata Bahari Batu Karas" class="w-full h-full object-cover">
+                            <img src="{{ asset('images/sunset_batu_karas.jpg') }}" alt="Sunset & Wisata Bahari Batu Karas" class="w-full h-full object-cover" loading="lazy" decoding="async">
                         </div>
 
                         <!-- Slide 5: Pantai Barat Pangandaran -->
                         <div class="authentic-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0"
                              data-location="Pusat koordinasi pemandu lokal & pengawasan keselamatan di Pantai Barat Pangandaran."
                              data-tag="Pantai Barat">
-                            <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Pusat Koordinasi Wisata Pantai Barat Pangandaran" class="w-full h-full object-cover">
+                            <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Pusat Koordinasi Wisata Pantai Barat Pangandaran" class="w-full h-full object-cover" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -846,7 +865,7 @@
                     <div class="gallery-item cursor-pointer group relative h-40 sm:h-52 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition bg-neutral-200 reveal-scale-up {{ $gIndex % 4 === 1 ? 'delay-100' : ($gIndex % 4 === 2 ? 'delay-150' : ($gIndex % 4 === 3 ? 'delay-200' : '')) }}"
                          data-img="{{ $gal->image_url }}"
                          data-caption="{{ $gal->title }} - {{ $gal->caption }}">
-                        <img src="{{ $gal->image_url }}" alt="{{ $gal->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="{{ $gal->image_url }}" alt="{{ $gal->title }} — Galeri Wisata Puja Tour" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                             <div class="w-10 h-10 rounded-full bg-surface-soft text-slate-900 flex items-center justify-center shadow">
                                 <i data-lucide="zoom-in" class="w-5 h-5"></i>
@@ -977,7 +996,7 @@
                             </div>
                             <div class="flex items-center gap-3.5 pt-5 mt-5 border-t border-neutral-200">
                                 @if(!empty($testi->avatar_url))
-                                    <img src="{{ $testi->avatar_url }}" alt="{{ $testi->customer_name }}" class="w-11 h-11 rounded-full object-cover shrink-0 shadow-inner">
+                                    <img src="{{ $testi->avatar_url }}" alt="Ulasan Wisatawan {{ $testi->customer_name }}" class="w-11 h-11 rounded-full object-cover shrink-0 shadow-inner" loading="lazy" decoding="async">
                                 @else
                                     <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold font-display text-base shrink-0 shadow-inner">
                                         {{ substr($testi->customer_name, 0, 2) }}

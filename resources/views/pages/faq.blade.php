@@ -9,13 +9,19 @@
     <meta name="description" content="Pertanyaan umum seputar body rafting Green Canyon, snorkeling Pasir Putih, keamanan anak & pemula, dan cara pemesanan trip di Puja Tour & Travel.">
     <meta name="keywords" content="FAQ Puja Tour, pertanyaan wisata Pangandaran, body rafting aman, Green Canyon pemula, cara booking wisata Pangandaran, snorkeling Pasir Putih">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ route('faq') }}">
+
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
 
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ route('faq') }}">
     <meta property="og:title" content="FAQ — Pertanyaan Seputar Wisata Pangandaran & Puja Tour">
     <meta property="og:description" content="Pertanyaan umum seputar body rafting Green Canyon, snorkeling Pasir Putih, keamanan anak & pemula.">
     <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
@@ -40,7 +46,7 @@
                 'name' => $faq->question,
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => $faq->answer,
+                    'text' => strip_tags($faq->answer),
                 ],
             ];
         })->values()->toArray(),
@@ -64,7 +70,7 @@
                 '@type' => 'ListItem',
                 'position' => 2,
                 'name' => 'FAQ',
-                'item' => url()->current(),
+                'item' => route('faq'),
             ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}

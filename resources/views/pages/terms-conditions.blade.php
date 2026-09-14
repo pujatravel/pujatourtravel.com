@@ -8,13 +8,19 @@
     <title>Syarat & Ketentuan Layanan — Puja Tour & Travel Pangandaran</title>
     <meta name="description" content="Syarat dan Ketentuan resmi layanan paket wisata, prosedur reservasi, standar keselamatan body rafting, dan perlindungan asuransi di CV Puja Tour & Travel Pangandaran.">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ route('terms-conditions') }}">
+
+    {{-- Geo & Local SEO Tags --}}
+    <meta name="geo.region" content="ID-JB">
+    <meta name="geo.placename" content="Pangandaran">
+    <meta name="geo.position" content="-7.697500;108.652500">
+    <meta name="ICBM" content="-7.697500, 108.652500">
 
     <!-- Open Graph -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour Travel">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ route('terms-conditions') }}">
     <meta property="og:title" content="Syarat & Ketentuan Layanan — Puja Tour & Travel Pangandaran">
     <meta property="og:description" content="Ketentuan pemesanan paket wisata Pangandaran, standar keselamatan petualangan, asuransi, dan kebijakan force majeure.">
     <meta property="og:image" content="{{ asset('images/og_image.jpg') }}">
@@ -35,7 +41,7 @@
                 '@type' => 'ListItem',
                 'position' => 2,
                 'name' => 'Syarat & Ketentuan',
-                'item' => url()->current(),
+                'item' => route('terms-conditions'),
             ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}

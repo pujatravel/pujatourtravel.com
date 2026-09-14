@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
+use App\Services\ActivityLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -40,7 +41,7 @@ class GalleryController extends Controller
         $filename = 'gal_'.time().'_'.Str::slug($validated['title']).'_'.Str::random(6).'.'.$ext;
         $file->move(public_path('images/uploads'), $filename);
 
-        Gallery::create([
+        $gal = Gallery::create([
             'title' => $validated['title'],
             'category' => $validated['category'],
             'caption' => $validated['caption'],
@@ -48,6 +49,13 @@ class GalleryController extends Controller
             'is_slider' => $request->boolean('is_slider'),
             'is_published' => true,
             'display_order' => Gallery::count() + 1,
+        ]);
+
+        ActivityLogger::log('UPLOAD', 'Galeri Foto', "Mengunggah foto baru ke galeri: \"{$gal->title}\"", [
+            'id' => $gal->id,
+            'category' => $gal->category,
+            'is_slider' => $gal->is_slider,
+            'image' => $gal->image_url,
         ]);
 
         return back()->with('success', 'Foto galeri berhasil diunggah!');
@@ -59,6 +67,11 @@ class GalleryController extends Controller
             'is_slider' => ! $gallery->is_slider,
         ]);
 
+        ActivityLogger::log('UPDATE', 'Galeri Foto', "Mengubah status slider beranda untuk: \"{$gallery->title}\" (" . ($gallery->is_slider ? 'Aktif' : 'Nonaktif') . ")", [
+            'id' => $gallery->id,
+            'is_slider' => $gallery->is_slider,
+        ]);
+
         $status = $gallery->is_slider ? 'ditambahkan ke' : 'dihapus dari';
 
         return back()->with('success', "Foto \"{$gallery->title}\" berhasil {$status} Slider Beranda Utama.");
@@ -66,7 +79,10 @@ class GalleryController extends Controller
 
     public function destroy(Gallery $gallery): RedirectResponse
     {
+        $title = $gallery->title;
         $gallery->delete();
+
+        ActivityLogger::log('DELETE', 'Galeri Foto', "Menghapus foto dari galeri: \"{$title}\"");
 
         return back()->with('success', 'Foto galeri berhasil dihapus.');
     }

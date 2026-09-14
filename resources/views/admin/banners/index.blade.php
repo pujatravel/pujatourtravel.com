@@ -6,7 +6,7 @@
 @section('content')
 <div class="space-y-8">
     <!-- Top Summary Banner -->
-    <div class="bg-slate-900 bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950 rounded-3xl p-6 sm:p-8 text-white shadow-md border border-slate-700/50 flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div class="bg-slate-900 bg-linear-to-r from-slate-900 via-slate-800 to-emerald-950 rounded-3xl p-6 sm:p-8 text-white shadow-md border border-slate-700/50 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div class="space-y-2 max-w-2xl">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold">
                 <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-400"></i>
@@ -28,13 +28,13 @@
 
     <!-- Section 1: Edit Teks & Benchmark Stats Banner -->
     <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 space-y-6">
-        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div class="flex items-start sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
             <div>
-                <h3 class="font-display font-bold text-lg text-slate-900">1. Teks & Statistik Banner Hero</h3>
-                <p class="text-xs text-slate-500">Sesuaikan badge promo, judul utama, highlight kata, deskripsi, dan 3 angka benchmark.</p>
+                <h3 class="font-display font-bold text-base sm:text-lg text-slate-900">1. Teks & Statistik Banner Hero</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Sesuaikan badge promo, judul utama, highlight kata, deskripsi, dan 3 angka benchmark.</p>
             </div>
-            <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                Tersimpan di Database
+            <span class="px-2.5 sm:px-3 py-1 rounded-xl text-[10px] sm:text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 shrink-0 text-center leading-tight">
+                Tersimpan di<br>Database
             </span>
         </div>
 
@@ -201,7 +201,7 @@
                             <!-- Slide Image Preview -->
                             <div class="relative h-28 xs:h-32 sm:h-36 lg:h-40 w-full bg-slate-900 overflow-hidden">
                                 <img src="{{ asset($slide->image_url ?? $slide->image_path) }}" alt="{{ $slide->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent"></div>
+                                <div class="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent"></div>
                                 <div class="absolute top-2 left-2 sm:top-2.5 sm:left-2.5">
                                     <span class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-bold bg-slate-900/80 text-white backdrop-blur-xs border border-white/20 shadow-xs">
                                         #{{ $loop->iteration }} Slide

@@ -31,23 +31,81 @@
 </head>
 <body class="bg-canvas text-slate-700 antialiased min-h-screen flex flex-col">
 
-    <!-- Flash Message Toast -->
+    <!-- Flash Message Toast (Pop-up dari Atas / Sesuai Style Logout) -->
     @if(session('success'))
-        <div id="toast-success" class="fixed top-5 right-5 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl bg-emerald-700 text-white shadow-lg transition-all transform duration-300">
-            <i data-lucide="check-circle-2" class="w-5 h-5 text-white"></i>
-            <span class="text-sm font-semibold">{{ session('success') }}</span>
-            <button onclick="document.getElementById('toast-success').remove()" class="ml-2 text-white/80 hover:text-white">&times;</button>
+        <div id="admin-toast-success" 
+             role="alert"
+             class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-md transition-all duration-500 ease-out transform -translate-y-8 opacity-0 pointer-events-auto">
+            <div class="bg-white/95 backdrop-blur-md rounded-2xl p-3.5 sm:p-4 shadow-2xl border border-emerald-200/80 flex items-center gap-3.5 ring-1 ring-black/5">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center shrink-0 shadow-xs">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h4 class="text-xs font-bold text-slate-900 leading-tight">Berhasil</h4>
+                    <p class="text-[11px] sm:text-xs text-slate-600 mt-0.5 leading-snug">
+                        {{ session('success') }}
+                    </p>
+                </div>
+                <button type="button" 
+                        onclick="dismissAdminToast('admin-toast-success')" 
+                        class="w-7 h-7 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition shrink-0 cursor-pointer" 
+                        aria-label="Tutup notifikasi">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
         </div>
-        <script>setTimeout(() => { const t = document.getElementById('toast-success'); if (t) t.remove(); }, 4000);</script>
     @endif
 
     @if(session('error'))
-        <div id="toast-error" class="fixed top-5 right-5 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl bg-rose-600 text-white shadow-lg transition-all transform duration-300">
-            <i data-lucide="alert-triangle" class="w-5 h-5 text-white"></i>
-            <span class="text-sm font-semibold">{{ session('error') }}</span>
-            <button onclick="document.getElementById('toast-error').remove()" class="ml-2 text-white/80 hover:text-white">&times;</button>
+        <div id="admin-toast-error" 
+             role="alert"
+             class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-md transition-all duration-500 ease-out transform -translate-y-8 opacity-0 pointer-events-auto">
+            <div class="bg-white/95 backdrop-blur-md rounded-2xl p-3.5 sm:p-4 shadow-2xl border border-rose-200/80 flex items-center gap-3.5 ring-1 ring-black/5">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-rose-50 text-rose-700 border border-rose-100 flex items-center justify-center shrink-0 shadow-xs">
+                    <i data-lucide="alert-triangle" class="w-5 h-5 text-rose-600"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h4 class="text-xs font-bold text-slate-900 leading-tight">Pemberitahuan</h4>
+                    <p class="text-[11px] sm:text-xs text-slate-600 mt-0.5 leading-snug">
+                        {{ session('error') }}
+                    </p>
+                </div>
+                <button type="button" 
+                        onclick="dismissAdminToast('admin-toast-error')" 
+                        class="w-7 h-7 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition shrink-0 cursor-pointer" 
+                        aria-label="Tutup notifikasi">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
         </div>
-        <script>setTimeout(() => { const t = document.getElementById('toast-error'); if (t) t.remove(); }, 4000);</script>
+    @endif
+
+    @if(session('success') || session('error'))
+    <script>
+        function dismissAdminToast(id) {
+            const toast = document.getElementById(id);
+            if (toast) {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('-translate-y-8', 'opacity-0');
+                setTimeout(() => toast.remove(), 500);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            ['admin-toast-success', 'admin-toast-error'].forEach(id => {
+                const toast = document.getElementById(id);
+                if (toast) {
+                    requestAnimationFrame(() => {
+                        setTimeout(() => {
+                            toast.classList.remove('-translate-y-8', 'opacity-0');
+                            toast.classList.add('translate-y-0', 'opacity-100');
+                        }, 80);
+                    });
+                    setTimeout(() => dismissAdminToast(id), 4500);
+                }
+            });
+        });
+    </script>
     @endif
 
     <!-- Admin Mobile Navigation Drawer Overlay -->
@@ -146,6 +204,14 @@
                     <i data-lucide="settings" class="w-5 h-5 shrink-0"></i>
                     <span>Kontak & CMS</span>
                 </a>
+
+                <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Sistem & Keamanan
+                </div>
+                <a href="{{ route('admin.logs.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.logs.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                    <i data-lucide="shield-check" class="w-5 h-5 shrink-0"></i>
+                    <span>Log Aktivitas</span>
+                </a>
             </nav>
         </div>
 
@@ -168,9 +234,9 @@
         </div>
     </aside>
 
-    <div class="flex-1 flex overflow-hidden">
+    <div class="flex-1 flex">
         <!-- Desktop Sidebar Navigation (Solid Slate 900) -->
-        <aside id="admin-sidebar" class="w-64 bg-white text-slate-700 shrink-0 flex-col justify-between hidden md:flex border-r border-neutral-200">
+        <aside id="admin-sidebar" class="w-64 bg-white text-slate-700 shrink-0 flex-col justify-between hidden md:flex border-r border-neutral-200 sticky top-0 h-screen overflow-y-auto">
             <div>
                 <!-- Brand Header -->
                 <div class="p-5 border-b border-neutral-200 flex items-center gap-3">
@@ -255,6 +321,14 @@
                         <i data-lucide="settings" class="w-5 h-5 shrink-0"></i>
                         <span>Kontak & CMS</span>
                     </a>
+
+                    <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                        Sistem & Keamanan
+                    </div>
+                    <a href="{{ route('admin.logs.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.logs.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                        <i data-lucide="shield-check" class="w-5 h-5 shrink-0"></i>
+                        <span>Log Aktivitas</span>
+                    </a>
                 </nav>
             </div>
 
@@ -278,9 +352,9 @@
         </aside>
 
         <!-- Main Content Area -->
-        <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+        <div class="flex-1 flex flex-col min-w-0">
             <!-- Topbar Header -->
-            <header class="bg-surface-soft border-b border-neutral-200 px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between sticky top-0 z-30 shadow-2xs">
+            <header class="bg-surface-soft/95 backdrop-blur-md border-b border-neutral-200 px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between sticky top-0 z-30 shadow-2xs">
                 <div class="flex items-center gap-3 sm:gap-4 min-w-0">
                     <!-- Mobile Hamburger Menu Button -->
                     <button type="button" id="admin-open-mobile-btn" class="p-2.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition md:hidden shrink-0 flex items-center justify-center shadow-sm" aria-label="Buka Menu Admin">

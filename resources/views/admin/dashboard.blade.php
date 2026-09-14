@@ -124,7 +124,7 @@
                         <span>Tren Pengguna Aktif (Time-Series)</span>
                     </span>
                     <span class="text-[11px] text-slate-400">
-                        Terakhir diperbarui: <strong id="live-last-time" class="text-slate-600 font-mono">{{ $realtimeStats['server_time'] ?? now()->format('H:i:s') }}</strong>
+                        Terakhir diperbarui: <strong id="live-last-time" class="text-slate-600 font-mono">{{ $realtimeStats['server_time'] ?? now('Asia/Jakarta')->format('H:i:s') }}</strong>
                     </span>
                 </div>
 

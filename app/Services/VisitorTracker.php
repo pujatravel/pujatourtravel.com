@@ -118,7 +118,7 @@ class VisitorTracker
             ],
             'pages' => $pages,
             'devices' => $devices,
-            'server_time' => now()->format('H:i:s'),
+            'server_time' => now('Asia/Jakarta')->format('H:i:s'),
         ];
     }
 
@@ -127,14 +127,14 @@ class VisitorTracker
      */
     private static function appendHistoryPoint(int $activeCount): array
     {
-        $nowTime = now()->format('H:i:s');
+        $nowTime = now('Asia/Jakarta')->format('H:i:s');
         $history = Cache::get(self::CACHE_KEY_HISTORY, []);
 
         // Buat titik awal jika history masih kosong agar grafik langsung terisi cantik
         if (empty($history)) {
             for ($i = self::MAX_HISTORY_POINTS - 1; $i >= 1; $i--) {
                 $history[] = [
-                    'time' => now()->subSeconds($i * 5)->format('H:i:s'),
+                    'time' => now('Asia/Jakarta')->subSeconds($i * 5)->format('H:i:s'),
                     'count' => 0,
                 ];
             }

@@ -98,7 +98,7 @@ class InvoiceController extends Controller
             'customer_address' => ['nullable', 'string'],
             'package_id' => ['nullable', 'exists:packages,id'],
             'package_name' => ['nullable', 'string', 'max:150'],
-            'pax_count' => ['required', 'integer', 'min:1'],
+            'pax_count' => ['nullable', 'integer', 'min:1'],
             'status' => ['required', 'in:UNPAID,PARTIAL,PAID,CANCELLED'],
             'payment_method' => ['nullable', 'string', 'max:100'],
             'bank_details' => ['nullable', 'string'],
@@ -113,7 +113,7 @@ class InvoiceController extends Controller
             'items.*.item_name' => ['required', 'string', 'max:255'],
             'items.*.description' => ['nullable', 'string'],
             'items.*.quantity' => ['required', 'numeric', 'min:0.01'],
-            'items.*.unit' => ['required', 'string', 'max:50'],
+            'items.*.unit' => ['nullable', 'string', 'max:50'],
             'items.*.price' => ['required', 'numeric', 'min:0'],
         ]);
 
@@ -174,7 +174,7 @@ class InvoiceController extends Controller
                 'customer_email' => $validated['customer_email'] ?? null,
                 'customer_address' => $validated['customer_address'] ?? null,
                 'package_id' => $validated['package_id'] ?? null,
-                'package_name' => $validated['package_name'] ?? null,
+                'package_name' => $validated['package_name'] ?? ($itemsData[0]['item_name'] ?? null),
                 'pax_count' => $validated['pax_count'] ?? 1,
                 'status' => $status,
                 'payment_method' => $validated['payment_method'] ?? null,
@@ -235,7 +235,7 @@ class InvoiceController extends Controller
             'customer_address' => ['nullable', 'string'],
             'package_id' => ['nullable', 'exists:packages,id'],
             'package_name' => ['nullable', 'string', 'max:150'],
-            'pax_count' => ['required', 'integer', 'min:1'],
+            'pax_count' => ['nullable', 'integer', 'min:1'],
             'status' => ['required', 'in:UNPAID,PARTIAL,PAID,CANCELLED'],
             'payment_method' => ['nullable', 'string', 'max:100'],
             'bank_details' => ['nullable', 'string'],
@@ -250,7 +250,7 @@ class InvoiceController extends Controller
             'items.*.item_name' => ['required', 'string', 'max:255'],
             'items.*.description' => ['nullable', 'string'],
             'items.*.quantity' => ['required', 'numeric', 'min:0.01'],
-            'items.*.unit' => ['required', 'string', 'max:50'],
+            'items.*.unit' => ['nullable', 'string', 'max:50'],
             'items.*.price' => ['required', 'numeric', 'min:0'],
         ]);
 
@@ -309,7 +309,7 @@ class InvoiceController extends Controller
                 'customer_email' => $validated['customer_email'] ?? null,
                 'customer_address' => $validated['customer_address'] ?? null,
                 'package_id' => $validated['package_id'] ?? null,
-                'package_name' => $validated['package_name'] ?? null,
+                'package_name' => $validated['package_name'] ?? ($itemsData[0]['item_name'] ?? null),
                 'pax_count' => $validated['pax_count'] ?? 1,
                 'status' => $status,
                 'payment_method' => $validated['payment_method'] ?? null,

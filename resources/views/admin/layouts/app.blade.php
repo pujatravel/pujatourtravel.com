@@ -134,6 +134,14 @@
                     <i data-lucide="folder-tree" class="w-5 h-5 shrink-0"></i>
                     <span>Kategori Paket</span>
                 </a>
+                <a href="{{ route('admin.units.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.units.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                    <i data-lucide="scale" class="w-5 h-5 shrink-0"></i>
+                    <span>Satuan Paket</span>
+                </a>
+                <a href="{{ route('admin.signature.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.signature.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                    <i data-lucide="pen-tool" class="w-5 h-5 shrink-0"></i>
+                    <span>Tanda Tangan</span>
+                </a>
                 <a href="{{ route('admin.settings.index') }}" class="admin-mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.settings.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                     <i data-lucide="settings" class="w-5 h-5 shrink-0"></i>
                     <span>Kontak & CMS</span>
@@ -234,6 +242,14 @@
                     <a href="{{ route('admin.categories.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.categories.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="folder-tree" class="w-5 h-5 shrink-0"></i>
                         <span>Kategori Paket</span>
+                    </a>
+                    <a href="{{ route('admin.units.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.units.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                        <i data-lucide="scale" class="w-5 h-5 shrink-0"></i>
+                        <span>Satuan Paket</span>
+                    </a>
+                    <a href="{{ route('admin.signature.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.signature.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                        <i data-lucide="pen-tool" class="w-5 h-5 shrink-0"></i>
+                        <span>Tanda Tangan</span>
                     </a>
                     <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.settings.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="settings" class="w-5 h-5 shrink-0"></i>

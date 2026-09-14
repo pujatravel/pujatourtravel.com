@@ -87,7 +87,7 @@
                     <div class="pt-2.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs">
                         <div>
                             <span class="font-extrabold text-emerald-700 text-sm block">{{ $pkg->formatted_price }}</span>
-                            <span class="text-[10px] text-slate-400">/ {{ $pkg->price_unit }}</span>
+                            <span class="text-[10px] text-slate-400">/ {{ $pkg->unit->name ?? $pkg->price_unit ?? 'pax' }}</span>
                         </div>
 
                         <div class="flex items-center gap-2 shrink-0">
@@ -157,7 +157,7 @@
                             </td>
                             <td class="p-4">
                                 <span class="font-bold text-emerald-700 text-sm block">{{ $pkg->formatted_price }}</span>
-                                <span class="text-[10px] text-slate-400">/ {{ $pkg->price_unit }}</span>
+                                <span class="text-[10px] text-slate-400">/ {{ $pkg->unit->name ?? $pkg->price_unit ?? 'pax' }}</span>
                             </td>
                             <td class="p-4 whitespace-nowrap">
                                 <span class="inline-flex items-center gap-1.5 text-slate-600">

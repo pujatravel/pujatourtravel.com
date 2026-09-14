@@ -80,39 +80,6 @@
             position: relative;
         }
 
-        .stamp-badge {
-            position: absolute;
-            top: 100px;
-            right: 60px;
-            transform: rotate(-12deg);
-            padding: 8px 24px;
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            border-radius: 12px;
-            text-transform: uppercase;
-            border-width: 4px;
-            border-style: solid;
-            pointer-events: none;
-            opacity: 0.85;
-        }
-        .stamp-paid {
-            border-color: #059669;
-            color: #059669;
-        }
-        .stamp-partial {
-            border-color: #d97706;
-            color: #d97706;
-        }
-        .stamp-unpaid {
-            border-color: #e11d48;
-            color: #e11d48;
-        }
-        .stamp-cancelled {
-            border-color: #64748b;
-            color: #64748b;
-        }
-
         /* Header */
         .invoice-header {
             display: flex;
@@ -303,7 +270,7 @@
             margin-top: 8px;
             font-size: 15px;
             font-weight: 800;
-            color: #047857;
+            color: #0f172a;
         }
         .summary-row.remaining {
             border-top: 1px dashed #cbd5e1;
@@ -379,17 +346,6 @@
 
     <!-- Invoice Sheet -->
     <div class="invoice-page">
-        <!-- Status Stamp Watermark -->
-        @if($invoice->status === 'PAID')
-            <div class="stamp-badge stamp-paid">LUNAS (PAID)</div>
-        @elseif($invoice->status === 'PARTIAL')
-            <div class="stamp-badge stamp-partial">DP (UANG MUKA)</div>
-        @elseif($invoice->status === 'CANCELLED')
-            <div class="stamp-badge stamp-cancelled">DIBATALKAN</div>
-        @else
-            <div class="stamp-badge stamp-unpaid">BELUM LUNAS</div>
-        @endif
-
         <!-- Header -->
         <div class="invoice-header">
             <div class="brand-block">
@@ -532,23 +488,29 @@
                         <span>Total Tagihan:</span>
                         <span>{{ $invoice->formatted_total }}</span>
                     </div>
-                    <div class="summary-row" style="color: #047857; margin-top: 6px;">
-                        <span>Jumlah Terbayar (DP):</span>
-                        <strong>{{ $invoice->formatted_paid }}</strong>
-                    </div>
-                    <div class="summary-row remaining">
-                        <span>Sisa Pelunasan:</span>
-                        <strong style="font-size: 13px;">{{ $invoice->formatted_remaining }}</strong>
-                    </div>
+                    @if($invoice->status !== 'PAID' && $invoice->remaining_amount > 0)
+                        <div class="summary-row" style="color: #64748b; margin-top: 6px;">
+                            <span>Jumlah Terbayar (DP):</span>
+                            <strong>{{ $invoice->formatted_paid }}</strong>
+                        </div>
+                        <div class="summary-row remaining">
+                            <span>Sisa Pelunasan:</span>
+                            <strong style="font-size: 13px;">{{ $invoice->formatted_remaining }}</strong>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="signature-box">
                     <div class="sig-container">
-                        <span style="font-size: 11px; color: #64748b;">Hormat Kami,</span>
-                        <div class="sig-space"></div>
+                        <span style="font-size: 11px; color: #64748b;">{{ $settings['signature_header'] ?? 'Hormat Kami,' }}</span>
+                        <div class="sig-space" style="height: 50px; display: flex; align-items: center; justify-content: center;">
+                            @if(!empty($settings['signature_image']))
+                                <img src="{{ asset('storage/' . $settings['signature_image']) }}" alt="Tanda Tangan" style="max-height: 48px; max-width: 140px; object-fit: contain; margin: 0 auto; display: block;">
+                            @endif
+                        </div>
                         <div class="sig-name">
-                            <div>Puja Tour & Travel</div>
-                            <span style="font-size: 9px; color: #94a3b8; font-weight: normal;">Finance & Reservation</span>
+                            <div>{{ $settings['signature_name'] ?? 'Puja Tour & Travel' }}</div>
+                            <span style="font-size: 9px; color: #94a3b8; font-weight: normal;">{{ $settings['signature_position'] ?? 'Finance & Reservation' }}</span>
                         </div>
                     </div>
                 </div>

@@ -25,10 +25,18 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Harga Satuan (Rp) *</label>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Harga (Rp) *</label>
                     <input type="number" name="price" value="{{ old('price') }}" required placeholder="225000" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Satuan Paket *</label>
+                    <select name="unit_id" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none">
+                        @foreach($units as $u)
+                            <option value="{{ $u->id }}" {{ old('unit_id') == $u->id || (empty(old('unit_id')) && strtolower($u->slug) == 'pax') ? 'selected' : '' }}>/ {{ $u->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Durasi Trip</label>

@@ -57,27 +57,6 @@
 
     <!-- Official Invoice Document Sheet -->
     <div class="bg-white rounded-3xl p-6 sm:p-10 border border-neutral-200 shadow-xl space-y-8 relative overflow-hidden" id="printable-invoice">
-        <!-- Watermark / Stamp Badge for PAID / UNPAID -->
-        <div class="absolute right-6 top-6 sm:right-12 sm:top-10 opacity-90 pointer-events-none rotate-[-12deg] z-10">
-            @if($invoice->status === 'PAID')
-                <div class="border-4 border-emerald-600 text-emerald-600 font-display font-black text-xl sm:text-2xl tracking-widest px-5 py-2 rounded-2xl uppercase shadow-xs">
-                    LUNAS (PAID)
-                </div>
-            @elseif($invoice->status === 'PARTIAL')
-                <div class="border-4 border-amber-600 text-amber-600 font-display font-black text-xl sm:text-2xl tracking-widest px-5 py-2 rounded-2xl uppercase shadow-xs">
-                    DP (UANG MUKA)
-                </div>
-            @elseif($invoice->status === 'CANCELLED')
-                <div class="border-4 border-slate-400 text-slate-400 font-display font-black text-xl sm:text-2xl tracking-widest px-5 py-2 rounded-2xl uppercase shadow-xs">
-                    DIBATALKAN
-                </div>
-            @else
-                <div class="border-4 border-rose-600 text-rose-600 font-display font-black text-xl sm:text-2xl tracking-widest px-5 py-2 rounded-2xl uppercase shadow-xs">
-                    BELUM LUNAS
-                </div>
-            @endif
-        </div>
-
         <!-- Document Header: Company Info & Invoice Title -->
         <div class="flex flex-col sm:flex-row justify-between items-start gap-6 border-b border-neutral-200 pb-8">
             <div class="flex items-start gap-4">
@@ -123,7 +102,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-neutral-50 p-6 rounded-2xl border border-neutral-200 text-xs">
             <!-- Customer Block -->
             <div class="space-y-2">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Ditujukan Kepada (Customer):</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Ditujukan Kepada:</span>
                 <h3 class="font-display font-bold text-base text-slate-900">{{ $invoice->customer_name }}</h3>
                 <div class="space-y-1 text-slate-600">
                     <p class="flex items-center gap-1.5 font-medium">
@@ -147,7 +126,7 @@
 
             <!-- Booking / Trip Details Block -->
             <div class="space-y-2">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Detail Keberangkatan & Reservasi:</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Informasi Trip & Reservasi:</span>
                 <div class="space-y-1.5 text-slate-700">
                     @if($invoice->package_name || $invoice->package)
                         <div class="flex items-center justify-between">
@@ -257,27 +236,34 @@
 
                     <div class="flex items-center justify-between font-display font-extrabold text-base text-slate-900">
                         <span>Total Tagihan:</span>
-                        <span class="text-xl text-emerald-800">{{ $invoice->formatted_total }}</span>
+                        <span class="text-xl text-slate-900">{{ $invoice->formatted_total }}</span>
                     </div>
 
-                    <div class="flex items-center justify-between text-emerald-800 font-semibold pt-1">
-                        <span>Jumlah Terbayar (DP):</span>
-                        <span>{{ $invoice->formatted_paid }}</span>
-                    </div>
+                    @if($invoice->status !== 'PAID' && $invoice->remaining_amount > 0)
+                        <div class="flex items-center justify-between text-slate-600 font-semibold pt-1">
+                            <span>Jumlah Terbayar (DP):</span>
+                            <span>{{ $invoice->formatted_paid }}</span>
+                        </div>
 
-                    <div class="flex items-center justify-between font-bold text-sm text-rose-600 border-t border-dashed border-neutral-200 pt-2">
-                        <span>Sisa Pelunasan:</span>
-                        <span class="text-base">{{ $invoice->formatted_remaining }}</span>
-                    </div>
+                        <div class="flex items-center justify-between font-bold text-sm text-rose-600 border-t border-dashed border-neutral-200 pt-2">
+                            <span>Sisa Pelunasan:</span>
+                            <span class="text-base">{{ $invoice->formatted_remaining }}</span>
+                        </div>
+                    @endif
                 </div>
 
                 <!-- Authorized Signature Box -->
                 <div class="pt-4 flex justify-end">
-                    <div class="text-center space-y-12 min-w-[200px]">
-                        <span class="text-xs text-slate-500 block">Hormat Kami,</span>
+                    <div class="text-center min-w-[200px]">
+                        <span class="text-xs text-slate-500 block">{{ $settings['signature_header'] ?? 'Hormat Kami,' }}</span>
+                        <div class="h-16 flex items-center justify-center my-1">
+                            @if(!empty($settings['signature_image']))
+                                <img src="{{ asset('storage/' . $settings['signature_image']) }}" alt="Tanda Tangan" class="max-h-14 max-w-[150px] object-contain mx-auto">
+                            @endif
+                        </div>
                         <div class="space-y-0.5 border-t border-slate-300 pt-2">
-                            <span class="font-bold text-slate-900 text-xs block">Puja Tour & Travel</span>
-                            <span class="text-[10px] text-slate-400 block">Finance & Reservation Dept.</span>
+                            <span class="font-bold text-slate-900 text-xs block">{{ $settings['signature_name'] ?? 'Puja Tour & Travel' }}</span>
+                            <span class="text-[10px] text-slate-400 block">{{ $settings['signature_position'] ?? 'Finance & Reservation Dept.' }}</span>
                         </div>
                     </div>
                 </div>

@@ -14,6 +14,7 @@ class Package extends Model
 
     protected $fillable = [
         'category_id',
+        'unit_id',
         'name',
         'slug',
         'short_description',
@@ -44,6 +45,11 @@ class Package extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(PackageCategory::class, 'category_id');
+    }
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
     }
 
     public function getFormattedPriceAttribute(): string

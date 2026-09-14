@@ -9,7 +9,9 @@ use App\Http\Controllers\Admin\InvoiceController as AdminInvoiceController;
 use App\Http\Controllers\Admin\PackageCategoryController;
 use App\Http\Controllers\Admin\PackageController as AdminPackageController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SignatureController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\InvoicePublicController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PageController;
@@ -201,6 +203,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
         Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
 
+        // Invoice Signature Settings
+        Route::get('signature', [SignatureController::class, 'index'])->name('signature.index');
+        Route::put('signature', [SignatureController::class, 'update'])->name('signature.update');
+
         // Package Categories CRUD
         Route::get('categories', [PackageCategoryController::class, 'index'])->name('categories.index');
         Route::post('categories', [PackageCategoryController::class, 'store'])->name('categories.store');
@@ -208,5 +214,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('categories/{category}', [PackageCategoryController::class, 'destroy'])->name('categories.destroy');
         Route::patch('categories/{category}/toggle-active', [PackageCategoryController::class, 'toggleActive'])->name('categories.toggle-active');
         Route::post('categories/reorder', [PackageCategoryController::class, 'reorder'])->name('categories.reorder');
+
+        // Package Units CRUD
+        Route::get('units', [UnitController::class, 'index'])->name('units.index');
+        Route::post('units', [UnitController::class, 'store'])->name('units.store');
+        Route::patch('units/{unit}', [UnitController::class, 'update'])->name('units.update');
+        Route::delete('units/{unit}', [UnitController::class, 'destroy'])->name('units.destroy');
+        Route::patch('units/{unit}/toggle-active', [UnitController::class, 'toggleActive'])->name('units.toggle-active');
+        Route::post('units/reorder', [UnitController::class, 'reorder'])->name('units.reorder');
     });
 });

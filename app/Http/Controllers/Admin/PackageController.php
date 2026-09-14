@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Models\PackageCategory;
+use App\Models\Unit;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -14,7 +15,7 @@ class PackageController extends Controller
 {
     public function index(Request $request): View
     {
-        $query = Package::with('category')->latest();
+        $query = Package::with(['category', 'unit'])->latest();
 
         if ($request->filled('search')) {
             $search = $request->input('search');
@@ -33,22 +34,24 @@ class PackageController extends Controller
         }
 
         $packages = $query->paginate(4)->withQueryString();
-        $categories = PackageCategory::where('is_active', true)->get();
+        $categories = PackageCategory::where('is_active', true)->orderBy('display_order')->get();
 
         return view('admin.packages.index', compact('packages', 'categories'));
     }
 
     public function create(): View
     {
-        $categories = PackageCategory::where('is_active', true)->get();
+        $categories = PackageCategory::where('is_active', true)->orderBy('display_order')->get();
+        $units = Unit::where('is_active', true)->orderBy('display_order')->get();
 
-        return view('admin.packages.create', compact('categories'));
+        return view('admin.packages.create', compact('categories', 'units'));
     }
 
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'category_id' => ['required', 'exists:package_categories,id'],
+            'unit_id' => ['nullable', 'exists:units,id'],
             'name' => ['required', 'string', 'max:150'],
             'price' => ['required', 'numeric', 'min:0'],
             'duration' => ['nullable', 'string', 'max:50'],
@@ -100,11 +103,16 @@ class PackageController extends Controller
             }
         }
 
+        $unit = ! empty($validated['unit_id']) ? Unit::find($validated['unit_id']) : null;
+        $priceUnit = $unit ? $unit->name : 'pax';
+
         Package::create([
             'category_id' => $validated['category_id'],
+            'unit_id' => $validated['unit_id'] ?? null,
             'name' => $validated['name'],
             'slug' => $slug,
             'price' => $validated['price'],
+            'price_unit' => $priceUnit,
             'duration' => $validated['duration'],
             'location' => $validated['location'],
             'short_description' => $validated['short_description'],
@@ -123,15 +131,17 @@ class PackageController extends Controller
 
     public function edit(Package $package): View
     {
-        $categories = PackageCategory::where('is_active', true)->get();
+        $categories = PackageCategory::where('is_active', true)->orderBy('display_order')->get();
+        $units = Unit::where('is_active', true)->orderBy('display_order')->get();
 
-        return view('admin.packages.edit', compact('package', 'categories'));
+        return view('admin.packages.edit', compact('package', 'categories', 'units'));
     }
 
     public function update(Request $request, Package $package): RedirectResponse
     {
         $validated = $request->validate([
             'category_id' => ['required', 'exists:package_categories,id'],
+            'unit_id' => ['nullable', 'exists:units,id'],
             'name' => ['required', 'string', 'max:150'],
             'price' => ['required', 'numeric', 'min:0'],
             'duration' => ['nullable', 'string', 'max:50'],
@@ -173,10 +183,15 @@ class PackageController extends Controller
             }
         }
 
+        $unit = ! empty($validated['unit_id']) ? Unit::find($validated['unit_id']) : null;
+        $priceUnit = $unit ? $unit->name : ($package->price_unit ?? 'pax');
+
         $package->update([
             'category_id' => $validated['category_id'],
+            'unit_id' => $validated['unit_id'] ?? null,
             'name' => $validated['name'],
             'price' => $validated['price'],
+            'price_unit' => $priceUnit,
             'duration' => $validated['duration'],
             'location' => $validated['location'],
             'short_description' => $validated['short_description'],

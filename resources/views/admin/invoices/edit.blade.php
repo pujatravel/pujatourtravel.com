@@ -1,10 +1,11 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Edit Invoice ' . $invoice->invoice_number)
-@section('page-title', 'Edit Invoice Wisata')
+@section('page_title', 'Edit Tagihan')
 
 @section('content')
-<div class="max-w-6xl mx-auto">
+<div class="space-y-6 max-w-7xl mx-auto pb-12">
+
     <form action="{{ route('admin.invoices.update', $invoice->id) }}" method="POST" id="invoice-form" class="space-y-6">
         @csrf
         @method('PUT')
@@ -87,54 +88,17 @@
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Email Pelanggan (Opsional)</label>
-                            <input type="email" name="customer_email" value="{{ old('customer_email', $invoice->customer_email) }}" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-xs bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none">
+                            <input type="email" name="customer_email" value="{{ old('customer_email', $invoice->customer_email) }}" placeholder="Contoh: customer@email.com" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-xs bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none">
                         </div>
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Kota Asal / Alamat</label>
-                            <input type="text" name="customer_address" value="{{ old('customer_address', $invoice->customer_address) }}" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-xs bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none">
-                        </div>
-                    </div>
-
-                    <!-- Package Selector & Booking Details -->
-                    <div class="p-4 rounded-2xl bg-canvas border border-neutral-200 space-y-4 mt-2">
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <div class="sm:col-span-2">
-                                <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Katalog Paket Terkait</label>
-                                <select id="package-selector" name="package_id" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-xs bg-white focus:ring-2 focus:ring-emerald-700 outline-none">
-                                    <option value="">-- Kustom / Non-Katalog --</option>
-                                    @foreach($packages as $pkg)
-                                        <option value="{{ $pkg->id }}" 
-                                                data-name="{{ $pkg->name }}" 
-                                                data-price="{{ $pkg->price }}" 
-                                                data-unit="{{ $pkg->price_unit }}"
-                                                data-desc="{{ $pkg->short_description }}"
-                                                {{ (old('package_id', $invoice->package_id) == $pkg->id) ? 'selected' : '' }}>
-                                            {{ $pkg->name }} — Rp {{ number_format($pkg->price, 0, ',', '.') }} / {{ $pkg->price_unit }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Nama Paket di Invoice</label>
-                                <input type="text" id="package-name-input" name="package_name" value="{{ old('package_name', $invoice->package_name) }}" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-xs bg-white focus:ring-2 focus:ring-emerald-700 outline-none">
-                            </div>
+                            <input type="text" name="customer_address" value="{{ old('customer_address', $invoice->customer_address) }}" placeholder="Contoh: Bandung / Jakarta Selatan" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-xs bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none">
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Tanggal Trip / Wisata</label>
-                                <input type="date" name="travel_date" value="{{ old('travel_date', $invoice->travel_date ? $invoice->travel_date->format('Y-m-d') : '') }}" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-xs bg-white focus:ring-2 focus:ring-emerald-700 outline-none">
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Jumlah Peserta (Pax) <span class="text-rose-500">*</span></label>
-                                <div class="flex items-center gap-2">
-                                    <input type="number" id="pax-count-input" name="pax_count" value="{{ old('pax_count', $invoice->pax_count) }}" min="1" required class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-xs font-bold bg-white focus:ring-2 focus:ring-emerald-700 outline-none">
-                                    <span class="text-xs font-bold text-slate-500 px-3 py-2.5 bg-neutral-100 rounded-xl">Orang</span>
-                                </div>
-                            </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Tanggal Trip / Wisata</label>
+                            <input type="date" name="travel_date" value="{{ old('travel_date', $invoice->travel_date ? $invoice->travel_date->format('Y-m-d') : '') }}" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-xs bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none">
                         </div>
                     </div>
                 </div>
@@ -172,17 +136,25 @@
                                 @foreach($invoice->items as $index => $item)
                                     <tr class="item-row">
                                         <td class="p-3">
-                                            <input type="text" name="items[{{ $index }}][item_name]" value="{{ old('items.'.$index.'.item_name', $item->item_name) }}" placeholder="Nama layanan / paket" required class="item-name w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs font-semibold bg-canvas focus:bg-white outline-none">
-                                            <input type="text" name="items[{{ $index }}][description]" value="{{ old('items.'.$index.'.description', $item->description) }}" placeholder="Keterangan tambahan (opsional)" class="w-full px-3 py-1.5 rounded-lg border border-neutral-200 text-[11px] bg-canvas focus:bg-white outline-none mt-1 text-slate-500">
+                                            {{-- Searchable dropdown (portal: dropdown di-render ke body via JS) --}}
+                                            <div class="pkg-search-wrapper">
+                                                <input type="text"
+                                                    class="pkg-search-input w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs font-semibold bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-600 outline-none"
+                                                    placeholder="🔍 Cari & pilih paket wisata..."
+                                                    value="{{ $item->item_name }}"
+                                                    autocomplete="off">
+                                                <input type="hidden" name="items[{{ $index }}][item_name]" class="pkg-hidden-name" value="{{ $item->item_name }}" required>
+                                            </div>
+                                            <input type="text" name="items[{{ $index }}][description]" value="{{ old('items.'.$index.'.description', $item->description) }}" placeholder="Deskripsi otomatis dari paket" readonly class="item-desc w-full px-3 py-1.5 rounded-lg border border-neutral-200 text-[11px] bg-neutral-100 text-slate-500 cursor-not-allowed outline-none mt-1">
                                         </td>
                                         <td class="p-3">
                                             <input type="number" step="any" name="items[{{ $index }}][quantity]" value="{{ old('items.'.$index.'.quantity', (float)$item->quantity) }}" min="0.01" required class="item-qty w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs font-bold bg-canvas focus:bg-white outline-none">
                                         </td>
                                         <td class="p-3">
-                                            <input type="text" name="items[{{ $index }}][unit]" value="{{ old('items.'.$index.'.unit', $item->unit) }}" placeholder="pax / unit" required class="item-unit w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs bg-canvas focus:bg-white outline-none">
+                                            <input type="text" name="items[{{ $index }}][unit]" value="{{ old('items.'.$index.'.unit', $item->unit ?? '') }}" readonly class="item-unit w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs bg-neutral-100 text-slate-600 cursor-not-allowed outline-none">
                                         </td>
                                         <td class="p-3">
-                                            <input type="number" step="any" name="items[{{ $index }}][price]" value="{{ old('items.'.$index.'.price', (float)$item->price) }}" min="0" required class="item-price w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs font-bold bg-canvas focus:bg-white outline-none">
+                                            <input type="number" step="any" name="items[{{ $index }}][price]" value="{{ old('items.'.$index.'.price', (float)$item->price) }}" min="0" readonly required class="item-price w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs font-bold bg-neutral-100 text-slate-700 cursor-not-allowed outline-none">
                                         </td>
                                         <td class="p-3 text-right">
                                             <span class="item-subtotal-text font-bold text-slate-900 text-xs block">Rp {{ number_format($item->subtotal, 0, ',', '.') }}</span>
@@ -220,13 +192,12 @@
                 </div>
             </div>
 
-            <!-- Right Column: Financial Calculations & Payment (1 col) -->
+            <!-- Right Column: Financial Calculation & Payment (1 col) -->
             <div class="space-y-6">
-                <!-- Calculation Summary Card -->
-                <div class="bg-surface-soft p-6 rounded-3xl border border-neutral-200 shadow-soft space-y-5 sticky top-20">
-                    <h3 class="font-display font-bold text-base text-slate-900 border-b border-neutral-200 pb-3 flex items-center justify-between">
-                        <span>Ringkasan Keuangan</span>
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <div class="bg-surface-soft p-6 rounded-3xl border border-neutral-200 shadow-soft space-y-5 sticky top-24">
+                    <h3 class="font-display font-bold text-base text-slate-900 border-b border-neutral-200 pb-3 flex items-center gap-2">
+                        <i data-lucide="calculator" class="w-4 h-4 text-emerald-700"></i>
+                        <span>Ringkasan & Pembayaran</span>
                     </h3>
 
                     <div class="space-y-3.5 text-xs">
@@ -274,9 +245,9 @@
                             <label class="block text-xs font-bold text-slate-700 uppercase">Jumlah Terbayar / DP (Rp)</label>
                             <input type="number" step="any" id="paid-input" name="paid_amount" value="{{ old('paid_amount', (float)$invoice->paid_amount) }}" min="0" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-sm font-bold text-emerald-700 bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-700 outline-none">
                             <div class="flex items-center gap-1.5 pt-1">
-                                <button type="button" id="btn-dp-30" class="px-2 py-1 text-[10px] font-bold rounded-md bg-neutral-100 hover:bg-neutral-200 text-slate-600 transition">DP 30%</button>
-                                <button type="button" id="btn-dp-50" class="px-2 py-1 text-[10px] font-bold rounded-md bg-neutral-100 hover:bg-neutral-200 text-slate-600 transition">DP 50%</button>
-                                <button type="button" id="btn-pay-full" class="px-2 py-1 text-[10px] font-bold rounded-md bg-emerald-100 hover:bg-emerald-200 text-emerald-800 transition">Lunas 100%</button>
+                                <button type="button" id="btn-dp-30" class="quick-pay-btn px-2 py-1 text-[10px] font-bold rounded-md bg-neutral-100 hover:bg-neutral-200 text-slate-600 transition">DP 30%</button>
+                                <button type="button" id="btn-dp-50" class="quick-pay-btn px-2 py-1 text-[10px] font-bold rounded-md bg-neutral-100 hover:bg-neutral-200 text-slate-600 transition">DP 50%</button>
+                                <button type="button" id="btn-pay-full" class="quick-pay-btn px-2 py-1 text-[10px] font-bold rounded-md bg-neutral-100 hover:bg-neutral-200 text-slate-600 transition">Lunas 100%</button>
                             </div>
                         </div>
 
@@ -293,8 +264,13 @@
                     <!-- Payment Status & Account Info -->
                     <div class="pt-4 border-t border-neutral-200 space-y-4 text-xs">
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase">Status Pembayaran <span class="text-rose-500">*</span></label>
-                            <select id="status-select" name="status" required class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-xs font-bold bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-700 outline-none">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <label class="block text-xs font-bold text-slate-700 uppercase">Status Pembayaran <span class="text-rose-500">*</span></label>
+                                <span class="text-[10px] text-slate-400 italic">Otomatis dari nominal bayar</span>
+                            </div>
+                            <select id="status-select" name="status" required tabindex="-1"
+                                class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-xs font-bold bg-neutral-100 text-slate-700 pointer-events-none cursor-not-allowed outline-none appearance-none"
+                                style="appearance: none; -webkit-appearance: none; -moz-appearance: none;">
                                 <option value="UNPAID" {{ old('status', $invoice->status) === 'UNPAID' ? 'selected' : '' }}>🔴 Belum Bayar (Unpaid)</option>
                                 <option value="PARTIAL" {{ old('status', $invoice->status) === 'PARTIAL' ? 'selected' : '' }}>🟡 Uang Muka / DP (Partial)</option>
                                 <option value="PAID" {{ old('status', $invoice->status) === 'PAID' ? 'selected' : '' }}>🟢 Lunas (Paid)</option>
@@ -332,184 +308,188 @@ document.addEventListener('DOMContentLoaded', function() {
     let rowIndex = {{ $invoice->items->count() }};
     const tbody = document.getElementById('items-tbody');
     const addItemBtn = document.getElementById('add-item-btn');
-    const packageSelector = document.getElementById('package-selector');
-    const packageNameInput = document.getElementById('package-name-input');
-    const paxCountInput = document.getElementById('pax-count-input');
-
     const discountInput = document.getElementById('discount-input');
     const taxInput = document.getElementById('tax-input');
     const paidInput = document.getElementById('paid-input');
     const statusSelect = document.getElementById('status-select');
-
     const displaySubtotal = document.getElementById('display-subtotal');
     const displayTaxAmount = document.getElementById('display-tax-amount');
     const displayGrandTotal = document.getElementById('display-grand-total');
     const displayRemaining = document.getElementById('display-remaining');
-
     const btnDp30 = document.getElementById('btn-dp-30');
     const btnDp50 = document.getElementById('btn-dp-50');
     const btnPayFull = document.getElementById('btn-pay-full');
+
+    const packagesList = [
+        @foreach($packages as $pkg)
+        {
+            id: "{{ $pkg->id }}",
+            name: @json($pkg->name),
+            price: {{ (float)$pkg->price }},
+            unit: @json($pkg->unit->name ?? $pkg->price_unit),
+            desc: @json($pkg->short_description ?? '')
+        },
+        @endforeach
+    ];
 
     function formatRupiah(num) {
         return 'Rp ' + Math.round(num).toLocaleString('id-ID');
     }
 
+    // -------------------------------------------------------
+    // PORTAL DROPDOWN — dirender ke <body>, posisi fixed
+    // -------------------------------------------------------
+    const portalDropdown = document.createElement('div');
+    portalDropdown.id = 'pkg-portal-dropdown-edit';
+    portalDropdown.style.cssText = 'position:fixed;z-index:9999;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.12);max-height:220px;overflow-y:auto;display:none;min-width:260px;';
+    portalDropdown.innerHTML = '<div class="pkg-portal-list"></div><div class="pkg-portal-empty" style="display:none;padding:10px 12px;font-size:11px;color:#94a3b8;text-align:center">Tidak ada paket ditemukan</div>';
+    document.body.appendChild(portalDropdown);
+
+    const portalList  = portalDropdown.querySelector('.pkg-portal-list');
+    const portalEmpty = portalDropdown.querySelector('.pkg-portal-empty');
+
+    function buildPortalItems() {
+        portalList.innerHTML = packagesList.map(pkg => {
+            const safeName = pkg.name.replace(/"/g, '&quot;').replace(/</g, '&lt;');
+            const safeUnit = (pkg.unit || '').replace(/"/g, '&quot;');
+            const safeDesc = (pkg.desc || '').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+            const unitLabel = pkg.unit ? ' / ' + pkg.unit : '';
+            return '<div class="pkg-portal-option" data-name="' + safeName + '" data-price="' + pkg.price + '" data-unit="' + safeUnit + '" data-desc="' + safeDesc + '" style="padding:8px 12px;cursor:pointer;font-size:11px;color:#374151;border-bottom:1px solid #f3f4f6"><span style="font-weight:600;display:block">' + pkg.name + '</span><span style="color:#94a3b8">Rp ' + Math.round(pkg.price).toLocaleString('id-ID') + unitLabel + '</span></div>';
+        }).join('');
+    }
+    buildPortalItems();
+
+    portalDropdown.addEventListener('mouseover', e => { const opt = e.target.closest('.pkg-portal-option'); if (opt) opt.style.background = '#f0fdf4'; });
+    portalDropdown.addEventListener('mouseout',  e => { const opt = e.target.closest('.pkg-portal-option'); if (opt) opt.style.background = ''; });
+
+    let activeSearchInput = null;
+    let activeRow = null;
+
+    function positionPortal(input) {
+        const rect = input.getBoundingClientRect();
+        portalDropdown.style.top   = (rect.bottom + 4) + 'px';
+        portalDropdown.style.left  = rect.left + 'px';
+        portalDropdown.style.width = rect.width + 'px';
+    }
+    function openPortal(input, tr) {
+        activeSearchInput = input; activeRow = tr;
+        positionPortal(input); portalDropdown.style.display = 'block';
+        filterPortal(input.value);
+    }
+    function closePortal() { portalDropdown.style.display = 'none'; activeSearchInput = null; activeRow = null; }
+    function filterPortal(query) {
+        const q = query.trim().toLowerCase(); let hasResult = false;
+        portalList.querySelectorAll('.pkg-portal-option').forEach(opt => {
+            const match = !q || (opt.dataset.name||'').toLowerCase().includes(q);
+            opt.style.display = match ? '' : 'none'; if (match) hasResult = true;
+        });
+        portalEmpty.style.display = hasResult ? 'none' : 'block';
+    }
+
+    portalDropdown.addEventListener('mousedown', function(e) {
+        const opt = e.target.closest('.pkg-portal-option');
+        if (!opt || !activeRow) return; e.preventDefault();
+        const name  = opt.dataset.name || '', price = parseFloat(opt.dataset.price)||0,
+              unit  = opt.dataset.unit  || '', desc = opt.dataset.desc || '';
+        if (activeSearchInput) {
+            activeSearchInput.value = name;
+            const hidden = activeSearchInput.closest('.pkg-search-wrapper').querySelector('.pkg-hidden-name');
+            if (hidden) hidden.value = name;
+        }
+        const descInput = activeRow.querySelector('.item-desc'), unitInput = activeRow.querySelector('.item-unit'),
+              priceInput = activeRow.querySelector('.item-price'), qtyInput = activeRow.querySelector('.item-qty');
+        if (descInput)  descInput.value  = desc;
+        if (unitInput)  unitInput.value  = unit;
+        if (priceInput) priceInput.value = price;
+        if (qtyInput) {
+            if (!qtyInput.value || parseFloat(qtyInput.value) <= 0) qtyInput.value = 1;
+        }
+        closePortal(); calculateTotals();
+    });
+    document.addEventListener('click', e => { if (!portalDropdown.contains(e.target) && e.target !== activeSearchInput) closePortal(); });
+    window.addEventListener('scroll', () => { if (activeSearchInput) positionPortal(activeSearchInput); }, true);
+    window.addEventListener('resize', () => { if (activeSearchInput) positionPortal(activeSearchInput); });
+
+    function initSearchDropdown(tr) {
+        const wrapper = tr.querySelector('.pkg-search-wrapper');
+        if (!wrapper) return;
+        const searchInput = wrapper.querySelector('.pkg-search-input');
+        const hiddenName  = wrapper.querySelector('.pkg-hidden-name');
+        searchInput.addEventListener('focus', () => openPortal(searchInput, tr));
+        searchInput.addEventListener('input', function() {
+            hiddenName.value = '';
+            if (portalDropdown.style.display === 'none') openPortal(searchInput, tr);
+            else positionPortal(searchInput);
+            filterPortal(this.value);
+        });
+        searchInput.addEventListener('blur', () => { setTimeout(() => { if (activeSearchInput === searchInput) closePortal(); }, 150); });
+    }
+
     function calculateTotals() {
         let subtotal = 0;
-        const rows = tbody.querySelectorAll('.item-row');
-
-        rows.forEach(row => {
-            const qty = parseFloat(row.querySelector('.item-qty').value) || 0;
-            const price = parseFloat(row.querySelector('.item-price').value) || 0;
-            const rowSubtotal = qty * price;
-            subtotal += rowSubtotal;
-
-            const textSpan = row.querySelector('.item-subtotal-text');
-            if (textSpan) {
-                textSpan.textContent = formatRupiah(rowSubtotal);
-            }
+        tbody.querySelectorAll('.item-row').forEach(row => {
+            const qty = parseFloat(row.querySelector('.item-qty').value)||0, price = parseFloat(row.querySelector('.item-price').value)||0, rowSub = qty*price;
+            subtotal += rowSub;
+            const span = row.querySelector('.item-subtotal-text'); if (span) span.textContent = formatRupiah(rowSub);
         });
-
-        const discount = parseFloat(discountInput.value) || 0;
-        const afterDiscount = Math.max(0, subtotal - discount);
-
-        const taxPercent = parseFloat(taxInput.value) || 0;
-        const taxAmount = (afterDiscount * taxPercent) / 100;
-
-        const grandTotal = Math.round(afterDiscount + taxAmount);
-        let paid = parseFloat(paidInput.value) || 0;
-
-        if (paid > grandTotal && grandTotal > 0) {
-            paid = grandTotal;
-            paidInput.value = paid;
-        }
-
-        const remaining = Math.max(0, grandTotal - paid);
-
-        displaySubtotal.textContent = formatRupiah(subtotal);
-        displayTaxAmount.textContent = formatRupiah(taxAmount);
-        displayGrandTotal.textContent = formatRupiah(grandTotal);
-        displayRemaining.textContent = formatRupiah(remaining);
-
+        const discount = parseFloat(discountInput.value)||0, afterDiscount = Math.max(0, subtotal-discount),
+              taxPercent = parseFloat(taxInput.value)||0, taxAmount = (afterDiscount*taxPercent)/100,
+              grandTotal = Math.round(afterDiscount+taxAmount);
+        let paid = parseFloat(paidInput.value)||0;
+        if (paid > grandTotal && grandTotal > 0) { paid = grandTotal; paidInput.value = paid; }
+        const remaining = Math.max(0, grandTotal-paid);
+        displaySubtotal.textContent = formatRupiah(subtotal); displayTaxAmount.textContent = formatRupiah(taxAmount);
+        displayGrandTotal.textContent = formatRupiah(grandTotal); displayRemaining.textContent = formatRupiah(remaining);
         if (statusSelect.value !== 'CANCELLED') {
-            if (paid >= grandTotal && grandTotal > 0) {
-                statusSelect.value = 'PAID';
-            } else if (paid > 0) {
-                statusSelect.value = 'PARTIAL';
-            } else {
-                statusSelect.value = 'UNPAID';
-            }
+            if (paid >= grandTotal && grandTotal > 0) statusSelect.value = 'PAID';
+            else if (paid > 0) statusSelect.value = 'PARTIAL';
+            else statusSelect.value = 'UNPAID';
         }
+
+        syncQuickPayButtons(paid, grandTotal);
 
         return { subtotal, grandTotal, remaining };
     }
 
-    function addNewRow(itemName = '', desc = '', qty = 1, unit = 'pax', price = 0) {
-        const tr = document.createElement('tr');
-        tr.className = 'item-row';
-        tr.innerHTML = `
-            <td class="p-3">
-                <input type="text" name="items[${rowIndex}][item_name]" value="${itemName}" placeholder="Nama layanan / paket" required class="item-name w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs font-semibold bg-canvas focus:bg-white outline-none">
-                <input type="text" name="items[${rowIndex}][description]" value="${desc}" placeholder="Keterangan tambahan (opsional)" class="w-full px-3 py-1.5 rounded-lg border border-neutral-200 text-[11px] bg-canvas focus:bg-white outline-none mt-1 text-slate-500">
-            </td>
-            <td class="p-3">
-                <input type="number" step="any" name="items[${rowIndex}][quantity]" value="${qty}" min="0.01" required class="item-qty w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs font-bold bg-canvas focus:bg-white outline-none">
-            </td>
-            <td class="p-3">
-                <input type="text" name="items[${rowIndex}][unit]" value="${unit}" placeholder="pax / unit" required class="item-unit w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs bg-canvas focus:bg-white outline-none">
-            </td>
-            <td class="p-3">
-                <input type="number" step="any" name="items[${rowIndex}][price]" value="${price}" min="0" required class="item-price w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs font-bold bg-canvas focus:bg-white outline-none">
-            </td>
-            <td class="p-3 text-right">
-                <span class="item-subtotal-text font-bold text-slate-900 text-xs block">Rp 0</span>
-            </td>
-            <td class="p-3 text-center">
-                <button type="button" class="remove-row-btn p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition" title="Hapus baris">
-                    <i data-lucide="trash-2" class="w-4 h-4"></i>
-                </button>
-            </td>
-        `;
-        tbody.appendChild(tr);
-        rowIndex++;
-        if (window.lucide && window.lucide.createIcons) {
-            window.lucide.createIcons();
+    function setBtnActive(btn, isActive) {
+        if (!btn) return;
+        if (isActive) {
+            btn.className = 'quick-pay-btn px-2 py-1 text-[10px] font-bold rounded-md bg-emerald-100 hover:bg-emerald-200 text-emerald-800 transition';
+        } else {
+            btn.className = 'quick-pay-btn px-2 py-1 text-[10px] font-bold rounded-md bg-neutral-100 hover:bg-neutral-200 text-slate-600 transition';
         }
+    }
+
+    function syncQuickPayButtons(paid, grandTotal) {
+        const is30 = grandTotal > 0 && paid > 0 && Math.abs(paid - Math.round(grandTotal * 0.3)) < 1;
+        const is50 = grandTotal > 0 && paid > 0 && Math.abs(paid - Math.round(grandTotal * 0.5)) < 1;
+        const isFull = grandTotal > 0 && paid > 0 && Math.abs(paid - grandTotal) < 1;
+
+        setBtnActive(btnDp30, is30);
+        setBtnActive(btnDp50, is50);
+        setBtnActive(btnPayFull, isFull);
+    }
+
+    function addNewRow(desc='',qty=1,unit='',price=0) {
+        const tr = document.createElement('tr'); tr.className = 'item-row';
+        tr.innerHTML = '<td class="p-3"><div class="pkg-search-wrapper"><input type="text" class="pkg-search-input w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs font-semibold bg-canvas focus:bg-white focus:ring-2 focus:ring-emerald-600 outline-none" placeholder="🔍 Cari & pilih paket wisata..." autocomplete="off"><input type="hidden" name="items[' + rowIndex + '][item_name]" class="pkg-hidden-name" required></div><input type="text" name="items[' + rowIndex + '][description]" value="' + desc + '" placeholder="Deskripsi otomatis dari paket" readonly class="item-desc w-full px-3 py-1.5 rounded-lg border border-neutral-200 text-[11px] bg-neutral-100 text-slate-500 cursor-not-allowed outline-none mt-1"></td><td class="p-3"><input type="number" step="any" name="items[' + rowIndex + '][quantity]" value="' + qty + '" min="0.01" required class="item-qty w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs font-bold bg-canvas focus:bg-white outline-none"></td><td class="p-3"><input type="text" name="items[' + rowIndex + '][unit]" value="' + unit + '" readonly class="item-unit w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs bg-neutral-100 text-slate-600 cursor-not-allowed outline-none"></td><td class="p-3"><input type="number" step="any" name="items[' + rowIndex + '][price]" value="' + price + '" min="0" readonly required class="item-price w-full px-3 py-2 rounded-lg border border-neutral-200 text-xs font-bold bg-neutral-100 text-slate-700 cursor-not-allowed outline-none"></td><td class="p-3 text-right"><span class="item-subtotal-text font-bold text-slate-900 text-xs block">Rp 0</span></td><td class="p-3 text-center"><button type="button" class="remove-row-btn p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition" title="Hapus baris"><i data-lucide="trash-2" class="w-4 h-4"></i></button></td>';
+        tbody.appendChild(tr); initSearchDropdown(tr); rowIndex++;
+        if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
         calculateTotals();
     }
 
-    if (addItemBtn) {
-        addItemBtn.addEventListener('click', function() {
-            addNewRow();
-        });
-    }
-
-    tbody.addEventListener('input', function(e) {
-        if (e.target.classList.contains('item-qty') || e.target.classList.contains('item-price')) {
-            calculateTotals();
-        }
-    });
-
+    tbody.querySelectorAll('.item-row').forEach(tr => initSearchDropdown(tr));
+    if (addItemBtn) addItemBtn.addEventListener('click', () => addNewRow());
+    tbody.addEventListener('input', e => { if (e.target.classList.contains('item-qty')) calculateTotals(); });
     tbody.addEventListener('click', function(e) {
         const removeBtn = e.target.closest('.remove-row-btn');
-        if (removeBtn) {
-            const rows = tbody.querySelectorAll('.item-row');
-            if (rows.length > 1) {
-                removeBtn.closest('.item-row').remove();
-                calculateTotals();
-            } else {
-                alert('Invoice minimal harus memiliki 1 item layanan!');
-            }
-        }
+        if (removeBtn) { if (tbody.querySelectorAll('.item-row').length > 1) { removeBtn.closest('.item-row').remove(); calculateTotals(); } else alert('Invoice minimal harus memiliki 1 item layanan!'); }
     });
-
-    if (packageSelector) {
-        packageSelector.addEventListener('change', function() {
-            const opt = this.options[this.selectedIndex];
-            if (!opt.value) return;
-
-            const name = opt.dataset.name || '';
-            const price = parseFloat(opt.dataset.price) || 0;
-            const unit = opt.dataset.unit || 'pax';
-            const pax = parseInt(paxCountInput.value) || 1;
-
-            if (packageNameInput) {
-                packageNameInput.value = name;
-            }
-        });
-    }
-
-    [discountInput, taxInput, paidInput].forEach(inp => {
-        if (inp) {
-            inp.addEventListener('input', calculateTotals);
-        }
-    });
-
-    if (btnDp30) {
-        btnDp30.addEventListener('click', function() {
-            const { grandTotal } = calculateTotals();
-            const dp = Math.round(grandTotal * 0.3);
-            paidInput.value = dp;
-            calculateTotals();
-        });
-    }
-
-    if (btnDp50) {
-        btnDp50.addEventListener('click', function() {
-            const { grandTotal } = calculateTotals();
-            const dp = Math.round(grandTotal * 0.5);
-            paidInput.value = dp;
-            calculateTotals();
-        });
-    }
-
-    if (btnPayFull) {
-        btnPayFull.addEventListener('click', function() {
-            const { grandTotal } = calculateTotals();
-            paidInput.value = grandTotal;
-            calculateTotals();
-        });
-    }
+    [discountInput, taxInput, paidInput].forEach(inp => { if (inp) inp.addEventListener('input', calculateTotals); });
+    if (btnDp30)    btnDp30.addEventListener('click',    () => { const {grandTotal} = calculateTotals(); paidInput.value = Math.round(grandTotal*0.3); calculateTotals(); });
+    if (btnDp50)    btnDp50.addEventListener('click',    () => { const {grandTotal} = calculateTotals(); paidInput.value = Math.round(grandTotal*0.5); calculateTotals(); });
+    if (btnPayFull) btnPayFull.addEventListener('click', () => { const {grandTotal} = calculateTotals(); paidInput.value = grandTotal; calculateTotals(); });
+    calculateTotals();
 });
 </script>
 @endpush

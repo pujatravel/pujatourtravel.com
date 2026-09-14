@@ -215,21 +215,60 @@
             </nav>
         </div>
 
-        <!-- User Info & Logout -->
-        <div class="p-4 border-t border-neutral-200 bg-neutral-50">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3 overflow-hidden">
-                    <div class="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-sm shrink-0">
-                        {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
+        <!-- User Info & Interactive Profile Menu (Mobile) -->
+        <div class="relative group/profile p-3 border-t border-neutral-200 bg-neutral-50/90">
+            <!-- Mobile Popover Flyout Menu -->
+            <div id="mobile-profile-popover" class="absolute bottom-full left-2 right-2 mb-2 invisible opacity-0 translate-y-2 pointer-events-none group-hover/profile:visible group-hover/profile:opacity-100 group-hover/profile:translate-y-0 group-hover/profile:pointer-events-auto transition-all duration-200 ease-out z-50">
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-200/90 p-2 text-slate-800 space-y-1">
+                    <div class="px-3 py-2 bg-slate-50 rounded-xl border border-slate-100/80 mb-1">
+                        <div class="flex items-center justify-between mb-0.5">
+                            <span class="text-[9px] font-extrabold uppercase tracking-wider text-emerald-800">Administrator</span>
+                            <span class="inline-flex items-center gap-1 text-[9px] font-semibold text-emerald-700">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                Online
+                            </span>
+                        </div>
+                        <div class="text-xs font-bold text-slate-900 truncate">{{ auth()->user()->name ?? 'Administrator' }}</div>
+                        <div class="text-[11px] font-semibold text-emerald-700 truncate">@ {{ auth()->user()->username ?? 'admin' }}</div>
+                    </div>
+
+                    <!-- 1. Manajemen Akun -->
+                    <a href="{{ route('admin.profile.edit') }}" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-700 hover:text-emerald-800 hover:bg-emerald-50/80 transition group/item">
+                        <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 group-hover/item:bg-emerald-700 group-hover/item:text-white transition">
+                            <i data-lucide="user-cog" class="w-4 h-4"></i>
+                        </div>
+                        <div class="truncate">
+                            <span class="block font-bold leading-tight">Manajemen Akun</span>
+                            <span class="text-[10px] text-slate-400 font-normal">Edit profil, username & password</span>
+                        </div>
+                    </a>
+
+                    <div class="border-t border-slate-100 my-1"></div>
+
+                    <!-- 2. Logout -->
+                    <a href="{{ route('admin.logout') }}" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-bold text-rose-600 hover:bg-rose-50 transition group/item">
+                        <div class="w-7 h-7 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 group-hover/item:bg-rose-600 group-hover/item:text-white transition">
+                            <i data-lucide="log-out" class="w-4 h-4"></i>
+                        </div>
+                        <span>Keluar (Logout)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Trigger Bar (No duplicate logout icon) -->
+            <div class="flex items-center justify-between p-1.5 rounded-xl hover:bg-white transition cursor-pointer border border-transparent hover:border-slate-200/80 shadow-2xs hover:shadow-xs" onclick="toggleProfilePopover('mobile-profile-popover')">
+                <a href="{{ route('admin.profile.edit') }}" class="flex items-center gap-2.5 overflow-hidden flex-1 min-w-0" title="Kelola Profil Administrator">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-xs ring-2 ring-emerald-600/20">
+                        {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
                     </div>
                     <div class="truncate">
-                        <span class="text-xs font-bold text-slate-900 block truncate">{{ auth()->user()->name ?? 'Admin' }}</span>
-                        <span class="text-[10px] text-slate-500 block">{{ auth()->user()->username ?? 'admin' }}</span>
+                        <span class="text-xs font-bold text-slate-900 block truncate leading-tight">{{ auth()->user()->name ?? 'Admin' }}</span>
+                        <span class="text-[10px] font-semibold text-emerald-700 block truncate">@ {{ auth()->user()->username ?? 'admin' }}</span>
                     </div>
-                </div>
-                <a href="{{ route('admin.logout') }}" title="Keluar" class="p-2 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition">
-                    <i data-lucide="log-out" class="w-5 h-5"></i>
                 </a>
+                <div class="p-1.5 text-slate-400 group-hover/profile:text-emerald-700 transition">
+                    <i data-lucide="chevron-up" class="w-4 h-4 transition-transform group-hover/profile:-translate-y-0.5"></i>
+                </div>
             </div>
         </div>
     </aside>
@@ -325,6 +364,10 @@
                     <div class="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Sistem & Keamanan
                     </div>
+                    <a href="{{ route('admin.profile.edit') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.profile.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
+                        <i data-lucide="user-cog" class="w-5 h-5 shrink-0"></i>
+                        <span>Profil & Akun</span>
+                    </a>
                     <a href="{{ route('admin.logs.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.logs.*') ? 'bg-emerald-700 text-white font-bold shadow-sm' : 'hover:bg-emerald-50 hover:text-emerald-700' }}">
                         <i data-lucide="shield-check" class="w-5 h-5 shrink-0"></i>
                         <span>Log Aktivitas</span>
@@ -332,21 +375,64 @@
                 </nav>
             </div>
 
-            <!-- User Info & Logout -->
-            <div class="p-4 border-t border-neutral-200 bg-neutral-50">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3 overflow-hidden">
-                        <div class="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-sm shrink-0">
-                            {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
+            <!-- User Info & Interactive Profile Hover Popover (Desktop) -->
+            <div class="relative group/profile p-3 border-t border-neutral-200 bg-neutral-50/90">
+                <!-- Desktop Popover Flyout Menu (Pops up smoothly on Hover / Focus) -->
+                <div id="desktop-profile-popover" class="absolute bottom-full left-2.5 right-2.5 mb-2.5 invisible opacity-0 translate-y-2 pointer-events-none group-hover/profile:visible group-hover/profile:opacity-100 group-hover/profile:translate-y-0 group-hover/profile:pointer-events-auto transition-all duration-200 ease-out z-50">
+                    <!-- Invisible Bridge to prevent hover break -->
+                    <div class="absolute inset-x-0 -bottom-3 h-3"></div>
+
+                    <div class="bg-white rounded-2xl shadow-xl border border-slate-200/90 p-2 text-slate-800 space-y-1">
+                        <!-- User Mini Card -->
+                        <div class="px-3 py-2 bg-slate-50 rounded-xl border border-slate-100/80 mb-1">
+                            <div class="flex items-center justify-between mb-0.5">
+                                <span class="text-[9px] font-extrabold uppercase tracking-wider text-emerald-800">Administrator</span>
+                                <span class="inline-flex items-center gap-1 text-[9px] font-semibold text-emerald-700">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    Online
+                                </span>
+                            </div>
+                            <div class="text-xs font-bold text-slate-900 truncate">{{ auth()->user()->name ?? 'Administrator' }}</div>
+                            <div class="text-[11px] font-semibold text-emerald-700 truncate">@ {{ auth()->user()->username ?? 'admin' }}</div>
+                        </div>
+
+                        <!-- 1. Manajemen Akun -->
+                        <a href="{{ route('admin.profile.edit') }}" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-700 hover:text-emerald-800 hover:bg-emerald-50/80 transition group/item">
+                            <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 group-hover/item:bg-emerald-700 group-hover/item:text-white transition">
+                                <i data-lucide="user-cog" class="w-4 h-4"></i>
+                            </div>
+                            <div class="truncate">
+                                <span class="block font-bold leading-tight">Manajemen Akun</span>
+                                <span class="text-[10px] text-slate-400 font-normal">Edit profil, username & password</span>
+                            </div>
+                        </a>
+
+                        <div class="border-t border-slate-100 my-1"></div>
+
+                        <!-- 2. Logout -->
+                        <a href="{{ route('admin.logout') }}" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-bold text-rose-600 hover:bg-rose-50 transition group/item">
+                            <div class="w-7 h-7 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 group-hover/item:bg-rose-600 group-hover/item:text-white transition">
+                                <i data-lucide="log-out" class="w-4 h-4"></i>
+                            </div>
+                            <span>Keluar (Logout)</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Trigger Card (No duplicate logout icon) -->
+                <div class="flex items-center justify-between p-1.5 rounded-xl hover:bg-white transition cursor-pointer border border-transparent hover:border-slate-200/80 shadow-2xs hover:shadow-xs" onclick="toggleProfilePopover('desktop-profile-popover')">
+                    <a href="{{ route('admin.profile.edit') }}" class="flex items-center gap-2.5 overflow-hidden flex-1 min-w-0" title="Kelola Profil Administrator">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-xs ring-2 ring-emerald-600/20">
+                            {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
                         </div>
                         <div class="truncate">
-                            <span class="text-xs font-bold text-slate-900 block truncate">{{ auth()->user()->name ?? 'Admin' }}</span>
-                            <span class="text-[10px] text-slate-500 block">{{ auth()->user()->username ?? 'admin' }}</span>
+                            <span class="text-xs font-bold text-slate-900 block truncate leading-tight">{{ auth()->user()->name ?? 'Admin' }}</span>
+                            <span class="text-[10px] font-semibold text-emerald-700 block truncate">@ {{ auth()->user()->username ?? 'admin' }}</span>
                         </div>
-                    </div>
-                    <a href="{{ route('admin.logout') }}" title="Keluar" class="p-2 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition">
-                        <i data-lucide="log-out" class="w-5 h-5"></i>
                     </a>
+                    <div class="p-1.5 text-slate-400 group-hover/profile:text-emerald-700 transition">
+                        <i data-lucide="chevron-up" class="w-4 h-4 transition-transform group-hover/profile:-translate-y-0.5"></i>
+                    </div>
                 </div>
             </div>
         </aside>
@@ -524,6 +610,30 @@
             setTimeout(function() { delete form.dataset.customConfirming; }, 500);
         }
     }, true);
+
+    // Profile popover click/tap toggle handler
+    window.toggleProfilePopover = function(id) {
+        var pop = document.getElementById(id);
+        if (!pop) return;
+        var isHidden = pop.classList.contains('invisible');
+        document.querySelectorAll('#desktop-profile-popover, #mobile-profile-popover').forEach(function(p) {
+            p.classList.add('invisible', 'opacity-0', 'translate-y-2', 'pointer-events-none');
+            p.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        });
+        if (isHidden) {
+            pop.classList.remove('invisible', 'opacity-0', 'translate-y-2', 'pointer-events-none');
+            pop.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        }
+    };
+
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.group\\/profile')) {
+            document.querySelectorAll('#desktop-profile-popover, #mobile-profile-popover').forEach(function(p) {
+                p.classList.add('invisible', 'opacity-0', 'translate-y-2', 'pointer-events-none');
+                p.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            });
+        }
+    });
     </script>
     @stack('scripts')
 </body>

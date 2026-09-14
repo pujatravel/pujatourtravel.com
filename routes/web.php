@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\InvoiceController as AdminInvoiceController;
 use App\Http\Controllers\Admin\PackageCategoryController;
 use App\Http\Controllers\Admin\PackageController as AdminPackageController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SignatureController;
 use App\Http\Controllers\Admin\TestimonialController;
@@ -32,6 +33,7 @@ use Illuminate\Support\Facades\Route;
 | Public Routes
 |--------------------------------------------------------------------------
 */
+
 Route::get('/', function () {
     $allPackages = Package::with('category')->where('status', 'PUBLISHED')->latest()->get();
     // Display 4 packages on homepage grid (2 rows × 2 columns)
@@ -197,29 +199,29 @@ Route::get('/sitemap.xml', function () {
         ];
     }
 
-    $xml = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
-    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">'.PHP_EOL;
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . PHP_EOL;
 
     foreach ($urls as $item) {
-        $xml .= '  <url>'.PHP_EOL;
-        $xml .= '    <loc>'.htmlspecialchars($item['loc'], ENT_XML1, 'UTF-8').'</loc>'.PHP_EOL;
-        $xml .= '    <lastmod>'.$item['lastmod'].'</lastmod>'.PHP_EOL;
-        $xml .= '    <changefreq>'.$item['changefreq'].'</changefreq>'.PHP_EOL;
-        $xml .= '    <priority>'.$item['priority'].'</priority>'.PHP_EOL;
+        $xml .= '  <url>' . PHP_EOL;
+        $xml .= '    <loc>' . htmlspecialchars($item['loc'], ENT_XML1, 'UTF-8') . '</loc>' . PHP_EOL;
+        $xml .= '    <lastmod>' . $item['lastmod'] . '</lastmod>' . PHP_EOL;
+        $xml .= '    <changefreq>' . $item['changefreq'] . '</changefreq>' . PHP_EOL;
+        $xml .= '    <priority>' . $item['priority'] . '</priority>' . PHP_EOL;
         if (!empty($item['images'])) {
             foreach ($item['images'] as $img) {
-                $xml .= '    <image:image>'.PHP_EOL;
-                $xml .= '      <image:loc>'.htmlspecialchars($img['loc'], ENT_XML1, 'UTF-8').'</image:loc>'.PHP_EOL;
+                $xml .= '    <image:image>' . PHP_EOL;
+                $xml .= '      <image:loc>' . htmlspecialchars($img['loc'], ENT_XML1, 'UTF-8') . '</image:loc>' . PHP_EOL;
                 if (!empty($img['title'])) {
-                    $xml .= '      <image:title>'.htmlspecialchars($img['title'], ENT_XML1, 'UTF-8').'</image:title>'.PHP_EOL;
+                    $xml .= '      <image:title>' . htmlspecialchars($img['title'], ENT_XML1, 'UTF-8') . '</image:title>' . PHP_EOL;
                 }
                 if (!empty($img['caption'])) {
-                    $xml .= '      <image:caption>'.htmlspecialchars($img['caption'], ENT_XML1, 'UTF-8').'</image:caption>'.PHP_EOL;
+                    $xml .= '      <image:caption>' . htmlspecialchars($img['caption'], ENT_XML1, 'UTF-8') . '</image:caption>' . PHP_EOL;
                 }
-                $xml .= '    </image:image>'.PHP_EOL;
+                $xml .= '    </image:image>' . PHP_EOL;
             }
         }
-        $xml .= '  </url>'.PHP_EOL;
+        $xml .= '  </url>' . PHP_EOL;
     }
 
     $xml .= '</urlset>';
@@ -237,7 +239,7 @@ Route::get('/sitemap', function () {
 Route::post('/visitor-ping', function (Request $request) {
     $visitorId = (string) $request->input('visitor_id', '');
     if (empty($visitorId)) {
-        $visitorId = hash('sha256', $request->ip().$request->userAgent());
+        $visitorId = hash('sha256', $request->ip() . $request->userAgent());
     }
     $url = (string) $request->input('url', '/');
     $title = (string) $request->input('title', 'Website');
@@ -332,6 +334,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('logs/lock', [ActivityLogController::class, 'lock'])->name('logs.lock');
         Route::delete('logs/clear', [ActivityLogController::class, 'clear'])->name('logs.clear');
         Route::delete('logs/{log}', [ActivityLogController::class, 'destroy'])->name('logs.destroy');
+
+        // Admin Profile & Password Management
+        Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::put('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
     });
 });
 
@@ -352,4 +359,3 @@ Route::get('/storage/{path}', function (string $path) {
     }
     return response()->file($filePath);
 })->where('path', '.*')->name('storage.file');
-

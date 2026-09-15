@@ -54,18 +54,23 @@
 @endphp
 
 <!-- GLOBAL NAVBAR HEADER -->
-<header id="main-header" class="fixed top-0 left-0 right-0 z-40 w-full max-w-full py-3 sm:py-3.5 {{ $initialNavClass }}">
+<header id="main-header"
+    class="fixed top-0 left-0 right-0 z-40 w-full max-w-full py-3 sm:py-3.5 {{ $initialNavClass }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
         <!-- Brand Logo -->
         <a href="{{ route('home') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
             <div class="w-10 h-10 sm:w-11 sm:h-11 shrink-0 flex items-center justify-center">
-                <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Resmi Puja Tour & Travel Pangandaran" class="w-full h-full object-contain drop-shadow-xs" width="44" height="44" fetchpriority="high" decoding="async">
+                <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Resmi Puja Tour & Travel Pangandaran"
+                    class="w-full h-full object-contain drop-shadow-xs" width="44" height="44" fetchpriority="high"
+                    decoding="async">
             </div>
             <div class="flex flex-col min-w-0">
-                <span class="nav-brand-title font-display font-extrabold text-base sm:text-lg lg:text-xl leading-tight tracking-tight whitespace-nowrap">
-                    PUJA <span class="nav-brand-accent">TOUR</span>
+                <span
+                    class="nav-brand-title font-display font-extrabold text-base sm:text-lg lg:text-xl leading-tight tracking-tight whitespace-nowrap">
+                    PUJA <span class="nav-brand-accent">TOUR & TRAVEL</span>
                 </span>
-                <span class="nav-brand-subtitle text-[8px] sm:text-[9px] lg:text-[10px] tracking-wider font-bold uppercase block whitespace-nowrap mt-0.5">
+                <span
+                    class="nav-brand-subtitle text-[8px] sm:text-[9px] lg:text-[10px] tracking-wider font-bold uppercase block whitespace-nowrap mt-0.5">
                     PANGANDARAN DESTINATION SPECIALIST
                 </span>
             </div>
@@ -74,16 +79,18 @@
         <!-- Desktop Navigation (All 8 Items Consistently Available) -->
         <nav class="hidden lg:flex items-center gap-5 xl:gap-7 font-medium text-sm">
             @foreach($navLinks as $item)
-                <a href="{{ $item['url'] }}" 
-                   class="nav-link-item {{ $item['active'] ? 'active font-bold' : '' }} transition-colors duration-200">
+                <a href="{{ $item['url'] }}"
+                    class="nav-link-item {{ $item['active'] ? 'active font-bold' : '' }} transition-colors duration-200">
                     {{ $item['name'] }}
                 </a>
             @endforeach
         </nav>
 
         <!-- Mobile Hamburger Button -->
-        <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl active:scale-95 transition flex items-center justify-center cursor-pointer">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <button id="mobile-menu-btn" aria-label="Buka Menu"
+            class="lg:hidden p-2 rounded-xl active:scale-95 transition flex items-center justify-center cursor-pointer">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <line x1="4" y1="6" x2="20" y2="6"></line>
                 <line x1="4" y1="12" x2="20" y2="12"></line>
                 <line x1="4" y1="18" x2="20" y2="18"></line>
@@ -93,20 +100,24 @@
 </header>
 
 <!-- GLOBAL MOBILE DRAWER & BACKDROP -->
-<div id="drawer-overlay" class="fixed inset-0 bg-slate-900/60 z-50 hidden opacity-0 transition-opacity duration-300"></div>
-<div id="mobile-drawer" class="fixed top-0 right-0 h-full w-[85%] sm:w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-5 sm:p-6 overflow-y-auto invisible pointer-events-none">
+<div id="drawer-overlay" class="fixed inset-0 bg-slate-900/60 z-50 hidden opacity-0 transition-opacity duration-300">
+</div>
+<div id="mobile-drawer"
+    class="fixed top-0 right-0 h-full w-[85%] sm:w-4/5 max-w-sm bg-surface-soft border-l border-neutral-200 z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between p-5 sm:p-6 overflow-y-auto invisible pointer-events-none">
     <div>
         <div class="flex items-center justify-between pb-4 border-b border-neutral-200">
             <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Menu</span>
-            <button id="close-menu-btn" class="close-drawer-btn p-2 rounded-xl text-slate-500 hover:bg-neutral-100 hover:text-slate-800 transition min-w-11 min-h-11 flex items-center justify-center cursor-pointer" aria-label="Tutup Menu">
+            <button id="close-menu-btn"
+                class="close-drawer-btn p-2 rounded-xl text-slate-500 hover:bg-neutral-100 hover:text-slate-800 transition min-w-11 min-h-11 flex items-center justify-center cursor-pointer"
+                aria-label="Tutup Menu">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
         </div>
 
         <nav class="py-5 space-y-1 text-sm font-medium text-slate-700">
             @foreach($navLinks as $item)
-                <a href="{{ $item['url'] }}" 
-                   class="drawer-link block px-3.5 py-2.5 rounded-xl transition {{ $item['active'] ? 'bg-emerald-50 text-emerald-700 font-bold' : 'hover:bg-neutral-100' }}">
+                <a href="{{ $item['url'] }}"
+                    class="drawer-link block px-3.5 py-2.5 rounded-xl transition {{ $item['active'] ? 'bg-emerald-50 text-emerald-700 font-bold' : 'hover:bg-neutral-100' }}">
                     <span>{{ $item['name'] }}</span>
                 </a>
             @endforeach
@@ -114,9 +125,9 @@
     </div>
 
     <div class="pt-5 border-t border-neutral-200 space-y-2.5">
-        <a href="https://wa.me/{{ $navWaNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20info%20paket%20wisata" 
-           target="_blank" 
-           class="w-full py-3 rounded-xl bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 hover:bg-emerald-800 transition shadow-xs">
+        <a href="https://wa.me/{{ $navWaNum }}?text=Halo%20Admin%20Puja%20Tour,%20saya%20ingin%20tanya%20info%20paket%20wisata"
+            target="_blank"
+            class="w-full py-3 rounded-xl bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 hover:bg-emerald-800 transition shadow-xs">
             <i data-lucide="message-circle" class="w-4 h-4"></i>
             <span>Chat WhatsApp Resmi</span>
         </a>

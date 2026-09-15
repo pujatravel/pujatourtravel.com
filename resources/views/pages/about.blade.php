@@ -106,7 +106,7 @@
 
     @include('partials.analytics')
 </head>
-<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white">
+<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white pt-20 sm:pt-24">
 
     @php
         $waNum = $settings['whatsapp_number'] ?? '6281234567890';
@@ -135,7 +135,7 @@
 
     <!-- 1. CINEMATIC HERO SECTION -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 pb-6 sm:pb-12">
-        <div class="relative rounded-3xl overflow-hidden bg-slate-950 text-white shadow-xl border border-slate-800/80">
+        <div data-nav-color="dark" class="relative rounded-3xl overflow-hidden bg-slate-950 text-white shadow-xl border border-slate-800/80">
             <!-- Background Image with Modern Cinematic Gradient Mask -->
             <div class="absolute inset-0">
                 <img src="{{ asset('images/hero_pangandaran.jpg') }}" alt="Panorama Wisata Pangandaran - Puja Tour & Travel" class="w-full h-full object-cover object-center opacity-30" fetchpriority="high" loading="eager" decoding="async">
@@ -735,7 +735,16 @@
                         </p>
                     </div>
                     <div class="flex items-center gap-3 shrink-0">
-                        <a href="{{ route('testimonial') }}" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-soft hover:bg-neutral-100 text-slate-700 font-semibold text-xs sm:text-sm border border-neutral-200 transition shadow-2xs">
+                        <!-- Desktop Prev & Next Arrow Controls -->
+                        <div class="hidden sm:flex items-center gap-2">
+                            <button type="button" id="btn-prev-about-desktop" aria-label="Ulasan Sebelumnya" class="w-11 h-11 rounded-2xl bg-white hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-2xs transition cursor-pointer hover:border-emerald-300">
+                                <i data-lucide="chevron-left" class="w-5 h-5 text-slate-600"></i>
+                            </button>
+                            <button type="button" id="btn-next-about-desktop" aria-label="Ulasan Berikutnya" class="w-11 h-11 rounded-2xl bg-white hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-2xs transition cursor-pointer hover:border-emerald-300">
+                                <i data-lucide="chevron-right" class="w-5 h-5 text-slate-600"></i>
+                            </button>
+                        </div>
+                        <a href="{{ route('testimonial') }}" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-soft hover:bg-neutral-100 text-slate-700 font-semibold text-xs sm:text-sm border border-neutral-200 transition shadow-2xs hover:border-emerald-300">
                             <span>Lihat Semua Ulasan ({{ $testimonials->count() }})</span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
@@ -763,12 +772,21 @@
                 <!-- The Marquee Track (Smooth Walking Animation, Pauses on Hover) -->
                 <div id="about-testi-track" class="testimonial-marquee-track flex gap-6 px-4">
                     @php
-                        // Memastikan setidaknya 6-8 kartu untuk infinite loop halus tanpa jeda visual
-                        $loopCount = $testimonials->count() < 4 ? 4 : 2;
+                        // 6 repeats ensures Set 0, 1, 2 (center start), 3, 4, 5 for true infinite looping without boundaries
+                        $loopCount = 6;
                     @endphp
                     @for($repeat = 0; $repeat < $loopCount; $repeat++)
                         @foreach($testimonials as $tIndex => $t)
-                            <div class="testimonial-card w-77.5 sm:w-95 shrink-0 bg-white rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover hover:border-emerald-300 transition-all duration-300">
+                            <div class="testimonial-card w-75 xs:w-85 sm:w-95 shrink-0 bg-white rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 cursor-pointer select-none"
+                                 data-name="{{ $t->customer_name }}"
+                                 data-city="{{ $t->customer_city ?? 'Wisatawan' }}"
+                                 data-package="{{ $t->package_name ?? 'Paket Wisata Pangandaran' }}"
+                                 data-rating="{{ (int)($t->rating ?? 5) }}"
+                                 data-review="{{ $t->review_text }}"
+                                 data-date="{{ $t->trip_date ? $t->trip_date->translatedFormat('d F Y') : ($t->created_at ? $t->created_at->translatedFormat('d F Y') : '') }}"
+                                 data-avatar="{{ $t->avatar_url ?? '' }}"
+                                 data-initials="{{ substr($t->customer_name, 0, 2) }}"
+                                 title="Klik untuk membaca ulasan lengkap {{ $t->customer_name }}">
                                 <div>
                                     <!-- Header: Bintang Emas di Tengah & Badge Terverifikasi -->
                                     <div class="flex flex-col items-center justify-center text-center mb-4">
@@ -795,6 +813,13 @@
                                     <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic text-center line-clamp-4">
                                         "{{ $t->review_text }}"
                                     </p>
+
+                                    <div class="mt-3 flex items-center justify-center">
+                                        <span class="text-[11px] font-bold text-emerald-700 group-hover:text-emerald-800 inline-flex items-center gap-1 bg-emerald-50/80 group-hover:bg-emerald-100 px-2.5 py-1 rounded-full border border-emerald-200/70 transition">
+                                            <span>Baca Selengkapnya</span>
+                                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div class="pt-5 mt-5 border-t border-neutral-100 flex items-center gap-3.5">
@@ -812,8 +837,8 @@
                 </div>
             </div>
 
-            <!-- Mobile Only: Navigasi Lanjut Ulasan Slider (Hanya Tampil di Layar Ponsel) -->
-            <div class="sm:hidden flex flex-col items-center gap-3.5 mt-6 px-4">
+            <!-- Mobile Only: Navigasi Lanjut Ulasan Slider & Titik Indikator -->
+            <div id="about-testi-mobile-controls" class="sm:hidden flex flex-col items-center gap-3.5 mt-6 px-4">
                 <!-- Indikator Titik Aktif (Active Slide Tracker) -->
                 @if($testimonials->count() > 1)
                     <div id="about-testi-dots-mobile" class="flex items-center gap-1.5 py-1">
@@ -826,12 +851,12 @@
                 <!-- Tombol Navigasi: Sebelumnya & Lanjut ke Ulasan Berikutnya -->
                 <div class="flex items-center gap-2.5 w-full max-w-sm justify-center">
                     <!-- Tombol Sebelumnya -->
-                    <button type="button" id="btn-prev-testi-about" aria-label="Ulasan Sebelumnya" class="w-11 h-11 rounded-2xl bg-white hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-xs transition cursor-pointer shrink-0">
+                    <button type="button" id="btn-prev-about-testi" aria-label="Ulasan Sebelumnya" class="w-11 h-11 rounded-2xl bg-white hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-xs transition cursor-pointer shrink-0">
                         <i data-lucide="chevron-left" class="w-5 h-5 text-slate-600"></i>
                     </button>
 
                     <!-- Tombol Utama: Lanjut ke Ulasan Berikutnya -->
-                    <button type="button" id="btn-next-testi-about" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-emerald-700 hover:bg-emerald-800 active:scale-[0.98] text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-700/20 transition cursor-pointer">
+                    <button type="button" id="btn-next-about-testi" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-emerald-700 hover:bg-emerald-800 active:scale-[0.98] text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-700/20 transition cursor-pointer">
                         <span>Lanjut ke Ulasan Berikutnya</span>
                         <i data-lucide="arrow-right" class="w-4 h-4 text-emerald-200"></i>
                     </button>
@@ -840,7 +865,7 @@
                 <!-- Petunjuk Ramah & Enak Dibaca -->
                 <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
                     <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Ketuk tombol atau usap layar untuk membaca ulasan lainnya</span>
+                    <span>Ketuk ulasan untuk membaca versi lengkap</span>
                 </p>
             </div>
         </section>
@@ -848,7 +873,7 @@
 
     <!-- 7. GRAND CTA SECTION -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-20">
-        <div class="rounded-3xl bg-slate-950 text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-xl border border-slate-800 text-center">
+        <div data-nav-color="dark" class="rounded-3xl bg-slate-950 text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-xl border border-slate-800 text-center">
             <!-- Decorative Glow Background -->
             <div class="absolute -top-24 -left-24 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -891,58 +916,116 @@
         <i data-lucide="message-circle" class="w-6 h-6"></i>
     </a>
 
+    <!-- MODAL DETAIL ULASAN TAMU (Pop-up Baca Ulasan Lengkap) -->
+    <div id="about-testi-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-about-customer-name">
+        <!-- Backdrop Gelap Halus -->
+        <div id="about-testi-detail-backdrop" class="fixed inset-0 bg-slate-950/75 backdrop-blur-xs transition-opacity duration-300 opacity-0"></div>
+
+        <!-- Box Konten Modal Pop-up -->
+        <div id="about-testi-detail-box" class="relative bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-neutral-100 transform transition-all duration-300 scale-95 opacity-0 my-auto z-10">
+            <!-- Tombol Tutup Silang (X) -->
+            <button type="button" id="btn-close-about-detail" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 text-slate-500 hover:text-slate-900 flex items-center justify-center transition cursor-pointer" aria-label="Tutup ulasan">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Header Modal: Bintang Rating & Badge Terverifikasi -->
+            <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 pr-10">
+                <div id="modal-about-stars" class="flex items-center gap-1">
+                    <!-- Dinamis di-generate JS -->
+                </div>
+                <span class="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-2xs">
+                    <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Wisatawan Terverifikasi</span>
+                </span>
+            </div>
+
+            <!-- Teks Lengkap Ulasan (Full Text) -->
+            <div class="mt-5 relative">
+                <div class="absolute -top-3 -left-2 text-emerald-100 pointer-events-none select-none">
+                    <svg class="w-12 h-12 fill-current opacity-70" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                </div>
+                <div class="relative z-10 max-h-72 overflow-y-auto pr-2 custom-scrollbar">
+                    <p id="modal-about-review-text" class="text-slate-800 text-sm sm:text-base leading-relaxed italic whitespace-pre-line">
+                        <!-- Teks ulasan lengkap diisi oleh JS -->
+                    </p>
+                </div>
+            </div>
+
+            <!-- Identitas Tamu & Detail Trip -->
+            <div class="mt-6 pt-5 border-t border-neutral-200 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5 min-w-0">
+                    <div id="modal-about-avatar-wrapper" class="w-12 h-12 rounded-full overflow-hidden shrink-0 shadow-inner flex items-center justify-center">
+                        <!-- Avatar / Inisial diisi oleh JS -->
+                    </div>
+                    <div class="min-w-0">
+                        <h4 id="modal-about-customer-name" class="font-display font-bold text-slate-900 text-base truncate"></h4>
+                        <span id="modal-about-meta" class="text-xs text-slate-500 block truncate font-medium"></span>
+                        <span id="modal-about-date" class="text-[11px] text-emerald-700 font-semibold block mt-0.5"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Actions Footer -->
+            <div class="mt-6 pt-4 border-t border-neutral-100 flex flex-col xs:flex-row items-stretch xs:items-center justify-end gap-2.5">
+                <button type="button" id="btn-dismiss-about-detail" class="px-5 py-2.5 min-h-11 rounded-xl border border-neutral-200 hover:bg-neutral-100 text-slate-700 font-bold text-xs transition cursor-pointer">
+                    Tutup
+                </button>
+                <a id="btn-modal-about-whatsapp" href="#" target="_blank" class="px-5 py-2.5 min-h-11 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition inline-flex items-center justify-center gap-2 cursor-pointer">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span>Tanya Paket Ini</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof lucide !== 'undefined') lucide.createIcons();
 
-            // --- Mobile Testimonial Slider Interactive Logic (About Page) ---
+            // --- TRULY INFINITE TESTIMONIAL SLIDER ENGINE (DESKTOP & MOBILE) ---
             var aboutWrapper = document.getElementById('about-testi-wrapper');
-            var btnNextAbout = document.getElementById('btn-next-testi-about');
-            var btnPrevAbout = document.getElementById('btn-prev-testi-about');
+            var aboutTrack = document.getElementById('about-testi-track');
+            var btnNextAboutMobile = document.getElementById('btn-next-about-testi');
+            var btnPrevAboutMobile = document.getElementById('btn-prev-about-testi');
+            var btnNextAboutDesktop = document.getElementById('btn-next-about-desktop');
+            var btnPrevAboutDesktop = document.getElementById('btn-prev-about-desktop');
             var aboutDots = document.querySelectorAll('#about-testi-dots-mobile .about-testi-dot');
-            var totalAboutTesti = {{ $testimonials->count() }};
-            var aboutAutoSlideTimer = null;
+            var trackCards = aboutTrack ? aboutTrack.querySelectorAll('.testimonial-card') : [];
+            var distinctCount = {{ $testimonials->count() }};
+            var middleSet = 2;
+            var currentIndex = distinctCount * middleSet; // Start at center Set 2
+            var hasMovedFar = false;
 
-            function getAboutCardStep() {
-                if (!aboutWrapper) return 334;
-                var firstCard = aboutWrapper.querySelector('.testimonial-card');
-                var secondCard = firstCard ? firstCard.nextElementSibling : null;
-                if (firstCard && secondCard) {
-                    return secondCard.offsetLeft - firstCard.offsetLeft;
-                }
-                return firstCard ? firstCard.offsetWidth + 24 : 334;
+            if (!aboutWrapper || !aboutTrack || distinctCount <= 1 || !trackCards.length) {
+                return;
             }
 
-            function slideNextAbout() {
-                if (!aboutWrapper) return;
-                var step = getAboutCardStep();
-                var maxScroll = aboutWrapper.scrollWidth - aboutWrapper.clientWidth;
-                if (aboutWrapper.scrollLeft >= maxScroll - 20) {
-                    aboutWrapper.scrollTo({ left: 0, behavior: 'smooth' });
+            function getCardCenterTranslate(index) {
+                if (!aboutWrapper || !trackCards[index]) return 0;
+                var card = trackCards[index];
+                var wrapperWidth = aboutWrapper.clientWidth;
+                var cardWidth = card.offsetWidth;
+                var cardLeft = card.offsetLeft;
+                return -(cardLeft - (wrapperWidth - cardWidth) / 2);
+            }
+
+            function setTrackTransform(targetX, transitionDuration) {
+                if (!aboutTrack) return;
+                if (transitionDuration > 0) {
+                    aboutTrack.style.transition = 'transform ' + transitionDuration + 's cubic-bezier(0.25, 1, 0.5, 1)';
                 } else {
-                    aboutWrapper.scrollBy({ left: step, behavior: 'smooth' });
+                    aboutTrack.style.transition = 'none';
                 }
-                resetAboutAutoSlide();
+                aboutTrack.style.transform = 'translate3d(' + targetX + 'px, 0, 0)';
             }
 
-            function slidePrevAbout() {
-                if (!aboutWrapper) return;
-                var step = getAboutCardStep();
-                if (aboutWrapper.scrollLeft <= 15) {
-                    var maxScroll = aboutWrapper.scrollWidth - aboutWrapper.clientWidth;
-                    aboutWrapper.scrollTo({ left: maxScroll, behavior: 'smooth' });
-                } else {
-                    aboutWrapper.scrollBy({ left: -step, behavior: 'smooth' });
-                }
-                resetAboutAutoSlide();
-            }
-
-            function updateAboutDots() {
-                if (!aboutWrapper || totalAboutTesti <= 0 || !aboutDots.length) return;
-                var step = getAboutCardStep();
-                var currentIdx = Math.round(aboutWrapper.scrollLeft / step) % totalAboutTesti;
+            function updateDots() {
+                if (distinctCount <= 1 || !aboutDots.length) return;
+                var activeIdx = ((currentIndex % distinctCount) + distinctCount) % distinctCount;
                 aboutDots.forEach(function(dot, idx) {
-                    if (idx === currentIdx) {
+                    if (idx === activeIdx) {
                         dot.classList.remove('w-2', 'bg-neutral-300');
                         dot.classList.add('w-6', 'bg-emerald-700');
                     } else {
@@ -952,66 +1035,300 @@
                 });
             }
 
-            function startAboutAutoSlide() {
-                if (window.innerWidth >= 640 || !aboutWrapper) return;
-                stopAboutAutoSlide();
-                aboutAutoSlideTimer = setInterval(function() {
-                    slideNextAbout();
-                }, 6000);
-            }
-
-            function stopAboutAutoSlide() {
-                if (aboutAutoSlideTimer) {
-                    clearInterval(aboutAutoSlideTimer);
-                    aboutAutoSlideTimer = null;
+            function normalizeBounds() {
+                // When moving beyond Set 4, wrap smoothly back by 2 full sets
+                if (currentIndex >= distinctCount * 4) {
+                    currentIndex -= distinctCount * 2;
+                    var normX = getCardCenterTranslate(currentIndex);
+                    setTrackTransform(normX, 0);
+                    void aboutTrack.offsetHeight;
+                } else if (currentIndex < distinctCount * 2) {
+                    // When moving below Set 2, wrap smoothly forward by 2 full sets
+                    currentIndex += distinctCount * 2;
+                    var normX = getCardCenterTranslate(currentIndex);
+                    setTrackTransform(normX, 0);
+                    void aboutTrack.offsetHeight;
                 }
             }
 
-            function resetAboutAutoSlide() {
-                stopAboutAutoSlide();
-                startAboutAutoSlide();
+            function slideTo(index, animate) {
+                currentIndex = index;
+                var targetX = getCardCenterTranslate(currentIndex);
+                setTrackTransform(targetX, animate ? 0.38 : 0);
+                updateDots();
             }
 
-            if (btnNextAbout) {
-                btnNextAbout.addEventListener('click', slideNextAbout);
-            }
-            if (btnPrevAbout) {
-                btnPrevAbout.addEventListener('click', slidePrevAbout);
+            function slideNext() {
+                normalizeBounds();
+                currentIndex++;
+                var targetX = getCardCenterTranslate(currentIndex);
+                setTrackTransform(targetX, 0.38);
+                updateDots();
             }
 
+            function slidePrev() {
+                normalizeBounds();
+                currentIndex--;
+                var targetX = getCardCenterTranslate(currentIndex);
+                setTrackTransform(targetX, 0.38);
+                updateDots();
+            }
+
+            // Normalization on transitionend keeps the current index perpetually in safe center sets
+            aboutTrack.addEventListener('transitionend', function(e) {
+                if (e.target !== aboutTrack) return;
+                normalizeBounds();
+                updateDots();
+            });
+
+            // Initial positioning
+            slideTo(currentIndex, false);
+            window.addEventListener('resize', function() {
+                slideTo(currentIndex, false);
+            });
+            window.addEventListener('load', function() {
+                slideTo(currentIndex, false);
+            });
+
+            // Desktop & Mobile Navigation Buttons
+            if (btnNextAboutMobile) btnNextAboutMobile.addEventListener('click', slideNext);
+            if (btnPrevAboutMobile) btnPrevAboutMobile.addEventListener('click', slidePrev);
+            if (btnNextAboutDesktop) btnNextAboutDesktop.addEventListener('click', slideNext);
+            if (btnPrevAboutDesktop) btnPrevAboutDesktop.addEventListener('click', slidePrev);
+
+            // Dot navigation
             if (aboutDots.length) {
                 aboutDots.forEach(function(dot) {
                     dot.addEventListener('click', function() {
                         var targetIdx = parseInt(this.getAttribute('data-index'), 10);
-                        var step = getAboutCardStep();
-                        if (aboutWrapper) {
-                            aboutWrapper.scrollTo({ left: targetIdx * step, behavior: 'smooth' });
-                        }
-                        resetAboutAutoSlide();
+                        if (isNaN(targetIdx)) return;
+                        normalizeBounds();
+                        var currentBase = Math.floor(currentIndex / distinctCount) * distinctCount;
+                        slideTo(currentBase + targetIdx, true);
                     });
                 });
             }
 
-            if (aboutWrapper) {
-                var scrollTimeout = null;
-                aboutWrapper.addEventListener('scroll', function() {
-                    if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
-                    scrollTimeout = requestAnimationFrame(updateAboutDots);
-                }, { passive: true });
+            // --- UNIFIED TOUCH & MOUSE DRAGGING GESTURES ---
+            var isDragging = false;
+            var dragStartX = 0;
+            var dragStartY = 0;
+            var dragTranslateStart = 0;
+            var isHorizontalDrag = false;
+            var isVerticalScroll = false;
 
-                aboutWrapper.addEventListener('touchstart', stopAboutAutoSlide, { passive: true });
-                aboutWrapper.addEventListener('touchend', function() {
-                    setTimeout(startAboutAutoSlide, 3000);
-                }, { passive: true });
+            function startDrag(clientX, clientY) {
+                normalizeBounds();
+                isDragging = true;
+                dragStartX = clientX;
+                dragStartY = clientY;
+                isHorizontalDrag = false;
+                isVerticalScroll = false;
+                hasMovedFar = false;
+
+                var computed = window.getComputedStyle(aboutTrack);
+                var matrix = new (window.WebKitCSSMatrix || window.DOMMatrix)(computed.transform);
+                dragTranslateStart = matrix.m41;
+                setTrackTransform(dragTranslateStart, 0);
+                aboutTrack.classList.add('is-dragging');
             }
 
-            startAboutAutoSlide();
-            window.addEventListener('resize', function() {
-                if (window.innerWidth >= 640) {
-                    stopAboutAutoSlide();
-                } else {
-                    startAboutAutoSlide();
+            function moveDrag(clientX, clientY, e) {
+                if (!isDragging) return;
+                var diffX = clientX - dragStartX;
+                var diffY = clientY - dragStartY;
+
+                if (!isHorizontalDrag && !isVerticalScroll) {
+                    if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
+                        isVerticalScroll = true;
+                        return;
+                    }
+                    if (Math.abs(diffX) > 8) {
+                        isHorizontalDrag = true;
+                    }
                 }
+
+                if (isHorizontalDrag) {
+                    hasMovedFar = true;
+                    if (e && e.cancelable) e.preventDefault();
+                    setTrackTransform(dragTranslateStart + diffX, 0);
+                }
+            }
+
+            function endDrag(clientX) {
+                if (!isDragging) return;
+                isDragging = false;
+                aboutTrack.classList.remove('is-dragging');
+
+                if (isHorizontalDrag) {
+                    var diffX = clientX - dragStartX;
+                    if (diffX < -35) {
+                        slideNext();
+                    } else if (diffX > 35) {
+                        slidePrev();
+                    } else {
+                        slideTo(currentIndex, true);
+                    }
+                }
+
+                isHorizontalDrag = false;
+                isVerticalScroll = false;
+                setTimeout(function() { hasMovedFar = false; }, 100);
+            }
+
+            // Pointer Events (supports Mouse, Touch, Stylus seamlessly)
+            aboutWrapper.addEventListener('pointerdown', function(e) {
+                if (distinctCount <= 1) return;
+                if (e.pointerType === 'mouse' && e.button !== 0) return;
+                startDrag(e.clientX, e.clientY);
+                try { aboutWrapper.setPointerCapture(e.pointerId); } catch (err) {}
+            });
+
+            aboutWrapper.addEventListener('pointermove', function(e) {
+                moveDrag(e.clientX, e.clientY, e);
+            });
+
+            aboutWrapper.addEventListener('pointerup', function(e) {
+                try { aboutWrapper.releasePointerCapture(e.pointerId); } catch (err) {}
+                endDrag(e.clientX);
+            });
+
+            aboutWrapper.addEventListener('pointercancel', function(e) {
+                try { aboutWrapper.releasePointerCapture(e.pointerId); } catch (err) {}
+                endDrag(e.clientX);
+            });
+
+            // Touch events fallback for mobile browsers
+            aboutWrapper.addEventListener('touchstart', function(e) {
+                if (distinctCount <= 1 || e.touches.length > 1) return;
+                startDrag(e.touches[0].clientX, e.touches[0].clientY);
+            }, { passive: true });
+
+            aboutWrapper.addEventListener('touchmove', function(e) {
+                if (!isDragging || isVerticalScroll) return;
+                moveDrag(e.touches[0].clientX, e.touches[0].clientY, e);
+            }, { passive: false });
+
+            aboutWrapper.addEventListener('touchend', function(e) {
+                var endX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : dragStartX;
+                endDrag(endX);
+            });
+
+            aboutWrapper.addEventListener('touchcancel', function(e) {
+                endDrag(dragStartX);
+            });
+
+            // --- Testimonial Detail Pop-up Modal ---
+            var detailModal = document.getElementById('about-testi-detail-modal');
+            var detailBackdrop = document.getElementById('about-testi-detail-backdrop');
+            var detailBox = document.getElementById('about-testi-detail-box');
+            var btnCloseDetail = document.getElementById('btn-close-about-detail');
+            var btnDismissDetail = document.getElementById('btn-dismiss-about-detail');
+            var modalReviewText = document.getElementById('modal-about-review-text');
+            var modalCustomerName = document.getElementById('modal-about-customer-name');
+            var modalMeta = document.getElementById('modal-about-meta');
+            var modalDate = document.getElementById('modal-about-date');
+            var modalStars = document.getElementById('modal-about-stars');
+            var modalAvatarWrapper = document.getElementById('modal-about-avatar-wrapper');
+            var modalWhatsappBtn = document.getElementById('btn-modal-about-whatsapp');
+            var companyWaNum = "{{ $waNum }}";
+
+            function openTestimonialDetail(card) {
+                if (!detailModal || !card) return;
+
+                var name = card.getAttribute('data-name') || 'Wisatawan';
+                var city = card.getAttribute('data-city') || 'Wisatawan';
+                var pkg = card.getAttribute('data-package') || 'Paket Pangandaran';
+                var rating = parseInt(card.getAttribute('data-rating') || '5', 10);
+                var review = card.getAttribute('data-review') || '';
+                var date = card.getAttribute('data-date') || '';
+                var avatar = card.getAttribute('data-avatar') || '';
+                var initials = card.getAttribute('data-initials') || name.substring(0, 2);
+
+                if (modalReviewText) modalReviewText.textContent = `"${review}"`;
+                if (modalCustomerName) modalCustomerName.textContent = name;
+                if (modalMeta) modalMeta.textContent = `${city} • ${pkg}`;
+                if (modalDate) modalDate.textContent = date ? `Trip: ${date}` : '';
+
+                if (modalStars) {
+                    var starHtml = '';
+                    for (var i = 1; i <= 5; i++) {
+                        if (i <= rating) {
+                            starHtml += `
+                                <svg class="w-5 h-5 drop-shadow-[0_2px_4px_rgba(245,158,11,0.35)]" viewBox="0 0 24 24" fill="url(#goldStarGradAbout)" stroke="#d97706" stroke-width="0.5">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            `;
+                        } else {
+                            starHtml += `
+                                <svg class="w-5 h-5 text-slate-200" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            `;
+                        }
+                    }
+                    modalStars.innerHTML = starHtml;
+                }
+
+                if (modalAvatarWrapper) {
+                    if (avatar) {
+                        modalAvatarWrapper.innerHTML = `<img src="${avatar}" alt="${name}" class="w-full h-full object-cover">`;
+                    } else {
+                        modalAvatarWrapper.innerHTML = `
+                            <div class="w-full h-full bg-emerald-100 text-emerald-800 font-bold font-display text-base flex items-center justify-center">
+                                ${initials}
+                            </div>
+                        `;
+                    }
+                }
+
+                if (modalWhatsappBtn) {
+                    var waText = `Halo Admin Puja Tour & Travel, saya membaca ulasan pengalaman dari ${name} mengenai ${pkg}. Saya tertarik dan ingin tanya info paket tersebut.`;
+                    modalWhatsappBtn.href = `https://wa.me/${companyWaNum}?text=${encodeURIComponent(waText)}`;
+                }
+
+                detailModal.classList.remove('hidden');
+                detailModal.classList.add('flex');
+                setTimeout(function() {
+                    if (detailBackdrop) detailBackdrop.classList.remove('opacity-0');
+                    if (detailBox) {
+                        detailBox.classList.remove('scale-95', 'opacity-0');
+                        detailBox.classList.add('scale-100', 'opacity-100');
+                    }
+                }, 20);
+
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+
+            function closeTestimonialDetail() {
+                if (!detailModal) return;
+                if (detailBackdrop) detailBackdrop.classList.add('opacity-0');
+                if (detailBox) {
+                    detailBox.classList.remove('scale-100', 'opacity-100');
+                    detailBox.classList.add('scale-95', 'opacity-0');
+                }
+                setTimeout(function() {
+                    detailModal.classList.remove('flex');
+                    detailModal.classList.add('hidden');
+                }, 300);
+            }
+
+            if (btnCloseDetail) btnCloseDetail.addEventListener('click', closeTestimonialDetail);
+            if (btnDismissDetail) btnDismissDetail.addEventListener('click', closeTestimonialDetail);
+            if (detailBackdrop) detailBackdrop.addEventListener('click', closeTestimonialDetail);
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && detailModal && !detailModal.classList.contains('hidden')) {
+                    closeTestimonialDetail();
+                }
+            });
+
+            // Card click listener with pointer drag threshold
+            trackCards.forEach(function(card) {
+                card.addEventListener('click', function(e) {
+                    if (hasMovedFar) return;
+                    openTestimonialDetail(card);
+                });
             });
         });
     </script>

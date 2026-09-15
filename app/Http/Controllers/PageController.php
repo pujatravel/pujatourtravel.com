@@ -76,14 +76,34 @@ class PageController extends Controller
     /**
      * Display the Testimonials & Social Proof (Testimonial) page.
      */
-    public function testimonial(): View
+    public function testimonial(Request $request): View
     {
         $settings = Setting::all()->pluck('value', 'key');
-        $testimonials = Testimonial::where('is_published', true)->latest()->get();
+        $search = trim($request->query('search', ''));
+
+        $query = Testimonial::where('is_published', true)->latest();
+
+        if (!empty($search)) {
+            $terms = preg_split('/\s+/', $search, -1, PREG_SPLIT_NO_EMPTY);
+            $query->where(function ($q) use ($terms, $search) {
+                $q->where('customer_name', 'like', "%{$search}%")
+                  ->orWhere('review_text', 'like', "%{$search}%")
+                  ->orWhere('customer_city', 'like', "%{$search}%")
+                  ->orWhere('package_name', 'like', "%{$search}%");
+
+                foreach ($terms as $term) {
+                    $q->orWhere('customer_name', 'like', "%{$term}%")
+                      ->orWhere('review_text', 'like', "%{$term}%");
+                }
+            });
+        }
+
+        $testimonials = $query->get();
+        $allTestimonials = Testimonial::where('is_published', true)->latest()->get();
         $averageRating = Testimonial::where('is_published', true)->avg('rating') ?: 5.0;
         $packages = Package::where('status', 'PUBLISHED')->orderBy('name')->get();
 
-        return view('pages.testimonial', compact('settings', 'testimonials', 'averageRating', 'packages'));
+        return view('pages.testimonial', compact('settings', 'testimonials', 'allTestimonials', 'averageRating', 'packages', 'search'));
     }
 
     /**

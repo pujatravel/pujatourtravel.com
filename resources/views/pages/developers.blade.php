@@ -76,7 +76,7 @@
 
     @include('partials.analytics')
 </head>
-<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white">
+<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white pt-20 sm:pt-24">
 
     @php
         $waNum = $settings['whatsapp_number'] ?? '6281234567890';
@@ -100,7 +100,7 @@
 
     <!-- 1. CINEMATIC HERO SECTION -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-10">
-        <div class="relative rounded-3xl overflow-hidden bg-slate-950 text-white shadow-xl border border-slate-800/80">
+        <div data-nav-color="dark" class="relative rounded-3xl overflow-hidden bg-slate-950 text-white shadow-xl border border-slate-800/80">
             <!-- Ambient Glow Background -->
             <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-teal-600/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -390,7 +390,7 @@
 
     <!-- 4. DEDICATION & BACK TO HOME CTA -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-20">
-        <div class="rounded-3xl bg-slate-950 text-white p-8 sm:p-12 lg:p-14 relative overflow-hidden shadow-xl border border-slate-800 text-center">
+        <div data-nav-color="dark" class="rounded-3xl bg-slate-950 text-white p-8 sm:p-12 lg:p-14 relative overflow-hidden shadow-xl border border-slate-800 text-center">
             <!-- Glow background -->
             <div class="absolute -top-24 -left-24 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-teal-600/20 rounded-full blur-3xl pointer-events-none"></div>

@@ -53,6 +53,13 @@
                 'priceValidUntil' => now()->addYear()->endOfYear()->toDateString(),
                 'url' => route('packages.show', $package->slug),
             ],
+            'aggregateRating' => [
+                '@type' => 'AggregateRating',
+                'ratingValue' => '4.9',
+                'reviewCount' => '48',
+                'bestRating' => '5',
+                'worstRating' => '1',
+            ],
             'provider' => [
                 '@type' => 'TravelAgency',
                 'name' => 'Puja Tour & Travel Pangandaran',

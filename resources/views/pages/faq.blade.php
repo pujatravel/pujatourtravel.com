@@ -99,7 +99,7 @@
 
     @include('partials.analytics')
 </head>
-<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white">
+<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white pt-20 sm:pt-24">
 
     @php
         $waNum = $settings['whatsapp_number'] ?? '6281234567890';
@@ -163,7 +163,7 @@
         </div>
 
         <!-- Masih Punya Pertanyaan Lain? -->
-        <div class="mt-12 sm:mt-14 p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-slate-900 text-white text-center shadow-lg relative overflow-hidden">
+        <div data-nav-color="dark" class="mt-12 sm:mt-14 p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-slate-900 text-white text-center shadow-lg relative overflow-hidden">
             <div class="relative z-10 max-w-xl mx-auto space-y-3.5 sm:space-y-4">
                 <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
                     <i data-lucide="help-circle" class="w-5 h-5 sm:w-6 sm:h-6"></i>

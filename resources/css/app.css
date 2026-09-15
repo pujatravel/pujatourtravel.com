@@ -420,98 +420,206 @@ body:has(#admin-mobile-drawer) {
     left: 0 !important;
     right: 0 !important;
     margin: 0 !important;
-    padding-top: 0.875rem !important;
-    padding-bottom: 0.875rem !important;
-    transform: none !important;
-    transition: background-color 0.25s ease,
-                border-color 0.25s ease !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    z-index: 40 !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    isolation: isolate;
+    will-change: background-color, border-color, box-shadow;
+    -webkit-backdrop-filter: blur(20px) saturate(190%) contrast(105%) !important;
+    backdrop-filter: blur(20px) saturate(190%) contrast(105%) !important;
+    transition: background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                border-color 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
-#main-header * {
-    transform: none !important;
+@supports (backdrop-filter: blur(20px)) {
+    #main-header {
+        backdrop-filter: blur(20px) saturate(190%) contrast(105%) !important;
+    }
+}
+
+/* Glass specular sheen & depth lighting overlay for dark mode */
+#main-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(0, 0, 0, 0.16) 100%);
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    will-change: opacity;
 }
 
 #main-header .nav-brand-title,
 #main-header .nav-brand-accent,
 #main-header .nav-brand-subtitle,
 #main-header .nav-link-item,
-#main-header #mobile-menu-btn {
-    transition: color 0.25s ease, background-color 0.25s ease !important;
+#main-header #mobile-menu-btn,
+#main-header #mobile-menu-btn svg {
+    transition: color 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                stroke 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                border-color 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                text-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
-#main-header .nav-brand-subtitle {
-    color: #059669;
-}
-
-/* 1. STATE: NON-WHITE / DARK BACKGROUND BEHIND NAVBAR -> 100% TRANSPARENT */
+/* ==========================================================================
+   STATE 1: Over Dark Sections / Hero Slider (.is-transparent-nav)
+   High-Fidelity Frosted Glassmorphism for BOTH Mobile & Desktop
+   ========================================================================== */
 #main-header.is-transparent-nav {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background-color: rgba(15, 23, 42, 0.55) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.40) !important;
+}
+
+#main-header.is-transparent-nav::before {
+    opacity: 1 !important;
 }
 
 #main-header.is-transparent-nav .nav-brand-title {
     color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45) !important;
 }
+
 #main-header.is-transparent-nav .nav-brand-accent {
-    color: #34d399 !important; /* text-emerald-400 */
+    color: #34d399 !important; /* Mint emerald */
 }
+
 #main-header.is-transparent-nav .nav-brand-subtitle {
-    color: #34d399 !important; /* text-emerald-400 */
+    color: #34d399 !important; /* Mint emerald */
+    letter-spacing: 0.06em !important;
 }
+
+#main-header.is-transparent-nav .group:hover .nav-brand-title {
+    color: #ffffff !important;
+}
+
+#main-header.is-transparent-nav .group:hover .nav-brand-accent {
+    color: #6ee7b7 !important;
+}
+
 #main-header.is-transparent-nav .nav-link-item {
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: rgba(255, 255, 255, 0.90) !important;
+    font-weight: 500 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.40) !important;
 }
+
 #main-header.is-transparent-nav .nav-link-item:hover {
     color: #ffffff !important;
 }
+
 #main-header.is-transparent-nav .nav-link-item.active {
-    color: #34d399 !important; /* text-emerald-400 */
+    color: #34d399 !important; /* Mint emerald */
     font-weight: 700 !important;
 }
+
 #main-header.is-transparent-nav #mobile-menu-btn {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.20) !important;
     color: #ffffff !important;
-}
-#main-header.is-transparent-nav #mobile-menu-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) !important;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.25), 0 4px 12px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* 2. STATE: WHITE BACKGROUND BEHIND NAVBAR -> SOLID WHITE (NO DOWNWARD SHADOW SHIFT) */
+#main-header.is-transparent-nav #mobile-menu-btn svg {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+}
+
+#main-header.is-transparent-nav #mobile-menu-btn:hover {
+    background-color: rgba(255, 255, 255, 0.22) !important;
+    border-color: rgba(255, 255, 255, 0.32) !important;
+}
+
+/* ==========================================================================
+   STATE 2: Over White / Light Sections (.is-white-nav)
+   Clean Solid White Navbar (NO glassmorphism blur in light mode)
+   ========================================================================== */
 #main-header.is-white-nav,
 #main-header:not(.is-transparent-nav) {
     background-color: #ffffff !important;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04) !important;
     border-bottom: 1px solid rgba(226, 232, 240, 0.95) !important;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08) !important;
 }
 
-#main-header.is-white-nav .nav-brand-title {
-    color: #0f172a !important; /* text-slate-900 */
+#main-header.is-white-nav::before,
+#main-header:not(.is-transparent-nav)::before {
+    opacity: 0 !important;
 }
-#main-header.is-white-nav .nav-brand-accent {
-    color: #047857 !important; /* text-emerald-700 */
+
+#main-header.is-white-nav .nav-brand-title,
+#main-header:not(.is-transparent-nav) .nav-brand-title {
+    color: #0f172a !important; /* Slate 900 */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
 }
+
+#main-header.is-white-nav .nav-brand-accent,
+#main-header:not(.is-transparent-nav) .nav-brand-accent {
+    color: #059669 !important; /* Emerald 600 */
+}
+
 #main-header.is-white-nav .nav-brand-subtitle,
 #main-header:not(.is-transparent-nav) .nav-brand-subtitle {
-    color: #059669 !important; /* text-emerald-600 */
+    color: #059669 !important; /* Emerald 600 */
+    letter-spacing: 0.06em !important;
 }
-#main-header.is-white-nav .nav-link-item {
-    color: #334155 !important; /* text-slate-700 */
+
+#main-header.is-white-nav .group:hover .nav-brand-title,
+#main-header:not(.is-transparent-nav) .group:hover .nav-brand-title {
+    color: #020617 !important;
 }
-#main-header.is-white-nav .nav-link-item:hover {
-    color: #047857 !important; /* hover:text-emerald-700 */
+
+#main-header.is-white-nav .group:hover .nav-brand-accent,
+#main-header:not(.is-transparent-nav) .group:hover .nav-brand-accent {
+    color: #047857 !important;
 }
+
+#main-header.is-white-nav .nav-link-item,
+#main-header:not(.is-transparent-nav) .nav-link-item {
+    color: #334155 !important; /* Slate 700 */
+    font-weight: 500 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
+}
+
+#main-header.is-white-nav .nav-link-item:hover,
+#main-header:not(.is-transparent-nav) .nav-link-item:hover {
+    color: #0f172a !important; /* Slate 900 */
+}
+
 #main-header.is-white-nav .nav-link-item.active,
 #main-header:not(.is-transparent-nav) .nav-link-item.active {
-    color: #047857 !important; /* active link: text-emerald-700 */
+    color: #059669 !important; /* Emerald 600 */
     font-weight: 700 !important;
 }
+
 #main-header.is-white-nav #mobile-menu-btn,
 #main-header:not(.is-transparent-nav) #mobile-menu-btn {
-    color: #334155 !important; /* text-slate-700 */
+    background-color: rgba(15, 23, 42, 0.04) !important;
+    border: 1px solid rgba(15, 23, 42, 0.08) !important;
+    color: #0f172a !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) !important;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0), 0 4px 12px rgba(0, 0, 0, 0) !important;
 }
+
+#main-header.is-white-nav #mobile-menu-btn svg,
+#main-header:not(.is-transparent-nav) #mobile-menu-btn svg {
+    color: #0f172a !important;
+    stroke: #0f172a !important;
+}
+
 #main-header.is-white-nav #mobile-menu-btn:hover,
 #main-header:not(.is-transparent-nav) #mobile-menu-btn:hover {
-    background-color: #f1f5f9 !important; /* hover:bg-slate-100 */
+    background-color: rgba(15, 23, 42, 0.08) !important;
 }
 
 /* ==========================================================================
@@ -576,50 +684,44 @@ body:has(#admin-mobile-drawer) {
     }
 }
 
-/* Mobile-Specific Carousel Slider Mode (< 640px) */
-@media (max-width: 639px) {
-    .testimonial-marquee-wrapper,
-    #testimonial-marquee-wrapper {
-        overflow-x: auto !important;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        scroll-behavior: smooth;
-    }
-    .testimonial-marquee-wrapper::-webkit-scrollbar,
-    #testimonial-marquee-wrapper::-webkit-scrollbar {
-        display: none;
-    }
-    .testimonial-marquee-track {
-        display: flex;
-        width: max-content;
-        animation: none !important;
-        transform: none !important;
-    }
-    .testimonial-card {
-        scroll-snap-align: start;
-        scroll-snap-stop: normal;
-    }
+/* ==========================================================================
+   Interactive & Continuous Testimonial Tracks (Home, About, & Testimonials Page)
+   Unified cross-device swipe & drag support with smooth hardware-accelerated movement
+   ========================================================================== */
+.testimonial-marquee-wrapper,
+#testimonial-marquee-wrapper,
+#testi-page-wrapper,
+#about-testi-wrapper {
+    overflow: hidden !important;
+    touch-action: pan-y;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
-/* Desktop Smooth Walking Marquee (>= 640px) */
-@media (min-width: 640px) {
-    .testimonial-marquee-track {
-        display: flex;
-        width: max-content;
-        will-change: transform;
-        animation: testimonialWalkLeft 42s linear infinite;
-    }
-    @media (hover: hover) and (pointer: fine) {
-        .testimonial-marquee-wrapper:hover .testimonial-marquee-track,
-        #testimonial-marquee-wrapper:hover .testimonial-marquee-track,
-        .testimonial-marquee-track:hover {
-            animation-play-state: paused !important;
-        }
-    }
-    .testimonial-marquee-track.is-paused {
-        animation-play-state: paused !important;
-    }
+#testimonial-track,
+#testi-page-track,
+#about-testi-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    touch-action: pan-y;
+    cursor: grab;
+    animation: none !important;
+}
+
+#testimonial-track.is-dragging,
+#testi-page-track.is-dragging,
+#about-testi-track.is-dragging {
+    cursor: grabbing !important;
+}
+
+#testimonial-track .testimonial-card,
+#testi-page-track .testimonial-card,
+#about-testi-track .testimonial-card {
+    scroll-snap-align: none !important;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* Star rating button styling */

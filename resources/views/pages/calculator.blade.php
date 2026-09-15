@@ -622,7 +622,7 @@
 
         <!-- 3. GRAND CTA SECTION (Sesuai Desain Konsisten Website) -->
         <section class="mt-16 sm:mt-20">
-            <div class="rounded-3xl bg-slate-950 text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-xl border border-slate-800 text-center">
+            <div data-nav-color="dark" class="rounded-3xl bg-slate-950 text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-xl border border-slate-800 text-center">
                 <!-- Decorative Glow Background -->
                 <div class="absolute -top-24 -left-24 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>

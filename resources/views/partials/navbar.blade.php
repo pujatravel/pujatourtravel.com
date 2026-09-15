@@ -48,22 +48,25 @@
             'active' => request()->routeIs('contact'),
         ],
     ];
+
+    $hasDarkHeroAtTop = request()->routeIs('home');
+    $initialNavClass = $hasDarkHeroAtTop ? 'is-transparent-nav' : 'is-white-nav';
 @endphp
 
 <!-- GLOBAL NAVBAR HEADER -->
-<header id="main-header" class="{{ $isHome ? 'fixed top-0 left-0 right-0 z-40 w-full max-w-full py-3 sm:py-3.5 is-transparent-nav' : 'sticky top-0 z-40 w-full max-w-full bg-surface-soft/95 backdrop-blur-md transition-all duration-300 py-3.5 shadow-xs is-white-nav' }}">
+<header id="main-header" class="fixed top-0 left-0 right-0 z-40 w-full max-w-full py-3 sm:py-3.5 {{ $initialNavClass }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
         <!-- Brand Logo -->
         <a href="{{ route('home') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-            <div class="w-9 h-9 sm:w-11 sm:h-11 shrink-0 flex items-center justify-center">
+            <div class="w-10 h-10 sm:w-11 sm:h-11 shrink-0 flex items-center justify-center">
                 <img src="{{ asset('images/puja_logo.png') }}" alt="Logo Resmi Puja Tour & Travel Pangandaran" class="w-full h-full object-contain drop-shadow-xs" width="44" height="44" fetchpriority="high" decoding="async">
             </div>
-            <div class="flex flex-col">
-                <span class="nav-brand-title font-display font-extrabold text-base sm:text-lg lg:text-xl leading-tight tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors duration-300">
-                    PUJA<span class="nav-brand-accent text-emerald-600 transition-colors duration-300 ml-1">TOUR</span>
+            <div class="flex flex-col min-w-0">
+                <span class="nav-brand-title font-display font-extrabold text-base sm:text-lg lg:text-xl leading-tight tracking-tight whitespace-nowrap">
+                    PUJA <span class="nav-brand-accent">TOUR</span>
                 </span>
-                <span class="nav-brand-subtitle text-[8px] sm:text-[9px] lg:text-[10px] tracking-wider font-bold text-emerald-600 uppercase transition-colors duration-300 block">
-                    Pangandaran Destination Specialist
+                <span class="nav-brand-subtitle text-[8px] sm:text-[9px] lg:text-[10px] tracking-wider font-bold uppercase block whitespace-nowrap mt-0.5">
+                    PANGANDARAN DESTINATION SPECIALIST
                 </span>
             </div>
         </a>
@@ -79,8 +82,12 @@
         </nav>
 
         <!-- Mobile Hamburger Button -->
-        <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2.5 min-w-11 min-h-11 rounded-xl text-slate-700 hover:bg-neutral-100 transition flex items-center justify-center cursor-pointer">
-            <i data-lucide="menu" class="w-6 h-6"></i>
+        <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl active:scale-95 transition flex items-center justify-center cursor-pointer">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
         </button>
     </div>
 </header>

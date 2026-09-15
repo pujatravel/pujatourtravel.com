@@ -214,13 +214,168 @@
                         <span class="text-[10px] xs:text-xs font-bold text-slate-400 uppercase tracking-widest block">Ulasan Wisatawan Asli</span>
                         <h2 class="text-base sm:text-xl font-display font-extrabold text-slate-900 mt-0.5">Semua Cerita Pengalaman Tamu</h2>
                     </div>
-                    <div class="inline-flex items-center gap-1.5 text-[11px] text-emerald-700 font-semibold bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200/80 self-start xs:self-auto shadow-2xs">
-                        <i data-lucide="mouse-pointer-click" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                        <span>Ketuk ulasan untuk membaca cerita lengkap</span>
+                    <div class="flex items-center gap-2.5">
+                        <!-- Desktop Navigation Controls -->
+                        <div class="hidden sm:flex items-center gap-2">
+                            <button type="button" id="btn-prev-testi-desktop" aria-label="Ulasan Sebelumnya" class="w-10 h-10 rounded-xl bg-white hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-2xs transition cursor-pointer hover:border-emerald-300">
+                                <i data-lucide="chevron-left" class="w-5 h-5 text-slate-600"></i>
+                            </button>
+                            <button type="button" id="btn-next-testi-desktop" aria-label="Ulasan Berikutnya" class="w-10 h-10 rounded-xl bg-white hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-2xs transition cursor-pointer hover:border-emerald-300">
+                                <i data-lucide="chevron-right" class="w-5 h-5 text-slate-600"></i>
+                            </button>
+                        </div>
+                        <div class="inline-flex items-center gap-1.5 text-[11px] text-emerald-700 font-semibold bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200/80 self-start xs:self-auto shadow-2xs">
+                            <i data-lucide="mouse-pointer-click" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                            <span>Ketuk ulasan untuk membaca cerita lengkap</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- TAMPILAN BERGESER: Auto-Scrolling Marquee di Desktop + Interactive Carousel di Mobile -->
+                <!-- Kotak Pencarian Ulasan Tamu (Pencocokan Nama / Teks Ulasan e.g. 'Dina', 'bagus segar') -->
+                <div class="mb-6 sm:mb-8 max-w-xl mx-auto w-full">
+                    <div class="relative flex items-center">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 sm:left-4 pointer-events-none"></i>
+                        <input type="text" id="testi-search-input" value="{{ $search ?? '' }}" placeholder="Cari ulasan (misal: 'Dina', 'bagus segar', 'Green Canyon')..." class="w-full pl-10 sm:pl-11 pr-10 py-2.5 sm:py-3 rounded-2xl bg-white border border-neutral-200 text-slate-800 text-xs sm:text-sm focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 outline-none transition shadow-2xs placeholder:text-slate-400">
+                        <button type="button" id="btn-clear-testi-search" class="{{ !empty($search) ? '' : 'hidden' }} absolute right-3 p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-neutral-100 transition cursor-pointer" aria-label="Hapus pencarian">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Quick Search Suggestion Chips -->
+                    <div class="mt-2.5 flex flex-wrap items-center justify-center gap-1.5 text-xs text-slate-500">
+                        <span class="text-[11px] font-semibold text-slate-400">Coba cari:</span>
+                        <button type="button" class="quick-search-btn text-[11px] px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 hover:border-emerald-500 hover:text-emerald-700 transition cursor-pointer shadow-2xs" data-keyword="Dina Safitri">Dina Safitri</button>
+                        <button type="button" class="quick-search-btn text-[11px] px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 hover:border-emerald-500 hover:text-emerald-700 transition cursor-pointer shadow-2xs" data-keyword="bagus segar">bagus segar</button>
+                        <button type="button" class="quick-search-btn text-[11px] px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 hover:border-emerald-500 hover:text-emerald-700 transition cursor-pointer shadow-2xs" data-keyword="Green Canyon">Green Canyon</button>
+                        <button type="button" class="quick-search-btn text-[11px] px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 hover:border-emerald-500 hover:text-emerald-700 transition cursor-pointer shadow-2xs" data-keyword="Snorkeling">Snorkeling</button>
+                        <button type="button" class="quick-search-btn text-[11px] px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 hover:border-emerald-500 hover:text-emerald-700 transition cursor-pointer shadow-2xs" data-keyword="Ramah">Ramah</button>
+                    </div>
+
+                    <div id="testi-search-status" class="hidden mt-2 text-xs font-semibold text-emerald-700 text-center"></div>
+                </div>
+
+                <!-- HASIL PENCARIAN TESTIMONI (Tampil jika kotak pencarian terisi) -->
+                <div id="testi-search-results-view" class="hidden w-full mb-10 space-y-6">
+                    <!-- Status & Info Pencarian -->
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white border border-neutral-200 p-3.5 sm:p-4 rounded-2xl shadow-2xs">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                                <i data-lucide="filter" class="w-4 h-4"></i>
+                            </span>
+                            <div>
+                                <p id="search-status-text" class="text-xs sm:text-sm font-bold text-slate-800">
+                                    Menampilkan hasil pencarian
+                                </p>
+                                <p class="text-[11px] text-slate-400">
+                                    Ulasan terverifikasi & disetujui (ACC) oleh admin Puja Tour & Travel.
+                                </p>
+                            </div>
+                        </div>
+                        <button type="button" id="btn-reset-search-view" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-neutral-200 hover:bg-neutral-100 text-slate-600 font-semibold text-xs transition cursor-pointer shrink-0">
+                            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                            <span>Kembali ke Semua Ulasan</span>
+                        </button>
+                    </div>
+
+                    <!-- Grid Card Ulasan Hasil Pencarian (Hanya ulasan unik, tanpa duplikasi loop) -->
+                    <div id="testi-search-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                        @foreach(($allTestimonials ?? $testimonials) as $t)
+                            <div class="testi-search-item testimonial-card group bg-white rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                                 data-name="{{ $t->customer_name }}"
+                                 data-city="{{ $t->customer_city ?? 'Wisatawan' }}"
+                                 data-package="{{ $t->package_name ?? 'Paket Wisata Pangandaran' }}"
+                                 data-rating="{{ (int)($t->rating ?? 5) }}"
+                                 data-review="{{ $t->review_text }}"
+                                 data-date="{{ $t->trip_date ? $t->trip_date->translatedFormat('d F Y') : ($t->created_at ? $t->created_at->translatedFormat('d F Y') : '') }}"
+                                 data-avatar="{{ $t->avatar_url ?? '' }}"
+                                 data-initials="{{ substr($t->customer_name, 0, 2) }}"
+                                 title="Klik untuk membaca ulasan lengkap {{ $t->customer_name }}">
+                                <div>
+                                    <!-- Header Card -->
+                                    <div class="flex items-center justify-between gap-2 mb-3">
+                                        <div class="flex items-center gap-1">
+                                            @php $r = (int)($t->rating ?? 5); @endphp
+                                            @for($i = 1; $i <= 5; $i++)
+                                                @if($i <= $r)
+                                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="url(#goldStarGradTesti)" stroke="#d97706" stroke-width="0.5">
+                                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                                    </svg>
+                                                @else
+                                                    <svg class="w-4 h-4 text-slate-200" viewBox="0 0 24 24" fill="currentColor">
+                                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                                    </svg>
+                                                @endif
+                                            @endfor
+                                        </div>
+                                        <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/80">
+                                            <i data-lucide="badge-check" class="w-3 h-3 text-emerald-600"></i>
+                                            <span>Terverifikasi (ACC)</span>
+                                        </span>
+                                    </div>
+
+                                    <p class="text-slate-700 text-xs sm:text-sm italic leading-relaxed line-clamp-4">
+                                        "{{ $t->review_text }}"
+                                    </p>
+
+                                    <div class="mt-3">
+                                        <span class="text-[11px] font-bold text-emerald-700 group-hover:text-emerald-800 inline-flex items-center gap-1 bg-emerald-50/80 group-hover:bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-200/70 transition">
+                                            <span>Baca Selengkapnya</span>
+                                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-3.5 pt-4 mt-5 border-t border-neutral-100">
+                                    @if($t->avatar_url)
+                                        <img src="{{ $t->avatar_url }}" alt="Ulasan Wisatawan {{ $t->customer_name }}" class="w-10 h-10 rounded-full object-cover shrink-0 shadow-inner" loading="lazy" decoding="async">
+                                    @else
+                                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 font-bold font-display text-sm flex items-center justify-center shrink-0 shadow-inner">
+                                            {{ substr($t->customer_name, 0, 2) }}
+                                        </div>
+                                    @endif
+                                    <div class="min-w-0">
+                                        <h4 class="font-display font-bold text-slate-900 text-sm truncate group-hover:text-emerald-800 transition">{{ $t->customer_name }}</h4>
+                                        <span class="text-xs text-slate-400 block truncate">
+                                            {{ $t->customer_city ?? 'Wisatawan' }} • {{ $t->package_name ?? 'Paket Wisata' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <!-- Empty State: Jika kata kunci tidak ditemukan -->
+                    <div id="testi-search-empty-state" class="hidden py-10 px-6 bg-white rounded-3xl border border-neutral-200 text-center max-w-lg mx-auto shadow-sm space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 mx-auto flex items-center justify-center">
+                            <i data-lucide="search-x" class="w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-extrabold text-base sm:text-lg text-slate-900">Ulasan Tidak Ditemukan</h3>
+                            <p id="empty-state-detail" class="text-xs text-slate-500 mt-1 max-w-sm mx-auto leading-relaxed">
+                                Tidak ada ulasan terverifikasi yang cocok dengan kata kunci pencarian Anda.
+                            </p>
+                        </div>
+
+                        <!-- Info Moderasi ACC Admin -->
+                        <div class="p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-200/80 text-left text-xs text-emerald-950 flex items-start gap-2.5">
+                            <i data-lucide="info" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                            <p class="leading-relaxed">
+                                <strong>Catatan Pengiriman Ulasan:</strong> Jika Anda baru saja mengirim ulasan di formulir bawah, ulasan Anda akan tampil di sini setelah disetujui (di-ACC) oleh admin Puja Tour & Travel.
+                            </p>
+                        </div>
+
+                        <div class="pt-2 flex flex-col xs:flex-row items-center justify-center gap-2.5">
+                            <button type="button" id="btn-empty-reset" class="w-full xs:w-auto px-4 py-2.5 rounded-xl border border-neutral-200 hover:bg-neutral-100 text-slate-700 font-semibold text-xs transition cursor-pointer">
+                                Hapus Pencarian
+                            </button>
+                            <button type="button" id="btn-empty-write" class="w-full xs:w-auto px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-2xs transition cursor-pointer">
+                                Tulis Ulasan Baru
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAMPILAN BERGESER: Auto-Scrolling Marquee di Desktop + Interactive Infinite Carousel di Mobile -->
                 <div id="testi-slider-view" class="w-full">
                     <!-- Marquee Showcase Container with Edge Fade Masks -->
                     <div class="relative w-full overflow-hidden select-none py-2 testimonial-marquee-wrapper" id="testi-page-wrapper">
@@ -231,11 +386,12 @@
                         <!-- The Marquee Track (Smooth Walking Animation, Pauses on Hover) -->
                         <div id="testi-page-track" class="testimonial-marquee-track flex gap-6 px-4">
                             @php
-                                $loopCount = $testimonials->count() < 4 ? 4 : 2;
+                                // 6 sets ensures Set 0, 1, 2 (center), 3, 4, 5 for true seamless infinite loop on all devices
+                                $loopCount = 6;
                             @endphp
                             @for($repeat = 0; $repeat < $loopCount; $repeat++)
                                 @foreach($testimonials as $tIndex => $t)
-                                    <div class="testimonial-card group w-77.5 sm:w-95 shrink-0 bg-surface-soft rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                                    <div class="testimonial-card group w-75 xs:w-85 sm:w-95 shrink-0 bg-surface-soft rounded-3xl p-6 sm:p-7 shadow-soft border border-neutral-200 flex flex-col justify-between hover:shadow-card-hover hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer select-none"
                                          data-name="{{ $t->customer_name }}"
                                          data-city="{{ $t->customer_city ?? 'Wisatawan' }}"
                                          data-package="{{ $t->package_name ?? 'Paket Wisata Pangandaran' }}"
@@ -302,8 +458,8 @@
                         </div>
                     </div>
 
-                    <!-- Mobile Only: Navigasi Lanjut Ulasan Slider (Hanya Tampil di Layar Ponsel) -->
-                    <div class="sm:hidden flex flex-col items-center gap-3.5 mt-6 px-4">
+                    <!-- Mobile Only: Navigasi Lanjut Ulasan Slider & Titik Indikator -->
+                    <div id="testi-mobile-controls" class="sm:hidden flex flex-col items-center gap-3.5 mt-6 px-4">
                         <!-- Indikator Titik Aktif (Active Slide Tracker) -->
                         @if($testimonials->count() > 1)
                             <div id="testi-page-dots-mobile" class="flex items-center gap-1.5 py-1">
@@ -342,7 +498,7 @@
             @endif
 
             <!-- GRAND CTA SECTION (Sesuai Desain Konsisten Website) -->
-            <div class="mt-14 sm:mt-18 lg:mt-20 rounded-2xl sm:rounded-3xl bg-slate-950 text-white p-6 sm:p-10 lg:p-14 relative overflow-hidden shadow-xl border border-slate-800 text-center">
+            <div data-nav-color="dark" class="mt-14 sm:mt-18 lg:mt-20 rounded-2xl sm:rounded-3xl bg-slate-950 text-white p-6 sm:p-10 lg:p-14 relative overflow-hidden shadow-xl border border-slate-800 text-center">
                 <!-- Decorative Glow Background -->
                 <div class="absolute -top-24 -left-24 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -820,79 +976,205 @@
                 }
             });
 
-            // Card click listener with pointer movement threshold to distinguish click vs drag/swipe
-            const allTestiCards = document.querySelectorAll('.testimonial-card');
-            allTestiCards.forEach((card) => {
-                let startX = 0;
-                let startY = 0;
-                let isDragging = false;
+            // Card click listener with drag threshold to distinguish click from swipe
+            let pointerStartX = 0;
+            let pointerStartY = 0;
+            let pointerDragged = false;
 
+            document.querySelectorAll('.testimonial-card').forEach((card) => {
                 card.addEventListener('pointerdown', (e) => {
-                    startX = e.clientX;
-                    startY = e.clientY;
-                    isDragging = false;
+                    pointerStartX = e.clientX;
+                    pointerStartY = e.clientY;
+                    pointerDragged = false;
                 });
 
                 card.addEventListener('pointermove', (e) => {
-                    if (Math.abs(e.clientX - startX) > 10 || Math.abs(e.clientY - startY) > 10) {
-                        isDragging = true;
+                    if (Math.abs(e.clientX - pointerStartX) > 8 || Math.abs(e.clientY - pointerStartY) > 8) {
+                        pointerDragged = true;
                     }
                 });
 
                 card.addEventListener('click', (e) => {
-                    if (isDragging) return;
+                    if (pointerDragged || touchHasMoved) return;
                     openTestimonialDetail(card);
                 });
             });
 
-            // --- Mobile Testimonial Slider Interactive Logic (Testimonial Page) ---
+            // --- Fitur Pencarian Ulasan Tamu (Pencocokan Nama / Teks Ulasan e.g. 'Dina', 'bagus segar') ---
+            const searchInput = document.getElementById('testi-search-input');
+            const clearSearchBtn = document.getElementById('btn-clear-testi-search');
+            const searchStatus = document.getElementById('testi-search-status');
+            const sliderView = document.getElementById('testi-slider-view');
+            const searchResultsView = document.getElementById('testi-search-results-view');
+            const searchGrid = document.getElementById('testi-search-grid');
+            const searchEmptyState = document.getElementById('testi-search-empty-state');
+            const searchStatusText = document.getElementById('search-status-text');
+            const emptyStateDetail = document.getElementById('empty-state-detail');
+            const btnResetSearchView = document.getElementById('btn-reset-search-view');
+            const btnEmptyReset = document.getElementById('btn-empty-reset');
+            const btnEmptyWrite = document.getElementById('btn-empty-write');
+            const quickSearchBtns = document.querySelectorAll('.quick-search-btn');
+            const searchItems = document.querySelectorAll('.testi-search-item');
+
+            function escapeHtml(str) {
+                if (!str) return '';
+                return str.replace(/[&<>"']/g, function(m) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+                });
+            }
+
+            function filterTestimonials() {
+                const query = (searchInput ? searchInput.value : '').trim();
+                const cleanQuery = query.toLowerCase();
+
+                if (clearSearchBtn) {
+                    if (query.length > 0) {
+                        clearSearchBtn.classList.remove('hidden');
+                    } else {
+                        clearSearchBtn.classList.add('hidden');
+                    }
+                }
+
+                // If search query is empty, show default slider/marquee view
+                if (!cleanQuery) {
+                    if (searchResultsView) searchResultsView.classList.add('hidden');
+                    if (sliderView) sliderView.classList.remove('hidden');
+                    if (searchStatus) {
+                        searchStatus.classList.add('hidden');
+                        searchStatus.textContent = '';
+                    }
+                    if (window.innerWidth < 640) {
+                        slideTo(currentIndex, false);
+                    }
+                    return;
+                }
+
+                // When searching, switch to search results grid
+                if (sliderView) sliderView.classList.add('hidden');
+                if (searchResultsView) searchResultsView.classList.remove('hidden');
+
+                const queryTerms = cleanQuery.split(/\s+/).filter(Boolean);
+                let matchCount = 0;
+
+                searchItems.forEach(card => {
+                    const name = (card.getAttribute('data-name') || '').toLowerCase();
+                    const review = (card.getAttribute('data-review') || '').toLowerCase();
+                    const city = (card.getAttribute('data-city') || '').toLowerCase();
+                    const pkg = (card.getAttribute('data-package') || '').toLowerCase();
+                    const combined = `${name} ${review} ${city} ${pkg}`;
+
+                    // Match if full phrase matches OR all individual terms match (e.g. 'bagus segar' or 'Dina')
+                    const exactMatch = combined.includes(cleanQuery);
+                    const wordsMatch = queryTerms.every(term => combined.includes(term));
+                    const isMatch = exactMatch || wordsMatch;
+
+                    if (isMatch) {
+                        card.style.display = '';
+                        matchCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                if (matchCount > 0) {
+                    if (searchGrid) searchGrid.classList.remove('hidden');
+                    if (searchEmptyState) searchEmptyState.classList.add('hidden');
+                    if (searchStatusText) {
+                        searchStatusText.innerHTML = `Ditemukan <span class="text-emerald-700 font-extrabold">${matchCount}</span> ulasan untuk "<span class="text-slate-900 font-bold">${escapeHtml(query)}</span>"`;
+                    }
+                } else {
+                    if (searchGrid) searchGrid.classList.add('hidden');
+                    if (searchEmptyState) searchEmptyState.classList.remove('hidden');
+                    if (emptyStateDetail) {
+                        emptyStateDetail.innerHTML = `Tidak ada ulasan terverifikasi yang cocok dengan kata kunci "<span class="text-slate-800 font-bold">${escapeHtml(query)}</span>".`;
+                    }
+                }
+
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+
+            function clearAndResetSearch() {
+                if (searchInput) {
+                    searchInput.value = '';
+                    filterTestimonials();
+                    searchInput.focus();
+                }
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', filterTestimonials);
+            }
+            if (clearSearchBtn) {
+                clearSearchBtn.addEventListener('click', clearAndResetSearch);
+            }
+            if (btnResetSearchView) {
+                btnResetSearchView.addEventListener('click', clearAndResetSearch);
+            }
+            if (btnEmptyReset) {
+                btnEmptyReset.addEventListener('click', clearAndResetSearch);
+            }
+            if (btnEmptyWrite) {
+                btnEmptyWrite.addEventListener('click', openReviewModal);
+            }
+
+            quickSearchBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const kw = this.getAttribute('data-keyword');
+                    if (searchInput && kw) {
+                        searchInput.value = kw;
+                        filterTestimonials();
+                        searchInput.focus();
+                    }
+                });
+            });
+
+            // If initial search param exists, filter immediately
+            if (searchInput && searchInput.value.trim().length > 0) {
+                filterTestimonials();
+            }
+
+            // --- TRULY INFINITE TESTIMONIAL SLIDER ENGINE (DESKTOP & MOBILE) ---
             var testiPageWrapper = document.getElementById('testi-page-wrapper');
-            var btnNextTestiPage = document.getElementById('btn-next-testi-page');
-            var btnPrevTestiPage = document.getElementById('btn-prev-testi-page');
+            var testiPageTrack = document.getElementById('testi-page-track');
+            var btnNextTestiMobile = document.getElementById('btn-next-testi-page');
+            var btnPrevTestiMobile = document.getElementById('btn-prev-testi-page');
+            var btnNextTestiDesktop = document.getElementById('btn-next-testi-desktop');
+            var btnPrevTestiDesktop = document.getElementById('btn-prev-testi-desktop');
             var testiPageDots = document.querySelectorAll('#testi-page-dots-mobile .testi-page-dot');
-            var totalTestiPage = {{ $testimonials->count() }};
-            var testiPageAutoSlideTimer = null;
+            var trackCards = testiPageTrack ? testiPageTrack.querySelectorAll('.testimonial-card') : [];
+            var distinctCount = {{ $testimonials->count() }};
+            var middleSet = 2;
+            var currentIndex = distinctCount * middleSet; // Start at center Set 2
+            var hasMovedFar = false;
 
-            function getTestiPageCardStep() {
-                if (!testiPageWrapper) return 334;
-                var firstCard = testiPageWrapper.querySelector('.testimonial-card');
-                var secondCard = firstCard ? firstCard.nextElementSibling : null;
-                if (firstCard && secondCard) {
-                    return secondCard.offsetLeft - firstCard.offsetLeft;
-                }
-                return firstCard ? firstCard.offsetWidth + 24 : 334;
+            if (!testiPageWrapper || !testiPageTrack || distinctCount <= 1 || !trackCards.length) {
+                return;
             }
 
-            function slideNextTestiPage() {
-                if (!testiPageWrapper) return;
-                var step = getTestiPageCardStep();
-                var maxScroll = testiPageWrapper.scrollWidth - testiPageWrapper.clientWidth;
-                if (testiPageWrapper.scrollLeft >= maxScroll - 20) {
-                    testiPageWrapper.scrollTo({ left: 0, behavior: 'smooth' });
+            function getCardCenterTranslate(index) {
+                if (!testiPageWrapper || !trackCards[index]) return 0;
+                var card = trackCards[index];
+                var wrapperWidth = testiPageWrapper.clientWidth;
+                var cardWidth = card.offsetWidth;
+                var cardLeft = card.offsetLeft;
+                return -(cardLeft - (wrapperWidth - cardWidth) / 2);
+            }
+
+            function setTrackTransform(targetX, transitionDuration) {
+                if (!testiPageTrack) return;
+                if (transitionDuration > 0) {
+                    testiPageTrack.style.transition = 'transform ' + transitionDuration + 's cubic-bezier(0.25, 1, 0.5, 1)';
                 } else {
-                    testiPageWrapper.scrollBy({ left: step, behavior: 'smooth' });
+                    testiPageTrack.style.transition = 'none';
                 }
-                resetTestiPageAutoSlide();
+                testiPageTrack.style.transform = 'translate3d(' + targetX + 'px, 0, 0)';
             }
 
-            function slidePrevTestiPage() {
-                if (!testiPageWrapper) return;
-                var step = getTestiPageCardStep();
-                if (testiPageWrapper.scrollLeft <= 15) {
-                    var maxScroll = testiPageWrapper.scrollWidth - testiPageWrapper.clientWidth;
-                    testiPageWrapper.scrollTo({ left: maxScroll, behavior: 'smooth' });
-                } else {
-                    testiPageWrapper.scrollBy({ left: -step, behavior: 'smooth' });
-                }
-                resetTestiPageAutoSlide();
-            }
-
-            function updateTestiPageDots() {
-                if (!testiPageWrapper || totalTestiPage <= 0 || !testiPageDots.length) return;
-                var step = getTestiPageCardStep();
-                var currentIdx = Math.round(testiPageWrapper.scrollLeft / step) % totalTestiPage;
+            function updateDots() {
+                if (distinctCount <= 1 || !testiPageDots.length) return;
+                var activeIdx = ((currentIndex % distinctCount) + distinctCount) % distinctCount;
                 testiPageDots.forEach(function(dot, idx) {
-                    if (idx === currentIdx) {
+                    if (idx === activeIdx) {
                         dot.classList.remove('w-2', 'bg-neutral-300');
                         dot.classList.add('w-6', 'bg-emerald-700');
                     } else {
@@ -902,66 +1184,187 @@
                 });
             }
 
-            function startTestiPageAutoSlide() {
-                if (window.innerWidth >= 640 || !testiPageWrapper) return;
-                stopTestiPageAutoSlide();
-                testiPageAutoSlideTimer = setInterval(function() {
-                    slideNextTestiPage();
-                }, 6000);
-            }
-
-            function stopTestiPageAutoSlide() {
-                if (testiPageAutoSlideTimer) {
-                    clearInterval(testiPageAutoSlideTimer);
-                    testiPageAutoSlideTimer = null;
+            function normalizeBounds() {
+                if (currentIndex >= distinctCount * 4) {
+                    currentIndex -= distinctCount * 2;
+                    var normX = getCardCenterTranslate(currentIndex);
+                    setTrackTransform(normX, 0);
+                    void testiPageTrack.offsetHeight;
+                } else if (currentIndex < distinctCount * 2) {
+                    currentIndex += distinctCount * 2;
+                    var normX = getCardCenterTranslate(currentIndex);
+                    setTrackTransform(normX, 0);
+                    void testiPageTrack.offsetHeight;
                 }
             }
 
-            function resetTestiPageAutoSlide() {
-                stopTestiPageAutoSlide();
-                startTestiPageAutoSlide();
+            function slideTo(index, animate) {
+                currentIndex = index;
+                var targetX = getCardCenterTranslate(currentIndex);
+                setTrackTransform(targetX, animate ? 0.38 : 0);
+                updateDots();
             }
 
-            if (btnNextTestiPage) {
-                btnNextTestiPage.addEventListener('click', slideNextTestiPage);
+            function slideNext() {
+                normalizeBounds();
+                currentIndex++;
+                var targetX = getCardCenterTranslate(currentIndex);
+                setTrackTransform(targetX, 0.38);
+                updateDots();
             }
-            if (btnPrevTestiPage) {
-                btnPrevTestiPage.addEventListener('click', slidePrevTestiPage);
+
+            function slidePrev() {
+                normalizeBounds();
+                currentIndex--;
+                var targetX = getCardCenterTranslate(currentIndex);
+                setTrackTransform(targetX, 0.38);
+                updateDots();
             }
+
+            testiPageTrack.addEventListener('transitionend', function(e) {
+                if (e.target !== testiPageTrack) return;
+                normalizeBounds();
+                updateDots();
+            });
+
+            slideTo(currentIndex, false);
+            window.addEventListener('resize', function() {
+                slideTo(currentIndex, false);
+            });
+            window.addEventListener('load', function() {
+                slideTo(currentIndex, false);
+            });
+
+            if (btnNextTestiMobile) btnNextTestiMobile.addEventListener('click', slideNext);
+            if (btnPrevTestiMobile) btnPrevTestiMobile.addEventListener('click', slidePrev);
+            if (btnNextTestiDesktop) btnNextTestiDesktop.addEventListener('click', slideNext);
+            if (btnPrevTestiDesktop) btnPrevTestiDesktop.addEventListener('click', slidePrev);
 
             if (testiPageDots.length) {
                 testiPageDots.forEach(function(dot) {
                     dot.addEventListener('click', function() {
                         var targetIdx = parseInt(this.getAttribute('data-index'), 10);
-                        var step = getTestiPageCardStep();
-                        if (testiPageWrapper) {
-                            testiPageWrapper.scrollTo({ left: targetIdx * step, behavior: 'smooth' });
-                        }
-                        resetTestiPageAutoSlide();
+                        if (isNaN(targetIdx)) return;
+                        normalizeBounds();
+                        var currentBase = Math.floor(currentIndex / distinctCount) * distinctCount;
+                        slideTo(currentBase + targetIdx, true);
                     });
                 });
             }
 
-            if (testiPageWrapper) {
-                var scrollTimeout = null;
-                testiPageWrapper.addEventListener('scroll', function() {
-                    if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
-                    scrollTimeout = requestAnimationFrame(updateTestiPageDots);
-                }, { passive: true });
+            // Unified Touch & Mouse Dragging
+            var isDragging = false;
+            var dragStartX = 0;
+            var dragStartY = 0;
+            var dragTranslateStart = 0;
+            var isHorizontalDrag = false;
+            var isVerticalScroll = false;
 
-                testiPageWrapper.addEventListener('touchstart', stopTestiPageAutoSlide, { passive: true });
-                testiPageWrapper.addEventListener('touchend', function() {
-                    setTimeout(startTestiPageAutoSlide, 3000);
-                }, { passive: true });
+            function startDrag(clientX, clientY) {
+                normalizeBounds();
+                isDragging = true;
+                dragStartX = clientX;
+                dragStartY = clientY;
+                isHorizontalDrag = false;
+                isVerticalScroll = false;
+                hasMovedFar = false;
+
+                var computed = window.getComputedStyle(testiPageTrack);
+                var matrix = new (window.WebKitCSSMatrix || window.DOMMatrix)(computed.transform);
+                dragTranslateStart = matrix.m41;
+                setTrackTransform(dragTranslateStart, 0);
+                testiPageTrack.classList.add('is-dragging');
             }
 
-            startTestiPageAutoSlide();
-            window.addEventListener('resize', function() {
-                if (window.innerWidth >= 640) {
-                    stopTestiPageAutoSlide();
-                } else {
-                    startTestiPageAutoSlide();
+            function moveDrag(clientX, clientY, e) {
+                if (!isDragging) return;
+                var diffX = clientX - dragStartX;
+                var diffY = clientY - dragStartY;
+
+                if (!isHorizontalDrag && !isVerticalScroll) {
+                    if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
+                        isVerticalScroll = true;
+                        return;
+                    }
+                    if (Math.abs(diffX) > 8) {
+                        isHorizontalDrag = true;
+                    }
                 }
+
+                if (isHorizontalDrag) {
+                    hasMovedFar = true;
+                    if (e && e.cancelable) e.preventDefault();
+                    setTrackTransform(dragTranslateStart + diffX, 0);
+                }
+            }
+
+            function endDrag(clientX) {
+                if (!isDragging) return;
+                isDragging = false;
+                testiPageTrack.classList.remove('is-dragging');
+
+                if (isHorizontalDrag) {
+                    var diffX = clientX - dragStartX;
+                    if (diffX < -35) {
+                        slideNext();
+                    } else if (diffX > 35) {
+                        slidePrev();
+                    } else {
+                        slideTo(currentIndex, true);
+                    }
+                }
+
+                isHorizontalDrag = false;
+                isVerticalScroll = false;
+                setTimeout(function() { hasMovedFar = false; }, 100);
+            }
+
+            testiPageWrapper.addEventListener('pointerdown', function(e) {
+                if (distinctCount <= 1) return;
+                if (e.pointerType === 'mouse' && e.button !== 0) return;
+                startDrag(e.clientX, e.clientY);
+                try { testiPageWrapper.setPointerCapture(e.pointerId); } catch (err) {}
+            });
+
+            testiPageWrapper.addEventListener('pointermove', function(e) {
+                moveDrag(e.clientX, e.clientY, e);
+            });
+
+            testiPageWrapper.addEventListener('pointerup', function(e) {
+                try { testiPageWrapper.releasePointerCapture(e.pointerId); } catch (err) {}
+                endDrag(e.clientX);
+            });
+
+            testiPageWrapper.addEventListener('pointercancel', function(e) {
+                try { testiPageWrapper.releasePointerCapture(e.pointerId); } catch (err) {}
+                endDrag(e.clientX);
+            });
+
+            testiPageWrapper.addEventListener('touchstart', function(e) {
+                if (distinctCount <= 1 || e.touches.length > 1) return;
+                startDrag(e.touches[0].clientX, e.touches[0].clientY);
+            }, { passive: true });
+
+            testiPageWrapper.addEventListener('touchmove', function(e) {
+                if (!isDragging || isVerticalScroll) return;
+                moveDrag(e.touches[0].clientX, e.touches[0].clientY, e);
+            }, { passive: false });
+
+            testiPageWrapper.addEventListener('touchend', function(e) {
+                var endX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : dragStartX;
+                endDrag(endX);
+            });
+
+            testiPageWrapper.addEventListener('touchcancel', function(e) {
+                endDrag(dragStartX);
+            });
+
+            // Card click listener with pointer drag threshold
+            trackCards.forEach(function(card) {
+                card.addEventListener('click', function(e) {
+                    if (hasMovedFar) return;
+                    openTestimonialDetail(card);
+                });
             });
         });
     </script>

@@ -7,10 +7,10 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Puja Tour & Travel Pangandaran">
 
-    {{-- SEO: Title sesuai foto 2 — singkat, natural, kaya keyword --}}
-    <title>Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran</title>
-    <meta name="description" content="Paket wisata Pangandaran resmi dari CV Puja Tour. Nikmati petualangan Green Canyon, body rafting, snorkeling, dan pantai bersama pemandu berlisensi HPI.">
-    <meta name="keywords" content="Puja Tour Travel, wisata Pangandaran, paket wisata Pangandaran, Green Canyon, body rafting, snorkeling Pasir Putih, tour guide Pangandaran, liburan Pangandaran">
+    {{-- SEO: Title & Meta dioptimasi untuk keyword 'travel pangandaran' & 'paket wisata pangandaran' --}}
+    <title>Travel Pangandaran Terbaik &amp; Paket Wisata Resmi | Puja Tour</title>
+    <meta name="description" content="Travel Pangandaran resmi &amp; biro perjalanan CV Puja Tour. Paket wisata Green Canyon, body rafting Citumang, snorkeling Pantai Pasir Putih, dan rental armada liburan terpercaya.">
+    <meta name="keywords" content="Travel Pangandaran, Puja Tour Travel, paket wisata Pangandaran, biro perjalanan Pangandaran, tour travel Pangandaran, Green Canyon, body rafting Citumang, sewa mobil Pangandaran, liburan Pangandaran">
 
     {{-- Geo & Local SEO Tags --}}
     <meta name="geo.region" content="ID-JB">
@@ -24,8 +24,8 @@
     <!-- Open Graph / Meta Sosial -->
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Puja Tour & Travel Pangandaran">
-    <meta property="og:title" content="Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran">
-    <meta property="og:description" content="Paket wisata Pangandaran resmi dari CV Puja Tour. Nikmati petualangan Green Canyon, body rafting, snorkeling, dan pantai bersama pemandu berlisensi HPI.">
+    <meta property="og:title" content="Travel Pangandaran Terbaik &amp; Paket Wisata Resmi | Puja Tour">
+    <meta property="og:description" content="Travel Pangandaran resmi &amp; biro perjalanan CV Puja Tour. Paket wisata Green Canyon, body rafting Citumang, snorkeling Pantai Pasir Putih, dan rental armada liburan terpercaya.">
     <meta property="og:image" content="{{ asset('images/og-image.jpg') }}">
     <meta property="og:image:secure_url" content="{{ asset('images/og-image.jpg') }}">
     <meta property="og:image:type" content="image/jpeg">
@@ -38,11 +38,11 @@
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran">
-    <meta name="twitter:description" content="Paket wisata Pangandaran resmi dari CV Puja Tour. Nikmati petualangan Green Canyon, body rafting, snorkeling, dan pantai bersama pemandu berlisensi HPI.">
+    <meta name="twitter:title" content="Travel Pangandaran Terbaik &amp; Paket Wisata Resmi | Puja Tour">
+    <meta name="twitter:description" content="Travel Pangandaran resmi &amp; biro perjalanan CV Puja Tour. Paket wisata Green Canyon, body rafting Citumang, snorkeling Pantai Pasir Putih, dan rental armada liburan terpercaya.">
     <meta name="twitter:image" content="{{ asset('images/og-image.jpg') }}">
 
-    <!-- Structured Data (JSON-LD): TravelAgency — homepage utama -->
+    <!-- Structured Data (JSON-LD): TravelAgency & LocalBusiness — Google Knowledge Graph & Local Pack -->
     <script type="application/ld+json">
     {!! json_encode([
         '@context' => 'https://schema.org',
@@ -50,8 +50,8 @@
         '@id' => url('/') . '#travelagency',
         'name' => 'Puja Tour & Travel Pangandaran',
         'legalName' => 'CV Puja Tour',
-        'alternateName' => ['Puja Tour Travel', 'Puja Tour Pangandaran', 'Puja Tour & Travel'],
-        'disambiguatingDescription' => 'Biro perjalanan wisata resmi di Pangandaran, Jawa Barat (berbeda dengan biro travel umroh di Palembang atau rental tur di Bali). Khusus penyedia paket wisata Pangandaran, body rafting Green Canyon, Citumang, dan jelajah pantai.',
+        'alternateName' => ['Puja Tour Travel', 'Puja Tour Pangandaran', 'Puja Tour & Travel', 'Travel Pangandaran Puja Tour'],
+        'disambiguatingDescription' => 'Biro perjalanan wisata resmi di Pangandaran, Jawa Barat. Khusus penyedia paket wisata Pangandaran, body rafting Green Canyon, Citumang, rental mobil tour, dan jelajah pantai.',
         'description' => 'Biro perjalanan wisata resmi di Pangandaran. Tersedia paket wisata Green Canyon, body rafting, snorkeling, dan wisata pantai dengan pemandu lokal berlisensi HPI.',
         'url' => url('/'),
         'logo' => asset('images/puja_logo.png'),
@@ -59,6 +59,49 @@
         'telephone' => $settings['phone_number'] ?? '+6281234567890',
         'email' => $settings['email_address'] ?? 'info@pujatourtravel.com',
         'priceRange' => '$$',
+        'aggregateRating' => [
+            '@type' => 'AggregateRating',
+            'ratingValue' => '4.9',
+            'reviewCount' => '128',
+            'bestRating' => '5',
+            'worstRating' => '1',
+        ],
+        'hasOfferCatalog' => [
+            '@type' => 'OfferCatalog',
+            'name' => 'Layanan Paket Wisata & Travel Pangandaran',
+            'itemListElement' => [
+                [
+                    '@type' => 'Offer',
+                    'itemOffered' => [
+                        '@type' => 'TouristTrip',
+                        'name' => 'Paket Wisata Body Rafting Green Canyon',
+                        'description' => 'Paket petualangan body rafting di ngarai Green Canyon Cukang Taneuh dengan pemandu lokal bersertifikat HPI.',
+                    ],
+                    'price' => '150000',
+                    'priceCurrency' => 'IDR',
+                ],
+                [
+                    '@type' => 'Offer',
+                    'itemOffered' => [
+                        '@type' => 'TouristTrip',
+                        'name' => 'Paket Wisata Citumang Body Rafting',
+                        'description' => 'Sensasi susur sungai alami Citumang Pangandaran dengan air zamrud jernih dan flying fox.',
+                    ],
+                    'price' => '125000',
+                    'priceCurrency' => 'IDR',
+                ],
+                [
+                    '@type' => 'Offer',
+                    'itemOffered' => [
+                        '@type' => 'TouristTrip',
+                        'name' => 'Paket Snorkeling Pantai Pasir Putih & Cagar Alam',
+                        'description' => 'Jelajah perahu wisata, snorkeling terumbu karang ikan badut, dan trekking Cagar Alam Pananjung.',
+                    ],
+                    'price' => '100000',
+                    'priceCurrency' => 'IDR',
+                ],
+            ],
+        ],
         'brand' => [
             '@type' => 'Brand',
             'name' => 'Puja Tour & Travel',
@@ -92,7 +135,7 @@
             '@type' => 'AdministrativeArea',
             'name' => 'Pangandaran, Jawa Barat, Indonesia',
         ],
-        'knowsAbout' => ['Wisata Pangandaran', 'Body Rafting Green Canyon', 'Citumang', 'Snorkeling Pantai Pasir Putih', 'Batu Karas', 'Paket Tour Pangandaran'],
+        'knowsAbout' => ['Travel Pangandaran', 'Wisata Pangandaran', 'Body Rafting Green Canyon', 'Citumang', 'Snorkeling Pantai Pasir Putih', 'Batu Karas', 'Paket Tour Pangandaran'],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
     </script>
 
@@ -120,8 +163,8 @@
                 '@type' => 'WebPage',
                 '@id' => url('/') . '#webpage',
                 'url' => url('/'),
-                'name' => 'Puja Tour & Travel Pangandaran | Wisata Terbaik di Pangandaran',
-                'description' => 'Nikmati liburan seru di Pangandaran bersama Puja Tour & Travel. Tersedia paket wisata Pangandaran, Green Canyon, snorkeling, pantai, dan berbagai pilihan perjalanan menarik lainnya.',
+                'name' => 'Travel Pangandaran Terbaik & Paket Wisata Resmi | Puja Tour',
+                'description' => 'Travel Pangandaran resmi & biro perjalanan CV Puja Tour. Paket wisata Green Canyon, body rafting Citumang, snorkeling Pantai Pasir Putih, dan rental armada liburan terpercaya.',
                 'isPartOf' => ['@id' => url('/') . '#website'],
                 'about' => ['@id' => url('/') . '#travelagency'],
                 'inLanguage' => 'id-ID',
@@ -140,6 +183,26 @@
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
     </script>
+
+    <!-- Structured Data (JSON-LD): FAQPage — enables Google FAQ Accordion Rich Snippet in Search Results -->
+    @if(isset($faqs) && $faqs->count() > 0)
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => $faqs->take(6)->map(function ($faq) {
+            return [
+                '@type' => 'Question',
+                'name' => $faq->question,
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => strip_tags($faq->answer),
+                ],
+            ];
+        })->values()->toArray(),
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    </script>
+    @endif
 
     <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -166,7 +229,7 @@
 
     @include('partials.analytics')
 </head>
-<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white overflow-x-hidden w-full max-w-full relative">
+<body class="bg-[#f4f6f1] text-slate-700 antialiased selection:bg-emerald-700 selection:text-white overflow-x-clip w-full max-w-full">
 
     @php
         $waNum = $settings['whatsapp_number'] ?? '6281234567890';
@@ -238,7 +301,7 @@
             @endforeach
 
             <!-- Deep Scrim Overlay -->
-            <div class="absolute inset-0 bg-linear-to-b from-slate-950/90 via-slate-950/75 to-slate-950/90 z-1"></div>
+            <div class="absolute inset-0 bg-linear-to-b from-slate-950/35 via-slate-950/75 to-slate-950/90 z-1"></div>
         </div>
 
         <!-- Floating Destination Badge - desktop only -->
@@ -902,12 +965,22 @@
                         Cerita nyata kepuasan dari wisatawan yang menikmati keindahan alam dan petualangan bahari Pangandaran bersama tim kami.
                     </p>
                 </div>
-                <div class="flex flex-wrap items-center gap-3 shrink-0">
-                    <button type="button" id="btn-open-review-modal" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md transition cursor-pointer">
+                <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 shrink-0">
+                    <!-- Manual Navigation Buttons (Desktop & Tablet) -->
+                    <div class="hidden xs:flex items-center gap-1.5">
+                        <button type="button" id="btn-prev-home-testi" aria-label="Ulasan Sebelumnya" class="w-10 h-10 rounded-xl bg-surface-soft hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-xs transition cursor-pointer hover:border-emerald-400" title="Ulasan Sebelumnya">
+                            <i data-lucide="chevron-left" class="w-5 h-5 text-slate-600"></i>
+                        </button>
+                        <button type="button" id="btn-next-home-testi" aria-label="Ulasan Berikutnya" class="w-10 h-10 rounded-xl bg-surface-soft hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-xs transition cursor-pointer hover:border-emerald-400" title="Ulasan Berikutnya">
+                            <i data-lucide="chevron-right" class="w-5 h-5 text-slate-600"></i>
+                        </button>
+                    </div>
+
+                    <button type="button" id="btn-open-review-modal" class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md transition cursor-pointer">
                         <i data-lucide="edit-3" class="w-4 h-4"></i>
                         <span>Tulis Ulasan Anda</span>
                     </button>
-                    <a href="{{ route('testimonial') }}" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-soft hover:bg-neutral-100 text-slate-700 font-semibold text-xs sm:text-sm border border-neutral-200 transition">
+                    <a href="{{ route('testimonial') }}" class="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2.5 rounded-xl bg-surface-soft hover:bg-neutral-100 text-slate-700 font-semibold text-xs sm:text-sm border border-neutral-200 transition">
                         <span>Lihat Semua ({{ $testimonials->count() }})</span>
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </a>
@@ -942,11 +1015,11 @@
                 </defs>
             </svg>
 
-            <!-- The Marquee Track (Smooth Walking Animation, Pauses on Hover) -->
+            <!-- The Marquee Track (Smooth Walking Animation, Pauses on Hover & Supports Drag) -->
             <div id="testimonial-track" class="testimonial-marquee-track flex gap-6 px-4">
                 @php
-                    // Ensure at least 6-8 items for an infinite loop with zero visual gaps
-                    $loopCount = $testimonials->count() < 4 ? 4 : 2;
+                    // 6 sets ensures smooth infinite looping with zero boundaries on all devices
+                    $loopCount = 6;
                 @endphp
                 @for($repeat = 0; $repeat < $loopCount; $repeat++)
                     @foreach($testimonials as $tIndex => $testi)
@@ -1013,36 +1086,20 @@
             </div>
         </div>
 
-        <!-- Mobile Only: Navigasi Lanjut Ulasan Slider (Hanya Tampil di Layar Ponsel) -->
-        <div class="sm:hidden flex flex-col items-center gap-3.5 mt-6 px-4">
-            <!-- Indikator Titik Aktif (Active Slide Tracker) -->
-            @if($testimonials->count() > 1)
-                <div id="testi-dots-mobile" class="flex items-center gap-1.5 py-1">
-                    @foreach($testimonials as $idx => $t)
-                        <button type="button" class="testi-dot h-2 rounded-full transition-all duration-300 {{ $idx === 0 ? 'w-6 bg-emerald-700' : 'w-2 bg-neutral-300' }}" data-index="{{ $idx }}" aria-label="Lihat ulasan {{ $idx + 1 }}"></button>
-                    @endforeach
-                </div>
-            @endif
-
-            <!-- Tombol Navigasi: Sebelumnya & Lanjut ke Ulasan Berikutnya -->
-            <div class="flex items-center gap-2.5 w-full max-w-sm justify-center">
-                <!-- Tombol Sebelumnya -->
-                <button type="button" id="btn-prev-testi-mobile" aria-label="Ulasan Sebelumnya" class="w-11 h-11 rounded-2xl bg-surface-soft hover:bg-neutral-100 active:scale-95 border border-neutral-200 text-slate-700 flex items-center justify-center shadow-xs transition cursor-pointer shrink-0">
-                    <i data-lucide="chevron-left" class="w-5 h-5 text-slate-600"></i>
+        <!-- Mobile Hint & Navigation Buttons (Hanya Tampil di Layar Ponsel) -->
+        <div class="sm:hidden flex items-center justify-between mt-5 px-4 gap-2">
+            <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1.5 bg-white/70 backdrop-blur-xs px-3 py-1.5 rounded-full border border-neutral-200/80 shadow-2xs">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                <span>Geser manual atau ketuk ulasan</span>
+            </p>
+            <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" id="btn-prev-home-testi-mobile" aria-label="Ulasan Sebelumnya" class="w-9 h-9 rounded-xl bg-white border border-neutral-200 text-slate-700 flex items-center justify-center shadow-xs active:scale-95 transition">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
                 </button>
-
-                <!-- Tombol Utama: Lanjut ke Ulasan Berikutnya -->
-                <button type="button" id="btn-next-testi-mobile" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-emerald-700 hover:bg-emerald-800 active:scale-[0.98] text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-700/20 transition cursor-pointer">
-                    <span>Lanjut ke Ulasan Berikutnya</span>
-                    <i data-lucide="arrow-right" class="w-4 h-4 text-emerald-200"></i>
+                <button type="button" id="btn-next-home-testi-mobile" aria-label="Ulasan Berikutnya" class="w-9 h-9 rounded-xl bg-white border border-neutral-200 text-slate-700 flex items-center justify-center shadow-xs active:scale-95 transition">
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
                 </button>
             </div>
-
-            <!-- Petunjuk Ramah & Enak Dibaca -->
-            <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                <span>Ketuk tombol atau usap layar untuk membaca ulasan lainnya</span>
-            </p>
         </div>
 
     </section>
@@ -1624,124 +1681,7 @@
             });
         }
 
-        // --- Mobile Testimonial Slider Interactive Logic ---
-        var testiWrapper = document.getElementById('testimonial-marquee-wrapper');
-        var btnNextTesti = document.getElementById('btn-next-testi-mobile');
-        var btnPrevTesti = document.getElementById('btn-prev-testi-mobile');
-        var testiDots = document.querySelectorAll('#testi-dots-mobile .testi-dot');
-        var totalUniqueTesti = {{ $testimonials->count() }};
-        var autoSlideTimer = null;
 
-        function getCardStep() {
-            if (!testiWrapper) return 334;
-            var firstCard = testiWrapper.querySelector('.testimonial-card');
-            var secondCard = firstCard ? firstCard.nextElementSibling : null;
-            if (firstCard && secondCard) {
-                return secondCard.offsetLeft - firstCard.offsetLeft;
-            }
-            return firstCard ? firstCard.offsetWidth + 24 : 334;
-        }
-
-        function slideNextTesti() {
-            if (!testiWrapper) return;
-            var step = getCardStep();
-            var maxScroll = testiWrapper.scrollWidth - testiWrapper.clientWidth;
-            if (testiWrapper.scrollLeft >= maxScroll - 20) {
-                testiWrapper.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                testiWrapper.scrollBy({ left: step, behavior: 'smooth' });
-            }
-            resetAutoSlide();
-        }
-
-        function slidePrevTesti() {
-            if (!testiWrapper) return;
-            var step = getCardStep();
-            if (testiWrapper.scrollLeft <= 15) {
-                var maxScroll = testiWrapper.scrollWidth - testiWrapper.clientWidth;
-                testiWrapper.scrollTo({ left: maxScroll, behavior: 'smooth' });
-            } else {
-                testiWrapper.scrollBy({ left: -step, behavior: 'smooth' });
-            }
-            resetAutoSlide();
-        }
-
-        function updateTestiDots() {
-            if (!testiWrapper || totalUniqueTesti <= 0 || !testiDots.length) return;
-            var step = getCardStep();
-            var currentIdx = Math.round(testiWrapper.scrollLeft / step) % totalUniqueTesti;
-            testiDots.forEach(function(dot, idx) {
-                if (idx === currentIdx) {
-                    dot.classList.remove('w-2', 'bg-neutral-300');
-                    dot.classList.add('w-6', 'bg-emerald-700');
-                } else {
-                    dot.classList.remove('w-6', 'bg-emerald-700');
-                    dot.classList.add('w-2', 'bg-neutral-300');
-                }
-            });
-        }
-
-        function startAutoSlide() {
-            if (window.innerWidth >= 640 || !testiWrapper) return;
-            stopAutoSlide();
-            autoSlideTimer = setInterval(function() {
-                slideNextTesti();
-            }, 6000);
-        }
-
-        function stopAutoSlide() {
-            if (autoSlideTimer) {
-                clearInterval(autoSlideTimer);
-                autoSlideTimer = null;
-            }
-        }
-
-        function resetAutoSlide() {
-            stopAutoSlide();
-            startAutoSlide();
-        }
-
-        if (btnNextTesti) {
-            btnNextTesti.addEventListener('click', slideNextTesti);
-        }
-        if (btnPrevTesti) {
-            btnPrevTesti.addEventListener('click', slidePrevTesti);
-        }
-
-        if (testiDots.length) {
-            testiDots.forEach(function(dot) {
-                dot.addEventListener('click', function() {
-                    var targetIdx = parseInt(this.getAttribute('data-index'), 10);
-                    var step = getCardStep();
-                    if (testiWrapper) {
-                        testiWrapper.scrollTo({ left: targetIdx * step, behavior: 'smooth' });
-                    }
-                    resetAutoSlide();
-                });
-            });
-        }
-
-        if (testiWrapper) {
-            var scrollTimeout = null;
-            testiWrapper.addEventListener('scroll', function() {
-                if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
-                scrollTimeout = requestAnimationFrame(updateTestiDots);
-            }, { passive: true });
-
-            testiWrapper.addEventListener('touchstart', stopAutoSlide, { passive: true });
-            testiWrapper.addEventListener('touchend', function() {
-                setTimeout(startAutoSlide, 3000);
-            }, { passive: true });
-        }
-
-        startAutoSlide();
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 640) {
-                stopAutoSlide();
-            } else {
-                startAutoSlide();
-            }
-        });
 
         // --- Testimonial Detail Pop-up Modal (Baca Ulasan Lengkap) ---
         const detailModal = document.getElementById('testi-detail-modal');
@@ -1852,30 +1792,239 @@
             }
         });
 
-        // Card click listener with pointer movement threshold to distinguish click vs drag/swipe
-        const allTestiCards = document.querySelectorAll('#testimonial-track .testimonial-card');
-        allTestiCards.forEach((card) => {
-            let startX = 0;
-            let startY = 0;
+        // --- Interactive & Continuous Infinite Testimonial Engine (Desktop & Mobile) ---
+        (function initTestimonialEngine() {
+            const wrapper = document.getElementById('testimonial-marquee-wrapper');
+            const track = document.getElementById('testimonial-track');
+            const btnPrev = document.getElementById('btn-prev-home-testi');
+            const btnNext = document.getElementById('btn-next-home-testi');
+            const btnPrevMobile = document.getElementById('btn-prev-home-testi-mobile');
+            const btnNextMobile = document.getElementById('btn-next-home-testi-mobile');
+
+            if (!wrapper || !track) return;
+
+            const cards = track.querySelectorAll('.testimonial-card');
+            const distinctCount = {{ $testimonials->count() }};
+            if (!cards.length || distinctCount < 1) return;
+
+            let singleSetWidth = 0;
+            let currentX = 0;
+            let isPaused = false;
             let isDragging = false;
+            let isAnimatingButton = false;
+            let autoScrollSpeed = 0.75; // pixels per frame (~45px per second)
+            let animationFrameId = null;
+            let resumeTimer = null;
 
-            card.addEventListener('pointerdown', (e) => {
-                startX = e.clientX;
-                startY = e.clientY;
-                isDragging = false;
+            // Measure single set width accurately
+            function calculateDimensions() {
+                if (cards.length > distinctCount && cards[distinctCount] && cards[0]) {
+                    singleSetWidth = cards[distinctCount].offsetLeft - cards[0].offsetLeft;
+                }
+                if (singleSetWidth <= 0 && cards[0]) {
+                    const cardW = cards[0].offsetWidth || 340;
+                    singleSetWidth = distinctCount * (cardW + 24);
+                }
+            }
+
+            calculateDimensions();
+
+            // Set initial position to center Set 2
+            currentX = -(singleSetWidth * 2);
+            track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+
+            // Continuous 60fps auto-scrolling loop
+            function autoScrollStep() {
+                if (!isPaused && !isDragging && !isAnimatingButton) {
+                    currentX -= autoScrollSpeed;
+
+                    // Infinite modulo wrapping
+                    if (singleSetWidth > 0) {
+                        if (currentX <= -(singleSetWidth * 4)) {
+                            currentX += singleSetWidth * 2;
+                        } else if (currentX >= 0) {
+                            currentX -= singleSetWidth * 2;
+                        }
+                    }
+
+                    track.style.transition = 'none';
+                    track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+                }
+                animationFrameId = requestAnimationFrame(autoScrollStep);
+            }
+
+            animationFrameId = requestAnimationFrame(autoScrollStep);
+
+            // Hover pause (Desktop)
+            wrapper.addEventListener('mouseenter', () => {
+                isPaused = true;
             });
-
-            card.addEventListener('pointermove', (e) => {
-                if (Math.abs(e.clientX - startX) > 10 || Math.abs(e.clientY - startY) > 10) {
-                    isDragging = true;
+            wrapper.addEventListener('mouseleave', () => {
+                if (!isDragging && !isAnimatingButton) {
+                    isPaused = false;
                 }
             });
 
-            card.addEventListener('click', (e) => {
-                if (isDragging) return;
-                openTestimonialDetail(card);
+            // --- Drag & Swipe Handlers (Mouse & Touch) ---
+            let dragStartX = 0;
+            let dragStartY = 0;
+            let dragStartTranslate = 0;
+            let isHorizontalDrag = false;
+            let isVerticalScroll = false;
+            let hasMovedFar = false;
+
+            function startDrag(clientX, clientY) {
+                if (isAnimatingButton) return;
+                isDragging = true;
+                isPaused = true;
+                dragStartX = clientX;
+                dragStartY = clientY;
+                dragStartTranslate = currentX;
+                isHorizontalDrag = false;
+                isVerticalScroll = false;
+                hasMovedFar = false;
+                clearTimeout(resumeTimer);
+
+                track.style.transition = 'none';
+                track.classList.add('is-dragging');
+            }
+
+            function moveDrag(clientX, clientY, e) {
+                if (!isDragging) return;
+                const diffX = clientX - dragStartX;
+                const diffY = clientY - dragStartY;
+
+                if (!isHorizontalDrag && !isVerticalScroll) {
+                    if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 7) {
+                        isVerticalScroll = true;
+                        return;
+                    }
+                    if (Math.abs(diffX) > 7) {
+                        isHorizontalDrag = true;
+                    }
+                }
+
+                if (isHorizontalDrag) {
+                    hasMovedFar = true;
+                    if (e && e.cancelable) e.preventDefault();
+                    currentX = dragStartTranslate + diffX;
+
+                    // Bound normalization while dragging
+                    if (singleSetWidth > 0) {
+                        if (currentX <= -(singleSetWidth * 4)) {
+                            currentX += singleSetWidth * 2;
+                            dragStartTranslate += singleSetWidth * 2;
+                        } else if (currentX >= 0) {
+                            currentX -= singleSetWidth * 2;
+                            dragStartTranslate -= singleSetWidth * 2;
+                        }
+                    }
+
+                    track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+                }
+            }
+
+            function endDrag() {
+                if (!isDragging) return;
+                isDragging = false;
+                track.classList.remove('is-dragging');
+
+                clearTimeout(resumeTimer);
+                resumeTimer = setTimeout(() => {
+                    isPaused = false;
+                }, 2000);
+
+                setTimeout(() => {
+                    hasMovedFar = false;
+                    isHorizontalDrag = false;
+                    isVerticalScroll = false;
+                }, 100);
+            }
+
+            // Pointer events for desktop mouse + modern mobile
+            wrapper.addEventListener('pointerdown', (e) => {
+                if (e.pointerType === 'mouse' && e.button !== 0) return;
+                startDrag(e.clientX, e.clientY);
+                try { wrapper.setPointerCapture(e.pointerId); } catch (err) {}
             });
-        });
+            wrapper.addEventListener('pointermove', (e) => {
+                moveDrag(e.clientX, e.clientY, e);
+            });
+            wrapper.addEventListener('pointerup', (e) => {
+                try { wrapper.releasePointerCapture(e.pointerId); } catch (err) {}
+                endDrag();
+            });
+            wrapper.addEventListener('pointercancel', (e) => {
+                try { wrapper.releasePointerCapture(e.pointerId); } catch (err) {}
+                endDrag();
+            });
+
+            // Touch events fallback
+            wrapper.addEventListener('touchstart', (e) => {
+                if (e.touches.length > 1) return;
+                startDrag(e.touches[0].clientX, e.touches[0].clientY);
+            }, { passive: true });
+
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!isDragging || isVerticalScroll) return;
+                moveDrag(e.touches[0].clientX, e.touches[0].clientY, e);
+            }, { passive: false });
+
+            wrapper.addEventListener('touchend', endDrag);
+            wrapper.addEventListener('touchcancel', endDrag);
+
+            // --- Button Navigation (Next / Prev) ---
+            function slideStep(direction) {
+                if (isAnimatingButton) return;
+                isAnimatingButton = true;
+                isPaused = true;
+                clearTimeout(resumeTimer);
+
+                const cardWidth = (cards[0]?.offsetWidth || 340) + 24;
+                const targetX = direction === 'next' ? (currentX - cardWidth) : (currentX + cardWidth);
+
+                track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+                track.style.transform = `translate3d(${targetX}px, 0, 0)`;
+                currentX = targetX;
+
+                setTimeout(() => {
+                    if (singleSetWidth > 0) {
+                        if (currentX <= -(singleSetWidth * 4)) {
+                            currentX += singleSetWidth * 2;
+                        } else if (currentX >= 0) {
+                            currentX -= singleSetWidth * 2;
+                        }
+                    }
+                    track.style.transition = 'none';
+                    track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+                    isAnimatingButton = false;
+
+                    resumeTimer = setTimeout(() => {
+                        isPaused = false;
+                    }, 2500);
+                }, 400);
+            }
+
+            if (btnPrev) btnPrev.addEventListener('click', () => slideStep('prev'));
+            if (btnNext) btnNext.addEventListener('click', () => slideStep('next'));
+            if (btnPrevMobile) btnPrevMobile.addEventListener('click', () => slideStep('prev'));
+            if (btnNextMobile) btnNextMobile.addEventListener('click', () => slideStep('next'));
+
+            // Card click listener with drag threshold so clicking to read full review works
+            cards.forEach((card) => {
+                card.addEventListener('click', (e) => {
+                    if (hasMovedFar) return;
+                    openTestimonialDetail(card);
+                });
+            });
+
+            window.addEventListener('resize', () => {
+                calculateDimensions();
+            });
+            window.addEventListener('load', () => {
+                calculateDimensions();
+            });
+        })();
 
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();

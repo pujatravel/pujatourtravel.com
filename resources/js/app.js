@@ -67,39 +67,83 @@ document.addEventListener('DOMContentLoaded', () => {
     drawerLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
 
     // 2. Automatic Smart Navbar Background Detection
-    // Automatically detects if what's behind the navbar is non-white (transparent navbar) or white (white navbar)
+    // Dynamic glassmorphic navbar across ALL pages:
+    // - Over dark sections (hero slider #beranda, [data-nav-color="dark"], footer, dark cards): activates translucent frosted dark glass (.is-transparent-nav)
+    // - Over light sections: activates crisp white frosted glass (.is-white-nav)
     const mainHeader = document.getElementById('main-header');
-    if (mainHeader) {
-        const updateNavbarTheme = () => {
-            const headerHeight = mainHeader.offsetHeight || 64;
-            const probeY = headerHeight / 2;
+    const homeHeroSection = document.getElementById('beranda');
 
-            const darkElements = document.querySelectorAll(
-                '[data-nav-color="dark"], section.bg-slate-950, section.bg-slate-900, footer.bg-slate-950, footer.bg-slate-900'
-            );
+    if (mainHeader) {
+        let isUpdatingNav = false;
+
+        const updateNavbarTheme = () => {
+            const headerHeight = mainHeader.offsetHeight || 60;
+            const probeY = Math.max(20, Math.floor(headerHeight / 2));
 
             let isOverDark = false;
-            for (let i = 0; i < darkElements.length; i++) {
-                const rect = darkElements[i].getBoundingClientRect();
-                if (rect.top <= probeY && rect.bottom >= probeY) {
+
+            // 1. Check homepage top hero (#beranda)
+            if (homeHeroSection) {
+                const heroRect = homeHeroSection.getBoundingClientRect();
+                if (heroRect.top <= probeY && heroRect.bottom >= probeY) {
                     isOverDark = true;
-                    break;
                 }
             }
 
+            // 2. Dynamic probe check across any dark section, footer, or dark container on any page
+            if (!isOverDark) {
+                const darkElements = document.querySelectorAll(
+                    '[data-nav-color="dark"], footer, section.bg-slate-950, section.bg-slate-900, div.bg-slate-950, div.bg-slate-900'
+                );
+
+                for (let i = 0; i < darkElements.length; i++) {
+                    const el = darkElements[i];
+                    // Skip drawer, dialog modals, or fixed overlay elements
+                    if (el.closest('#mobile-drawer') || el.closest('[role="dialog"]') || el.classList.contains('fixed')) {
+                        continue;
+                    }
+
+                    const rect = el.getBoundingClientRect();
+                    // Element is large enough to be a section/banner and currently behind the navbar probe line
+                    if (rect.height > 40 && rect.width >= (window.innerWidth * 0.45) && rect.top <= probeY && rect.bottom >= probeY) {
+                        isOverDark = true;
+                        break;
+                    }
+                }
+            }
+
+            // Apply the respective glassmorphic state
             if (isOverDark) {
-                // Non-white/dark background behind navbar -> TRANSPARENT
-                mainHeader.classList.remove('is-white-nav');
-                mainHeader.classList.add('is-transparent-nav');
+                if (!mainHeader.classList.contains('is-transparent-nav')) {
+                    mainHeader.classList.add('is-transparent-nav');
+                }
+                if (mainHeader.classList.contains('is-white-nav')) {
+                    mainHeader.classList.remove('is-white-nav');
+                }
             } else {
-                // White background behind navbar -> WHITE NAVBAR
-                mainHeader.classList.remove('is-transparent-nav');
-                mainHeader.classList.add('is-white-nav');
+                if (!mainHeader.classList.contains('is-white-nav')) {
+                    mainHeader.classList.add('is-white-nav');
+                }
+                if (mainHeader.classList.contains('is-transparent-nav')) {
+                    mainHeader.classList.remove('is-transparent-nav');
+                }
             }
         };
 
-        window.addEventListener('scroll', updateNavbarTheme, { passive: true });
-        window.addEventListener('resize', updateNavbarTheme, { passive: true });
+        const onScrollOrResize = () => {
+            if (!isUpdatingNav) {
+                isUpdatingNav = true;
+                requestAnimationFrame(() => {
+                    updateNavbarTheme();
+                    isUpdatingNav = false;
+                });
+            }
+        };
+
+        window.addEventListener('scroll', onScrollOrResize, { passive: true });
+        window.addEventListener('resize', onScrollOrResize, { passive: true });
+        window.addEventListener('load', updateNavbarTheme);
+        // Run immediately on page load
         updateNavbarTheme();
     }
 
